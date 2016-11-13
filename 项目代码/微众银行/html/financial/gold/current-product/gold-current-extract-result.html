@@ -1,0 +1,61 @@
+<ion-view style="background-color: #fff;">
+    <ion-header-bar>
+        <div class="mod-menu">
+            <header class="mod-menu">
+                <!--<button class="mod-menu-return"></button>-->
+                交易结果
+                <span class="mod-menu-finish" ng-click="onClickOK()">完成</span>
+            </header>
+        </div>
+    </ion-header-bar>
+
+    <ion-content class="has-header" has-bouncing="false">
+        <div class="mod-result-hd ui-px-a">
+            <span class="ok" ng-if="data.status == 1">申请成功</span>
+
+            <span class="ok" ng-if="data.status == 2">申请已受理</span>
+            <p ng-if="data.status == 2">需要确认申请结果，可在首页查看进展</p>
+
+            <span class="fall" ng-if="data.status == 3">申请失败</span>
+            <ol ng-if="data.status == 3">
+                <li>失败原因：{{data.transInfo.result.retMsg}}</li>
+            </ol>
+        </div>
+
+        <div class="mod-result-con">
+            <p class="title" ng-if="data.status == 3">详情</p>
+
+            <ul class="info-list" ng-if="data.status == 3">
+                <li class="ui-flex"><span class="item info-name">产品名称</span><span class="lg-item s-tar">微众金-活期金</span></li>
+                <li class="ui-flex"><span class="item info-name">提取克数</span><span class="lg-item s-tar">{{data.transInfo.request.amounts | formatGoldString}}克</span></li>
+                <li class="ui-flex"><span class="item info-name">提取费用</span><span class="lg-item s-tar">{{data.transInfo.request.fee | formatMoneyStringV2}}元</span></li>
+                <li class="ui-flex" ng-if="data.transInfo.request.pay_flag == '2'"><span class="item info-name">付款账户</span><span class="lg-item s-tar"><i class="ui-hqj-icon"></i></span></li>
+                <li class="ui-flex" ng-if="data.transInfo.request.pay_flag == '3'"><span class="item info-name">付款账户</span><span class="lg-item s-tar">微众卡</span></li>
+                <li class="ui-flex"><span class="item info-name">交易时间</span><span class="lg-item s-tar">{{data.today | formatDateObjToString}} {{data.today | formatDateObjToTimeString}}</span></li>
+            </ul>
+
+            <p class="msg" ng-if="data.status == 3 && data.transInfo.request.pay_flag == '2'">黄金已返还到您的活期金账户，活期+也已解冻提取费用</p>
+            <p class="msg" ng-if="data.status == 3 && data.transInfo.request.pay_flag == '3'">黄金已返还到您的活期金账户，微众卡也已解冻提取费用</p>
+
+            <p class="title" ng-if="data.status == 1 || data.status == 2">提金流程</p>
+
+            <div class="mod-v-timestamp s-mt20" ng-if="data.status == 1 || data.status == 2">
+                <div class="node on">
+                    <span class="header first"><i></i>{{data.today | formatDateObjToStringV2}}</span>
+                    <p>申请提取实物金：{{data.transInfo.request.amounts | formatGoldString}}克</p>
+                    <p>冻结提取费：{{data.transInfo.request.fee | formatMoneyStringV2}}元，活期金{{data.transInfo.request.amounts | formatMoneyStringV2}}克</p>
+                </div>
+                <div class="node">
+                    <span class="header"><i></i>{{data.confirmDay | formatDateObjToStringV2}}</span>
+                    <p>提金确认，反馈提金申请</p>
+                </div>
+                <div class="node">
+                    <span class="header"><i></i>{{data.getGoldDay | formatDateObjToStringV2}}</span>
+                    <p>到货通知</p>
+                </div>
+            </div>
+
+            <!--<button class="mod-button-normal">转为挂单买入</button>-->
+        </div>
+    </ion-content>
+</ion-view>

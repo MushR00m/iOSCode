@@ -1,0 +1,101 @@
+<ion-view>
+    <ion-header-bar>
+        <div class="mod-menu">
+            <header class="mod-menu">
+                <button class="mod-menu-return" ng-click="back()"></button>
+                活期金
+                <span ng-class="data.shareClass" ng-click="share()"></span>
+            </header>
+        </div>
+    </ion-header-bar>
+
+    <ion-content class="has-header" has-bouncing="false">
+        <div class="mod-income ui-px-a">
+            <p class="msg ui-msg-lr-line">
+                <span>历史万克收益(克/天)
+                    <i class="ui-icon-info" ng-click="onClickIncomeRate()"></i>
+                </span>
+            </p>
+            <p class="num">{{data.prodInfo.int_rate_g}}</p>
+            <p class="msg">万克黄金每日获得克数</p>
+
+            <ul class="ui-flex tab">
+                <li class="item ui-px-r" ng-click="onClickMinBuy()">
+                    <h2 ng-if="data.showWeight">起购(克)</h2>
+                    <h2 ng-if="!data.showWeight">起购(元)</h2>
+                    <p ng-if="data.showWeight">{{data.prodInfo.min_buy_weight | formatGoldString}}
+                        <i class="ui-icon-transform"></i>
+                    </p>
+                    <p ng-if="!data.showWeight">{{data.prodInfo.min_buy_amount | formatMoneyStringV2}}
+                        <i class="ui-icon-transform"></i>
+                    </p>
+                </li>
+                <li class="item">
+                    <h2>风险等级</h2>
+                    <p>{{data.riskDesc}}</p>
+                </li>
+            </ul>
+        </div>
+
+        <div compile="data.bannerHtml1"></div>
+
+        <div class="mod-table gold-info ui-px-a">
+            <div class="mod-table-con gold-top">
+                <div class="gold-top-item gold-interest">
+                    <p>黄金生息</p>
+                </div>
+                <div class="gold-top-item gold-extract">
+                    <p>可实物金提取</p>
+                </div>
+                <div class="gold-top-item gold-forthwith">
+                    <p>实时到账</p>
+                </div>
+            </div>
+            <div class="mod-table-con ui-px-b">
+                <p>以黄金形式生息，支持实物金提取，兑换人民币可实时到账</p>
+                <p class="function">持有资产(人民币)=持有黄金克数*实时金价</p>
+            </div>
+        </div>
+
+        <div compile="data.bannerHtml2"></div>
+
+        <gold-price></gold-price>
+
+        <div compile="data.transRuleHtml"></div>
+
+    </ion-content>
+
+    <ion-footer-bar class="bar bar-footer">
+        <div class="mod-button-bottom ui-flex">
+            <!--<button class="item off">转出</button>-->
+            <button class="item" ng-click="onClickBuy()">买入</button>
+        </div>
+    </ion-footer-bar>
+
+    <div slider-up-confirm slider-up-confirm-option="data.sliderUpConfirmOption"></div>
+
+    <div class="{{data.purchaseGuideStep}}" ng-if="data.showPurchaseGuide" ng-click="onClickPurchaseGuide()">
+        <div class="button-group">
+            <div class="ui-px-b">立即买入</div>
+            <div class="ui-px-b">挂单买入</div>
+            <div class="ui-px-b">设置定投</div>
+            <div class="s-mt10">取消</div>
+        </div>
+        <div class="masking-top">
+            <div class="tip">{{data.purchaseGuideTips}}</div>
+        </div>
+        <div class="masking-bottom"></div>
+    </div>
+
+    <!--遮罩层start-->
+    <div ng-class="data.maskClass">
+        <h2>{{data.maskTitle}}</h2>
+        <p>{{data.maskDetail}}</p>
+        <div class="funcs"><button class="p-btn p-btn-outline p-btn-block" ng-click="onClickCancelMask()">知道了</button></div>
+    </div>
+    <!--遮罩层end-->
+
+</ion-view>
+
+<risk-assessment option="data.riskOption"></risk-assessment>
+

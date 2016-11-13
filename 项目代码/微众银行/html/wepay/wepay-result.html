@@ -1,0 +1,43 @@
+<ion-view>
+    <div class="wep p-c-blue">
+        <ion-header-bar>
+            <div class="menu-ba">
+                <header class="menu"><span class="menu-wd"></span>We支付<span class="menu-wd" ng-click="func.done()">完成</span></header>
+            </div>
+        </ion-header-bar>
+        <ion-content class="has-header" has-bouncing="false">
+            <div ng-if="data.result == 1">
+                <section class="hgroup p-bgc-fff pdt30 pdb20">
+                    <h1>已开通We支付</h1>
+                    <p class="mgt20">请在微信和QQ钱包添加微众卡</p>
+                    <p class="p-fz-12 mgt5">（绑定后可以使用活期+支付）</p>
+                    <div class="wepay-woohoo mgt20"></div>
+                    <p class="pd25h p-ta-r p-c-bblue p-fz-12 mgt10" ng-click="func.clickHelp()">添加指引</p>
+                </section>
+
+                <ul class="formlike p-bgc-fff">
+                    <li class="flex px-b allow-enter" ng-click="func.onClickOpenWX()">
+                        <div class="item left"><i class="pay-wx"></i>微信支付</div>
+                        <div class="item right">去添加</div>
+                    </li>
+                    <li class="flex px allow-enter twin" ng-click="func.onClickOpenQQ()">
+                        <div class="item left"><i class="pay-qq"></i>QQ钱包支付</div>
+                        <div class="item right">去添加</div>
+                    </li>
+                </ul>
+                <p class="pd25h p-ta-c p-c-lgray p-fz-12 mgt10" ng-if="data.showQuotaTip">为了您的账户安全，开通后12小时内您的单笔限额为1000元，之后将取消单笔限额限制。</p>
+
+            </div>
+
+            <div ng-if="data.result == 2">
+                <div class="icon-xl fail mgt40">
+                    <h1>开通失败</h1>
+                    <p class="p-c-gray">您暂时无法开通We支付功能</p>
+                </div>
+            </div>
+        </ion-content>
+        <ion-footer-bar>
+            <div class="p-fixedbar-bottom p-ta-c p-c-bblue mgb20" ng-if="data.result == 1" ng-click="func.clickOpenFAQ()">We支付开通后有什么好处？</div>
+        </ion-footer-bar>
+    </div>
+</ion-view>

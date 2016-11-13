@@ -1,0 +1,42 @@
+<ion-view>
+    <div class="bx">
+        <ion-header-bar>
+            <div class="menu-ba">
+                <header class="menu"><button class="menu-return" ng-click="back()"></button>历史黄金价格</header>
+            </div>
+        </ion-header-bar>
+
+        <ion-content class="has-header" has-bouncing="false" scrollbar-y="false" >
+            <div class="hs-wrap">
+                <ul class="hs-list tj kj">
+                    <li class="flex title">
+                        <span class="item">日期</span>
+                        <span class="item">价格(元/克)</span>
+                        <span class="item">涨跌幅</span>
+                    </li>
+                </ul>
+            </div>
+        </ion-content>
+
+        <ion-content has-bouncing="false" delegate-handle="myContent" style="top: 91px;">
+            <div class="hs-wrap">
+                <ul class="hs-list tj kj">
+                    <li class="flex" bindonce ng-repeat="item in data.historyValueArray track by $index">
+                        <span class="item"><em bo-bind="item.date"></em></span>
+                        <span class="item" bo-bind="item.value | formatMoneyStringV2"></span>
+                        <span bo-class="item.class" bo-bind="item.change + '%'"></span>
+                    </li>
+                </ul>
+            </div>
+
+            <ion-infinite-scroll
+                    ng-if="isMoreData()"
+                    on-infinite="loadMoreData()"
+                    distance="1%"
+                    immediate-check="false"
+                    >
+            </ion-infinite-scroll>
+        </ion-content>
+
+    </div>
+</ion-view>

@@ -1,0 +1,15 @@
+<div>
+    <div ng-click="onClickBuoy()" class="float-penguin" ng-if="redPacketAmount && !showPanel && show"><span class="arm1"></span><span class="arm2"></span><span class="wb"></span><span class="star star1"></span><span class="star star2"></span><span class="star star3"></span><span class="star star4"></span><span class="star star5"></span><span class="star star6"></span></div>
+    <div class="p-mask-promo" ng-if="showPanel">
+        <div class="mainbox">
+            <div class="stage">
+                <div class="show_gift_wrap wrap_show"><div class="coins_front_area"><div class="coins_front_area_1"></div><div class="coins_front_area_2"></div></div><div class="show_gift_wrap_inside"><div class="gift_area"><div class="gift_lights_area"><div class="gift_light_part gift_light_part_1"><div class="gift_light gift_light_1"></div><div class="gift_light gift_light_2"></div><div class="gift_light gift_light_3"></div><div class="gift_light gift_light_4"></div></div><div class="gift_light_part gift_light_part_2"><div class="gift_light gift_light_1"></div><div class="gift_light gift_light_2"></div><div class="gift_light gift_light_3"></div><div class="gift_light gift_light_4"></div></div><div class="gift_light_part gift_light_part_3"><div class="gift_light gift_light_1"></div><div class="gift_light gift_light_2"></div><div class="gift_light gift_light_3"></div><div class="gift_light gift_light_4"></div></div><div class="gift_light_part gift_light_part_4"><div class="gift_light gift_light_1"></div><div class="gift_light gift_light_2"></div><div class="gift_light gift_light_3"></div><div class="gift_light gift_light_4"></div></div></div><div class="gift_body"></div><div class="gift_cover"></div></div><div class="show_coins_area"><div class="coins_area"><div class="coin_area_1"></div><div class="coin_area_2"></div></div><div class="stars_area"><em class="coin_star coin_star_1"></em><em class="coin_star coin_star_2"></em><em class="coin_star coin_star_3"></em><em class="coin_star coin_star_4"></em><em class="coin_star coin_star_5"></em><em class="coin_star coin_star_6"></em><em class="coin_star coin_star_7"></em><em class="coin_star coin_star_8"></em><em class="coin_star coin_star_9"></em><em class="coin_star coin_star_10"></em><em class="coin_star coin_star_11"></em><em class="coin_star coin_star_12"></em></div></div><div class="penguin_area_1"><div class="penguin_body"></div><div class="penguin_left_hand"></div><div class="penguin_right_hand"></div></div></div></div>
+                <h2 ng-if="redPacketNum==1">恭喜您获得<strong>{{redPacketAmount}}</strong>元红包</strong></h2>
+                <h2 ng-if="redPacketNum>1">您共有<strong>{{redPacketAmount}}</strong>元未使用的红包</strong></h2>
+            </div>
+            <p>购买0.01元以上的<i class="cplus">活期+</i>，即可在<i class="cplus">活期+</i>账户中查收。</p>
+            <div class="funcs"><button class="btn-buy" ng-click="onClickGoBtn()">{{btnStr}}</button></div>
+            <div class="clz" ng-click="onClickClose()">关闭</div>
+        </div>
+    </div>
+</div>

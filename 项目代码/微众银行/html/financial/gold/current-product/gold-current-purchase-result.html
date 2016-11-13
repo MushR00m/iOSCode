@@ -1,0 +1,65 @@
+<ion-view style="background-color: #fff;">
+    <ion-header-bar>
+        <div class="mod-menu">
+            <header class="mod-menu">
+                <!--<button class="mod-menu-return"></button>-->
+                交易结果
+                <span class="mod-menu-finish" ng-click="onClickOK()">完成</span>
+            </header>
+        </div>
+    </ion-header-bar>
+
+    <ion-content class="has-header" has-bouncing="false">
+        <div class="mod-result-hd ui-px-a">
+            <span class="ok" ng-if="data.status == 1">购买成功</span>
+
+            <span class="ok" ng-if="data.status == 2">购买申请已受理</span>
+            <p ng-if="data.status == 2">需要确认购买结果，可在首页查看进展</p>
+
+            <span class="fall" ng-if="data.status == 3">购买失败</span>
+            <ol ng-if="data.status == 3">
+                <li>失败原因：{{data.transInfo.result.retMsg}}</li>
+            </ol>
+        </div>
+
+        <div class="mod-result-con">
+            <p class="title">详情</p>
+
+            <div class="mod-v-timestamp s-mt20" ng-if="data.status == 1 || data.status == 2">
+                <div class="node on">
+                    <span class="header first"><i></i>{{data.today | formatDateObjToStringV2}}</span>
+                    <p ng-if="data.status == 1">买入活期金：{{data.transInfo.result.retData.real_amount | formatMoneyStringV2}}元</p>
+                    <p ng-if="data.status == 1">成交克数：{{data.transInfo.result.retData.real_weight | formatGoldString}}克</p>
+                    <p ng-if="data.status == 1">成交价格：{{data.transInfo.result.retData.real_price | formatMoneyStringV2}}元/克</p>
+
+                    <p ng-if="data.status == 2 && data.transInfo.request.application_weight">买入活期金{{data.transInfo.request.application_weight | formatGoldString}}克</p>
+                    <p ng-if="data.status == 2 && data.transInfo.request.application_amount">买入活期金{{data.transInfo.request.application_amount | formatMoneyStringV2}}元</p>
+                </div>
+                <div class="node">
+                    <span class="header"><i></i>{{data.valueDay | formatDateObjToStringV2}}</span>
+                    <p>开始产生收益</p>
+                </div>
+                <div class="node">
+                    <span class="header"><i></i>{{data.showValueDay | formatDateObjToStringV2}}</span>
+                    <p>可查看首笔收益</p>
+                </div>
+            </div>
+
+            <ul class="info-list" ng-if="data.status == 3">
+                <li class="ui-flex"><span class="item info-name">产品名称</span><span class="lg-item s-tar">微众金-活期金</span></li>
+                <li class="ui-flex"><span class="item info-name">买入价格</span><span class="lg-item s-tar">{{data.transInfo.request.application_price | formatMoneyStringV2}}元/克</span></li>
+                <li class="ui-flex" ng-if="data.transInfo.request.application_weight"><span class="item info-name">买入克数</span><span class="lg-item s-tar">{{data.transInfo.request.application_weight | formatGoldString}}克</span></li>
+                <li class="ui-flex" ng-if="data.transInfo.request.application_amount"><span class="item info-name">买入金额</span><span class="lg-item s-tar">{{data.transInfo.request.application_amount | formatMoneyStringV2}}元</span></li>
+                <li class="ui-flex" ng-if="data.transInfo.request.pay_flag == '2'"><span class="item info-name">付款账户</span><span class="lg-item s-tar"><i class="ui-hqj-icon"></i></span></li>
+                <li class="ui-flex" ng-if="data.transInfo.request.pay_flag == '3'"><span class="item info-name">付款账户</span><span class="lg-item s-tar">微众卡</span></li>
+
+                <li class="ui-flex"><span class="item info-name">交易时间</span><span class="lg-item s-tar">{{data.today | formatDateObjToString}} {{data.today | formatDateObjToTimeString}}</span></li>
+            </ul>
+
+            <p class="msg" ng-if="data.status == 3 && data.transInfo.request.pay_flag == '2'">资金已返还到您的活期+账户</p>
+            <p class="msg" ng-if="data.status == 3 && data.transInfo.request.pay_flag == '3'">资金已返还到您的微众卡账户</p>
+
+            <button class="mod-button-normal" ng-if="data.showButton" ng-click="onClickRequest()">转为挂单买入</button>
+        </div>
+    </ion-content>
+</ion-view>

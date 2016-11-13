@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="3oY-Gq-Tai">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="Rn8-ag-T7h">
+            <objects>
+                <navigationController id="3oY-Gq-Tai" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="hSg-as-nzo">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="guG-Ph-Wnz" kind="relationship" relationship="rootViewController" id="2nG-sX-CaL"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9Oi-b4-kAg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-694" y="474"/>
+        </scene>
+        <!--Main View Controller-->
+        <scene sceneID="Isz-Hc-Im1">
+            <objects>
+                <viewController id="guG-Ph-Wnz" customClass="MainViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Ftj-Ij-bLF"/>
+                        <viewControllerLayoutGuide type="bottom" id="gx9-tZ-OCN"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Cqi-yE-e4a">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OmZ-gM-ESc">
+                                <rect key="frame" x="141" y="269" width="123" height="30"/>
+                                <state key="normal" title="下一页">
+                                    <color key="titleColor" red="1" green="0.19827582160000001" blue="0.31622332180000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="HgL-xj-jDT" kind="show" id="RMC-ua-UuP"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="fhc-C5-i4V"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ROV-Fq-xSh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-59.5" y="478.5"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="a4x-gU-xQD">
+            <objects>
+                <viewController id="HgL-xj-jDT" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="X08-0k-oT2"/>
+                        <viewControllerLayoutGuide type="bottom" id="dBA-qa-o27"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="nKt-tE-816">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="w1x-Qz-izX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="409.5" y="473.5"/>
+        </scene>
+    </scenes>
+</document>

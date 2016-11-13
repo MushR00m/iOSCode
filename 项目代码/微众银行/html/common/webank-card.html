@@ -1,0 +1,46 @@
+<ion-view>
+    <div class="wbc p-c-blue">
+        <ion-header-bar>
+            <div class="menu-ba">
+                <header class="menu">
+                    <button class="menu-return" ng-click="back()"></button>微众卡<span class="menu-wd" ng-click="nClickQuery()">交易查询</span></header>
+            </div>
+        </ion-header-bar>
+        <ion-content class="has-header" style="bottom: 50px;" has-bouncing="true">
+            <section class="we-card">
+                <h1>微众卡</h1>
+                <div class="flex">
+                    <div class="item num" ng-bind="webankCardNum | splitAccountNumber"></div>
+                    <div class="item func" ng-click="onClickCopy()">复制卡号</div>
+                </div>
+            </section>
+            <section class="we-assets mgt35">
+                <h1 class="p-line-lr-h"><span>微众卡资金(元)</span></h1>
+                <div class="num" ng-bind="webankCardAmount | number"></div>
+                <div class="pd25h has-btn-block mgt20">
+                    <button class="p-btn p-btn-block" ng-disabled="webankCardAmount*1 === 0" ng-click="onClickTransferInToCurrentPlus()">转入活期+</button>
+                </div>
+                <div class="pd25h has-btn-block mgt20">
+                    <button class="p-btn p-btn-block p-btn-outline p-btn-outline-bblue" ng-if="webankCardAmount*1 !== 0" ng-click="onClickTurnOut()">转出</button>
+                </div>
+                <div class="g-d" ng-if="data.isNeedActive">
+                    <p class="p-c-bblue mgt15" ng-click="onClickActiveAccount()">
+                        <span ng-if="data.freezAmount > 0">您有{{data.freezAmount}}元的工资不可使用，人脸验证解冻</span>
+                        <span ng-if="data.freezAmount <= 0">人脸验证激活代付工资账户</span>
+                    </p>
+                </div>
+            </section>
+            <!--打款开户-->
+            <!--
+            <div class="g-d" ng-if="data.isNeedVerify">
+                <span class="l">您的账户未验证</span>
+                <span class="r" ng-if="data.freezAmount<=0" ng-click="onClickVerifyAccout()">立即验证</span>
+            </div>
+            -->
+        </ion-content>
+        <ion-footer-bar class="bar bar-footer" style="height:50px;">
+            <p class="p-fixed-tip" ng-click="onClickGoHelp()">怎样转账到微众卡？</p>
+        </ion-footer-bar>
+    </div>
+    <div pop-confirm out-value="data.outValue"></div>
+</ion-view>

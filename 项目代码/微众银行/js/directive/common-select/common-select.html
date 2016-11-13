@@ -1,0 +1,11 @@
+<script id="common-select-items.html" type="text/ng-template">
+    <ion-view class="common-select-items modal" style="top: auto;right: 0;bottom: 0;left: 0;overflow: visible;min-height: 44px;height: {{listItems.length*44}}px;max-height: 220px;">
+        <ion-content scrollbar-x="false" scrollbar-y="false">
+            <ul class="ui-select-list">
+                <li ng-repeat="item in listItems" ng-click='validateSingle(item,$index)' class="{{onClassItem(item)}}">
+                    <span>{{item.text}}</span>
+                </li>
+            </ul>
+        </ion-content>
+    </ion-view>
+</script>

@@ -1,0 +1,138 @@
+<ion-view>
+    <div class="lc">
+        <ion-header-bar>
+            <div class="menu-ba">
+                <header class="menu"><button class="menu-return" ng-click="back()"></button>{{pageTitle}}</header>
+            </div>
+        </ion-header-bar>
+
+        <ion-content class="has-header" has-bouncing="false">
+            <!-- <p class="cy-wd">
+                <span class="l">仅支持本人购买</span>
+            </p> -->
+            <div ng-if="pageType==pageTypeEnum.purchasePage">
+                <p style="padding:10px 25px 5px;color:#acb2c1;font-size:12px;">仅支持本人购买</p>
+                <div class="cy-wrap">买入金额
+                    <div class="po">
+                        <keyboard-input type="number" hjtype = "je" class="it" placeholder="{{data.minAmount}}元起购，{{data.incAmount}}元递增" hj-model="data.amount"  hj-blur="blurInput()" hj-click="focusInput()" hj-change="changeInput()"></keyboard-input>
+                    </div>
+                    <i class="act" ng-if="data.showInputAct"></i>
+                </div>
+                <p class="cy-tip" ng-if="data.showInputAmountTips">{{data.inputAmountTipsContent}}</p>
+                <p class="cy-ws">
+                    <span >每人单笔限购<i class="p-c-lorange">{{data.prodInfo.p_single_buy_max_amount}}元</i><em ng-if="data.prodInfo.p_buy_total_amount > 0">，单人累计限购<i class="p-c-lorange">{{data.prodInfo.p_buy_total_amount | formatMoneyShort}}元</i></em></span>
+                    <span style="display:block;" ng-if="data.showInputResult">大写：{{data.amountCN}}</span>
+                </p>
+
+                <div class="cy-wrap-a" ng-click="onSelectPayWay()">
+                    <span class="t-l">付款账户</span>
+                    <p class="t-m" ng-if="isCurrentPlus()">
+                        <img class="hq_icon" src="../img/slice/hq@3x.png">
+                    </p>
+                    <p class="t-m" ng-if="isWeBankAccount()">
+                        <img class="hq_ib" src="../img/bankHead/yh-0@2x.png">微众卡{{data.mainCard.number | abridgeAccountNumber}}
+                    </p>
+                    <p class="t-m" ng-if="isOtherBank()">
+                        {{data.AccountData.otherBankAccount.cardInfo.bankName + ' ' }}
+                        {{data.AccountData.otherBankAccount.cardInfo.cardType}}
+                        {{data.AccountData.otherBankAccount.cardInfo.cardNo | abridgeAccountNumber}}
+                    </p>
+                    <i class="k"></i>
+                </div>
+                <p class="cy-tip" ng-if="data.showNeedBindCard">请绑定一张银行卡</p>
+            </div>
+
+            <div class="cy-wrap" style="margin-top:20px;">电子邮箱
+                <div class="po">
+                    <input type="email" placeholder="接收电子保单" ng-model="data.email" ng-focus="focusEmail()" ng-blur="blurEmail()" class="it">
+                </div>
+            </div>
+             <p class="cy-tip" ng-if="data.showEmailTips">请输入合法的邮箱地址</p>
+
+            <div class="ui-address-wrap mgt20 px">
+                <p class="title px-a">详细地址</p>
+                <ul class="city-list flex">
+                    <li ng-click="onClickSelectProvince()" class="item"><span>{{data.province}}</span><i></i></li>
+                    <!-- <li ng-click="onClickSelectCity()"><span>{{data.city}}</span><i ng-if="data.city != ''"></i></li> -->
+                    <li ng-click="onClickSelectCity()" ng-if="data.city != ''" class="item"><span>{{data.city}}</span><i></i></li> 
+                    <li ng-click="onClickSelectDistrict()" class="item"><span>{{data.district}}</span><i></i></li>
+                </ul>
+                <div class="msg px-b"><textarea placeholder="请填写街道地址" ng-model="data.addressDetail" ng-focus="focusAddress()" ng-blur="blurAddress()"></textarea></div>
+            </div>
+            <p class="cy-tip" ng-if="data.showAddressTips">地址过短或者不包含汉字，请填写详细的地址</p>
+
+            <div class="cy-wrap" style="margin-top:20px;padding:12px 32px 12px 25px;" ng-if="!isDWProd()"><span>投保地址</span><div class="po add" ng-click="onClickSelectRegion()">{{data.region}}</div><i class="plo"></i></div>
+
+            <div class="mt-b" ng-if="pageType==pageTypeEnum.purchasePage">
+                <user-agreement
+                        agreement-code = "data.agreementCode"
+                        agreement-desc ="data.agreementDesc"
+                        is-agreed="data.isAgreed"
+                        on-click-agree-checkbox="data.onClickAgreeCheckbox">
+                </user-agreement>
+            </div>
+
+            <div class="btn-wrap pd20">
+                <button class="{{data.ButtonClass}}" ng-click="onClickNextBtn()">{{btnTitle}}</button>
+            </div>
+
+            <div style="height: 300px" ng-if="data.addHigh"></div>
+        </ion-content>
+
+        <account-selector
+                input-amount="data.amount"
+                account-data="data.AccountData"
+                show="data.showAccountSelector"
+                hide="hideAccountSelector"
+                bind-card="bindCard"
+                on-account-selected="onAccountSelected"
+                >
+        </account-selector>
+
+        <div pwd-input
+             ng-model="vm.formData.confirmPassword"
+             is-pwd-show="data.isPwdShow"
+             sig-on-pwd-commit="data.sigOnPwdCommit"
+             pwd-sub-title="data.pwdSubTitle"
+             pwd-trans-desc="data.pwdTransDesc"
+             pay-way-desc="data.payWayDesc"
+             on-click-change-pay-way="onSelectPayWay"
+                >
+        </div>
+
+        <div pop-confirm out-value = "data.outValue"></div>
+
+        <loading show-loading="data.showLoading"></loading>
+
+        <common-select
+                list-items="data.provinceList"
+                header-text="data.provinceHeaderText"
+                callback="onSelectProvince"
+                show-select="showProvinceSelect"
+                set-selected="setProvinceSelected">
+        </common-select>
+
+        <common-select
+                list-items="data.cityList"
+                header-text="data.cityHeaderText"
+                callback="onSelectCity"
+                show-select="showCitySelect"
+                set-selected="setCitySelected">
+        </common-select>
+
+        <common-select
+                list-items="data.districtList"
+                header-text="data.districtHeaderText"
+                callback="onSelectDistrict"
+                show-select="showDistrictSelect"
+                set-selected="setDistrictSelected">
+        </common-select>
+
+        <common-select
+                list-items="data.regionList"
+                callback="onSelectRegion"
+                show-select="showRegion"
+                set-selected="setRegionSelected">
+        </common-select>
+    </div>
+</ion-view>

@@ -1,0 +1,27 @@
+<ion-view>
+    <ion-header-bar>
+        <div class="mod-menu">
+            <header class="mod-menu"><button class="mod-menu-return"  ng-click="back()"></button>We视角</header>
+        </div>
+    </ion-header-bar>
+    <!--<span class="we-vision-date-mark" ng-class="tagClass">{{strTag}}</span>-->
+    <ion-content class="has-header" has-bouncing="false"  delegate-handle="articleScroll" scrollbar-x="false" scroll-event-interval="100">
+
+        <div class="we-vision">
+            <section class="item ui-px s-mb20" ng-repeat="itemList in allList track by $index">
+                <p id="article{{::itemList.dateStr}}" class="date ">{{::itemList.dateStr}}</p>
+                <article id="articleinfo{{item.articleId}}" ng-class="{'article':!$index,'article ui-px-b':$index}" class="article" ng-repeat="item in itemList.list track by $index">
+                    <h2 class="title">{{::item.title}}</h2>
+                    <p class="content">{{::item.breif}}</p>
+                </article>
+            </section>
+        </div>
+
+
+        <ion-infinite-scroll
+                ng-if="isMoreData"
+                on-infinite="loadMoreData()"
+                distance="1%">
+        </ion-infinite-scroll>
+    </ion-content>
+</ion-view>

@@ -1,0 +1,34 @@
+<ion-view>
+
+    <div class="pl p-c-blue">
+        <ion-header-bar>
+            <div class="menu-ba">
+                <header class="menu">
+                    <button class="menu-return" ng-click="back()"></button>选择红包<span class="menu-wd" ng-click="onClickSure()">确定</span>
+                </header>
+            </div>
+        </ion-header-bar>
+
+        <ion-content class="has-header" has-bouncing="false">
+
+
+            <section class="pack-list selectable">
+                <ul>
+                    <li class="{{onClassItem(item)}}" ng-repeat="item in renderList"  ng-click="onClickItem(item)">
+                        <div class="p-radio" ng-if="!item.notShowRadio"></div>
+                        <dl>
+                            <dt class="flex">
+                                <span class="item">{{item.redPacketName}} {{item.amount}}元</span>
+                                <span class="item">{{item.useStr}}</span>
+                            </dt>
+                            <dd class="p-c-gray">到期时间：{{item.timeStr}}</dd>
+                        </dl>
+                    </li>
+
+                </ul>
+            </section>
+
+
+        </ion-content>
+    </div>
+</ion-view>

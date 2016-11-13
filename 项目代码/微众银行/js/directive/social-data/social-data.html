@@ -1,0 +1,9 @@
+<div ng-if="data && socialData === 'user'">
+    <p class="ui-safe-wd mgt10"><i></i>已为{{data}}用户提供服务</p>
+    <div style="height:20px;"></div>
+</div>
+<div ng-if="data && socialData === 'trade'"><span class="num">{{data}}</span></div>
+<div ng-if="data && socialData === 'income'">
+    <p class="ui-safe-wd mgt10"><i></i>微众银行累计为用户赚取收益{{data}}元</p>
+    <div style="height:20px;"></div>
+</div>

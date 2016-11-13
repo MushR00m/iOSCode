@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>银联在线支付</title>
+</head>
+<body>
+
+<div id='unionpay' style="position: absolute; height: 100%; width: 100%; border: none">
+</div>
+
+<script type="text/javascript">
+    function urlSafeAtob(src) {
+        return decodeURIComponent(atob(src.replace(/-/g, '+').replace(/_/g, '/').replace(/\./g, '=')));
+    }
+    var unionpay = document.getElementById('unionpay');
+    var webContent = location.search.split('webContent=')[1];
+    unionpay.innerHTML = urlSafeAtob(webContent);
+    document.all.pay_form.submit();
+</script>
+</body>
+</html>

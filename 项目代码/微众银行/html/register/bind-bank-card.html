@@ -1,0 +1,87 @@
+<ion-view>
+    <div class="register">
+        <ion-header-bar>
+            <div class="menu-ba">
+                <header class="menu"><button class="menu-return" ng-click="func.back()"></button>绑定银行卡</header>
+            </div>
+        </ion-header-bar>
+
+        <ion-content class="has-header" has-bouncing="false">
+            <section class="mgt20 px">
+                <ul class="info-list">
+                    <li class="px-a">
+                        <div>
+                            <span class="info-name">持卡人</span>
+                            <span class="info-con"><input type="text" readonly="readonly" placeholder="{{data.name}}" maxlength="32" class="w-input"></span>
+                        </div>
+                    </li>
+                    <li class="px-a">
+                        <div>
+                            <span class="info-name">卡&#12288;号</span>
+                            <span class="info-con">
+                                <div class="zsy">
+                                    <keyboard-input
+                                            type="tel"
+                                            hjtype = "yhk"
+                                            class="w-input" placeholder="输入常用银行卡卡号"
+                                            hj-show-keyboard="func.showKeyboard"
+                                            hj-model="data.bankCard" hj-blur="func.onBankCardBlur()"
+                                            hj-change="func.onBankCardChanged()" maxlength="26"
+                                            >
+                                    </keyboard-input>
+                                </div>
+                            </span>
+                            <i class="ui-intro-icon" ng-click="func.onClickBankIntro('a')"></i>
+                        </div>
+                        <!--<p class="cy-tip" ng-if="data.inputBankCardTipsContent">{{data.inputBankCardTipsContent}}</p>-->
+                    </li>
+                    <p class="rg-tip" ng-if="data.inputBankCardTipsContent">{{data.inputBankCardTipsContent}}</p>
+                </ul>
+            </section>
+            <!--<p class="card-info" ng-if="data.showBankIcon"><img class="i" ng-src="{{data.bankImg}}">{{data.bankName + " " + data.cardType}}</p>-->
+
+            <div ng-if="data.showBankIcon && func.showNormalBindCardUI()">
+                <ul class="list-wrap px mgt20">
+                    <li class="px-a"><span>卡类型</span><span>{{data.bankName + " " + data.cardType}}</span></li>
+                    <li class="px-a" ng-if="data.cardDayLimit"><span>单笔限额</span><span>{{data.cardTransLimit|number:2}}元</span></li>
+                    <li ng-if="data.cardTransLimit"><span>每日限额</span><span>{{data.cardDayLimit|number:2}}元</span></li>
+                </ul>
+                <p class="tip-info" ng-if="false">每日16点更新限额</p>
+            </div>
+
+            <div ng-if="data.showBankIcon && !func.showNormalBindCardUI()">
+                <ul class="list-wrap px mgt20">
+                    <li class="px-a"><span>卡类型</span><span>{{data.bankName + " " + data.cardType}}</span></li>
+                </ul>
+            </div>
+
+            <ol class="bk-intro" ng-if="!func.showNormalBindCardUI()">
+                <li>该银行的卡需要通过汇款进行绑定</li>
+                <li>该银行的卡支持收款，但不支持委托扣款</li>
+                <li>建议您更换其他银行的卡<span ng-click="func.onClickChangeCard()">更换</span></li>
+            </ol>
+            <p class="kk-wd" ng-if="!func.showNormalBindCardUI()" ng-click="func.onClickBankIntro('b')">查看支持委托扣款的银行</p>
+            <div class="mt-a" ng-if="data.showBankIcon && func.showNormalBindCardUI()">
+                <user-agreement
+                        agreement-type="2"
+                        is-agreed="data.isAgreed"
+                        agreement-callback="func.onClickUserAgreement"
+                        on-click-agree-checkbox="func.onClickAgreeCheckbox">
+                </user-agreement>
+            </div>
+            <button ng-click="func.onClickBindNewCard()" class="{{data.nextBtnStyle}}" style="margin:30px auto;">下一步</button>
+        </ion-content>
+
+
+        <!--遮罩层start-->
+        <div class="p-mask" ng-if="data.isMaskShown">
+            <h2>绑卡说明</h2>
+            <p>建议您绑定以下支持委托扣款的银行储蓄卡：<br>工行、农行、中行、建行、交行、中信、广发、光大、平安、民生、兴业、华夏、浦发、邮政、上海银行。</p>
+            <div class="funcs"><button class="p-btn p-btn-outline p-btn-block" ng-click="func.onClickCancelMask()">知道了</button></div>
+        </div>
+        <!--遮罩层end-->
+
+        <div pop-confirm out-value="data.outValue"></div>
+
+    </div>
+</ion-view>

@@ -1,0 +1,513 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3579D1DF19D698DB00945F06 /* QFAssetsTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 3579D1DE19D698DB00945F06 /* QFAssetsTool.m */; };
+		35DBFC2919D654C3006B4AAB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 35DBFC2819D654C3006B4AAB /* main.m */; };
+		35DBFC2C19D654C3006B4AAB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 35DBFC2B19D654C3006B4AAB /* AppDelegate.m */; };
+		35DBFC2F19D654C3006B4AAB /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35DBFC2E19D654C3006B4AAB /* ViewController.m */; };
+		35DBFC3419D654C3006B4AAB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35DBFC3319D654C3006B4AAB /* Images.xcassets */; };
+		35DBFC3719D654C3006B4AAB /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35DBFC3519D654C3006B4AAB /* LaunchScreen.xib */; };
+		35DBFC4319D654C3006B4AAB /* _______Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 35DBFC4219D654C3006B4AAB /* _______Tests.m */; };
+		35DBFC5019D655F3006B4AAB /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35DBFC4E19D655F3006B4AAB /* MainViewController.m */; };
+		35DBFC5119D655F3006B4AAB /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35DBFC4F19D655F3006B4AAB /* MainViewController.xib */; };
+		35DBFC5E19D6566E006B4AAB /* Packet.m in Sources */ = {isa = PBXBuildFile; fileRef = 35DBFC5419D6566E006B4AAB /* Packet.m */; };
+		35DBFC5F19D6566E006B4AAB /* QFPacket.m in Sources */ = {isa = PBXBuildFile; fileRef = 35DBFC5719D6566E006B4AAB /* QFPacket.m */; };
+		35DBFC6019D6566E006B4AAB /* QFSendImageRequestPacket.m in Sources */ = {isa = PBXBuildFile; fileRef = 35DBFC5919D6566E006B4AAB /* QFSendImageRequestPacket.m */; };
+		35DBFC6119D6566E006B4AAB /* SocketTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 35DBFC5B19D6566E006B4AAB /* SocketTool.m */; };
+		35DBFC6219D6566E006B4AAB /* TCPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 35DBFC5D19D6566E006B4AAB /* TCPClient.m */; };
+		35DBFC6519D65687006B4AAB /* TCPServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 35DBFC6419D65687006B4AAB /* TCPServer.m */; };
+		35DBFC6819D6683C006B4AAB /* QFSendImageResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 35DBFC6719D6683C006B4AAB /* QFSendImageResponse.m */; };
+		35DBFC7A19D69238006B4AAB /* QFImageDataPacket.m in Sources */ = {isa = PBXBuildFile; fileRef = 35DBFC7919D69238006B4AAB /* QFImageDataPacket.m */; };
+		35DBFC7D19D6975C006B4AAB /* QFImageDataAckPacket.m in Sources */ = {isa = PBXBuildFile; fileRef = 35DBFC7C19D6975C006B4AAB /* QFImageDataAckPacket.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		35DBFC3D19D654C3006B4AAB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 35DBFC1B19D654C3006B4AAB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 35DBFC2219D654C3006B4AAB;
+			remoteInfo = "照片传输服务端";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		3579D1DD19D698DB00945F06 /* QFAssetsTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QFAssetsTool.h; sourceTree = "<group>"; };
+		3579D1DE19D698DB00945F06 /* QFAssetsTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QFAssetsTool.m; sourceTree = "<group>"; };
+		35DBFC2319D654C3006B4AAB /* 照片传输服务端.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "照片传输服务端.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		35DBFC2719D654C3006B4AAB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		35DBFC2819D654C3006B4AAB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		35DBFC2A19D654C3006B4AAB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		35DBFC2B19D654C3006B4AAB /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		35DBFC2D19D654C3006B4AAB /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		35DBFC2E19D654C3006B4AAB /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		35DBFC3319D654C3006B4AAB /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		35DBFC3619D654C3006B4AAB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		35DBFC3C19D654C3006B4AAB /* 照片传输服务端Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "照片传输服务端Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		35DBFC4119D654C3006B4AAB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		35DBFC4219D654C3006B4AAB /* _______Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "_______Tests.m"; sourceTree = "<group>"; };
+		35DBFC4D19D655F3006B4AAB /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		35DBFC4E19D655F3006B4AAB /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		35DBFC4F19D655F3006B4AAB /* MainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
+		35DBFC5319D6566E006B4AAB /* Packet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Packet.h; sourceTree = "<group>"; };
+		35DBFC5419D6566E006B4AAB /* Packet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Packet.m; sourceTree = "<group>"; };
+		35DBFC5619D6566E006B4AAB /* QFPacket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QFPacket.h; sourceTree = "<group>"; };
+		35DBFC5719D6566E006B4AAB /* QFPacket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QFPacket.m; sourceTree = "<group>"; };
+		35DBFC5819D6566E006B4AAB /* QFSendImageRequestPacket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QFSendImageRequestPacket.h; sourceTree = "<group>"; };
+		35DBFC5919D6566E006B4AAB /* QFSendImageRequestPacket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QFSendImageRequestPacket.m; sourceTree = "<group>"; };
+		35DBFC5A19D6566E006B4AAB /* SocketTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocketTool.h; sourceTree = "<group>"; };
+		35DBFC5B19D6566E006B4AAB /* SocketTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocketTool.m; sourceTree = "<group>"; };
+		35DBFC5C19D6566E006B4AAB /* TCPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCPClient.h; sourceTree = "<group>"; };
+		35DBFC5D19D6566E006B4AAB /* TCPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCPClient.m; sourceTree = "<group>"; };
+		35DBFC6319D65687006B4AAB /* TCPServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCPServer.h; sourceTree = "<group>"; };
+		35DBFC6419D65687006B4AAB /* TCPServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCPServer.m; sourceTree = "<group>"; };
+		35DBFC6619D6683C006B4AAB /* QFSendImageResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QFSendImageResponse.h; sourceTree = "<group>"; };
+		35DBFC6719D6683C006B4AAB /* QFSendImageResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QFSendImageResponse.m; sourceTree = "<group>"; };
+		35DBFC7819D69238006B4AAB /* QFImageDataPacket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QFImageDataPacket.h; sourceTree = "<group>"; };
+		35DBFC7919D69238006B4AAB /* QFImageDataPacket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QFImageDataPacket.m; sourceTree = "<group>"; };
+		35DBFC7B19D6975C006B4AAB /* QFImageDataAckPacket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QFImageDataAckPacket.h; sourceTree = "<group>"; };
+		35DBFC7C19D6975C006B4AAB /* QFImageDataAckPacket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QFImageDataAckPacket.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		35DBFC2019D654C3006B4AAB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		35DBFC3919D654C3006B4AAB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3579D1DC19D698DB00945F06 /* Lib */ = {
+			isa = PBXGroup;
+			children = (
+				3579D1DD19D698DB00945F06 /* QFAssetsTool.h */,
+				3579D1DE19D698DB00945F06 /* QFAssetsTool.m */,
+			);
+			path = Lib;
+			sourceTree = "<group>";
+		};
+		35DBFC1A19D654C3006B4AAB = {
+			isa = PBXGroup;
+			children = (
+				3579D1DC19D698DB00945F06 /* Lib */,
+				35DBFC5219D6566E006B4AAB /* Net */,
+				35DBFC4C19D655E6006B4AAB /* GUI */,
+				35DBFC2519D654C3006B4AAB /* 照片传输服务端 */,
+				35DBFC3F19D654C3006B4AAB /* 照片传输服务端Tests */,
+				35DBFC2419D654C3006B4AAB /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		35DBFC2419D654C3006B4AAB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				35DBFC2319D654C3006B4AAB /* 照片传输服务端.app */,
+				35DBFC3C19D654C3006B4AAB /* 照片传输服务端Tests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		35DBFC2519D654C3006B4AAB /* 照片传输服务端 */ = {
+			isa = PBXGroup;
+			children = (
+				35DBFC2A19D654C3006B4AAB /* AppDelegate.h */,
+				35DBFC2B19D654C3006B4AAB /* AppDelegate.m */,
+				35DBFC2D19D654C3006B4AAB /* ViewController.h */,
+				35DBFC2E19D654C3006B4AAB /* ViewController.m */,
+				35DBFC3319D654C3006B4AAB /* Images.xcassets */,
+				35DBFC3519D654C3006B4AAB /* LaunchScreen.xib */,
+				35DBFC2619D654C3006B4AAB /* Supporting Files */,
+			);
+			path = "照片传输服务端";
+			sourceTree = "<group>";
+		};
+		35DBFC2619D654C3006B4AAB /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				35DBFC2719D654C3006B4AAB /* Info.plist */,
+				35DBFC2819D654C3006B4AAB /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		35DBFC3F19D654C3006B4AAB /* 照片传输服务端Tests */ = {
+			isa = PBXGroup;
+			children = (
+				35DBFC4219D654C3006B4AAB /* _______Tests.m */,
+				35DBFC4019D654C3006B4AAB /* Supporting Files */,
+			);
+			path = "照片传输服务端Tests";
+			sourceTree = "<group>";
+		};
+		35DBFC4019D654C3006B4AAB /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				35DBFC4119D654C3006B4AAB /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		35DBFC4C19D655E6006B4AAB /* GUI */ = {
+			isa = PBXGroup;
+			children = (
+				35DBFC4D19D655F3006B4AAB /* MainViewController.h */,
+				35DBFC4E19D655F3006B4AAB /* MainViewController.m */,
+				35DBFC4F19D655F3006B4AAB /* MainViewController.xib */,
+			);
+			path = GUI;
+			sourceTree = "<group>";
+		};
+		35DBFC5219D6566E006B4AAB /* Net */ = {
+			isa = PBXGroup;
+			children = (
+				35DBFC7819D69238006B4AAB /* QFImageDataPacket.h */,
+				35DBFC7919D69238006B4AAB /* QFImageDataPacket.m */,
+				35DBFC7B19D6975C006B4AAB /* QFImageDataAckPacket.h */,
+				35DBFC7C19D6975C006B4AAB /* QFImageDataAckPacket.m */,
+				35DBFC5319D6566E006B4AAB /* Packet.h */,
+				35DBFC5419D6566E006B4AAB /* Packet.m */,
+				35DBFC5619D6566E006B4AAB /* QFPacket.h */,
+				35DBFC5719D6566E006B4AAB /* QFPacket.m */,
+				35DBFC5819D6566E006B4AAB /* QFSendImageRequestPacket.h */,
+				35DBFC5919D6566E006B4AAB /* QFSendImageRequestPacket.m */,
+				35DBFC6619D6683C006B4AAB /* QFSendImageResponse.h */,
+				35DBFC6719D6683C006B4AAB /* QFSendImageResponse.m */,
+				35DBFC5A19D6566E006B4AAB /* SocketTool.h */,
+				35DBFC5B19D6566E006B4AAB /* SocketTool.m */,
+				35DBFC5C19D6566E006B4AAB /* TCPClient.h */,
+				35DBFC5D19D6566E006B4AAB /* TCPClient.m */,
+				35DBFC6319D65687006B4AAB /* TCPServer.h */,
+				35DBFC6419D65687006B4AAB /* TCPServer.m */,
+			);
+			path = Net;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		35DBFC2219D654C3006B4AAB /* 照片传输服务端 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 35DBFC4619D654C3006B4AAB /* Build configuration list for PBXNativeTarget "照片传输服务端" */;
+			buildPhases = (
+				35DBFC1F19D654C3006B4AAB /* Sources */,
+				35DBFC2019D654C3006B4AAB /* Frameworks */,
+				35DBFC2119D654C3006B4AAB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "照片传输服务端";
+			productName = "照片传输服务端";
+			productReference = 35DBFC2319D654C3006B4AAB /* 照片传输服务端.app */;
+			productType = "com.apple.product-type.application";
+		};
+		35DBFC3B19D654C3006B4AAB /* 照片传输服务端Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 35DBFC4919D654C3006B4AAB /* Build configuration list for PBXNativeTarget "照片传输服务端Tests" */;
+			buildPhases = (
+				35DBFC3819D654C3006B4AAB /* Sources */,
+				35DBFC3919D654C3006B4AAB /* Frameworks */,
+				35DBFC3A19D654C3006B4AAB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				35DBFC3E19D654C3006B4AAB /* PBXTargetDependency */,
+			);
+			name = "照片传输服务端Tests";
+			productName = "照片传输服务端Tests";
+			productReference = 35DBFC3C19D654C3006B4AAB /* 照片传输服务端Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		35DBFC1B19D654C3006B4AAB /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0600;
+				ORGANIZATIONNAME = "chen cheng";
+				TargetAttributes = {
+					35DBFC2219D654C3006B4AAB = {
+						CreatedOnToolsVersion = 6.0.1;
+					};
+					35DBFC3B19D654C3006B4AAB = {
+						CreatedOnToolsVersion = 6.0.1;
+						TestTargetID = 35DBFC2219D654C3006B4AAB;
+					};
+				};
+			};
+			buildConfigurationList = 35DBFC1E19D654C3006B4AAB /* Build configuration list for PBXProject "照片传输服务端" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 35DBFC1A19D654C3006B4AAB;
+			productRefGroup = 35DBFC2419D654C3006B4AAB /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				35DBFC2219D654C3006B4AAB /* 照片传输服务端 */,
+				35DBFC3B19D654C3006B4AAB /* 照片传输服务端Tests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		35DBFC2119D654C3006B4AAB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				35DBFC3719D654C3006B4AAB /* LaunchScreen.xib in Resources */,
+				35DBFC5119D655F3006B4AAB /* MainViewController.xib in Resources */,
+				35DBFC3419D654C3006B4AAB /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		35DBFC3A19D654C3006B4AAB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		35DBFC1F19D654C3006B4AAB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				35DBFC5F19D6566E006B4AAB /* QFPacket.m in Sources */,
+				35DBFC6019D6566E006B4AAB /* QFSendImageRequestPacket.m in Sources */,
+				35DBFC5E19D6566E006B4AAB /* Packet.m in Sources */,
+				35DBFC7D19D6975C006B4AAB /* QFImageDataAckPacket.m in Sources */,
+				35DBFC6819D6683C006B4AAB /* QFSendImageResponse.m in Sources */,
+				35DBFC2F19D654C3006B4AAB /* ViewController.m in Sources */,
+				35DBFC2C19D654C3006B4AAB /* AppDelegate.m in Sources */,
+				35DBFC2919D654C3006B4AAB /* main.m in Sources */,
+				35DBFC6219D6566E006B4AAB /* TCPClient.m in Sources */,
+				35DBFC6119D6566E006B4AAB /* SocketTool.m in Sources */,
+				35DBFC6519D65687006B4AAB /* TCPServer.m in Sources */,
+				35DBFC7A19D69238006B4AAB /* QFImageDataPacket.m in Sources */,
+				35DBFC5019D655F3006B4AAB /* MainViewController.m in Sources */,
+				3579D1DF19D698DB00945F06 /* QFAssetsTool.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		35DBFC3819D654C3006B4AAB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				35DBFC4319D654C3006B4AAB /* _______Tests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		35DBFC3E19D654C3006B4AAB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 35DBFC2219D654C3006B4AAB /* 照片传输服务端 */;
+			targetProxy = 35DBFC3D19D654C3006B4AAB /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		35DBFC3519D654C3006B4AAB /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				35DBFC3619D654C3006B4AAB /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		35DBFC4419D654C3006B4AAB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		35DBFC4519D654C3006B4AAB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		35DBFC4719D654C3006B4AAB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_OBJC_ARC = NO;
+				INFOPLIST_FILE = "照片传输服务端/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		35DBFC4819D654C3006B4AAB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_OBJC_ARC = NO;
+				INFOPLIST_FILE = "照片传输服务端/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		35DBFC4A19D654C3006B4AAB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "照片传输服务端Tests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/照片传输服务端.app/照片传输服务端";
+			};
+			name = Debug;
+		};
+		35DBFC4B19D654C3006B4AAB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "照片传输服务端Tests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/照片传输服务端.app/照片传输服务端";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		35DBFC1E19D654C3006B4AAB /* Build configuration list for PBXProject "照片传输服务端" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				35DBFC4419D654C3006B4AAB /* Debug */,
+				35DBFC4519D654C3006B4AAB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		35DBFC4619D654C3006B4AAB /* Build configuration list for PBXNativeTarget "照片传输服务端" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				35DBFC4719D654C3006B4AAB /* Debug */,
+				35DBFC4819D654C3006B4AAB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		35DBFC4919D654C3006B4AAB /* Build configuration list for PBXNativeTarget "照片传输服务端Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				35DBFC4A19D654C3006B4AAB /* Debug */,
+				35DBFC4B19D654C3006B4AAB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 35DBFC1B19D654C3006B4AAB /* Project object */;
+}

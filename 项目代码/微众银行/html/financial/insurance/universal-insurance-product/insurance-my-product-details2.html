@@ -1,0 +1,171 @@
+<ion-view>
+    <div class="bx">
+        <ion-header-bar>
+            <div class="menu-ba">
+                <header class="menu"><button class="menu-return" ng-click="back()"></button>{{data.prodInfo.prod_name}}
+                    <span ng-class="data.shareClass" ng-click="share()"></span>
+                </header>
+            </div>
+        </ion-header-bar>
+
+        <ion-content class="has-header" has-bouncing="false" style="bottom: 50px;">
+            <div class="ba-income-wrap">
+                <div ng-if="data.wealthData.policy_status == 1">
+                    <p class="num">确认中</p>
+                    <p class="pq">已购买金额<span>{{data.wealthData.avg_cost.toFixed(2)}}</span>元</p>
+                </div>
+
+                <div ng-if="data.wealthData.policy_status == 3">
+                    <p class="num">赎回中</p>
+                </div>
+
+                <div ng-if="data.wealthData.policy_status == 0 || data.wealthData.policy_status == 4">
+                    <p class="title p-line-lr-h">
+                        <span ng-if="data.wealthData.last_income_date">{{data.wealthData.last_income_date.substr(4,2)}}月{{data.wealthData.last_income_date.substr(6,2)}}日收益(元)</span>
+                    </p>
+                    <p class="num" ng-if="data.income">{{data.income}}</p>
+
+                    <p class="num" ng-if="!data.income">等待收益</p>
+                </div>
+
+                <div class="xs flex">
+                    <div class="item p-line-r">账户价值(元)<span>{{data.wealthData.total_amount.toFixed(2)}}</span></div>
+                    <div class="item">累计收益(元)<span>{{data.wealthData.total_income.toFixed(2)}}</span></div>
+                </div>
+            </div>
+
+            <div class="ui-alarm-wrap mgb20 px" ng-if="data.wealthData.policy_status == 1">预计<em ng-if="data.confirmDay.getFullYear() != data.today.getFullYear()">{{data.confirmDay.getFullYear()}}年</em>{{data.confirmDay | formatDateObjToCNString}}前返回结果</div>
+            <div class="ui-alarm-wrap mgb20 px" ng-if="data.wealthData.policy_status == 3 || data.wealthData.policy_status == 4">正在赎回{{data.wealthData.in_refund_money}}元，预计{{data.prodInfo.redeem_arrive_account_day}}个工作日完成</div>
+
+            <!--理财周期-->
+            <dl class="ui-cycle-wrap px">
+                <dt class="px-a">理财周期</dt>
+
+                <dd class="progress-wrap">
+                    <div class="flex-box flex">
+                        <div class="item item-a {{data.progressNode0LightClass}}">
+                            <span>购买</span>
+                            <i></i>
+                            <span><em ng-if="data.startDay.getFullYear() != data.today.getFullYear()">{{data.startDay.getFullYear()}}-</em>{{data.startDay.getMonth()+1}}-{{data.startDay.getDate()}}</span>
+                        </div>
+
+                        <div class="item item-b {{data.progressNode1LightClass}}">
+                            <span>起息</span>
+                            <i></i>
+                            <span><em ng-if="data.valueDay.getFullYear() != data.startDay.getFullYear()">{{data.valueDay.getFullYear()}}-</em>{{data.valueDay.getMonth()+1}}-{{data.valueDay.getDate()}}</span>
+                        </div>
+
+                        <div class="item item-c {{data.progressNode2LightClass}}" ng-if="data.wealthData.policy_status==1" >
+                            <span>查看首笔收益</span>
+                            <i></i>
+                            <span><em ng-if="data.confirmShowValueDay.getFullYear() != data.valueDay.getFullYear()">{{data.confirmShowValueDay.getFullYear()}}-</em>{{data.confirmShowValueDay.getMonth()+1}}-{{data.confirmShowValueDay.getDate()}}</span>
+                        </div>
+
+                        <div class="item item-c {{data.progressNode2LightClass}}" ng-if="data.wealthData.policy_status!=1 && data.nextOpenDay" >
+                            <span>可免费赎回</span>
+                            <i></i>
+                            <span><em ng-if="data.nextOpenDay.getFullYear() != data.valueDay.getFullYear()">{{data.nextOpenDay.getFullYear()}}-</em>{{data.nextOpenDay.getMonth()+1}}-{{data.nextOpenDay.getDate()}}</span>
+                        </div>
+
+                        <div class="item item-d {{data.progressNode3LightClass}} ">
+                            <span style="visibility: hidden;">placeholder</span>
+                            <em></em>
+                            <span><em ng-if="data.prodInfo.prod_term_desc" >{{data.prodInfo.prod_term_desc}}</em><em ng-if="!data.prodInfo.prod_term_desc" >最长可持有{{data.prodTermUnitDesc}}</em></span>
+                        </div>
+                    </div>
+                    <div class="pro-wrap pro-blue" style="width:{{data.progress}}%;"></div>
+                    <div class="pro-wrap pro-bg"></div>
+                </dd>
+
+
+                <!--<dd class="progress-wrap">
+                    <div class="flex-2 flex">
+                        <div class="item t-a" ng-if="data.prodInfo.free_refund_date.length==0">{{data.prodInfo.prod_lock}}{{data.lockPeriodDesc}}</div>
+                        <div class="item t-a" ng-if="data.prodInfo.free_refund_date.length>0">每月{{data.prodInfo.free_refund_date[0]}}日<em ng-repeat="obj in data.prodInfo.free_refund_date" ng-if="$index>0">、{{obj}}日</em>可免费赎回</div>
+                        <div class="item t-b">赎回0手续费</div>
+                    </div>
+
+                    <div class="flex-1 flex">
+                        <div class="item i-a">
+                            <span class="pro-node-wrap normal light"></span>
+                            <i class="wd w-a"><em ng-if="data.startDay.getFullYear()!=data.today.getFullYear()">{{data.startDay.getFullYear()}}-</em>{{data.startDay.getMonth()+1}}-{{data.startDay.getDate()}}买入</i>
+                        </div>
+                        <div class="item i-b"></div>
+                        <div class="item i-c"></div>
+                        <div class="item i-d">
+                            <span class="pro-node-wrap normal"></span>
+                            <i class="wd w-b">{{data.lockPeriodEnd.getFullYear()}}-{{data.lockPeriodEnd.getMonth()+1}}-{{data.lockPeriodEnd.getDate()}}</i></div>
+                        <div class="item i-e">
+                            <span class="pro-node-wrap last"></span>
+                            <i class="wd w-c" ng-if="data.prodInfo.prod_term_desc">{{data.prodInfo.prod_term_desc}}</i>
+                            <i class="wd w-c" ng-if="!data.prodInfo.prod_term_desc">{{data.prodEnd.getFullYear()}}-{{data.prodEnd.getMonth()+1}}-{{data.prodEnd.getDate()}}</i>
+                        </div>
+                    </div>
+                    <div class="pro-blue" style="width:{{data.progress}}%;"></div>
+                    <!-- <div class="pro-w">
+                        <div class="pro-in"></div>
+                        <span class="pro-node-wrap time-a"><i>10-21买入</i></span>
+                        <span class="pro-node-wrap time-b"><i>2018-10-21</i></span>
+                        <span class="pro-node-wrap time-c"><i>2020-10-21</i></span>
+                    </div> -->
+                <!--</dd>-->
+
+                <dd class="result" ng-if="data.wealthData.policy_status==1">
+                    购买成功后，
+                    <em ng-if="data.confirmDay.getFullYear() != data.today.getFullYear()">
+                        {{data.confirmDay.getFullYear()}}年
+                    </em>
+                    {{data.confirmDay | formatDateObjToCNString}}开始产生收益，
+                    <em ng-if="data.hesitatePeriodEnd.getFullYear() != data.today.getFullYear()">
+                        {{data.hesitatePeriodEnd.getFullYear()}}年
+                    </em>
+                    {{data.hesitatePeriodEnd | formatDateObjToCNString}}24:00前可免费赎回本金
+                </dd>
+
+                <div ng-if="data.wealthData.policy_status!=1">
+                    <dd class="result" ng-if="data.period == 1">
+                        目前处于犹豫期内，
+                        <em ng-if="data.hesitatePeriodEnd.getFullYear() != data.today.getFullYear()">
+                            {{data.hesitatePeriodEnd.getFullYear()}}年
+                        </em>
+                        {{data.hesitatePeriodEnd | formatDateObjToCNString}}24:00前可免费赎回全部本金
+                        <em ng-if="isYGProd()">
+                            ，
+                            <em ng-if="data.hesitatePeriodNext.getFullYear() != data.today.getFullYear()">
+                                {{data.hesitatePeriodNext.getFullYear()}}年
+                            </em>
+                            {{data.hesitatePeriodNext | formatDateObjToCNString}}可查看犹豫期15天的累计收益
+                        </em>
+                        <em ng-if="data.prodInfo.free_refund_date.length>0">，此后每月{{data.prodInfo.free_refund_date[0]}}日<em ng-repeat="obj in data.prodInfo.free_refund_date" ng-if="$index>0">、{{obj}}日</em>可免费赎回
+                        </em>
+                        <em ng-if="isMSProd()">，半年后免费赎回日为{{data.firseOpenDay | formatDateObjToCNString}}、{{data.secondOpenDay | formatDateObjToCNString}}、{{data.thirdOpenDay | formatDateObjToCNString}}
+                        </em>
+                    </dd>
+
+                    <dd class="result" ng-if="data.period == 2"><em ng-if="data.holdDays">当前已持有{{data.holdDays}}天</em><em ng-if="data.nextOpenDay">，最近一个免费赎回日期为<em ng-if="data.nextOpenDay.getFullYear() != data.today.getFullYear()">{{data.nextOpenDay.getFullYear()}}年</em>{{data.nextOpenDay | formatDateObjToCNString}}</em><em ng-if="isYGProd()">，{{data.stepDate1 | formatDateObjToCNStringV2}}前赎回收取赎回金额1%的手续费，此后至{{data.stepDate2 | formatDateObjToCNStringV2}}前赎回收取赎回金额0.15%的手续费</em></dd>
+
+                    <dd class="result" ng-if="data.period == 3"><em ng-if="data.holdDays">当前已持有{{data.holdDays}}天</em><em ng-if="data.nextOpenDay">，今日可免费赎回，最近一个免费赎回日期为<em ng-if="data.nextOpenDay.getFullYear() != data.today.getFullYear()">{{data.nextOpenDay.getFullYear()}}年</em>{{data.nextOpenDay | formatDateObjToCNString}}</em><em ng-if="isYGProd()">，{{data.stepDate1 | formatDateObjToCNStringV2}}前赎回收取赎回金额1%的手续费，此后至{{data.stepDate2 | formatDateObjToCNStringV2}}前赎回收取赎回金额0.15%的手续费</em></dd>
+
+                    <dd class="result" ng-if="data.period == 4 || data.period == 5"><em ng-if="data.holdDays">当前已持有{{data.holdDays}}天</em>，随时可以免费赎回</dd>
+                </div>
+
+            </dl>
+
+            <div class="px">
+                <p class="jt" ng-click="onClickProdDetail()">查看详情</p>
+            </div>
+
+            <div style="padding-bottom:20px;"></div>
+
+        </ion-content>
+
+        <ion-footer-bar>
+            <div class="buy-btn-wrap">
+                <div class="lc-buy-btn" ng-if="canRedeem()" ng-click="onClickRedeem()">赎回</div>
+                <div class="lc-buy-btn off" ng-if="!canRedeem()">赎回</div>
+            </div>
+        </ion-footer-bar>
+
+        <div pop-confirm out-value="data.outValue"></div>
+    </div>
+</ion-view>

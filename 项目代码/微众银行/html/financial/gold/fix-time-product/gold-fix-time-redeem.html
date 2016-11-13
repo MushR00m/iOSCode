@@ -1,0 +1,44 @@
+<ion-view>
+    <ion-header-bar>
+        <div class="mod-menu">
+            <header class="mod-menu"><button class="mod-menu-return" ng-click="back()"></button>转出</header>
+        </div>
+    </ion-header-bar>
+
+    <ion-content class="has-header" has-bouncing="false">
+        <div class="mod-block-item" ng-click="">
+            <div class="title">转出克数</div>
+            <div class="content">
+                <input class="content s-fz15" type="number" readonly="readonly" ng-model="data.amount">
+            </div>
+        </div>
+
+        <div>
+            <p class="ui-below-tip">仅支持全额转出本金<span class="s-orange">{{data.amount | formatGoldString}}</span>克，<span class="s-orange">无利息</span></p>
+        </div>
+
+        <p class="mod-tip">
+            <user-agreement
+                    agreement-code = "data.agreementCode"
+                    agreement-desc ="data.agreementDesc"
+                    is-agreed="data.isAgreed"
+                    on-click-agree-checkbox="data.onClickAgreeCheckbox">
+            </user-agreement>
+        </p>
+
+        <button class="{{data.ButtonClass}}" ng-click="onClickPurchase()">确认转出</button>
+
+    </ion-content>
+
+    <div pwd-input
+         ng-model="vm.formData.confirmPassword"
+         is-pwd-show="data.isPwdShow"
+         sig-on-pwd-commit="data.sigOnPwdCommit"
+         pwd-sub-title="data.pwdSubTitle"
+         pwd-trans-desc="data.pwdTransDesc"
+         pay-way-desc="data.payWayDesc"
+         on-click-change-pay-way="onSelectPayWay"
+            >
+    </div>
+
+</ion-view>

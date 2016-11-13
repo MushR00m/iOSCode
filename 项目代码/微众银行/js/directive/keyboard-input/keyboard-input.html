@@ -1,0 +1,17 @@
+<div id="customInput" class="custom-input-box">
+       <div id="svg" class="svg-input" ng-if="keyboardInputData.svgInput"></div>
+
+       <input type="text"
+              id="inputfield"
+              ng-readonly="keyboardInputData.flag"
+              placeholder={{keyboardInputData.placeholder}}
+              ng-model="hjModelinside"
+              ng-change="change()"
+              ng-blur="blur()"
+              ng-click="click()"
+              ng-focus="focus()"
+              maxlength={{keyboardInputData.maxlength}}>
+       </input>
+
+       <i id="pastebtn" class={{keyboardInputData.pasteBtnClass}} ng-click="onPaste()">粘贴</i>
+</div>

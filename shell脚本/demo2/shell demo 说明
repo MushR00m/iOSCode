@@ -1,0 +1,18 @@
+Array.sh	shell数组	
+Break.sh	break命令,跳出循环	
+CaseEsac.sh	case esac是多分枝选择结构
+Expr.sh	shell运算符，算术运算符，关系运算符，布尔运算符，字符串运算符，文件检测运算符	
+ForIn.sh	for in 循环
+Function.sh	函数参数	
+HelloWorld.sh	Hello World	
+Ifelse.sh	判断语句和test命令	
+Inculde.sh	shell文件包含	5 
+Input.sh	shell输入输出重定向	
+Linux的环境变量.docx	查找当前目录中所有大于1mb的文件，把文件名写到文本文件中，统计个数	
+Printf.sh	printf命令格式化输出语句	
+README.md	Initial commit	
+Replace.sh	Shell Replace	
+String.sh	字符串处理	
+Variable.sh	Shell Variable	
+While.sh	while循环	
+example1.sh	查找当前目录中所有大于1mb的文件，把文件名写到文本文件中，统计个数

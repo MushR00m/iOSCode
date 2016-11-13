@@ -1,0 +1,64 @@
+<ion-view>
+    <div class="oti">
+        <ion-header-bar>
+            <div class="menu-ba">
+                <header class="menu"><span class="menu-wd" ></span>购买<span class="menu-wd" ng-click="func.onClickFinish()" >完成</span></header>
+            </div>
+        </ion-header-bar>
+
+        <ion-content class="has-header" has-bouncing="false">
+            <div class="into-logo wait" ng-if="data.isProcessing">
+                <p class="a">购买申请已受理</p>
+            </div>
+
+            <div class="into-logo ok" ng-if="data.isSuccShow">
+                <p class="a">{{data.succText}}</p>
+            </div>
+
+            <div class="into-logo fall" ng-if="data.isFailedShow">
+                <p class="a">购买申请未受理</p>
+                <p class="c">原因：{{data.resultMsg}}</p>
+            </div>
+
+            <div class="date-list-wrap">
+                <ul class="date-list" ng-if="data.isSuccShow">
+                    <li class="o"><i></i>{{data.today.getMonth()+1}}-{{data.today.getDate()}} 今天 购买{{data.resultObj.amount}}元</li>
+                    <li class="sx o"><i></i></li>
+                    <li><i></i>{{data.genIncomeDate.getMonth()+1}}-{{data.genIncomeDate.getDate()}} {{data.genIncomeDate | formatWeekdayFormDate}} 开始产生收益</li>
+                    <li class="sx"><i></i></li>
+                    <li><i></i>{{data.viewIncomeDate.getMonth()+1}}-{{data.viewIncomeDate.getDate()}} {{data.viewIncomeDate | formatWeekdayFormDate}} 可查看首笔收益</li>
+                </ul>
+                <ul class="date-list" ng-if="data.isProcessing">
+                    <li class="o"><i></i>{{data.today.getMonth()+1}}-{{data.today.getDate()}} 今天 购买{{data.resultObj.amount}}元 已受理</li>
+                    <li class="sx o"><i></i></li>
+                    <li><i></i>{{data.genIncomeDate.getMonth()+1}}-{{data.genIncomeDate.getDate()}} {{data.genIncomeDate | formatWeekdayFormDate}} 预计反馈购买结果</li>
+                </ul>
+
+            </div>
+            <div  ng-if="data.isSuccShow && data.isReviewInfoShown"
+                 style="width:100%;display: -webkit-box;-webkit-box-pack: center;margin-top:10px">
+
+                <div>
+                    <p class="msg" ng-if="data.resultObj.email">
+
+                        <span style="color:#f29360;display: block;font-size: 14px">保单将发送至指定邮箱{{data.resultObj.email}}</span>
+
+                  
+                    </p>
+                    <p class="tip">
+                    <span  class="{{data.checkBoxClassStr}}"  ng-click="func.onClickCheckBox()">
+                        <i class="checkbox"></i>
+                    </span>
+                        <label data-tap-disabled="true">
+                            <span ng-click="func.onClickAgreement()">
+                                已确认回访
+                            </span>
+                        </label>
+                    </p>
+                </div>
+            </div>
+
+        </ion-content>
+
+    </div>
+</ion-view>

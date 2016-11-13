@@ -1,0 +1,22 @@
+<ion-view can-swipe-back="false">
+    <div class="trf p-c-blue">
+        <ion-header-bar>
+            <div class="menu-ba">
+                <header class="menu">
+                    <button class="menu-return" ng-click="back()"></button>{{notice.head}}</header>
+            </div>
+        </ion-header-bar>
+        <ion-content has-bouncing="false" class="has-header">
+            <section class="notice-detail">
+                <div class="head px-a">
+                    <h1 ng-bind="notice.title"></h1>
+                    <p ng-bind="notice.date"></p>
+                </div>
+                <div class="body p-c-gray">
+                    {{notice.nickName}}
+                    <br>&#12288;&#12288;{{notice.desc}}
+                </div>
+            </section>
+        </ion-content>
+    </div>
+</ion-view>

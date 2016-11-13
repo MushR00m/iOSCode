@@ -1,0 +1,78 @@
+<ion-view>
+    <div class="fc">
+        <ion-header-bar>
+            <div class="menu-ba">
+                <div ng-if="data.pageStatus === 'videoInit'">
+                    <header class="menu">人脸验证</header>
+                </div>
+                <div ng-if="data.pageStatus === 'videoFail'">
+                    <header class="menu">视频验证</header>
+                </div>
+                <div ng-if="data.pageStatus === 'videoSuccess'">
+                    <header class="menu">对客服进行评价</header>
+                </div>
+            </div>
+        </ion-header-bar>
+
+        <ion-content class="has-header" has-bouncing="false">
+            <div ng-if="data.pageStatus === 'videoInit'">
+                <div class="icon-xl fail p-fz-14 mgt40">
+                    <h1 class="p-c-lorange p-fz-18">验证失败</h1>
+                </div>
+                <div style="text-align:center;width:270px;line-height:20px;margin:20px auto;">
+                    <p ng-show="data.singleErrorMsg" style="font-size:14px;">{{data.singleErrorMsg}}</p>
+                </div>
+
+                <p class="p-ta-c p-fz-14 p-c-bblue mgt20" ng-click="func.check_face_again()"><span class="camera">再试一次</span></p>
+
+                <div class="btn-wrap pd10 mgt40"><button class="btn-c" ng-click="func.launchVideoCertification()">视频验证</button></div>
+                <div class="btn-wrap pd10"><button class="tvb" ng-click="func.exitVideo()">退出验证</button></div>
+
+                <div class="pop-bg-hj hide">
+                    <div class="pop-qx">
+                        <p class="b px-a">在线客服</p>
+                        <p class="b px-a">拨打电话</p>
+                        <p class="b">取消</p>
+                    </div>
+                </div>
+            </div>
+            <div ng-if="data.pageStatus === 'videoFail'">
+                <div class="icon-xl fail p-fz-14 mgt40">
+                    <h1 class="p-c-lorange p-fz-18">{{data.retMsg.title}}</h1>
+                </div>
+                <div style="text-align:center;width:270px;line-height:20px;margin:20px auto;">
+                    <p ng-show="data.retMsg.msg && data.retMsg.msg.length > 0" style="font-size:14px;">{{data.retMsg.msg}}</p>
+
+                    <div style="text-align:left;" ng-if="data.retMsg.msgList && data.retMsg.msgList.length > 0">
+                        <p class="p-fz-16 mgt20" style="margin-left:30px;">验证失败的可能原因</p>
+                        <ul style="list-style-type:disc;margin-left:40px;font-size:14px;">
+                            <li ng-repeat="msg in data.retMsg.msgList">{{msg}}</li>
+                        </ul>
+                    </div>
+
+                </div>
+
+                <p class="p-ta-c p-fz-14 p-c-bblue mgt20" ng-if="data.showFaceVerifyBtn" ng-click="func.check_face_again()"><span class="camera">人脸验证</span></p>
+
+                <div ng-show="data.canRetry"  class="btn-wrap pd10 mgt40"><button class="btn-c" ng-click="func.relaunchVideoCertification()">再次接入</button></div>
+                <div class="btn-wrap pd10"><button class="tvb" ng-click="func.exitVideo()">退出验证</button></div>
+            </div>
+
+            <div ng-if="data.pageStatus === 'videoSuccess'">
+                <div class="fc p-c-blue">
+                    <section class="cs-card">
+                        <div class="avatar"><img ng-src="{{data.headUrl}}" alt=""></div>
+                        <div class="name"></div>
+                    </section>
+                    <section class="heart-btns mgt10">
+                        <span class="btn-yes" ng-click="commitServiceScore(100)"><i></i>心动</span>
+                        <span class="btn-no" ng-click="commitServiceScore(0)"><i></i>心碎</span>
+                    </section>
+
+                    <!-- 居中蓝色提示文字，如果不需要箭头就干掉中间的span -->
+                    <p class="p-ta-c p-fz-14 p-c-bblue mgt40" ng-click="func.videoPassCallback()"><span class="allow-enter-bblue">跳过，继续办理业务</span></p>
+                </div>
+            </div>
+        </ion-content>
+    </div>
+</ion-view>

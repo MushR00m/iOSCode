@@ -1,0 +1,191 @@
+<ion-view>
+    <div class="lc">
+        <ion-header-bar>
+            <div class="menu-ba">
+                <header class="menu"><button class="menu-return" ng-click="back()"></button>{{data.prodInfo.on_sale_desc}}({{data.prodInfo.value_date.substr(4, 4)}})
+                    <span ng-class="data.shareClass" ng-click="share()"></span>
+                </header>
+            </div>
+        </ion-header-bar>
+
+        <ion-content class="has-header" has-bouncing="false" ng-style="contentStyle()">
+            <div class="ba-income-wrap">
+                <p class="title p-line-lr-h"><span ng-click="onClickYesterdayIncomeExplanation()">预估昨日收益(元)<i class="excl" ></i></span></p>
+                <p class="num" ng-if="data.showIncome">{{data.yestodayIncome}}</p>
+                <p class="num" ng-if="!data.showIncome">暂无收益</p>
+                <div class="xs flex">
+                    <div class="item p-line-r">持有本金(元)<br>{{data.holdAmount}}</div>
+                    <div class="item">预估累计收益(元)<br>{{data.accumulateIncome}}</div>
+                </div>
+            </div>
+
+            <!--可撤销列表-->
+            <div class="db-box no-t"  ng-if="data.cancelListObj.listArr.length" ng-click="onClickCancelList()">
+                <p class="o-a p-fz-14">您已有{{data.cancelListObj.listArr.length}}笔购买，可点此<span class="p-c-bblue mgl5">撤销购买</span></p>
+            </div>
+
+            <ul class="{{data.cancelItemClass}}" > <!-- 若无撤销购买一栏，此处class为 "lc-wrap px-a no-t" -->
+                <li class="pd-a">
+                    <!--兼容老产品，展示逻辑不变-->
+                    <div class="wd-wrap" ng-if="data.isValueDateStart && data.holdAmount>0 && !data.useSvrEndDate">
+                        <span class="w-l" ng-if="data.gainedValueDays < data.prodInfo.life_time">已获得<span class="o">{{data.gainedValueDays}}</span>天收益</span>
+                        <span class="w-r" ng-if="data.gainedValueDays < data.prodInfo.life_time">距本期结束还有<span class="o">{{data.remainValueDays}}</span>天</span>
+                        <span class="w-l" ng-if="data.gainedValueDays >= data.prodInfo.life_time && (data.dst=='01' || data.dst=='02')">本金和收益赎回中</span>
+                        <span class="w-l" ng-if="data.gainedValueDays >= data.prodInfo.life_time && (data.dst=='04' || data.dst=='05')">部分赎回中，剩余自动购买下一期</span>
+                        <span class="w-l" ng-if="data.gainedValueDays >= data.prodInfo.life_time && data.dst=='03'">本金自动购买下一期，收益赎回中</span>
+                    </div>
+
+                    <!--1116之后的产品使用到期日-->
+                    <div class="wd-wrap" ng-if="data.isValueDateStart && data.holdAmount>0 && data.useSvrEndDate">
+                        <span class="w-l" ng-if="data.remainValueDays >= 0 && data.gainedValueDays == 0">今天开始计算收益<span class="o"></span></span>
+                        <span class="w-l" ng-if="data.remainValueDays >= 0 && data.gainedValueDays != 0">已获得<span class="o">{{data.gainedValueDays}}</span>天收益</span>
+                        <span class="w-r" ng-if="data.remainValueDays == 2">后天到期<span class="o"></span></span>
+                        <span class="w-r" ng-if="data.remainValueDays == 1">明天到期<span class="o"></span></span>
+                        <span class="w-r" ng-if="data.remainValueDays == 0">今日到期<span class="o"></span></span>
+                        <span class="w-l" ng-if="data.remainValueDays < 0 && (data.dst=='01' || data.dst=='02')">本金和收益赎回中</span>
+                        <span class="w-l" ng-if="data.remainValueDays < 0 && (data.dst=='04' || data.dst=='05')">部分赎回中，剩余自动购买下一期</span>
+                        <span class="w-l" ng-if="data.remainValueDays < 0 && data.dst=='03'">本金自动购买下一期，收益赎回中</span>
+                    </div>
+
+                    <div class="wd-wrap" ng-if="!data.isValueDateStart && data.holdAmount>0">
+                        <span class="w-l">还有<span class="o">{{data.daysBeforeValueDate}}</span>天开始赚钱</span>
+                    </div>
+
+                    <div class="wd-wrap" ng-if="data.confirmAmount>0 || data.refundAmount">
+                        <span class="w-l" ng-if="data.confirmAmount>0">您有{{data.confirmAmount}}元待确认购买结果，预计{{data.confirmDate | formatDateObjToStringV2}}完成</span>
+                        <span class="w-l" ng-if="data.refundAmount">您有{{data.refundAmount}}元退款确认中，预计{{data.prodInfo.refund_arrival_days}}个工作日完成</span>
+                    </div>
+
+                    <div class="pcs-wrap">
+                        <div class="pcs-inner" style="width:{{data.valuePct}}%;"></div>
+                    </div>
+
+
+                    <div class="wd-wrap r-a" ng-if="!data.useSvrEndDate">
+                        <span class="w-l">{{data.prodInfo.value_date | formatYYYYMMDDStringV2}}起息</span>
+                        <span class="w-r">
+                            {{data.endDate |formatDateObjToStringV2}}结束
+                            <i ng-if="data.dst =='01' || data.dst == '02'">
+                                /
+                                <em ng-if="data.endDate.getFullYear() != data.arrivalDate.getFullYear()">
+                                    {{data.arrivalDate.getFullYear()}}-
+                                </em>
+                                {{data.arrivalDate|formatDateObjToMDString}}到账
+                            </i>
+                        </span>
+                    </div>
+
+                    <div class="wd-wrap r-a" ng-if="data.useSvrEndDate">
+                        <span class="w-l">{{data.prodInfo.value_date | formatYYYYMMDDStringV2}}起息</span>
+                        <span class="w-r">
+                            {{data.endDate |formatDateObjToStringV2}}到期
+                            <i ng-if="data.dst =='01' || data.dst == '02'">
+                                /
+                                <em ng-if="data.endDate.getFullYear() != data.arrivalDate.getFullYear()">
+                                    {{data.arrivalDate.getFullYear()}}-
+                                </em>
+                                {{data.arrivalDate|formatDateObjToMDString}}到账
+                            </i>
+                        </span>
+                    </div>
+                </li>
+            </ul>
+
+            <div class="db-box p-desc-box mgt20"  ng-if="data.showRedeemItem">
+                <h2 class="px-a">到期后安排<i class="modify" ng-if="data.holdAmount>0 && data.today<data.validDate" ng-click="onClickDstSelect()">修改</i></h2>
+                <p class="o-b" ng-if="data.dst=='01'"><span class="p-c-lorange">{{data.allAmount | number:2}}</span>元本金及其收益全部赎回至 微众卡，预计<em ng-if="data.today.getFullYear() != data.arrivalDate.getFullYear()">{{data.arrivalDate.getFullYear()}}年</em>{{data.arrivalDate|formatDateObjToCNString}}到账</p>
+                <p class="o-b" ng-if="data.dst=='02'"><span class="p-c-lorange">{{data.allAmount | number:2}}</span>元本金及其收益全部赎回至<i class="cplus"></i>，预计<em ng-if="data.today.getFullYear() != data.arrivalDate.getFullYear()">{{data.arrivalDate.getFullYear()}}年</em>{{data.arrivalDate|formatDateObjToCNString}}到账</p>
+                <p class="o-b" ng-if="data.dst=='03' && data.prodInfo.can_redeem_type_principal != '1' && data.prodInfo.can_roll != '1'"><span class="p-c-lorange">{{data.allAmount | number:2}}</span>元本金及其收益全部赎回至 微众卡</p>
+                <p class="o-b" ng-if="data.dst=='03' && data.prodInfo.can_redeem_type_principal == '1'"><span class="p-c-lorange">{{data.allAmount | number:2}}</span>元本金自动购买下一期<br><span class="p-c-lorange">{{data.totalIncome | number:2}}</span>元收益赎回至微众卡</p>
+                <p class="o-b" ng-if="data.dst=='03' && data.prodInfo.can_roll == '1'"><span class="p-c-lorange">{{data.allAmount | number:2}}</span>元本金自动购买{{data.rollProdValueDate.substr(4, 4)}}期，<span class="p-c-lorange">{{data.totalIncome | number:2}}</span>元收益赎回至微众卡；{{data.rollProdValueDate.substr(4, 4)}}期预期年化收益率<span class="p-c-lorange">{{data.rollProdIncomeRate | number:2}}%</span>，投资期限预估为<span class="p-c-lorange">{{data.rollProdLife}}</span>天</p>
+                <p class="o-b" ng-if="data.dst=='04'"><span class="p-c-lorange">{{data.dstPartRedeemAmount | number:2}}</span>元本金及其收益赎回至 微众卡，预计<em ng-if="data.today.getFullYear() != data.arrivalDate.getFullYear()">{{data.arrivalDate.getFullYear()}}年</em>{{data.arrivalDate|formatDateObjToCNString}}到账<br>{{data.dstPartRenewAmount | number:2}}元本金自动购买下一期，收益以分红发放至微众卡</p>
+                <p class="o-b" ng-if="data.dst=='05'"><span class="p-c-lorange">{{data.dstPartRedeemAmount | number:2}}</span>元本金及其收益赎回至<i class="cplus"></i>，预计<em ng-if="data.today.getFullYear() != data.arrivalDate.getFullYear()">{{data.arrivalDate.getFullYear()}}年</em>{{data.arrivalDate|formatDateObjToCNString}}到账<br>{{data.dstPartRenewAmount | number:2}}元本金自动购买下一期，收益以分红发放至<i class="cplus"></i></p>
+            </div>
+
+            <p class="p-hint-form" ng-if="data.holdAmount==0">确认后可修改到期后安排</p>
+
+            <p class="p-hint-form" ng-if="data.prodInfo.modify_redeem_method_deadline_date && data.prodInfo.modify_redeem_method_deadline_time && data.showRedeemItem && data.holdAmount>0">修改截止于{{data.prodInfo.modify_redeem_method_deadline_date|formatYYYYMMDDToCNString}} {{data.prodInfo.modify_redeem_method_deadline_time|formatTimeStringToHHMM}}</p>
+
+            <div class="db-box mgt10" ng-if="data.status != 2">
+                <p class="o-a">预估到期总收益(元) {{data.totalIncome}}</p>
+                <p class="o-b">预期年化收益率{{data.prodInfo.income_rate}}%。预期到期收益按照预期收益率及产品期限等要素计算所得，仅作参考。实际收益以产品到期兑付为准。</p>
+            </div>
+
+            <div class="px">
+                <p class="jt" ng-click="onClickProductDetail()">查看本期详情</p>
+            </div>
+
+            <div style="padding-bottom:20px;"></div>
+        </ion-content>
+
+        <!--到期赎回-->
+        <div class="pop-bg-hj" ng-if="data.showDst">
+            <div class="pop bg-b">
+                <header class="hd">请选择到期资金安排<i class="close" ng-click="onClickDstClose()"></i></header>
+                <ul class="card" style="padding-bottom:5px;">
+                    <li ng-click="onSelectDstHJ()" ng-class="data.HJClass">
+                        <p class="cd-name">赎回到<img style="width: 51px;height: 20px;margin: 0 0 0 4px;vertical-align: bottom;" src="../img/slice/hq@3x.png"></p>
+                        <p class="yv" style="padding-right:30px;">到期后，本金及收益自动转入到活期+，享受活期+收益，使用时可随时转出（下一工作日24:00前到账）</p>
+                    </li>
+
+                    <li ng-click="onSelectWeBank()" ng-class="data.weBankCardClass">
+                        <p class="cd-name">赎回到<img style="width: 25px;height: 25px;margin: 0 0 -5px 0;" src="../img/bankHead/yh-0@2x.png">微众卡</p>
+                        <p class="yv" style="padding-right:30px;">到期后，本金及收益自动转入到微众卡，可马上用于投资其他理财产品（下一工作日24:00前到账）</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!--无可买产品，不现实footer-->
+        <ion-footer-bar class="bar bar-footer" style="height:50px;" ng-if="data.footerState != data.FOOTER_STATE.SHOW_NOTHING">
+            <!--有在售产品，并且不是当前页面产品在售-->
+            <div class="buy-btn-wrap" ng-click="func.onClickViewNewArrival()" ng-if="data.footerState == data.FOOTER_STATE.SHOW_NEW_ARRIVAL">
+                <p style="background-color: #e2e2e2;font-size: 12px;text-align: center;padding: 2px 0;line-height: 16px;"
+                   ng-if="data.prodInfo.can_redeem_type_principal == '1' && data.isNewArrivalTipsShown && data.newArrivalIncomeRate">
+                    本期即将到期，<i class="p-c-lorange">接续产品</i>
+                    预期年化收益<i class="p-c-lorange">{{data.newArrivalIncomeRate}}%</i></p>
+                <div class="lc-buy-btn">查看最新产品信息</div>
+            </div>
+
+            <!--有在售，并且是当前页面产品在售-->
+            <div class="buy-btn-wrap" ng-if="!data.limitWords && (data.footerState == data.FOOTER_STATE.SHOW_CONTINUE)">
+                <!-- 不符合mgm 条件, 即是新人(如果设置了新人专享) -->
+                <div class="lc-buy-btn" ng-if="!data.isMgm" ng-click="func.onClickContinueBuy()">继续购买</div>
+                <!-- 符合mgm 且 有卡 -->
+                <div class="lc-buy-btn" ng-if="data.isMgm && data.hasMgmCard" ng-click="func.onClickContinueBuy()">继续购买</div>
+                <!-- 符合mgm 且 没卡-->
+                <div class="lc-buy-btn" ng-if="data.isMgm && !data.hasMgmCard" ng-click="func.onClickMgm()">我是老用户，我还想买</div>
+            </div>
+
+            <!--限制购买-->
+            <div class="buy-btn-wrap"  ng-if="data.limitWords && data.limitButton && (data.footerState == data.FOOTER_STATE.SHOW_CONTINUE)">
+                <div class="lc-buy-btn off">{{data.limitWords}}</div>
+            </div>
+
+            <!--限制购买-->
+            <div class="buy-btn-wrap" ng-click="func.onClickContinueBuy()" ng-if="data.limitWords && !data.limitButton && (data.footerState == data.FOOTER_STATE.SHOW_CONTINUE)">
+                <div class="lc-buy-btn">{{data.limitWords}}</div>
+            </div>
+        </ion-footer-bar>
+
+        <div pwd-input
+             ng-model="data.vm.formData.confirmPassword"
+             is-pwd-show="data.isPwdShow"
+             sig-on-pwd-commit="data.sigOnPwdCommit"
+             pwd-sub-title="data.pwdSubTitle"
+                >
+        </div>
+
+        <div pop-confirm out-value="data.outValue"></div>
+        <div slider-up-part-redeem option="data.partRedeemOption"></div>
+        <!--遮罩层start-->
+        <div class="p-mask" ng-if="data.isMaskShown">
+            <h2>{{data.maskTitle}}</h2>
+            <p>{{data.maskDetail}}</p>
+            <div class="funcs"><button class="p-btn p-btn-outline p-btn-block" ng-click="onClickCancelMask()">知道了</button></div>
+        </div>
+        <!--遮罩层end-->
+    </div>
+    <div slider-up-confirm slider-up-confirm-option="data.sliderUpConfirmOption"></div>
+</ion-view>
+<risk-assessment option="data.riskOption"></risk-assessment>

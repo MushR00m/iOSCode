@@ -1,0 +1,134 @@
+<ion-view>
+    <div class="cw">
+        <ion-header-bar>
+            <div class="menu-ba">
+                <header class="menu">
+                    <button class="menu-return" ng-click="func.back()"></button>
+                    益点心意
+                    <span class="menu-tip share hjButton" ng-click="func.share()" ng-if="data.showShareConfig"></span>
+                </header>
+            </div>
+        </ion-header-bar>
+
+        <ion-content class="has-header" has-bouncing="false">
+            <div class="wd-wrap" ng-if="data.taxStopTip">
+                <div class="wd-con" ng-click="func.clickHistoryBanner()">
+                    <p>感谢您曾经的付出<br>您累计捐出<span class="p-c-lorange">{{data.totalAmount}}</span>元，累计捐赠<span class="p-c-lorange">{{data.totalTimes}}</span>天</p></div>
+                <i class="wd-arrow"></i>
+            </div>
+
+            <div class="banner-wrap">
+                <span class="bg"></span>
+
+                <!--<i class="a">腾讯公益</i>-->
+                <!--<i class="b">webank</i>-->
+                <dl>
+                    <dt>免费午餐，让每个孩子都吃饱饭</dt>
+                    <!--<dd>3元可捐出一份午餐，不吝惜生活中的一点善意。</dd>-->
+                </dl>
+            </div>
+            <!--<div class="intro flex">-->
+                <!--<div class="item">加入计划<span>{{data.planMember}}</span></div>-->
+                <!--<div class="item">已筹集<span>{{data.planAmount}}</span></div>-->
+                <!--<div class="item">相当于午餐<span>{{data.planMeal}}</span></div>-->
+            <!--</div>-->
+
+            <!--<p class="intro-wd px">用活期+收益零头，设置固定捐赠计划，可支持免费午餐公益项目。</p>-->
+
+            <div class="intro-wd-wrap px">
+                <p class="intro-wd">现在设置固定捐赠计划，用活期+收益零头，参与支持免费午餐公益项目。3元可让小朋友得到一份午餐。</p>
+                <span></span>
+            </div>
+
+
+            <dl class="d-wrap mgt20 px">
+                <dt>收益零头捐午餐</dt>
+                <dd style="padding-top:3px;">
+                    <!--<div class="card-wrap px">-->
+                        <!--<div class="con">-->
+                            <!--<span class="a">每日收益</span><span class={{data.displayYuanClass}} ng-click="func.clickTaxPay('yuan')">元</span><span class="c">•</span><span-->
+                                <!--class={{data.displayJiaoClass}} ng-click="func.clickTaxPay('jiao')">角</span><span class={{data.displayFenClass}} ng-click="func.clickTaxPay('fen')">分</span>-->
+                        <!--</div>-->
+                        <!--<p class="wd px-b">捐出<span>{{data.displayAmount}}</span>位收益零头,大约<span>{{data.displayMealTime}}</span>捐出一份午餐<i class="i-a"></i><i class="i-b"></i></p>-->
+                    <!--</div>-->
+
+                    <div class="card-wrap flex">
+                        <div class={{data.displayFenClass}} ng-click="func.clickTaxPay('fen')"><span>每天捐几分</span></div>
+                        <div class={{data.displayJiaoClass}} ng-click="func.clickTaxPay('jiao')"><span>每天捐几角</span></div>
+                        <div class={{data.displayYuanClass}} ng-click="func.clickTaxPay('yuan')"><span>每天捐几元</span></div>
+                    </div>
+
+                    <div class="card-sm-box">
+                        <div class="ex-wrap">
+                            <span class="ex-t">示例</span>
+                            <div class="ex-con">
+                                <p>昨日收益：<span>{{data.demoIncome}}元</span></p>
+                                <p>捐出金额：<span class="p-c-lorange">{{data.demoTax}}元</span></p>
+                            </div>
+                        </div>
+                        <p class="js">即&nbsp;捐出每日收益中不足{{data.demoTaxAmount}}的部分</p>
+                    </div>
+                </dd>
+            </dl>
+
+            <div compile="data.sectionHtml"></div>
+        </ion-content>
+        <ion-footer-bar ng-if="data.showTaxBtn">
+            <div class="buy-btn-wrap" ng-click="func.clickTax()">
+                <div class="lc-buy-btn">{{data.taxBtnName}}</div>
+            </div>
+        </ion-footer-bar>
+
+        <div class="pop-bg-hj" ng-if="data.showTaxPop">
+            <div class="cw-pop-wrap">
+                <p class="title px-a">请选择捐款金额<i ng-click="func.clickTaxPopClose()"></i></p>
+
+                <div class="cw-pop-con">
+                    <p class="b">大约<span class="p-c-lorange">{{data.displayMealTime}}</span>捐出一份午餐</p>
+
+                    <p class="a">开启每日捐赠</p>
+
+                    <ul class="list">
+                        <li class={{data.taxFenClass}} ng-click="func.clickTaxPay('fen')">每天捐几分</li>
+                        <li class={{data.taxJiaoClass}} ng-click="func.clickTaxPay('jiao')">每天捐几角</li>
+                        <li class={{data.taxYuanClass}} ng-click="func.clickTaxPay('yuan')">每天捐几元</li>
+                    </ul>
+
+                    <div class="rule">
+                        <p class="tip">
+                            <!-- <span class={{data.taxAgreeMentClass}} ng-click="func.clickTaxAgreement()"></span> -->
+                            <span  class={{data.taxAgreeMentClass}} ng-click="func.clickTaxAgreement()"><i class="checkbox"></i><i class="checkbox-wd">同意</i></span><label ng-click="func.clickAgreementDetail()"><span>微众平台公益项目参与协议</span>
+                            </label>
+                        </p>
+                    </div>
+
+                    <div class="btn-wrap">
+                        <button class={{data.okBtnClass}} ng-click="func.clickStartPlan()">确&#12288;认</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--&lt;!&ndash;付款账户&ndash;&gt;-->
+    <!--<account-selector-->
+    <!--account-data="data.payAccountData"-->
+    <!--show="func.showPaymentAccountSelector"-->
+    <!--hide="func.hideReceivableAccountSelector"-->
+    <!--bind-card="func.bindCard"-->
+    <!-->-->
+    <!--</account-selector>-->
+
+    <div pwd-input
+         ng-model="vm.formData.confirmPassword"
+         is-pwd-show="data.isPwdShow"
+         sig-on-pwd-commit="sigOnPwdCommit"
+         pwd-sub-title="data.pwdSubTitle"
+         pwd-trans-desc="data.pwdTransDesc"
+         pay-way-desc="data.payWayDesc"
+         on-click-change-pay-way="func.onPwdSelectPayWay">
+    </div>
+
+    <div pop-confirm out-value="data.outValue"></div>
+    <loading show-loading="data.showLoading"></loading>
+</ion-view>

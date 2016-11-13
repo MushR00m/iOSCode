@@ -1,0 +1,95 @@
+<ion-view>
+    <div class="lc">
+        <ion-header-bar>
+            <div class="menu-ba">
+                <header class="menu"><button class="menu-return" ng-click="back()"></button>赎回</header>
+            </div>
+        </ion-header-bar>
+
+        <ion-content class="has-header" has-bouncing="false">
+            <p style="color:#acb2c1;padding:15px 25px 5px;line-height:16px;font-size:12px;" ng-if="data.redeemType == 'free'">
+                <span style="display:block;">您可赎回的最大金额为<i class="p-c-lorange">{{data.wealthData.total_amount}}元</i></span>
+                <!--<span class="p-c-bblue" ng-click="onClickRule()">详细介绍</span>-->
+            </p>
+
+            <p style="color:#acb2c1;padding:15px 25px 5px;line-height:16px;font-size:12px;" ng-if="data.redeemType == 'hesitate'">
+                <span style="display:block;">当前仅限全额赎回本金<i class="p-c-lorange">{{data.wealthData.avg_cost}}元</i></span>
+                <!--<span class="p-c-bblue" ng-click="onClickRule()">详细介绍</span>-->
+            </p>
+
+            <p style="color:#acb2c1;padding:15px 25px 5px;line-height:16px;font-size:12px;" ng-if="data.redeemType == 'lock'">
+                <span style="display:block;">当前仅限全额赎回<i class="p-c-lorange">{{data.wealthData.total_amount}}元</i></span>
+                <!--<span class="p-c-bblue" ng-click="onClickRule()">详细介绍</span>-->
+            </p>
+
+            <div class="cy-wrap">金额
+                <div class="po">
+                    <keyboard-input ng-if="data.redeemType == 'free'" type="number" hjtype = "je" class="it" placeholder="{{data.prodInfo.refund_min_limit}}元起，{{data.prodInfo.p_refund_step}}元递增" hj-model="data.amount"  hj-blur="blurInput()" hj-focus="focusInput()" hj-change="changeInput()"></keyboard-input>
+                    <input ng-if="data.redeemType != 'free'" type="number" class="it" readonly="readonly" ng-model="data.amount">
+                </div>
+                <span class="all" ng-if="data.redeemType == 'free'" ng-click="onClickRedeemAll()">全部赎回</span>
+            </div>
+
+            <p class="cy-tip" ng-if="data.showInputAmountTips">{{data.inputAmountTipsContent}}</p>
+
+            <p class="cy-ws">
+                <span ng-if="data.showFee">预估手续费<i class="p-c-lorange">{{data.refundFee}}元</i>，预估入账<i class="p-c-lorange">{{data.refundIncome}}元</i></span>
+            </p>
+
+            <div class="cy-wrap-a" ng-click="onSelectPayWay()">
+                <span class="t-l">赎回至</span>
+                <p class="t-m" ng-if="isCurrentPlus()">
+                    <img class="hq_icon" src="../img/slice/hq@3x.png">
+                </p>
+                <p class="t-m" ng-if="isWeBankAccount()">
+                    <img class="hq_ib" src="../img/bankHead/yh-0@2x.png">微众卡
+                </p>
+                <i class="k"></i>
+            </div>
+
+
+            <dl class="sm-k" style="padding-top:15px;">
+                <dt>说明</dt>
+                <dd>上述手续费和入帐金额是按昨日的账户价值估算得出，实际将根据赎回当日的账户价值计算</dd>
+                <dd>现在赎回，{{data.prodInfo.redeem_arrive_account_day}}个工作日到账，节假日顺延</dd>
+                <dd ng-if="data.redeemType == 'free'">此后收益按剩余账户价值计算</dd>
+            </dl>
+
+            <!--<div class="ui-address-wrap mgt20 px">-->
+                <!--<p class="title px-a">赎回时间</p>-->
+                <!--<ul class="city-list tx">-->
+                    <!--<li><span>2015年</span><i></i></li>-->
+                    <!--<li><span>11月</span><i></i></li>-->
+                    <!--<li><span>26日</span><i></i></li>-->
+                <!--</ul>-->
+            <!--</div>-->
+
+            <div class="btn-wrap pd20 mgt20">
+                <button class="{{data.redeemButtonClass}}" ng-click="onClickRedeem()">立即赎回</button>
+            </div>
+        </ion-content>
+
+        <account-selector
+                account-data="data.AccountData"
+                show="showAccountSelector"
+                hide="hideAccountSelector"
+                on-account-selected="onAccountSelected"
+                hide-amount="data.hideAmount"
+                >
+        </account-selector>
+
+        <div pwd-input
+             ng-model="vm.formData.confirmPassword"
+             is-pwd-show="data.isPwdShow"
+             sig-on-pwd-commit="data.sigOnPwdCommit"
+             pwd-sub-title="data.pwdSubTitle"
+             pwd-trans-desc="data.pwdTransDesc"
+             pay-way-desc="data.payWayDesc"
+                >
+        </div>
+
+        <loading show-loading="data.showLoading"></loading>
+
+        <div pop-confirm out-value = "data.outValue"></div>
+    </div>
+</ion-view>

@@ -1,0 +1,329 @@
+<ion-view>
+    <div class="bx">
+        <ion-header-bar>
+            <div class="menu-ba">
+                <header class="menu"><button class="menu-return" ng-click="back()"></button>{{data.prodInfo.on_sale_desc}}
+                    <span ng-class="data.shareClass" ng-click="share()"></span>
+                </header>
+            </div>
+        </ion-header-bar>
+
+        <hj-up-down-box up-down-init="upDownInit">
+            <ion-content class="has-header" has-bouncing="false" ng-style="contentStyle()">
+                <div style="min-height: 100%;">
+                    <div class="ba-income-wrap">
+                        <p class="title p-line-lr-h"><span>预期年化收益率</span></p>
+                        <p class="num">{{data.prodInfo.income_rate}}<span class="sub">%</span><i class="calc" ng-click="onCalculatorShow()"></i></p>
+                        <div class="pz-wrap flex">
+                            <div class="item">起购金额(元)<span>{{data.prodInfo.min_amount}}</span></div>
+                            <div class="item">投资期限(天)<span>{{data.prodInfo.life_time}}</span></div>
+                            <div class="item">风险等级<span>{{data.riskDesc}}</span></div>
+                        </div>
+                        <!--risk tips-->
+                        <div class="pz-risk px-a" ng-if="data.noneRisk">
+                            <p>本产品需要风险评估后才能购买</p>
+                            <p ng-click="onClickToRisk()">去进行风险评估<i class="arrow-right"></i></p>
+                        </div>
+                        <!--<i class="jsq"></i>-->
+                    </div>
+
+                    <div class="djs-box px-a" ng-if="data.status == 1|| data.status == 3 || data.status == 4">
+                        <!--预售-->
+                        <div ng-if="data.status==1">
+                            <p class="p-a">
+                                <span class="s">{{data.prodInfo.start_buy_date.substr(4,2)}}月{{data.prodInfo.start_buy_date.substr(6,2)}}日
+                                    <i ng-if="data.DateShowTips">{{data.DateShowTipsContent}}</i> {{data.prodInfo.start_buy_time.substr(0,5)}}
+                                </span>
+                                起售
+                            </p>
+                        </div>
+
+                        <!--在售-->
+                        <div class="djs-con" ng-if="data.status == 3|| data.status == 4">
+                            <div style="overflow:hidden;">
+                                <div class="j-l" >
+                                    <p ng-if="data.status == 3">本期剩余时间</p>
+                                    <p ng-if="data.status == 4">本期购买截至</p>
+                                </div>
+                                <div class="j-r">
+                                    <!-- 倒计时 -->
+                                    <div class="countdown" ng-if="data.status == 3">
+                                        <div class="bloc-time hours" data-init-value="{{data.countdownHour}}">
+                                            <div class="figure hours hours-1">
+                                                <span class="top">0</span>
+                                                <span class="top-back"><span>0</span></span>
+                                                <span class="bottom">0</span>
+                                                <span class="bottom-back"><span>0</span></span>
+                                            </div>
+                                            <div class="figure hours hours-2">
+                                                <span class="top">0</span>
+                                                <span class="top-back"><span>0</span></span>
+                                                <span class="bottom">0</span>
+                                                <span class="bottom-back"><span>0</span></span>
+                                            </div>
+                                        </div>
+
+                                        <i class="mh">:</i>
+
+                                        <div class="bloc-time min" data-init-value="{{data.countdownMinute}}">
+                                            <div class="figure min min-1">
+                                                <span class="top">0</span>
+                                                <span class="top-back"><span>0</span></span>
+                                                <span class="bottom">0</span>
+                                                <span class="bottom-back"><span>0</span></span>
+                                            </div>
+                                            <div class="figure min min-2">
+                                                <span class="top">0</span>
+                                                <span class="top-back"><span>0</span></span>
+                                                <span class="bottom">0</span>
+                                                <span class="bottom-back"><span>0</span></span>
+                                            </div>
+                                        </div>
+
+                                        <i class="mh">:</i>
+
+                                        <div class="bloc-time sec" data-init-value="{{data.countdownSecond}}">
+                                            <div class="figure sec sec-1">
+                                                <span class="top">0</span>
+                                                <span class="top-back"><span>0</span></span>
+                                                <span class="bottom">0</span>
+                                                <span class="bottom-back"><span>0</span></span>
+                                            </div>
+                                            <div class="figure sec sec-2">
+                                                <span class="top">0</span>
+                                                <span class="top-back"><span>0</span></span>
+                                                <span class="bottom">0</span>
+                                                <span class="bottom-back"><span>0</span></span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 截至时间 -->
+                                    <div class="countdown cd-b" ng-if="data.status == 4">
+                                        <div class="bloc-time hours">
+                                            <div class="figure hours hours-1">
+                                                <span class="top">{{data.prodInfo.end_buy_date.substr(4,2)}}</span>
+                                                <span class="bottom">{{data.prodInfo.end_buy_date.substr(4,2)}}</span>
+                                            </div>
+                                            <span class="wd">月</span>
+                                            <div class="figure hours hours-2">
+                                                <span class="top">{{data.prodInfo.end_buy_date.substr(6,2)}}</span>
+                                                <span class="bottom">{{data.prodInfo.end_buy_date.substr(6,2)}}</span>
+                                            </div>
+                                            <span class="wd">日</span>
+                                            <span class="dt">{{data.prodInfo.end_buy_time.substr(0,5)}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div style="overflow:hidden;line-height:30px;margin-top:8px;">
+                                <div class="j-l" >
+                                    <p>本期剩余额度</p>
+                                </div>
+                                <div class="j-r">
+                                    <p>
+                                        <span style="color:#f19366;padding-right:5px;">{{data.remainPct}}</span><span ng-if="data.prodInfo.p_day_buy_total_amount">(每人每日限购{{data.prodInfo.p_day_buy_total_amount | formatMoneyShort}})</span>
+                                    </p>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <p class="kk px-b" ng-if="!data.useSvrEndDate && (data.prodInfo.can_redeem_type_principal != '1' && data.prodInfo.can_roll != '1')">购买成功后，{{data.valueDate | formatDateObjToCNString}}({{data.valueDate | formatWeekdayFormDate}})开始产生收益；<span ng-if="data.valueEndDate.getFullYear() != data.today.getFullYear()">{{data.valueEndDate.getFullYear()}}年</span>{{data.valueEndDate | formatDateObjToCNString}}({{data.valueEndDate| formatWeekdayFormDate}})结束，<span ng-if="data.valueEndDate.getFullYear() != data.redeemDate.getFullYear()">{{data.redeemDate.getFullYear()}}年</span>{{data.redeemDate | formatDateObjToCNString}}({{data.redeemDate | formatWeekdayFormDate}})24:00前资金到账。</p>
+
+                        <p class="kk px-b" ng-if="!data.useSvrEndDate && (data.prodInfo.can_redeem_type_principal == '1' || data.prodInfo.can_roll == '1')">购买成功后，{{data.valueDate | formatDateObjToCNString}}({{data.valueDate | formatWeekdayFormDate}})开始产生收益，<span ng-if="data.valueEndDate.getFullYear() != data.today.getFullYear()">{{data.valueEndDate.getFullYear()}}年</span>{{data.valueEndDate | formatDateObjToCNString}}({{data.valueEndDate| formatWeekdayFormDate}})结束。若预约赎回，则<span ng-if="data.valueEndDate.getFullYear() != data.redeemDate.getFullYear()">{{data.redeemDate.getFullYear()}}年</span>{{data.redeemDate | formatDateObjToCNString}}({{data.redeemDate | formatWeekdayFormDate}})24:00前资金到账；也可选择本金自动购买下一期，持续产生收益。</p>
+
+
+                        <p class="kk px-b" ng-if="data.useSvrEndDate && (data.prodInfo.can_redeem_type_principal != '1' && data.prodInfo.can_roll != '1')">购买成功后，{{data.valueDate | formatDateObjToCNString}}({{data.valueDate | formatWeekdayFormDate}})开始产生收益；<span ng-if="data.valueEndDate.getFullYear() != data.today.getFullYear()">{{data.valueEndDate.getFullYear()}}年</span>{{data.valueEndDate | formatDateObjToCNString}}({{data.valueEndDate| formatWeekdayFormDate}})到期，<span ng-if="data.valueEndDate.getFullYear() != data.redeemDate.getFullYear()">{{data.redeemDate.getFullYear()}}年</span>{{data.redeemDate | formatDateObjToCNString}}({{data.redeemDate | formatWeekdayFormDate}})24:00前资金到账。</p>
+
+                        <p class="kk px-b" ng-if="data.useSvrEndDate && (data.prodInfo.can_redeem_type_principal == '1' || data.prodInfo.can_roll == '1')">购买成功后，{{data.valueDate | formatDateObjToCNString}}({{data.valueDate | formatWeekdayFormDate}})开始产生收益；<span ng-if="data.valueEndDate.getFullYear() != data.today.getFullYear()">{{data.valueEndDate.getFullYear()}}年</span>{{data.valueEndDate | formatDateObjToCNString}}({{data.valueEndDate| formatWeekdayFormDate}})到期。若预约赎回，则<span ng-if="data.valueEndDate.getFullYear() != data.redeemDate.getFullYear()">{{data.redeemDate.getFullYear()}}年</span>{{data.redeemDate | formatDateObjToCNString}}({{data.redeemDate | formatWeekdayFormDate}})24:00前资金到账；也可选择本金自动购买下一期，持续产生收益。</p>
+
+                    </div>
+
+                    <!--<div ng-bind-html="data.sectionHtml"></div>-->
+                    <div compile="data.sectionHtml"></div>
+
+                    <ul class="lc-wrap mgt20 px">
+                        <li class="px-b">产品特点</li>
+                        <li class="h-s px-b">
+                            <span class="im" ng-repeat="tag in data.prodInfo.tags track by $index">{{tag}}</span>
+                        </li>
+
+                        <li class="h-s" style="padding:0 25px 15px 0;" ng-if="data.prodInfo.characteristics"><i class="i-c"></i>{{data.prodInfo.characteristics | toTrusted}}</li>
+                        <li class="h-s px-b" ng-if="data.prodInfo.promopt"><i class="i-b"></i>{{data.prodInfo.promopt}}</li>
+
+                    </ul>
+
+
+
+                    <div class="px">
+                        <p class="jt" ng-click="onClickProductIntroduction()">更多详情</p>
+                    </div>
+
+                <div class="px" ng-if="!data.prodInfo.jump_descript">
+                    <p class="jt" ng-click="onClickHistoryList()">往期产品</p>
+                </div>
+
+
+                    <div style="padding-bottom:20px;"></div>
+                </div>
+                <section class="jumping-down" ng-if="data.prodInfo.load_desc && data.showSecond"><i></i>{{data.prodInfo.load_desc}}</section>
+            </ion-content>
+
+            <ion-content class="has-header" has-bouncing="false" style="visibility: hidden;">
+                <div ng-if="data.showSecond" compile="data.secondPageStr" >
+
+                </div>
+            </ion-content>
+        </hj-up-down-box>
+
+        <ion-footer-bar ng-if="data.showBuyButton">
+            <!-- 灰化class加off -->
+            <!-- 在售 -->
+            <div class="buy-btn-wrap" ng-if="!data.limitWords && (data.status == 3 || data.status == 4)">
+                <!-- 不是团购 -->
+                <div ng-if="!data.groupon.is_groupon_prod">
+                    <p class="g" ng-if="!data.IsProFirstBuy && data.minAmount && data.minAmount != data.prodInfo.min_amount" >追加购买起购金额为{{data.minAmount}}元</p>
+                    <!-- 不符合mgm 条件, 即是新人(如果设置了新人专享) -->
+                    <div class="lc-buy-btn" ng-if="!data.isMgm" ng-click="onClickContinueBuy()">立即购买</div>
+                    <!-- 符合mgm 且 有卡 -->
+                    <div class="lc-buy-btn" ng-if="data.isMgm && data.hasMgmCard" ng-click="onClickContinueBuy()">使用特权卡购买</div>
+                    <!-- 符合mgm 且 没卡-->
+                    <div class="lc-buy-btn" ng-if="data.isMgm && !data.hasMgmCard" ng-click="onClickMgm()">我是老用户，我也想买</div>
+                </div>
+                <!-- 是团购 -->
+                <div ng-if="data.groupon.is_groupon_prod">
+                    <!-- 团购成功 或者 团购过期/取消 -->
+                    <div ng-if="data.groupon.groupon_succ || data.groupon.groupon_expire">
+                        <p class="g" ng-if="!data.IsProFirstBuy && data.minAmount && data.minAmount != data.prodInfo.min_amount" >追加购买起购金额为{{data.minAmount}}元</p>
+                        <div class="lc-buy-btn" ng-click="onClickContinueBuy()">立即购买</div>
+                    </div>
+                    <!-- 团购尚未成功 且 团购未过期/取消 -->
+                    <div ng-if="!data.groupon.groupon_succ && !data.groupon.groupon_expire">
+                        <!-- 已发起团购 -->
+                        <div ng-if="data.groupon.group.group_id">
+                            <p class="g">已有{{data.groupon.group.members.length}}人参与拼团</p>
+                            <div class="lc-buy-btn" ng-click="onClickViewGroupon()">查看我的拼团</div>
+                        </div>
+                        <!-- 尚未发起团购 -->
+                        <div ng-if="!data.groupon.group.group_id">
+                            <p class="g">发起拼团, 即可立即购买</p>
+                            <div class="lc-buy-btn" ng-click="onClickCreateGroupon()">发起拼团</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="buy-btn-wrap" ng-if="!data.limitWords && data.status == 2">
+                <div class="lc-buy-btn off">本期已售完</div>
+            </div>
+
+            <!-- 预售 -->
+            <div class="buy-btn-wrap" ng-if="!data.limitWords && data.status == 1" >
+                <!-- 不是团购 -->
+                <div ng-if="!data.groupon.is_groupon_prod">
+                    <div class="{{data.calendarButtonClass}}" ng-if="!data.lessSixMinutes" ng-click="onClickSetClock()">
+                        {{data.calendarButtonStr}}
+                    </div>
+                    <div class="lc-buy-btn off" ng-if="data.lessSixMinutes && data.todayString == data.prodInfo.start_buy_date">
+                        <em ng-if="!data.countDownFlag">{{data.prodInfo.start_buy_time.substr(0, 5)}}起售</em>
+                        <em ng-if="data.countDownFlag">离起售还剩余 <em class="hj-minites"></em>:<em class="hj-seconds"></em></em>
+                    </div>
+                    <div class="lc-buy-btn off" ng-if="data.lessSixMinutes && data.todayString != data.prodInfo.start_buy_date">
+                        {{data.prodInfo.start_buy_date.substr(4,2)}}月{{data.prodInfo.start_buy_date.substr(6,2)}}日起售
+                    </div>
+                </div>
+                <!-- 是团购 -->
+                <div ng-if="data.groupon.is_groupon_prod">
+                    <!-- 团购成功 或者 团购过期/取消 -->
+                    <div ng-if="data.groupon.groupon_succ || data.groupon.groupon_expire">
+                        <div class="{{data.calendarButtonClass}}" ng-if="!data.lessSixMinutes" ng-click="onClickSetClock()">
+                            {{data.calendarButtonStr}}
+                        </div>
+                        <div class="lc-buy-btn off" ng-if="data.lessSixMinutes && data.todayString == data.prodInfo.start_buy_date">
+                            <em ng-if="!data.countDownFlag">{{data.prodInfo.start_buy_time.substr(0, 5)}}起售</em>
+                            <em ng-if="data.countDownFlag">离起售还剩余 <em class="hj-minites"></em>:<em class="hj-seconds"></em></em>
+                        </div>
+                        <div class="lc-buy-btn off" ng-if="data.lessSixMinutes && data.todayString != data.prodInfo.start_buy_date">
+                            {{data.prodInfo.start_buy_date.substr(4,2)}}月{{data.prodInfo.start_buy_date.substr(6,2)}}日起售
+                        </div>
+                    </div>
+                    <!-- 团购尚未成功 且 团购未过期/取消 -->
+                    <div ng-if="!data.groupon.groupon_succ && !data.groupon.groupon_expire">
+                        <!-- 已发起团购 -->
+                        <div ng-if="data.groupon.group.group_id">
+                            <p class="g">已有{{data.groupon.group.members.length}}人参与拼团</p>
+                            <div class="lc-buy-btn" ng-click="onClickViewGroupon()">查看我的拼团</div>
+                        </div>
+                        <!-- 尚未发起团购 -->
+                        <div ng-if="!data.groupon.group.group_id">
+                            <p class="g" ng-if="data.todayString === data.prodInfo.start_buy_date">发起拼团, 即可在{{data.prodInfo.start_buy_time.substr(0, 5)}}购买</p>
+                            <p class="g" ng-if="data.todayString !== data.prodInfo.start_buy_date">发起拼团, 即可在{{data.prodInfo.start_buy_date.substr(4,2)}}月{{data.prodInfo.start_buy_date.substr(6,2)}}日购买</p>
+                            <div class="lc-buy-btn" ng-click="onClickCreateGroupon()">发起拼团</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--限制销售 且 售罄-->
+            <div class="buy-btn-wrap" ng-if="data.limitWords && data.status == 2">
+                <div class="lc-buy-btn off">本期已售完</div>
+            </div>
+            <!--限制销售 且 预售-->
+            <div class="buy-btn-wrap" ng-if="data.limitWords && data.status == 1">
+                <div class="lc-buy-btn off">{{data.limitWords}}</div>
+            </div>
+            <!--限制销售者不可买 且 在售-->
+            <div class="buy-btn-wrap" ng-if="data.limitWords && data.limitButton && (data.status == 3 || data.status == 4)">
+                <div class="lc-buy-btn off">{{data.limitWords}}</div>
+            </div>
+            <!--限制销售者可买 且 在售-->
+            <div class="buy-btn-wrap" ng-if="data.limitWords && !data.limitButton && (data.status == 3 || data.status == 4)" ng-click="onClickContinueBuy()">
+                <div class="lc-buy-btn">{{data.limitWords}}</div>
+            </div>
+        </ion-footer-bar>
+
+        <script id="my-calculator.html" type="text/ng-template">
+                <section class="calc-profit modal " style="background-color: transparent;top: inherit;overflow: visible;min-height: 0;">
+                    <section style="position: relative;">
+                        <div class="btn-clz" ng-click="onCalculatorClose()"></div>
+                        <div class="has-input">￥{{data.calInputAmout | formatMoneyString}}</div>
+                        <div class="flex has-display">
+                            <div class="item">预计收益(元)</div>
+                            <div class="item">{{(data.prospectiveEarnings.split('.')[0]) | formatMoneyString}}.{{data.prospectiveEarnings.split('.')[1]}}</div>
+                        </div>
+                        <div class="has-keyboard">
+                            <div class="keyboard">
+                                <ul>
+                                    <li ng-click="onCalNumClick(1)">1</li>
+                                    <li ng-click="onCalNumClick(2)">2</li>
+                                    <li ng-click="onCalNumClick(3)">3</li>
+                                </ul>
+                                <ul>
+                                    <li ng-click="onCalNumClick(4)">4</li>
+                                    <li ng-click="onCalNumClick(5)">5</li>
+                                    <li ng-click="onCalNumClick(6)">6</li>
+                                </ul>
+                                <ul>
+                                    <li ng-click="onCalNumClick(7)">7</li>
+                                    <li ng-click="onCalNumClick(8)">8</li>
+                                    <li ng-click="onCalNumClick(9)">9</li>
+                                </ul>
+                                <ul>
+                                    <li class="zero" ng-click="onCalNumClick(0)" >0</li>
+                                    <li class="del" ng-click="onCalNumRedeem()" on-hold="onHold()">×</li>
+                                </ul>
+                            </div>
+                            <div class="tip mgt10" ng-if="data.calculatorBuyshow && data.showBuyButton && !data.limitWords && !data.groupon.is_groupon_prod && !data.isMgm && (data.status == 3 || data.status == 4)" ng-click="onClickContinueBuy()">按此金额购买</div>
+                            <div class="tip mgt10" style="visibility: hidden;" ng-if="!(data.calculatorBuyshow && data.showBuyButton && !data.limitWords && (data.status == 3 || data.status == 4))">按此金额购买</div>
+                        </div>
+                    </section>
+                </section>
+        </script>
+        <div pop-confirm out-value="data.outValue"></div>
+        <div slider-up-confirm slider-up-confirm-option="data.sliderUpConfirmOption"></div>
+
+    </div>
+</ion-view>
+<risk-assessment option="data.riskOption"></risk-assessment>

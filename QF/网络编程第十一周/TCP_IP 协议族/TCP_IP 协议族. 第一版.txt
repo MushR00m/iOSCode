@@ -1,0 +1,961 @@
+TCP/IP 协议族. 第一版(中文版+英文版)
+
+TCP/IP 协议族. 第一版. 中文版.pdf
+TCP/IP 协议族. 第一版. 英文版.pdf
+
+
+-------------------------------------
+TCP/IP 协议族. 第一版. 中文版
+-------------------------------------
+
+【原 书 名】 TCP/IP Protocol Suite
+【原出版社】 Mcgraw-Hill
+【作 者】Behrouz A.Forouzan，Sophia Chung Fegan
+【译 者】 谢希仁
+【丛 书 名】 世界著名计算机教材精选
+【出 版 社】 清华大学出版社
+【书 号】 7302044635
+【出版日期】 2001 年9月
+【版 次】1-1
+
+一. 引言
+二. OSI模型和TCP/IP协议族
+三. 底层的技术
+四. IP编址
+五. 构成子网和超网
+六. IP分组的交付和路由选择
+七. 网际协议(IP)
+八. ARP和RARP
+九. 因特网控制报文协议(ICMP)
+十. 因特网组管理协议(IGMP)
+十一. 用户数据报(UDP)
+十二. 传输控制协议(TCP)
+十三. 路由选择协议(RIP,OSPF和BGP)
+十四. 应用层和客户服务器模型
+十五. BOOTP和DHCP 
+十六. 域名系统(DNS)
+十七. TELNET和Rlogin 
+十八. 文件传送协议(FTP)
+十九. 简单文件传送协议(TFTP)
+二十. 简单邮件传送协议(SMTP)
+二十一. 简单网络管理协议(SNMP)
+二十二. 超文本传送协议(HTTP)
+二十三. 万维网(WWW)
+二十四. 插口接口
+二十五. 下一代：IPv6和ICMPv6
+
+附录A. ASCII码
+附录B. 数制和转换
+附录C. 二进制数的表示
+附录D. 差错检测
+附录E. 加密/解密
+附录F. MIB对象
+附录G. 高级数据链路控制(HDLC)
+附录H. 项目802 
+附录I. ASN.1 
+附录J. 支撑树
+附录K. 联系地址
+附录L. RFC 
+附录M. UDP和TCP端口
+
+多项选择和部分习题的解答
+缩写词
+词汇表
+参考文献
+
+
+
+-------------------------------------
+TCP/IP 协议族. 第一版. 英文版
+
+TCP/IP Protocol Suite
+-------------------------------------
+
+【原出版社】 McGraw-Hill
+【作 者】Behrouz A.Forouzan Sophia Chung Fegan
+【丛 书 名】 大学计算机教育丛书(英文影印版)
+【出 版 社】 清华大学出版社
+【书 号】 7302041008
+【出版日期】 2000 年12月
+【版 次】1-1
+
+
+【内容简介】
+这是一本介绍TCP/IP协议族的教材，全书共有24章，分为5个部分：第一部分(第1—3章)介绍一些基本概念和基础技术；第二部分(第4—13章)讨论TCP/IP协议族中的核心协议IP和TCP以及几个主要的选路协议；第三部分(第14—23章)讨论使用网络和传翰层协议的应用程序；第四部分(第24章)介绍使用插口接口进行网络编程；第五部分(第25章)介绍IPv6以及从IPv4到IPv6的过渡。
+本书的主要特点是：(1)用图文并茂的方法讲述技术性很强的内容；(2)重要的概念多次重复；(3)结合实际例子阐明概念；(4)大部分章设有相关的设计内容，以帮助理解每一种协议的思路；(5)章未有归纳该章重点内容的小结；每章有练习题：用来测验对基本概念和术语掌握情况的多项选择题、用于引导对内容有更深了解的习题、编程练习。
+本书可作为大学生和研究生的教学参考书，对从事计算机网络的专业人员也有很好的参考价值。
+
+【编辑推荐】
+这是一本介绍TCP/IP协议族的教材，全书共有24章，分为5个部分：第一部分(第1-3章)介绍一些基本概念和基本技术；第二部分(第4-13章)讨论TCP/IP协议族中的核心协议IP和TCP以及几个主要的选路协议；第三部分(第14-23章)讨论使用网络和传输层协议的应用程序；第四部分(第24章)介绍使用插口接口进行网络编程；第五部分(第25章)介绍IPv6以及从IPv4到IPv6的过渡。 
+本书的主要特点是：(1)用图文并茂的方法讲述技术性很强的内容；(2)重要的概念多次重复；(3)结合实例例子阐明概念；(4)大部分章设有相关的设计内容，以帮助理解每一种协议的思路；(5)章末有归纳该章重点内容的小结；(6)每章有练习题：用来测验对基本概念和术语掌握情况的多项选择题、用于引导对内容有更深了解的习题、编程练习。 
+本书可作为大学生和研究生的教学参考书，对从事计算机网络的专业人员也有很好的参考价值。 
+
+
+【目录】
+Chapter1 Introduction
+
+1.1 PROTOCOLS AND STANDARDS
+Protocols
+Standards
+1.2 STANDARDS ORGANIZATONS
+Standards Creation Committees
+Forums
+Regulatory Agencies
+1.3 Internet Standards
+Maturity Levels
+Requirement Levels
+1.4 INTERNET ADMINISTRATION
+ISOC
+IAB
+IETF
+IRTF
+IANA and ICANN
+NIC
+1.5 A BRIEF HISTORY
+ARPANET
+Birth of the Internet
+TCP/IP Protocol
+MILNET
+CSNET
+NSFNET
+ANSNET
+The Internet Today
+Timeline
+1.6 SUMMARY
+1.7 PRACTICE SET
+Multiple Choice
+Exercises
+
+Chapter2 The OSI Model and the TCP/IP Protocol Suite
+
+2.1 THE OSI MODEL
+Layered Architecture
+Peer-to-Peer Processes
+2.2 LAYERS IN THE OSI MODEL
+Physical Layer
+Data Link Layer
+Network Layer
+Transport Layer
+Session Layer
+Presentation Layer
+Application Layer
+2.3 TCP/IP PROTOCOL SUITE
+Physical and Data Link Layers
+Network Layer
+Transport Layer
+Application Layer
+2.4 ADDRESSING
+Physical Address
+Internet Address
+Port Address
+2.5 TCP/IP VERSIONS
+Version4
+Version5
+Version6
+2.6 SUMMARY
+2.7 PRACTICE SET
+Multiple Choice
+Exercises
+
+Chapter3 Underlying Technologies
+
+3.1 TRANSMISSION MEDIA
+Guided Media
+Unguided Media
+3.2 LOCAL AREA NETWORKS(LANS)
+Ethernet
+Token Ring
+Fiber Distributed Data Interface(FDDI)
+3.3 SWITCHING
+Circuit Switching
+Packet Switching
+Message Switching
+3.4 WIDE AREA NETWORKS(WANS)
+Point-to-Point Protocol(PPP)
+X.25 60
+Frame Relay
+Asynchronous Transfer Mode(ATM)
+3.5 CONNECTING DEVICES
+Repeaters
+Bridges
+Routers
+Gateways
+3.6 SUMMARY
+3.7 PRACTICE SET
+Multiple Choice
+Exercises
+Programming Exercises
+
+Chapter4 IP Addressing
+
+4.1 DECIMAL NOTATION
+4.2 CLASSES
+Class A
+Class B
+Class C
+Class D
+Class E
+Determining the Class of an Address
+Extracting Netid and Hostid
+Multihomed Devices
+Location Not Names
+4.3 SPECIAL ADDRDSSES
+Network Address
+Direct Broadcast Address
+Limited Broadcast Address
+This Host on This Network
+Specific Host on This Network
+Loopback Address
+4.4 A SAMPLE INTERNET
+4.5 UNICAST MULTICAST AND BROADCAST ADDRESSES
+Unicast Addresses
+Multicast Addresses
+Broadcast Addresses
+4.6 APPLYING FOR IP ADDRESSES
+Class of Address
+Nteids and Hostids
+Authorities
+4.7 PRIVATE NETWORKS
+4.8 SUMMARY
+4.9 PRACTICE SET
+Multiple Choice
+Exercises
+Programming Exercises
+
+Chapter5 Subnetting and Supernetting
+
+5.1 SUBNETTING
+Three Levels of Hierarchy
+5.2 MASKING
+Special Addresses in Subnetting
+Contiguous vs.Noncontiguous Mask
+5.3 EXAMPLES OF SUBNETTING
+Subnetting Class A
+Subnetting Class B
+Subnetting Class C
+5.4 VARIABLE-LENGTH SUBNETTING
+5.5 SUPERNETTING
+Supernet Mask
+Classless Interdomain Routing(CIDR)
+5.6 SUMMARY
+5.7 PRACTICE SET
+Multiple Choice
+Exercises
+
+Chapter6 Delivery and Routing of IP Packets
+
+6.1 CONNECTION-ORIENTED VS.CONNECTIONLESS SERVICES
+6.2 DIRECT VS.INDIRECT DELIVERY
+Direct Delivery
+Indirect Delivery
+6.3 ROUTING METHODS
+Next-Hop Routing
+Network-Specfic Routing
+Host-Specific Routing
+Default Routing
+6.4 STATIC VS.DYNAMIC ROUTING
+Static Routing Table
+Dynamic Routing Table
+6.5 ROUTING MODULE AND ROUTING TABLE DESIGN
+Routing Table
+Routing Module
+Examples
+6.6 SUMMARY
+6.7 PRACTICE SET
+Multiple Choice
+Exercises
+Programming Exercises
+
+Chapter7 Internet Protocol(IP)
+
+7.1 DATAGRAM
+7.2 FRAGMENTATION
+Maximum Transfer Unit(MTU)
+Fields Related to Fragmentation
+7.3 OPTIONS
+Format
+Option Types
+7.4 CHECKSUM
+Checksum Calculation at the Sender
+Checksum Calculation at the Receiver
+Checksum in the IP Packet
+Example
+7.5 IP DESIGN
+Header-Adding Module
+Processing Module
+Queues
+Routing Table
+Routing Module
+MTU Table
+Fragmentation Module
+Reassembly Table
+Reassembly Module
+7.6 SUMMARY
+7.7 PRACTICE SET
+Multiple Choice
+Exercises
+Programming Exercises
+
+Chapter8 ARP and RARP
+
+8.1 ARP
+Packet Format
+Encapsulation
+Operation
+Proxy ARP
+8.2 ARP DESIGN
+Cache Table
+Queues
+Output Module
+Input Module
+Cache-Control Module
+Examples of ARP
+8.3 ARRP
+Packet Format
+Encapsulation
+Alternative Solutions to RARP
+8.4 SUMMARY
+8.5 PRACTICE SET
+Multiple Choice
+Exercises
+Programming Exercises
+
+Chapter9 Internet Control Message Protocol(ICMP)
+
+9.1 TYPES OF MESSAGES
+9.2 MESSAGE FORMAT
+9.3 ERROR REPORTING
+Destination Unreachable
+Source Quench
+Time Exceeded
+Parameter Problem
+Redirection
+9.4 QUERY
+Echo Request and Reply
+Timestamp Request and Reply
+Address Mask Request and Reply
+Router Solicitation adn Advertisement
+9.5 CHECKSUM
+Checksum Calculation
+Checksum Testing
+Example
+9.6 ICMP DESIGN
+Input Module
+Output Module
+9.7 SUMMARY
+9.8 PRACTICE SET
+Multiple Choice
+Exercises
+Programming Exercises
+
+Chapter10 Internet Group Management Protocol(IGMP)
+
+10.1 MULTICASTING
+Multicast Addresses
+10.2 IGMP
+Types of Messages
+Message Format
+Operation of IGMP in a Single Network
+Operation of IGMP in an Internet
+Changing IP Addresses to Physical
+Addresses
+10.3 ENCAPSULATION
+10.4 MULTICAST BACKBONE(MBONE)
+10.5 IGMP DESIGN
+Group Table
+Timers
+Group-Joining Module
+Group-Leaving Module
+Input Module
+Output Module
+Examples of IGMP
+10.6 SUMMARY
+10.7 PRACTICE SET
+Multiple Choice
+Exercises
+Programming Exercises
+
+Chapter11 User Datagram Protocol(UDP)
+
+11.1 PROCESS-TO-PROCESS
+COMMUNICATION
+Port Numbers
+Socket Addresses
+11.2 USER DATAGRAM
+11.3 CHECKSUM
+Checksum Calculation at Sender
+Checksum Calculation at Receiver
+An Example
+Optional Use of the Checksum
+11.4 UDP OPERATION
+Connectionless Services
+Flow and Error Control
+Encapsulation and Decapsulation
+Queuing
+Multiplexing and Demultiplexing
+11.5 USE OF UDP
+11.6 UDP DESIGN
+Control-Block Table
+Input Queues
+Control-Block Module
+Input Module
+Output Module
+Examples
+11.7 SUMMARY
+11.8 PRACTICE SET
+Multiple Choice
+Exercises
+Programming Exercises
+
+Chapter12 Transmission Control Protocol(TCP)
+
+12.1 PROCESS-TO-PROCESS COMMUNICATION
+Port Addresses
+Socket Addresses
+12.2 TCP SERVICES
+Stream Data Service
+Full-Duplex Service
+Reliable Service
+12.3 SEGMENT
+12.4 OPTIONS
+12.5 CHECKSUM
+12.6 FLOW CONTROL
+Sliding Window
+Window Management
+Slly Window Syndrome
+12.7 ERROR CONTROL
+Error Detection and Correction
+12.8 TCP TIMERS
+Retransmission Timer
+Persistence Timer
+Keepalive Timer
+Timer-Waited Timer
+12.9 CONNECTION
+Connection Establishment
+Connection Termination
+Connection Resetting
+12.10 STATE TRANSITION DIAGRAM
+Client Diagram
+Server Diagram
+12.11 CONGESTION CONTROL
+12.12 TCP OPERATION
+Encapsulation and Decapsulation
+Queuing
+Multiplexing and Demultiplexing
+Pushing Data
+Urgent Data
+12.13 TCP DESIGN
+Transmission Control Blocks(TCBs)
+Timers
+Main Module
+Input Processing Module
+Output Processing Module
+12.14 SUMMARY
+12.15 PRACTICE SET
+Multiple Choice
+Exercises
+Programming Exercises
+
+Chapter13 Routing Protocols(RIP，OSPF，and BGP)
+
+13.1 INTERIOR AND EXTERIOR ROUTING
+13.2 RIP
+Distance Vector Routing
+RIP Message Format
+Requests and Responses
+Timers in RIP
+Slow Convergence
+Instability
+Some Remedies for Instabillity
+RIP Version
+Authentication
+Encapsulation
+13.3 OSPF
+Areas
+Metric
+Link State Routing
+Types of Packets
+Packet Format
+Encapsulation
+13.4 BGP
+Path Vector Routing
+Types of Packets
+Packet Format
+Encapsulation
+13.5 MULTICAST ROUTING
+DVMRP
+MOSPF
+13.6 SUMMARY
+13.7 PRACTICE SET
+Multiple Choice
+Exercises
+Programming Exercises
+
+Chapter14 Application Layer and Client-Server Model
+
+14.1 CLIENT-SERVER MODEL
+Client
+Server
+14.2 CONCURRENCY
+Concurrency in Clients
+Concurrency in Servers
+14.3 PROCESSES
+Concept
+Process Identification
+Process Creation
+14.4 SUMMARY
+14.5 PRACTICE SET
+Multiple Choice
+Exercises
+Programming Exercises
+
+Chapter15 BOOTP and DHCP
+
+15.1 BOOTP
+Packet Format
+Operation
+UDP Ports
+Using TFTP
+Relay Agent
+15.2 DYNAMIC HOST CONFIGURATION PROTOCOL(DHCP)
+Leasing
+DHCP Operation
+Packet Format
+15.3 SUMMARY
+15.4 PRACTICE SET
+Multiple Choice
+Exercises
+Programming Exercises
+
+Chapter16 Domain Name System(DNS)
+
+16.1 NAME SPACE
+Flat Name Space
+Hierarchical Name Space
+16.2 DOMAIN NAME SPACE
+Label
+Domain Name
+Domain
+16.3 DISTRIBUTION OF NAME SPACE
+Hierarchy of Name Servers
+Zone
+Primary and Secondary Servers
+16.4 DNS IN THE INTERNET
+Generic Domains
+Country Domains
+Inverse Domain
+16.5 RESOLUTION
+Resolver
+Mapping Names to Addresses
+Mapping Addresses to Names
+Recursive Resolution
+Iterative Resolution
+Caching
+16.6 DNS MESSAGES
+Header
+16.7 TYPES OF RECORDS
+Question Record Resource Record
+16.8 COMPRESSION
+16.9 EXAMPLES
+16.10 DDNS
+16.11 ENCAPSULATION 
+16.12 SUMMARY
+16.13 PRACTICE SET
+Multiple Choice
+Exercises
+
+Chapter17 TERNET and Rlogin
+
+17.1 CONCEPT
+Timesharing Environment
+Login
+17.2 NETWORK VIRTUAL TERMINAL(NVT)
+17.3 NVT CHARACTER SET
+Data Characters
+Remote Control Characters
+17.4 EMBEDDING
+17.5 OPTIONS
+17.6 OPTION NEGOTIATION
+Enabling an Option
+Disabling an Option
+Example
+Symmetry
+17.7 SUBOPTION NEGOTIATION
+17.8 CONTROLLING THE SERVER
+17.9 OUT-OF-BAND SIGNALING
+17.10 ESCAPE CHARACTER
+Default Mode
+Character Mode
+Line Mode
+17.11 MODE OF OPERATION
+Default Mode
+Character Mode
+Line Mode
+17.12 EXAMPLES
+17.13 USER INTERFACE
+17.14 RLOGIN(REMOTE LOGIN)
+TCP Port
+Connection
+Flow Control
+Commands
+Mode
+17.15 SECURITY ISSUE
+17.16 SUMMARY
+17.17 PRACTICE SET
+Multiple Choice
+Exercises
+
+Chapter18 File Transfer Protocol(FTP)
+
+18.1 CONNECTIONS
+Control Connection
+Data Connection
+18.2 COMMUNICATION
+Communication over Control
+Connection
+Communication over Data Connection
+18.3 COMMAND PROCESSING
+Commands
+Responses
+18.4 FILE TRANSFER
+18.5 USER INTERFACE
+18.6 ANONYMOUS FTP
+18.7 SUMMARY
+18.8 PRACTICE SET
+Multiple Choice
+Exercises
+
+Chapter19 Trivial File Transfer Protocol(TFTP)
+
+19.1 MESSAGES
+RRQ
+WRQ
+DATA
+ACK
+ERROR
+19.2 CONNECTION
+Connection Establishment
+Connection Termination
+19.3 DATA TRANSFER
+Flow Control
+Error Control
+Sorcerer’s Apprentice Bug
+19.4 UDP PORTS
+19.5 TFTP EXAMPLE
+19.6 TFTP OPTONS
+19.7 SECUITY
+19.8 APPLICATIONS
+19.9 SUMMARY
+19.10 PRACTICE SET
+Multiple Choice
+Exercises
+
+Chapter20 Simple Mail Transfer Protocol(SMTP)
+
+20.1 USER AGENT(UA)
+Sending Mail
+Receiving Mail
+20.2 ADDRESSES
+Local Part
+Domain Name
+20.3 DELAYED DELIVERY
+Sender-Site Delay
+Receiver-Site Delay
+Intermediate Delay
+20.4 ALIASES
+One-to-Many Expansion
+Many-to-One Expasion
+20.5 MAIL TRANSFER AGENT(MTA)
+20.6 COMMANDS AND RESPONSES
+Commands
+Responses
+20.7 MAIL TRANSFER PHASES
+Connection Establishment
+Message Transfer
+Connection Termination
+20.8 MULTIPURPOSE INTERNET MAIL EXTENSIONS(MIME)
+MIME-Version
+Content-Type
+Content-Transfer-Encoding
+Content-Id
+Content-Description
+20.9 POST OFFICE PROTOCOL(POP)
+20.10 SUMMARY
+20.11 PRACTICE SET
+Multiple Choice
+Exercises
+
+Chapter21 Simple Network Management Protocol(SNMP)
+
+21.1 CONNEPT
+Managers and Agents
+Components
+21.2 SMI
+Name
+Type
+Encoding Method
+21.3 MIB
+Accessing MIB Variables
+Lexicographic Ordering
+21.4 SNMP
+Messages
+Format
+Encoding
+21.5 EXAMPLES
+21.6 UDP PORTS
+21.7 SUMMARY
+21.8 PRACTICE SET
+Multiple Choice
+Exercises
+
+Chapter22 Hypertext Transfer Protocol(HTTP)
+
+22.1 HTTP TRANSACTION
+Messages
+22.2 REQUEST MESSAGES
+Request Line
+Methods
+22.3 RESPONSE MESSAGES
+Status Line
+22.4 HEADER
+General Header
+Request Header
+Response Header
+Entity Header
+22.5 EXAMPLES
+22.6 PRACTICE SET
+Multiple Choice
+Exercises
+
+Chapter23 World Wide Web(WWW)
+
+23.1 HTPERTEXT AND HYPERMEDIA
+23.2 BROWSER ARCHITECTURE
+23.3 STATIC DOCUMENTS
+23.4 HTML
+Structure of a Web Page
+Tags
+Examples
+23.5 DYNAMIC DOCUMENTS
+23.6 COMMON GATEWAY INTERFACE(CGI)
+CGI Program
+Environment
+Variables
+Input
+Output
+Examples
+23.7 ACTIVE DOCUMENTS
+Creation Compilation and Execution
+23.8 JAVA
+Classes and Objects
+Instantiation
+Ingeritance
+Packages
+Skeleton of an Applet
+Creation and Compilation
+HTML Document
+Examples
+23.9 SUMMARY
+23.10 PRACTICE SET
+Multiple Choice
+Exercises
+Programming Exercises
+
+Chapter24 Socket Interface
+
+24.1 SOME DEFINITIONS
+Data Types Defined
+Internet Address Structure
+Internet Socket Address Structure
+24.2 SOCKETS
+Socket Types
+24.3 BYTE ORDERING
+Big-Endian Byte Order
+Little-Endian Byte Order
+Network Byte Order
+Byte-Order Transformation
+24.4 ADDRESS TRANSFORMATION
+24.5 MYTE MAINPULATION FUNCTIONS
+24.6 INFORMATION ABOUT REMOTE HOST
+24.7 SOCKET SYSTEM CALLS
+Socket
+Bind
+Connect
+Listen
+Accept
+Sendto
+Recvfrom
+Read
+Write
+Close
+24.8 CONNECTIONLESS ITERATIVE SERVER
+Server
+Client 
+24.9 UDP CLIENT-SERVER PROGRAMS
+Server Program
+Client Program
+24.10 CONNECTION-ORIENTED CONCURRENT SERVER
+Server
+Client
+24.11 TCP CLIENT-SERVER PROGRAMS
+Server Program
+Client Program
+24.12 SUMMARY
+24.13 PRACTICE SET
+Multiple Choice
+Exercises
+Programming Exercises
+
+Chapter25 Next Generation：IPv6 and ICMPv6
+
+25.1 IPV6
+25.2 IPV6 ADDRESSES
+Hexadecimal Colon Notation
+Categories of Addresses
+Address Space Assignment
+25.3 IPV6 PACKET FORMAT
+Base Header
+Priority
+Flow Label
+Comparison between IPv4 and IPv6
+Headers
+Extension Headers
+Comparison between IPv4 and IPv6
+25.4 ICMPV6
+Error Reporting
+Query
+25.5 TRANSITION FROM IPV4 TO IPV6
+Dual Stack
+Tunneling
+Header Translation
+25.6 SUMMARY
+25.7 PRACTICE SET
+Multiple Choice
+Exercises
+Programming Exercises
+
+AppendixA
+ASCII Code
+
+AppendixB
+Numbering Systems and Transformation
+
+B.1 NUMBERING SYSTEMS
+Decimal Numbers
+Binary Numbers
+Octal Numbers
+Hexadecimal Numbers
+B.2 TRANSFORMATION
+From Other Systems to Decimal
+From Decimal to Other Systems
+From Binary to Octal or Hexadecimal
+From Octal or Hexadecimal to Binary
+
+AppendixC
+Representation of Binary Numbers
+
+C.1 UNSIGNED NUMBERS
+C.2 SIGNED NUMBERS
+Sign-and-Magnitude
+One’Complement
+Two’Complement
+C.3 MORE ABOUT ONE’COMPLEMENT
+Finding the Complement
+Addign Two Numbers
+
+AppendixD
+Error Detection
+
+D.1 TYPES OF ERRORS
+Single-Bit Error
+Multiple-Bit Error
+Burst Error
+D.2 DETECTION
+Redundancy
+Vertical Redundancy Check(VRC)
+Longitudinal Redundancy Check(LRC)
+Cyclic Redundancy Check(CRC)
+Checksum
+
+AppendixE
+Encryption/Decryption
+
+E.1 CONVENTIONAL METHODS
+DES
+E.2 PUBLIC KEY METHODS
+RSA Encryption
+E.3 AUTHENTICATION
+
+AppendixF
+MIB Objects
+
+F.1 SYSTEM GROUP
+F.2 INTERFACE GROUP
+F.3 IP GROUP
+F.4 ICMP GROUP
+F.5 TCP GROUP
+F.6 UDP GROUP
+
+AppendixG
+High-Level Data Link Control(HDLC)
+
+G.1 STATION TYPES
+G.2 CONFIGURATIONS
+G.3 MODES OF COMMUNICATION
+NRM
+ARM
+ABM
+G.4 FRAMES
+G.5 MORE ABOUT FRAMES
+I-frames
+S-frames
+U-frames
+G.6 LINK ACCESS PROCEDURES(LAPS)
+LAPB
+LAPD
+LAPM
+
+AppendixH
+Project
+
+H.1 PROJECT
+H.2 PROJECT
+LLC
+MAC
+
+AppendixI
+ASN.1
+
+I.1 DATA TYPES AND VALUES
+Simple Type
+Structured Type
+Tags
+Subtyping
+Values
+I.2 MODULES AND MACROS
+Modules
+Macros
+
+AppendixJ
+Spanning Tree
+
+J.1 SPANNING TREES AND BRIDGES
+Algorithm
+Forming the Spanning Tree
+Example
+J.2 SPANNING TREES AND MULTICAST ROUTING
+
+AppendixK
+Contact Addresses
+
+AppendixL
+RFCs
+
+AppendixM
+UDP and TCP Ports
+
+Solutions
+Acronyms
+Glossary
+References
+Index

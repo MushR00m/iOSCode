@@ -1,0 +1,32 @@
+<ion-view>
+    <div class="trf bnf p-c-blue">
+        <ion-header-bar>
+            <div class="menu-ba">
+                <header class="menu">
+                    <button class="menu-return" ng-click="back()"></button>福利记录</header>
+            </div>
+        </ion-header-bar>
+        <ion-content has-bouncing="true" class="has-header">
+            <section ng-if="records.length" class="pack-list">
+                <ul>
+                    <li ng-repeat="record in records track by record.activity_id" ng-click="viewRecord(record.activity_id)" class="px mgt20" ng-class="{'pack-itemoverdue': record.is_expired || (!record.is_expired && record.expired_time && record.use_status === 1)}">
+                        <dl>
+                            <dt class="flex">
+                                <span class="item" ng-bind="record.activity_name"></span>
+                                <!-- 普通福利 (没有expired_time) -->
+                                <span class="item" ng-if="!record.expired_time">&nbsp;</span>
+                                <!-- 新人特权卡 才有 过期 和 使用 这个概念 -->
+                                <span class="item" ng-if="record.expired_time && record.is_expired">已过期</span>
+                                <span class="item" ng-if="record.expired_time && !record.is_expired && record.use_status === 0">未使用</span>
+                                <span class="item" ng-if="record.expired_time && !record.is_expired && record.use_status === 1">已使用</span>
+                            </dt>
+                            <dd class="p-c-gray" ng-if="record.expired_time">到期时间：{{record.expired_time}}</dd>
+                            <dd class="p-c-gray" ng-if="!record.expired_time">获得时间：{{record.use_time}}</dd>
+                        </dl>
+                    </li>
+                </ul>
+            </section>
+            <img ng-if="!records.length" src="../img/bnf-more@2x.png" class="no-more" />
+        </ion-content>
+    </div>
+</ion-view>

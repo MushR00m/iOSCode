@@ -1,0 +1,58 @@
+<ion-view ng-if="option.show" class="{{leavePageAnimate}}">
+    <div class="pc">
+        <ion-header-bar active-slide="activeSlide">
+            <div class="menu-ba">
+                <header class="menu">
+                    <button class="menu-return" ng-click="onClickBack()"></button>
+                    风险评估
+                </header>
+            </div>
+        </ion-header-bar>
+
+        <ion-slide-box active-slide="0" delegate-handle="slider-risk-assessment" show-pager="false">
+            <ion-slide>
+                <ion-content class="has-header" scroll="false" has-bouncing="true">
+                    <!--首页说明-->
+                    <div>
+                        <p style="padding:30px 20px 30px 25px;color:#888f9b;line-height:22px;">
+                            以下问题将对您进行风险承受能力评估，微众银行将根据评估结果为您更好的配置资产。<br><br>如您发生可能影响自身风险承受能力的情形，再次购买理财产品时应当主动要求重新进行风险评估。您在基金等产品购买过程中，亦请注意核对自己的风险承受能力和基金产品风险的匹配情况。<br><br>微众银行承诺对您的个人资料进行保密。
+                        </p>
+                    </div>
+                    <div class="bt-box">
+                        <div class="btn-wrap">
+                            <button class="btn-c" ng-click="onClickBeginAnswer()">开始答题</button>
+                        </div>
+                    </div>
+                </ion-content>
+            </ion-slide>
+            <ion-slide>
+                <ion-content class="has-header" scroll="false" has-bouncing="true">
+                    <!--评估页面-->
+                    <div>
+                        <div class="con px">
+                            <p class="px-a" ng-bind="showData.Title"></p>
+                            <ul>
+                                <li ng-class="{'on':isItemActive(showData,$index)}" ng-repeat="item in showData.data"
+                                    ng-bind-html="item | toTrusted" ng-click="onClickItem(showData,$index)"></li>
+                            </ul>
+                        </div>
+                        <div class="page flex">
+                            <div class="a item"><span ng-if="showPrev" ng-click="onClickPrev(detail)">上一题</span>
+                            </div>
+                            <div class="b item"><span>{{(showIndex+1)+"/"+(renderDataLength)}}</span></div>
+                            <div class="c item"><span
+                                    ng-if="showNext"
+                                    ng-click="onClickNext(showData)">下一题</span></div>
+                        </div>
+                    </div>
+                    <div class="bt-box" ng-if="showIndex == renderDataLength-1">
+                        <div class="btn-wrap">
+                            <button class="{{submitClass}}" ng-click="onClickSubmit()">确认并提交</button>
+                        </div>
+                    </div>
+                </ion-content>
+            </ion-slide>
+        </ion-slide-box>
+
+    </div>
+</ion-view>

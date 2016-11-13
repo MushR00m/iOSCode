@@ -1,0 +1,20 @@
+<ion-view>
+    <ion-header-bar>
+        <div class="mod-menu">
+            <header class="mod-menu"><button class="mod-menu-return" ng-click="back()"></button>定投计划</header>
+        </div>
+    </ion-header-bar>
+
+    <ion-content class="has-header" has-bouncing="false">
+        <div class="mod-block-item" ng-repeat="item in data.goldCurrentInvestment" ng-click="onClickInvestmentDetail(item)">
+            <p class="gold-fixed-investment">计划{{$index+1}}</p>
+            <div class="content gold-fixed-plan">
+                <p ng-if="item.freqType == 1 && item.applicationWeight > 0">每周{{item.freqNum}}执行 买入{{item.applicationWeight | formatMoneyStringV2}}克</p>
+                <p ng-if="item.freqType == 2 && item.applicationWeight > 0">每月{{item.freqNum}}日执行 买入{{item.applicationWeight | formatMoneyStringV2}}克</p>
+                <p ng-if="item.freqType == 1 && item.applicationAmount > 0">每周{{item.freqNum}}执行 买入{{item.applicationAmount | formatMoneyStringV2}}元</p>
+                <p ng-if="item.freqType == 2 && item.applicationAmount > 0">每月{{item.freqNum}}日执行 买入{{item.applicationAmount | formatMoneyStringV2}}元</p>
+                <p class="s-lgray s-fz14">定投执行截至时间{{item.endDate | formatYYYYMMDDToCNString}}</p>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

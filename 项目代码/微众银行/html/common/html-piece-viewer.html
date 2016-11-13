@@ -1,0 +1,15 @@
+<ion-view>
+    <ion-header-bar>
+        <div class="menu-ba">
+            <header class="menu">
+                <button class="menu-return" ng-click="func.back()"></button>
+                {{data.title}}
+            </header>
+        </div>
+    </ion-header-bar>
+    <ion-content class="has-header" has-bouncing="false" style="background-color:#fff;">
+        <div compile="data.sectionHtml"></div>
+    </ion-content>
+
+    <loading show-loading="data.showLoading"></loading>
+</ion-view>

@@ -1,0 +1,66 @@
+<ion-view>
+    <div class="card">
+        <ion-header-bar>
+            <div class="menu-ba">
+                <header class="menu"><button class="menu-return" ng-click="back()"></button>银行卡详情<span ng-class="{'menu-more':!isBasic}"  ng-click="onClickMenu()"></span></header>
+            </div>
+        </ion-header-bar>
+        <ion-content class="has-header" has-bouncing="true">
+            <ul class="cd-list">
+                <li class="bg-c-1">
+                    <div class="card-wrap" ng-style="data.cardStyle">
+                        <div class="info-wrap">
+                            <img ng-src="{{data.bankImg}}" alt="">
+                            <div class="info">
+                                <p class="a" ng-bind="data.numberMask"></p>
+                                <p class="b" ng-bind="data.bankName+' '+ data.cardType"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <img ng-src="{{data.bankBgImg}}" class="logo">
+                </li>
+            </ul>
+
+            <ul class="pk px" style="margin-top:10px;" ng-if="!data.isRegCard && data.isChargeSupported && data.singleTransactionLimit && data.singleDayLimit">
+                <li class="px-b" ng-if="data.singleTransactionLimit * 1">
+                    <span class="l">单笔限额</span>
+                    <span class="r" ng-bind="(data.singleTransactionLimit | number:2) +'元'"></span>
+                </li>
+                <li class="px-b" ng-if="data.singleDayLimit * 1">
+                    <span class="l">每日限额</span>
+                    <span class="r" ng-bind="(data.singleDayLimit | number:2)+'元'"></span>
+                </li>
+            </ul>
+            <p style="color:#888f9b;font-size:14px;text-align:right;padding:20px 25px 0 25px;"
+               ng-if="!data.isRegCard && data.isChargeSupported && data.singleTransactionLimit && data.singleDayLimit && false">
+                每日16:00更新限额
+            </p>
+
+            <p style="color:#888f9b;font-size:14px;text-align:center;padding:20px 25px 0 25px;" ng-if="!data.isRegCard && !data.isChargeSupported">
+                该银行卡支持收款，但不支持委托扣款
+            </p>
+
+            <div style="font-size:14px;text-align:left;padding:20px 25px 0 25px;line-height:20px;" ng-if="data.isRegCard">
+                <p>该银行卡已成功登记，请在<span style="color:#f39361;">{{data.regDateTime|formatDateToCNWithoutYear}}</span>前向您的微众卡汇入<span style="color:#f39361;">不少于0.01元</span>以完成绑定。</p>
+                <p style="padding-top:10px;">绑定后，该银行卡支持收款，但不支持委托扣款。</p>
+                <p style="color:#888e9b;padding-top:15px;">微众卡({{data.webankCardNo|splitAccountNumber}})
+                    <span style="color:#3399eb;padding-left:10px;" ng-click="onClickCopyWebankCard()">复制</span></p>
+            </div>
+            <p style="color:#3399eb;font-size:14px;text-align:center;margin-top:10%;"
+               ng-click="onClickTransferIntro()" ng-if="data.isRegCard || !data.isChargeSupported">
+                怎样从他行转账到微众卡？
+            </p>
+        </ion-content>
+
+
+        <div pwd-input
+             ng-model="data.vm.formData.confirmPassword"
+             is-pwd-show="data.isPwdShow"
+             sig-on-pwd-commit="data.sigOnPwdCommit"
+             pwd-sub-title="data.pwdSubTitle">
+        </div>
+
+        <div pop-confirm out-value="data.outValue"></div>
+    </div>
+
+</ion-view>

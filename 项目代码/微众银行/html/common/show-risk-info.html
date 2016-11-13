@@ -1,0 +1,28 @@
+<ion-view>
+    <div class="pc">
+        <ion-header-bar>
+            <div class="menu-ba">
+                <header class="menu"><button class="menu-return" ng-click="back()"></button>风险评估</header>
+            </div>
+        </ion-header-bar>
+
+        <ion-content class="has-header" scroll="false" has-bouncing="true">
+            <!--结果页面-->
+            <div class="tc" >
+                <p class="p-a">您的风险评估结果</p>
+                <span class="ic"></span>
+                <p class="p-b" ng-bind="riskType"></p>
+                <p class="p-a" style="padding: 30px;" ng-bind="riskProduct"></p>
+                <div class="bt-box">
+                    <div class="btn-wrap">
+                        <button class="btn-c" ng-click="clickSeeProduct()">去看看适合我的产品</button>
+                        <button class="btn" ng-click="clickReassessment()">重新评估</button>
+                    </div>
+                </div>
+            </div>
+        </ion-content>
+    </div>
+
+
+</ion-view>
+<risk-assessment option="data.riskOption"></risk-assessment>

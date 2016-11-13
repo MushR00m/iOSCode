@@ -1,0 +1,95 @@
+<ion-view>
+    <ion-header-bar>
+        <div class="mod-menu">
+            <header class="mod-menu"><button class="mod-menu-return" ng-click="back()"></button>{{data.prodInfo.prod_name}}<span class="mod-menu-tip share"></span></header>
+        </div>
+    </ion-header-bar>
+
+    <ion-content class="has-header" has-bouncing="false">
+        <div class="mod-income">
+            <p class="msg ui-msg-lr-line"><span>历史万克收益(克/天)<i class="ui-icon-info" ></i></span></p>
+            <p class="num">{{data.prodInfo.int_rate_g | formatMoneyStringV2}}</p>
+            <p class="msg">万克黄金每日获得克数</p>
+            <ul class="ui-flex tab">
+                <li class="item ui-px-r">
+                    <h2>投资期限（{{data.periodDesc}}）</h2>
+                    <p>{{data.prodInfo.term}}</p>
+                </li>
+                <li class="item">
+                    <h2>风险等级</h2>
+                    <p>{{data.riskDesc}}</p>
+                </li>
+            </ul>
+        </div>
+
+        <div compile="data.bannerHtml1"></div>
+
+        <div class="mod-table gold-info ui-px-a">
+            <div class="mod-table-con gold-top">
+                <div class="gold-top-item gold-interest s-mr24">
+                    <p>黄金生息</p>
+                </div>
+                <div class="gold-top-item gold-inflation">
+                    <p>抗通货膨胀</p>
+                </div>
+                <div class="gold-top-item gold-interflow">
+                    <p>与活期金互通</p>
+                </div>
+            </div>
+            <div class="mod-table-con ui-px-b">
+                <p>以黄金形式生息，支持提前转出至活期金，提前转出将没有收益</p>
+                <p class="function">持有资产(人民币)=持有黄金克数*到期金价</p>
+            </div>
+        </div>
+
+        <div compile="data.bannerHtml2"></div>
+
+        <div class="mod-table s-mt20 ui-px">
+            <h2 class="s-pt15 s-pb15 ui-px-a">本期({{data.todayStr.substr(4, 4)}})</h2>
+            <div class="mod-progress-bar">
+                <div class="ui-flex flex-box">
+                    <div class="flex-item node node-a light">
+                        <span>起售</span>
+                        <i></i>
+                        <span>{{data.todayStr.substr(4, 2)}}-{{data.todayStr.substr(6, 2)}}</span>
+                    </div>
+                    <div class="flex-item node node-c">
+                        <span>起息</span>
+                        <i></i>
+                        <span>{{data.valueDayStr.substr(4, 2)}}-{{data.valueDayStr.substr(6, 2)}}</span>
+                    </div>
+                    <div class="flex-item node node-c">
+                        <span>到期</span>
+                        <i></i>
+                        <span>08-06</span>
+                    </div>
+                    <div class="flex-item node node-d">
+                        <span>到账</span>
+                        <i></i>
+                        <span>08-12</span>
+                    </div>
+                </div>
+                <div class="pro-wrap pro-bg"></div>
+            </div>
+            <p class="s-fz12 s-lgray s-pb15">到期时本金及生息克数自动转出至活期金，支持提前转出（没有利息）</p>
+        </div>
+
+        <div compile="data.bannerHtml3"></div>
+
+        <gold-price></gold-price>
+
+        <div compile="data.transRuleHtml"></div>
+
+    </ion-content>
+
+    <ion-footer-bar class="bar bar-footer">
+        <div class="mod-button-bottom ui-flex">
+            <!--<button class="item off">转出</button>-->
+            <button class="item" ng-click="onClickBuy()">用活期金转入</button>
+        </div>
+    </ion-footer-bar>
+
+</ion-view>
+
+<risk-assessment option="data.riskOption"></risk-assessment>
+

@@ -1,0 +1,132 @@
+<ion-view  can-swipe-back="false">
+
+    <ion-header-bar>
+        <div class="mod-menu">
+            <header class="mod-menu">
+                <span class="menu-user" ng-if="isLogin" ng-click="onClickSettingsBtn()">
+                    <span class="avatar"><img ng-src="{{avatarUrl}}"></span>
+                    <span class="reddot" ng-if="showMsgDot"></span>
+                </span>
+                <span class="menu-info" ng-if="!isLogin" ng-click="onClickSettingsBtn()"></span>
+                理财
+                <span class="mod-menu-finish" ng-if="isHasAccount" ng-click="onClickTransLog()">交易查询</span>
+            </header>
+        </div>
+    </ion-header-bar>
+
+    <ion-content class="has-header" has-bouncing="true" style="bottom: 54px;" delegate-handle="myContent">
+
+        <!--头部banner-->
+        <section ng-click="onClickBanner()">
+            <div ng-bind-html="sectionHtml"></div>
+        </section>
+
+        <!--活期+ 模块-->
+        <div class="mod-block-item header s-mt0">
+            <i class="ui-hqj-icon"></i>
+        </div>
+        <div class="mod-product-list ui-px-a">
+            <div class="item"  ng-bind-html="monetaryInfo.htmlStr | toTrusted" ng-click="onClickProduct(monetaryInfo)"></div>
+        </div>
+
+        <!--模块列表-->
+        <div ng-repeat="listInfo in renderData track by $index">
+            <div class="mod-block-item header" ng-if="listInfo.showList.length">
+                <span class="s-blue s-fz14">{{listInfo.title}}</span>
+            </div>
+            <div class="mod-product-list ui-px-a" ng-if="listInfo.showList.length">
+                <div ng-class="{'item':!$index,'item ui-px-b':$index}" ng-repeat="info in listInfo.showList track by $index" ng-bind-html="info.htmlStr | toTrusted" ng-click="onClickProduct(info)"></div>
+            </div>
+        </div>
+
+
+        <!--全部产品-->
+        <div class="financial-more mod-block-item s-mb20" ng-click="onClickAllProduct(1)">
+            <div class="financial-more-icon">
+                <i class="ui-icon-financial"></i>
+                <i class="ui-icon-financial-coin"></i>
+                <i class="ui-icon-star"></i>
+                <i class="ui-icon-star"></i>
+                <i class="ui-icon-star"></i>
+            </div>
+            <div class="content">
+                <span class="s-fz18 s-fwb">带你<span class="s-red">理财</span>带你嗨</span>
+                <p class="s-fz12 s-pt7"><span class="ui-px-r s-pr8 s-red"><i class="ui-icon-index"></i>{{showRateStr}}</span><span class="s-pl8 s-red"><i class="ui-icon-clock"></i>{{showLifeTimeStr}}</span></p>
+            </div>
+            <i class="ui-arrow"></i>
+        </div>
+
+        <!--即将开售-->
+        <!--<div class="mod-block-item" ng-if="showPredict.length">-->
+            <!--<span class="s-blue s-fz14">即将开售</span>-->
+        <!--</div>-->
+        <!--<div class="mod-vision ui-px-a" ng-if="showPredict.length">-->
+            <!--<ion-scroll scrollbar-x="false" scrollbar-y="false" direction="x" delegate-handle="financialHomePredict">-->
+                <!--<div class="cards">-->
+                    <!--<div class="item" style="width: 90px;height: 90px;;" ng-repeat="detail in showPredict track by $index" ng-click="onClickPredict(detail)">-->
+                        <!--<h2>{{detail.productName}}</h2>-->
+                        <!--<p class="ui-px-b s-red" ng-if="!detail.isMore">{{detail.earningsRate}}%</p>-->
+                        <!--<p class="s-orange" ng-if="!detail.isMore">{{detail.showStr}}</p>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</ion-scroll>-->
+        <!--</div>-->
+
+        <!--即将开售-->
+        <div class="financial-pending-sale ui-px s-mb20">
+            <div class="s-blue s-fz14 s-ml25">即将开售</div>
+            <div class="empty s-mt10" ng-if="showPredict.length == 0">
+                <img src="../../www/img/slice/pending-sales-empty.gif">
+            </div>
+
+            <ion-scroll scrollbar-x="false" scrollbar-y="false" direction="x" delegate-handle="financialHomePredict" ng-if="showPredict.length > 0">
+                <div class="cards s-mt10">
+                    <div ng-class="{'item':!detail.isMore,'item s-bblue':detail.isMore}" class="item" ng-repeat="detail in showPredict track by $index" ng-click="onClickPredict(detail)">
+                        <h1 ng-if="!detail.isMore">{{detail.productName}}</h1>
+                        <h2 class="s-red" ng-if="!detail.isMore">{{detail.earningsRate}}<span class="s-fz13">%</span></h2>
+                        <p class="s-orange" ng-if="!detail.isMore">{{detail.showStr}}</p>
+
+                        <p ng-if="detail.isMore">查看全部</p>
+                        <h2 ng-if="detail.isMore">{{detail.moreNum}}个</h2>
+                    </div>
+                </div>
+            </ion-scroll>
+        </div>
+
+        <div social-data="income"></div>
+
+
+    </ion-content>
+
+    <ion-footer-bar>
+        <div class="main-nav-wrap">
+            <ul class="main-nav flex">
+                <li class="item i-a" ng-click="onClickMainTab(1)">总览</li>
+                <li class="item i-b i-on">理财</li>
+                <li class="item i-c" ng-click="onClickMainTab(4)">投资</li>
+                <li class="item i-d" ng-click="onClickMainTab(3)">转账</li>
+            </ul>
+        </div>
+    </ion-footer-bar>
+
+    <div class="p-mask-sp p-mask-sp-guide2fin" ng-if="showGuide1" ng-click="onClickGuide(1)">
+        <div class="mask-guide2fin">
+            <div class="icon"></div>
+            <h2>活期+、短期+、定期+等产品</h2>
+            <p>兼顾灵活与收益</p>
+            <div class="btn"><button class="p-btn p-btn-outline">知道了</button></div>
+        </div>
+        <div class="lighter-guide2fin"><span>理财</span></div>
+    </div>
+    <div class="p-mask-sp p-mask-sp-guide2inv" ng-if="showGuide2" ng-click="onClickGuide(2)">
+        <div class="mask-guide2inv">
+            <div class="icon"></div>
+            <h2>基金等产品</h2>
+            <p>风险与收益并存</p>
+            <div class="btn"><button class="p-btn p-btn-outline">知道了</button></div>
+        </div>
+        <div class="lighter-guide2inv"><span>投资</span></div>
+    </div>
+
+    <loading show-loading="data.showLoading"></loading>
+</ion-view>

@@ -1,0 +1,155 @@
+<ion-view>
+    <div class="cw">
+        <ion-header-bar>
+            <div class="menu-ba">
+                <header class="menu">
+                    <button class="menu-return" ng-click="func.back()"></button>
+                    益点心意
+                    <span class="menu-tip share hjButton" ng-click="func.share()" ng-if="data.showShareConfig"></span>
+                </header>
+            </div>
+        </ion-header-bar>
+
+        <ion-content class="has-header" has-bouncing="false" delegate-handle="myContent" style="background-color:#fff;">
+                <!--<div class="pro-banner">
+                    <p class="a">{{data.setting}}</p>
+                    <div class={{data.descClass}}>
+                        <div class="bf item">
+                            <div class={{data.leftPointClass}}>
+                                <span class="lg"></span>
+                                <em class="t">{{data.leftPointDesc}}</em>
+                            </div>
+                        </div>
+                        <div class="md item">
+                            <div class="tw">
+                                <span class="lg"></span>
+                                <em class="t">{{data.middlePointDesc}}</em>
+                            </div>
+                        </div>
+                        <div class="af item">
+                            <div class="tw">
+                                <span class="lg"></span>
+                                <em class="t">{{data.rightPointDesc}}</em>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bt-wrap">
+                        <button class={{data.totaldaysClass}} ng-click="func.clickDescButton('day')">{{data.daysBtn}}</button><button class={{data.totalmealsClass}} ng-click="func.clickDescButton('meal')">{{data.mealsBtn}}</button>
+                    </div>
+                    <p class="b"><span>{{data.todaytax}}</span><span>{{data.totaltax}}</span></p>
+                </div> -->
+
+            <div class="pro-banner-wrap">
+                <p class="a"><span ng-if="data.taxIsRunning">当前设置: 每天捐几{{data.setting}}</span><span ng-click="func.clickTaxDetail()">项目详情</span></p>
+                <div class="icon"><span></span></div>
+                <p class="b">{{data.todaytax}}</p>
+                <p class="c">{{data.totaltax}}</p>
+                <div class="flex" ng-if="data.taxIsRunning">
+                    <div class="item">累计捐赠<span>{{data.totalTimes}}天</span></div>
+                    <div class="item">相当于午餐<span>{{data.totalMeals}}份</span></div>
+                </div>
+            </div>
+
+
+            <div class="mod-tab ui-flex px-a">
+                <div class={{data.tabMoneyUsageClass}} ng-click="func.clickSwitchTab(true)" style="font-size:15px;">资金去向</div>
+                <div class={{data.tabDonateRecordClass}} ng-click="func.clickSwitchTab(false)" style="font-size:15px;">捐赠记录</div>
+            </div>
+
+            <div class="pro-record-wrap" ng-if="!data.showMoneyUsage">
+                    <ul class="pro-record" ng-if="data.donateList.length">
+                        <li bindonce ng-repeat="item in data.donateList" class="px-a">
+                            <span class="time" bo-bind="item.dateStr"></span>
+                            <span class="num" bo-bind="item.amountStr"></span>
+                        </li>
+                    </ul>
+                    <ion-infinite-scroll
+                            ng-if="data.donateList.length && func.hasMoreData()"
+                            on-infinite="func.loadMoreData()"
+                            distance="1%"
+                            spinner="ios"
+                            immediate-check="false"
+                            >
+                    </ion-infinite-scroll>
+                    <!-- 无记录时展示 -->
+                    <div class="no-record" ng-if="!data.donateList.length"></div>
+            </div>
+
+            <div class="pro-main" ng-if="data.showMoneyUsage">
+                <!-- 公益资金去向 -->
+                <div compile="data.moneyUsagePageFragment"></div>
+            </div>
+            <div style="height:70px;"></div>
+        </ion-content>
+
+        <ion-footer-bar ng-if="!data.showStopTip">
+            <div class={{data.taxBtnClass}}>
+                <div class="lc-buy-btn" ng-click="func.clickModify()">{{data.taxBtnName}}</div>
+            </div>
+        </ion-footer-bar>
+
+        <div class="pop-bg-hj" ng-if="data.showModifyPop">
+            <div class="cw-pop-wrap">
+                <p class="title px-a">请选择捐款金额<i ng-click="func.clickTaxPopClose()"></i></p>
+                <div class="cw-pop-con">
+                    <p class="b" ng-if="data.showTaxMealTime">大约<span class="p-c-lorange">{{data.taxMealTime}}</span>捐出一份午餐</p>
+                    <p class="b" ng-if="!data.showTaxMealTime">{{data.taxMealTime}}</p>
+
+                    <!-- 选中加on -->
+                    <div ng-if="data.taxIsRunning">
+                        <p class={{data.startPlanClass}} ng-click="func.clickModifyTypeButton('start')"><i class="set-box"></i>开启每日捐赠</p>
+                    </div>
+                    <div ng-if="!data.taxIsRunning">
+                        <p class="a">开启每日捐赠</p>
+                    </div>
+                    <ul class="list">
+                        <li class={{data.taxFenClass}} ng-click="func.clickTaxPay('fen')">每天捐几分</li>
+                        <li class={{data.taxJiaoClass}} ng-click="func.clickTaxPay('jiao')">每天捐几角</li>
+                        <li class={{data.taxYuanClass}} ng-click="func.clickTaxPay('yuan')">每天捐几元</li>
+                    </ul>
+                    <!-- 选中加on -->
+                    <p class={{data.stopPlanClass}} ng-if="data.taxIsRunning" ng-click="func.clickModifyTypeButton('stop')"><i class="set-box"></i>暂停每日捐赠</p>
+
+                    
+                    <div class="rule">
+                        <p class="tip">
+                            <!-- <span class={{data.taxAgreeMentClass}} ng-click="func.clickTaxAgreement()"></span> -->
+                            <span  class={{data.taxAgreeMentClass}}  ng-click="func.clickTaxAgreement()"><i class="checkbox"></i><i class="checkbox-wd">同意</i></span><label ng-click="func.clickAgreementDetail()"><span>微众平台公益项目参与协议</span>
+                            </label>
+                        </p>
+                    </div>
+
+                    <div class="btn-wrap">
+                        <button class={{data.okBtnClass}} ng-click="func.clickModifyPlan()">确认修改</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="popup" ng-if="data.showStopTip">
+            <div class="popup-wrap">
+                <div class="popup-con">
+                    <div class="ig"><span></span></div>
+                    <p class="ts">在您持续捐赠的这<span class="p-c-lorange">{{data.totalTimes}}</span>天中<br>已经捐出<span class="p-c-lorange">{{data.totalMeals}}</span>份午餐<br>您要暂停公益计划吗？</p>
+                    <div class="btn-box">
+                        <div class="btn-wrap"><button class="btn-f" ng-click="func.clickContinue()">继续捐赠</button></div>
+                        <div class="btn-wrap"><button class="btn btn-f" ng-click="func.clickStop()">暂停捐赠</button></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div pwd-input
+         ng-model="vm.formData.confirmPassword"
+         is-pwd-show="data.isPwdShow"
+         sig-on-pwd-commit="sigOnPwdCommit"
+         pwd-sub-title="data.pwdSubTitle"
+         pwd-trans-desc="data.pwdTransDesc"
+         pay-way-desc="data.payWayDesc"
+         on-click-change-pay-way="func.onPwdSelectPayWay">
+    </div>
+
+    <div pop-confirm out-value="data.outValue"></div>
+    <loading show-loading="data.showLoading"></loading>
+</ion-view>

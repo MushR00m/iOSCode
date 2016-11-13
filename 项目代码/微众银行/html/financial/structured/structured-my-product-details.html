@@ -1,0 +1,239 @@
+<ion-view>
+    <div class="lc">
+        <ion-header-bar>
+            <nav class="mod-nav-top">
+                <div class="nav-back" ng-click="back()">返回</div>
+                <h1 class="nav-title">{{prodInfo.on_sale_desc}}({{prodInfo.value_start_date.substr(4, 4)}})</h1>
+                <div class="nav-share" ng-click="share()">分享</div>
+                <!--<div class="nav-word">交易记录</div>-->
+            </nav>
+        </ion-header-bar>
+
+        <ion-content class="has-header" has-bouncing="false" ng-style="contentStyle()" delegate-handle="myContent">
+            <section class="mod-product-summary" ng-if="status !=4 && status !=5">
+                <h1 class="summary-title"><strong class="ui-line-aside">预估到期收益<i class="excl"></i></strong></h1>
+                <div class="summary-ratio" ng-if="status == 1 || status ==2 || status ==3">
+                    <span class="num">{{expectMinPrice}}</span><span class="aux">或</span><span class="num">{{expectMaxPrice}}</span>
+                </div>
+
+                <div ng-if="status == 31 || status == 32">
+                    <div class="summary-ratio">
+                        <span class="num">无收益</span>
+                    </div>
+                    <p class="summary-tip">很遗憾，未能获得预期高收益</p>
+                </div>
+
+                <div ng-if="status == 33">
+                    <div class="summary-ratio">
+                        <span class="num">{{redeemAmount}}</span>
+                    </div>
+                    <p class="summary-tip">恭喜你，已获得预期高收益率</p>
+                </div>
+
+                <ul class="mod-flex summary-features">
+                    <li class="flex-item">
+                        <h2>持有本金(元)</h2>
+                        <p>{{holdAmount}}</p>
+                    </li>
+                    <li class="flex-item">
+                        <h2>{{headPriceStr1}}</h2>
+                        <p>{{headPriceStr2}}</p>
+                    </li>
+                    <li class="flex-item">
+                        <h2>日涨跌幅</h2>
+                        <p>{{headRiseStr}}</p>
+                    </li>
+                </ul>
+            </section>
+
+            <section class="mod-product-summary" ng-if="status ==4 || status == 5">
+                <h1 class="summary-title"><strong class="ui-line-aside">预估到期收益<i class="excl"></i></strong></h1>
+                <div class="summary-ratio">
+                    <span class="num">{{headStr}}</span>
+                </div>
+                <p class="summary-tip">{{redeemAmount}}</p>
+                <p class="summary-warning">{{subHeadStr}}</p>
+            </section>
+
+            <section class="mod-section-content mod-section-attached">
+                <!-- 产品理财周期模块 V2 -->
+                <div class="content-padded">
+                    <h2 class="s-pt10">本期({{productPeroid}})<i class="ui-watermark-up">{{changeTypeStr}}</i></h2>
+                    <div class="mod-product-periods mod-product-periods-processing ui-cycle-wrap">
+                        <div class="progress-wrap">
+                            <div class="mod-flex flex-box">
+                                <div class="flex-item item item-a light">
+                                    <span>购买日</span>
+                                    <span class="s-orange"></span>
+                                    <i></i>
+                                    <span>{{buyDate | fromatDateTimeToMDV2}}</span>
+                                </div>
+                                <div class="{{lightDot2}}" ng-class="onClassProcess(initObserveDate)">
+                                    <span>起息日</span>
+                                    <span class="s-orange"><em ng-if="initTargetPrice">{{initTargetPrice}}元/克</em></span>
+                                    <i></i>
+                                    <span>{{initObserveDate | fromatDateTimeToMDV2}}</span>
+                                </div>
+                                <div class="{{lightDot3}}" ng-class="onClassProcess(finalObserveDate)">
+                                    <span>观察日</span>
+                                    <span class="s-orange"><em ng-if="finalTargetPrice">{{finalTargetPrice}}元/克</em></span>
+                                    <i></i>
+                                    <span>{{finalObserveDate | fromatDateTimeToMDV2}}</span>
+                                </div>
+                                <div class="{{lightDot4}}" ng-class="onClassProcess(expireDate)">
+                                    <span>到期日</span>
+                                    <span class="s-orange"></span>
+                                    <i></i>
+                                    <span>{{expireDate | fromatDateTimeToMDV2}}</span>
+                                </div>
+                                <div class="{{lightDot5}}" ng-class="onClassProcess(arrivalAccountDate)">
+                                    <span>到账日</span>
+                                    <span class="s-orange"></span>
+                                    <i></i>
+                                    <span>{{arrivalAccountDate | fromatDateTimeToMDV2}}</span>
+                                </div>
+                            </div>
+                            <div class="pro-wrap pro-bg"></div>
+                            <div class="pro-wrap pro-blue" style="processPencent"></div>
+                        </div>
+                    </div>
+                    <p class="s-mt10 s-pb10">{{scheduleTips}}</p>
+                </div>
+            </section>
+
+            <!--到期安排-->
+            <section class="mod-section-content s-mt20" >
+                <header class="">
+                    <h1 class="s-rel">到期后安排<i class="modify" ng-if="holdAmount>0 && today < redeemValidDate" ng-click="onClickDstSelect()"></i></h1>
+                </header>
+                <!-- 通用文本表格模块 V2 -->
+                <dl class="mod-table">
+                    <dt></dt>
+                    <dd class="mod-table-con mod-table-line" ng-if="dst=='02'">
+                        赎回至<i class="cplus">活期+</i>
+                    </dd>
+                    <dd class="mod-table-con mod-table-line" ng-if="dst=='01'">
+                        赎回至微众卡
+                    </dd>
+                </dl>
+                <p class="p-hint-form" ng-if="holdAmount==0">确认后可修改到期后安排</p>
+                <p class="p-hint-form" ng-if="holdAmount>0 && prodInfo.modify_redeem_method_deadline_date && prodInfo.modify_redeem_method_deadline_time">修改截止于{{prodInfo.modify_redeem_method_deadline_date|formatYYYYMMDDToCNString}} {{prodInfo.modify_redeem_method_deadline_time|formatTimeStringToHHMM}}</p>
+            </section>
+
+
+            <!--走势图-->
+            <section class="mod-section-content s-mt20">
+                <!-- tab菜单模块 V2 -->
+                <ul class="mod-flex mod-tab">
+                    <li class="{{chartTabClass1}}" ng-click="onClickChartTab(1)">黄金走势</li>
+                    <li class="{{chartTabClass2}}" ng-click="onClickChartTab(2)">历史黄金价格</li>
+                </ul>
+                <!-- tab内容模块 V2 -->
+                <div class="mod-tab-content" ng-if="showChartView">
+                    <div class="hs-wrap px-a" >
+                        <div hjstockcharts show-chart='func.showChart'  style="width:100%; height:250px;"></div>
+                        <ul class="hs-month" style="padding-bottom:5px;">
+                            <li ng-class="onClassTime(7)" ng-click="onClickChartTime(7)">7日</li>
+                            <li ng-class="onClassTime(30)" ng-click="onClickChartTime(30)">1个月</li>
+                            <li ng-class="onClassTime(60)" ng-click="onClickChartTime(90)">3个月</li>
+                        </ul>
+                        <p style="padding:10px 0 18px;text-align:center;font-size:12px;color:#aab2ca;" ng-bind-html="chart_summary | toTrusted"></p>
+                    </div>
+                </div>
+
+                <div class="mod-tab-content" ng-if="!showChartView">
+                    <div class="s-hide">黄金价格走势图表</div>
+                    <div>
+                        <dl class="mod-table ui-px-a custom-table-col">
+                            <dt class="mod-flex mod-table-title">
+                                <span class="flex-item">日期</span>
+                                <span class="flex-item">价格(克/元)</span>
+                                <span class="flex-item">日涨跌幅</span>
+                            </dt>
+                            <dd class="mod-flex mod-table-con mod-table-line" ng-repeat="info in historyIncomeInfo">
+                                <span class="flex-item">{{info.date.substr(4, 2)}}-{{info.date.substr(6 ,2)}}</span>
+                                <span class="flex-item">{{info.price}}</span>
+                                <span class="{{info.class}}">{{info.diffRate}}%</span>
+                            </dd>
+                            <dd class="mod-table-con mod-table-line">
+                                <p class="mod-gray-tip" ng-click="onClickViewHistoryValue()">查看更多</p>
+                            </dd>
+                        </dl>
+                    </div>
+                </div>
+
+            </section>
+
+
+            <!-- 通用内容模块 V2 -->
+            <section class="mod-section-content s-mt20">
+                <footer>
+                    <div class="ui-enterable" ng-click="onClickProductDetail()">查看本期详情</div>
+                </footer>
+            </section>
+
+
+
+            <div style="padding-bottom:20px;"></div>
+        </ion-content>
+
+        <ion-footer-bar style="height:50px;" ng-if="footerState != FOOTER_STATE.SHOW_NOTHING">
+
+            <section class="mod-flex mod-button-bottom" ng-if="footerState == FOOTER_STATE.SHOW_NEW_ARRIVAL">
+                <div class="flex-item item" ng-click="onClickViewNewArrival()">查看最新产品信息</div>
+            </section>
+
+            <section class="mod-flex mod-button-bottom" ng-if="footerState == FOOTER_STATE.SHOW_CONTINUE">
+                <div class="flex-item ui-btn ui-btn-block" ng-click="onClickBuyProd(codeOfRise)">
+                    <em ng-if="buyRiseProduct">继续买涨</em>>
+                    <em ng-if="!buyRiseProduct">买涨</em>>
+                </div>
+                <div class="flex-item ui-btn ui-btn-block" ng-click="onClickBuyProd(codeOfFall)">
+                    <em ng-if="buyRiseProduct">买跌</em>
+                    <em ng-if="!buyRiseProduct">继续买跌</em>
+                </div>
+            </section>
+
+        </ion-footer-bar>
+
+
+
+        <!--到期赎回-->
+        <div class="pop-bg-hj" ng-if="showRedeemView">
+            <div class="pop bg-b">
+                <header class="hd">请选择到期资金安排<i class="close" ng-click="onClickDstClose()"></i></header>
+                <ul class="card" style="padding-bottom:5px;">
+                    <li ng-click="onSelectDstHJ()" class="{{HJClass}}">
+                        <p class="cd-name">赎回到<img style="width: 51px;height: 20px;margin: 0 0 0 4px;vertical-align: bottom;" src="../img/slice/hq@3x.png"></p>
+                        <p class="yv" style="padding-right:30px;">到期后，本金及收益自动转入到活期+，享受活期+收益，使用时可随时转出（下一工作日24:00前到账）</p>
+                    </li>
+
+                    <li ng-click="onSelectWeBank()" class="{{weBankCardClass}}">
+                        <p class="cd-name">赎回到<img style="width: 25px;height: 25px;margin: 0 0 -5px 0;" src="../img/bankHead/yh-0@2x.png">微众卡</p>
+                        <p class="yv" style="padding-right:30px;">到期后，本金及收益自动转入到微众卡，可马上用于投资其他理财产品（下一工作日24:00前到账）</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div pwd-input
+             ng-model="data.vm.formData.confirmPassword"
+             is-pwd-show="data.isPwdShow"
+             sig-on-pwd-commit="data.sigOnPwdCommit"
+             pwd-sub-title="data.pwdSubTitle"
+                >
+        </div>
+
+        <div pop-confirm out-value="outValue"></div>
+        <div slider-up-part-redeem option="data.partRedeemOption"></div>
+        <!--遮罩层start-->
+        <div class="p-mask" ng-if="data.isMaskShown">
+            <h2>{{data.maskTitle}}</h2>
+            <p>{{data.maskDetail}}</p>
+            <div class="funcs"><button class="p-btn p-btn-outline p-btn-block" ng-click="onClickCancelMask()">知道了</button></div>
+        </div>
+        <!--遮罩层end-->
+    </div>
+    <div slider-up-confirm slider-up-confirm-option="data.sliderUpConfirmOption"></div>
+</ion-view>
+<risk-assessment option="data.riskOption"></risk-assessment>

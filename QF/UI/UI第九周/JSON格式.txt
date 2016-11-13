@@ -1,0 +1,37 @@
+Json数据格式基本讲解
+
+JSON(JavaScript Object Notation) 是一种轻量级的数据交换格式。它基于JavaScript（Standard ECMA-262 3rd Edition - December 1999）的一个子集。 JSON采用完全独立于语言的文本格式，但是也使用了类似于C语言家族的习惯（包括C, C++, C#, Java, JavaScript, Perl, Python等）。这些特性使JSON成为理想的数据交换语言。易于人阅读和编写，同时也易于机器解析和生成。
+
+表示名称 / 值对
+　　按照最简单的形式，可以用下面这样的 JSON 表示"名称 / 值对"：
+　　{ "firstName": "Brett" }
+　　这个示例非常基本，而且实际上比等效的纯文本"名称 / 值对"占用更多的空间：
+　　firstName=Brett
+　　但是，当将多个"名称 / 值对"串在一起时，JSON 就会体现出它的价值了。首先，可以创建包含多个"名称 / 值对"的 记录，比如：
+　　{ "firstName": "Brett", "lastName":"McLaughlin", "email": "aaaa" }
+　　从语法方面来看，这与"名称 / 值对"相比并没有很大的优势，但是在这种情况下 JSON 更容易使用，而且可读性更好。例如，它明确地表示以上三个值都是同一记录的一部分；花括号使这些值有了某种联系。
+　　
+　　
+上面都是基本知识，下面举例说明吧：
+　　简单 JSON 示例
+　　按照最简单的形式，可以用下面这样的 JSON 表示名称/值对：
+　　{ "Name": "Ed" }?
+　　
+这个示例非常基本，而且实际上比等效的纯文本名称/值对占用更多的空间：
+　　Name = Ed
+　　
+但是，当将多个名称/值对串在一起时，JSON 就会体现出它的价值了。首先，可以创建包含多个名称/值对的记录，比如：
+　　{ "Name": "Bill", "Birthday":"1989/11/12", "Email": "bill@zte.com" }
+　　
+从语法方面来看，这与名称/值对相比并没有很大的优势，但是在这种情况下 JSON 更容易使用，而且可读性更好。例如，它明确地表示以上三个值都是同一记录的一部分；花括号使这些值有了某种联系。
+　　值的数组
+　　当需要表示一组值时，JSON 不但能够提高可读性，而且可以减少复杂性。例如，假设您希望表示一个人名列表。在 XML 中，需要许多开始标记和结束标记；如果使用典型的名称/值对（就像在本系列前面文章中看到的那种名称/值对），那么必须建立一种专有的数据格式，或者将键名称修改为 person1-firstName 这样的形式。
+　　如果使用 JSON，就只需将多个带花括号的记录分组在一起：
+　　{"people": [ {  "Name": "Bill", "Birthday":"1989/11/12", "Email": "bill@zte.com"?}, {  "Name": "Biller", "Birthday":"1989/11/12", "Email": "bill@zte.com" }, {  "Name": "Aill", "Birthday":"1989/11/13", "Email": "bill@zte.com" }]}
+　　
+这不难理解。在这个示例中，只有一个名为 people 的变量，值是包含三个条目的数组，每个条目是一个人的记录，其中包含名、姓和电子邮件地址。上面的示例演示如何用括号将记录组合成一个值。当然，可以使用相同的语法表示多个值（每个值包含多个记录）：
+　　{ "programmers": [ { "firstName": "Brett", "lastName":"McLaughlin", "email": "brett@newInstance.com" }, { "firstName": "Jason", "lastName":"Hunter", "email": "jason@servlets.com" }, { "firstName": "Elliotte", "lastName":"Harold", "email": "elharo@macfaq.com" } ],"authors": [ { "firstName": "Isaac", "lastName": "Asimov", "genre": "science fiction" }, { "firstName": "Tad", "lastName": "Williams", "genre": "fantasy" }, { "firstName": "Frank", "lastName": "Peretti", "genre": "christian fiction" } ],"musicians": [ { "firstName": "Eric", "lastName": "Clapton", "instrument": "guitar" }, { "firstName": "Sergei", "lastName": "Rachmaninoff", "instrument": "piano" } ]}
+　　
+这里最值得注意的是，能够表示多个值，每个值进而包含多个值。但是还应该注意，在不同的主条目（programmers、authors 和 musicians）之间，记录中实际的名称/值对可以不一样。JSON 是完全动态的，允许在 JSON 结构的中间改变表示数据的方式。
+　　在处理 JSON 格式的数据时，没有需要遵守的预定义的约束。所以，在同样的数据结构中，可以改变表示数据的方式，甚至可以以不同方式表示同一事物。
+ 对于这种数据格式，了解就行了，具体要用时，可以专门再去深入学习。

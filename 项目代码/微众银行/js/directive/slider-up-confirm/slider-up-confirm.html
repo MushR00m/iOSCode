@@ -1,0 +1,13 @@
+<script id="slider-up-confirm.html" type="text/ng-template">
+
+            <section class="confirm-card" style="top: inherit;">
+                <div class="confirm-list modal" style="background-color: transparent;top: inherit;">
+                    <div class="desc" ng-if="sliderUpConfirmOption.headText" ng-bind-html="sliderUpConfirmOption.headText || toTrusted"></div>
+                    <ul>
+                        <li class="{{item.strClass}}" ng-repeat="item in sliderUpConfirmOption.buttonList" ng-click="onClickItem($index)">{{item.text}}</li>
+                        <li class="px-b px-lt" ng-click="onClickItem(-1)">{{sliderUpConfirmOption.cancelBtnText}}</li>
+                    </ul>
+                </div>
+            </section>
+
+</script>

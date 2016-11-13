@@ -1,0 +1,28 @@
+<ion-view>
+    <div class="oti">
+        <ion-header-bar>
+            <div class="menu-ba">
+                <header class="menu"><span class="menu-wd" ></span>赎回<span class="menu-wd" ng-click="func.onClickFinish()" >完成</span></header>
+            </div>
+        </ion-header-bar>
+
+        <ion-content class="has-header" has-bouncing="false">
+            <div class="into-logo ok" ng-if="data.isSuccShow">
+                <p class="a">赎回申请已受理</p>
+            </div>
+
+            <div class="date-list-wrap" ng-if="data.isSuccShow">
+                <ul class="date-list">
+                    <li class="o"><i></i>{{data.today.getMonth()+1}}-{{data.today.getDate()}} 今天 申请赎回{{data.resultObj.amount}}元</li>
+                    <li class="sx o"><i></i></li>
+                    <li><i></i>{{data.redeemDay.getMonth()+1}}-{{data.redeemDay.getDate()}} {{data.redeemDay | formatWeekdayFormDate}} 反馈赎回结果</li>
+                </ul>
+            </div>
+
+            <div class="into-logo fall" ng-if="!data.isSuccShow">
+                <p class="a">赎回失败</p>
+                <p class="c">原因：{{data.resultMsg}}</p>
+            </div>
+        </ion-content>
+    </div>
+</ion-view>

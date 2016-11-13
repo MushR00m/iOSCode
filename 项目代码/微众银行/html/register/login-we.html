@@ -1,0 +1,42 @@
+<ion-view>
+    <ion-header-bar>
+        <div class="menu-ba menu-ba-fixed">
+            <header class="menu"><button class="{{data.backClass}}" ng-click="back()"></button></header>
+        </div>
+    </ion-header-bar>
+
+    <ion-content class="has-header" has-bouncing="false" scrollbar-y = "false">
+        <div class="login">
+            <div class="login-bg">
+                <div class="logo-wrap">
+                    <i></i>
+                    <p>腾讯牵头发起设立的银行</p>
+                </div>
+
+                <!--<div compile="data.sectionHtml"></div>-->
+                <!--<div ng-bind-html="data.sectionHtml"></div>-->
+
+                <!--<div class="kiss" ng-if="data.isInReview">-->
+                <!--<div class="k-box">-->
+                <!--<span class="phone"><label>手机号</label><input type="number" number-keyboard-input pattern="[0-9]*" out-value="data.phoneNumber" placeholder="请填写手机号" ng-model="data.placePhoneNumber" class="phone-i"></span>-->
+                <!--<span class="password"><label>验证码</label><input type="number" number-keyboard-input pattern="[0-9]*" out-value="data.otpNumber" placeholder="请填写验证码" ng-model="data.placeOtpNumber" class="wd-i"><i class={{OtpButtonController}} ng-if="!checkTimeoutInfo" ng-click="getOtp()">获取验证码</i><i class="i-s" ng-if="checkTimeoutInfo">{{checkNumTimeout}}</i></span>-->
+                <!--<span class={{loginButtonController}} ng-click="login_phone()">手机登录</span>-->
+                <!--&lt;!&ndash;<i ng-click="login_qq()" style="display:block;text-align:right;margin-top:15px;font-size:14px;color:#acb2c1;">使用QQ登录</i>&ndash;&gt;-->
+                <!--</div>-->
+                <!--</div>-->
+
+                <div class="op-wrap">
+                    <div class="login-btn a" ng-if="data.isWXInstalled" ng-click="login_wx()"><i></i>微信登录</div>
+                    <div class="login-btn b" ng-if="data.isQQInstalled" ng-click="login_qq()"><i></i>QQ登录</div>
+                    <div class="login-btn b" ng-if="shouldShowPhoneLoginBtn()" ng-click="launchPhoneLogin()">身份证号登录</div>
+                    <p class="desc" ng-if="data.supportPhoneLogin" ng-click="onClickNotice()">登录说明</p>
+                    <p class="tip-des a-tip-des"><span class="l" ng-click="onClickNoticeInterest()">微众银行活期存款利率公告</span>|<span class="r" ng-click="onClickNoticePost()">央行存款保障机制</span></p>
+                    <p class="tip-des b-tip-des">2014年12月12日取得银行牌照&#12288;机构编码B0593H244030001</p>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+    <loading show-loading="data.showLoading"></loading>
+
+    <div pop-confirm out-value="data.outValue"></div>
+</ion-view>

@@ -1,0 +1,36 @@
+<ion-view style="z-index: 9;">
+    <div class="fc">
+        <ion-header-bar>
+            <div class="menu-ba">
+                <header class="menu">人脸验证</header>
+            </div>
+        </ion-header-bar>
+
+        <ion-content class="has-header" has-bouncing="false">
+            <div class="icon-xl fail p-fz-14 mgt40">
+                <h1 class="p-c-lorange p-fz-18">验证失败</h1>
+            </div>
+
+            <div style="text-align:left;width:220px;line-height:24px;margin:20px auto;">
+                <h3 style="font-size:16px;">可以尝试通过以下方式提高</h3>
+                <ul style="list-style-type:disc;margin-left:20px;font-size:14px;">
+                    <li>打开麦克风并大声跟读数字</li>
+                    <li>确保人脸出现在视频里</li>
+                    <li>保持光线充足和均匀</li>
+                    <li>摘掉眼镜并露出耳朵</li>
+                </ul>
+            </div>
+
+            <div ng-show="data.canRetry" class="btn-wrap mgt40"><button class="btn-c" ng-click="func.verifyUserFace()">再试一次</button></div>
+            <div class="btn-wrap pd20"><button class="tvb" ng-click="func.back()">退出验证</button></div>
+
+            <div class="pop-bg-hj hide">
+                <div class="pop-qx">
+                    <p class="b px-a">在线客服</p>
+                    <p class="b px-a">拨打电话</p>
+                    <p class="b">取消</p>
+                </div>
+            </div>
+        </ion-content>
+    </div>
+</ion-view>

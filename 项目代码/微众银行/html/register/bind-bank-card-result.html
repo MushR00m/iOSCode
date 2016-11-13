@@ -1,0 +1,59 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>绑定银行卡</title>
+    <meta name="description" content="">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="../www/zdj.css">
+</head>
+<body>
+    <div class="register">
+        <div class="menu-ba">
+            <!--visibility:hidden-->
+            <header class="menu"><button class="menu-return" ng-show="false"></button>绑定银行卡<span class="menu-wd" ng-click="func.onClickFinish()">完成</span></header>
+        </div>
+
+        <section class="px-a" style="background-color:#fff;">
+            <div class="ui-result-con" style="padding-top:20px;height:280px;">
+                <ol class="order-line">
+                    <li class="first on">
+                        <i>
+                            <em>1</em>
+                            <dl class="con-t">
+                                <dt>成功登记您的银行卡<em></em></dt>
+                                <dd>{{data.resultData.bankName + " "}}{{data.resultData.cardNo|abridgeAccountNumber}}</dd>
+                            </dl>
+                        </i>
+                    </li>
+                    <li class="st">
+                        <i>
+                            <em>2</em>
+                            <dl class="con-t">
+                                <dt>用登记银行卡汇款到微众卡<em></em></dt>
+                                <dd>金额不少于<span class="p-c-lorange">0.01元</span></dd>
+                                <dd>请在<span class="p-c-lorange">{{data.regEndDate|formatDateObjToString}}({{data.regEndDate|formatWeekdayFormDate}})</span>前汇入</dd>
+                                <dd style="font-size:12px;" ng-click="func.onClickCopy()">微众卡({{data.resultData.webankCardNo|splitAccountNumber}})<span class="copy">复制</span></dd>
+                            </dl>
+                        </i>
+                    </li>
+                    <li class="last">
+                        <i>
+                            <em>3</em>
+                            <dl class="con-t">
+                                <dt>绑定成功<em></em></dt>
+                            </dl>
+                        </i>
+                    </li>
+                </ol>
+            </div>
+        </section>
+
+        <p style="position:fixed;color:#3399eb;font-size:14px;left:0;right:0;bottom:10%;text-align:center;" ng-click="func.onClickTransferIntro()">
+            怎样从他行转账到微众卡？
+        </p>
+    </div>
+</body>
+</html>

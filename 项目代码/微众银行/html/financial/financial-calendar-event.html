@@ -1,0 +1,65 @@
+<ion-view>
+    <div class="calendar-product">
+        <ion-header-bar>
+            <div class="menu-ba">
+                <header class="menu">
+                    <span class="month">
+                        <em ng-if="data.today.getFullYear() != data.currentDate.getFullYear()">{{data.currentDate.getFullYear()}}年{{data.currentDate.getMonth()+1}}月</em>
+                        <em ng-if="data.today.getFullYear() == data.currentDate.getFullYear()">{{data.currentDate.getMonth()+1}}月</em>
+                    </span><button class="menu-return" ng-click="func.back()" ></button>日历详情
+                </header>
+            </div>
+        </ion-header-bar>
+        <ion-content class="has-header" has-bouncing="false" >
+            <div class="ui-calendar-wrap" ng-class="data.ShowPlatFormClass">
+                <div class="ui-date-wrap" style="z-index: 1;position: relative;height: 78px;">
+                    <div class="ui-date week">
+                        <div class="ui-date-flex week">
+                            <div class="ui-date-item row-1" ng-repeat="headerdateItem in data.headerWeekDateArray track by $index"><span>{{headerdateItem.dateWeek}}</span></div>
+                        </div>
+                    </div>
+                    <div class="ui-calendar-inner px-a">
+                        <!-- 以ui-date为一行，最多五行 -->
+                        <div class="ui-date fx">
+                            <!-- day row -->
+                            <div class="ui-date-flex day" style="padding:2px 0;">
+                                <!-- class取值，今天：today；周末：weekend -->
+                                <div class="ui-date-item row-1" ng-click="func.onClickWeekDate(dateItemweek.dateStr)" ng-repeat="dateItemweek in data.headerWeekDateArray track by $index" ><span ng-class="dateItemweek.dateClass"><i ng-class="dateItemweek.todayAddClass">{{dateItemweek.dateNum}}</i></span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ion-content>
+        <ion-content  style="margin-top: 78px;" has-bouncing="" class="has-header" hjdelegatehandle="calendarEventDelegateHandle">
+            <div class="ui-calendar-wrap" ng-if="!data.noMoreEventData || !data.noMoreProductData" ng-class="data.ShowPlatFormClass" >
+                <!-- 事件列表 -->
+                <h2 class="ui-date-event-title px-b mgt20" ng-if="data.dayEventListData.length > 0" >我的计划</h2>
+                <ul class="ui-date-event-list px" ng-if="data.dayEventListData.length > 0" >
+                    <li class="flex px-a" ng-class="dayEventData.eventClass" ng-repeat="dayEventData in data.dayEventListData track by $index" ng-bind-html="dayEventData.dayEventHtml" ng-click="func.onClickEvent(dayEventData.event)"></li>
+                </ul>
+                <!-- 预告列表 -->
+                <div class="financial-pending-sale ui-px s-mt20" style="padding:6px 0 15px;" ng-if="data.dayProductData.length > 0" >
+                    <div class="s-blue s-fz12 s-ml25"><i class="ui-icon-hi"></i>{{data.productShowZoneTitle}}</div>
+                    <ion-scroll scrollbar-x="false" scrollbar-y="false" direction="x" delegate-handle="CalendarEventPredict">
+                        <div class="cards s-mt10">
+                            <div class="item" ng-repeat="productItem in data.dayProductData track by $index" ng-click="func.onClickCalenDarProduct(productItem.event)" >
+                                <h1>{{productItem.productName}}</h1>
+                                <h2 class="s-red">{{productItem.earningsRate}}<span class="s-fz13">%</span></h2>
+                                <p class="s-orange">{{productItem.showDesc}}</p>
+                            </div>
+                        </div>
+                    </ion-scroll>
+                </div>
+            </div>
+        </ion-content>
+        <loading show-loading="data.showLoading"></loading>
+        <div style="height:2rem;"></div>
+    </div>
+    <div class="ui-date-none" ng-if="data.noMoreEventData && data.noMoreProductData " style="padding-top: 78px;">
+        <i></i>
+        <p>无事件</p>
+    </div>
+    <!--暂时屏蔽-->
+    <!--<p class="calendar-product-tip s-bblue" ng-if="data.noMoreProductData && (data.currentDateStr >= data.todayStr)" ng-click="func.setRedHotForproductFore()" >{{data.product_fore_desc}}</p>-->
+</ion-view>

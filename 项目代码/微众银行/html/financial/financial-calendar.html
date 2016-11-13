@@ -1,0 +1,115 @@
+<ion-view>
+    <div class="{{data.ShowPlatFormClass}}">
+        <ion-header-bar>
+            <div class="menu-ba">
+                <header class="menu"><button class="menu-return" ng-click="func.back()"></button>日历
+                    <span class="menu-wd" ng-click="func.onClickCalendarEventList()" style="opacity: 1;">事件列表</span>
+                </header>
+            </div>
+        </ion-header-bar>
+        <ion-content class="has-header" has-bouncing="false"  >
+            <div class="ui-date-wrap" style="position: relative;z-index: 1;height: 70px;">
+                <div class="ui-date-ym"><em style="display: inline-block;width: 60px;height: 22px;vertical-align: middle;" ng-click="func.previousMonth()" ></em><i class="ui-arrow i-left" ng-click="func.previousMonth()"></i><span class="ym">{{data.currentYearSelected}}年{{data.currentMonthSelected}}月</span><i class="ui-arrow" ng-click="func.nextMonth()"></i><em style="display: inline-block;width: 60px;height: 22px;vertical-align: middle;" ng-click="func.nextMonth()" ></em></div>
+                <div class="ui-date week">
+                    <div class="ui-date-flex week">
+                        <div class="ui-date-item row-1"><span>日</span></div><!--
+                     --><div class="ui-date-item row-1"><span>一</span></div><!--
+                     --><div class="ui-date-item row-1"><span>二</span></div><!--
+                     --><div class="ui-date-item row-1"><span>三</span></div><!--
+                     --><div class="ui-date-item row-1"><span>四</span></div><!--
+                     --><div class="ui-date-item row-1"><span>五</span></div><!--
+                     --><div class="ui-date-item row-1"><span>六</span></div>
+                    </div>
+                </div>
+            </div>
+        </ion-content>
+        <ion-content style="margin-top: 70px;" has-bouncing="true" class="has-header" >
+            <ion-slide-box auto-play="false" show-pager="false" active-slide="data.initshowMonthSlideIndex" on-slide-changed="func.slideHasChanged($index)"  does-continue="true">
+                <ion-slide ng-repeat="month in data.currentMonthList track by $index"  >
+                    <ion-content  has-bouncing="true" hjdelegatehandle="{{'calendarDelegateHandle'+$index}}"  id="{{'calendarDelegateHandle'+$index}}">
+                        <div class="box ui-calendar-wrap" style="background-color:#fff;">
+                            <div class="ui-calendar-inner px-a " >
+                                <div class="ui-date px-a" ng-repeat="dateRow in month.dateRowList track by $index">
+                                    <div class="ui-date-flex day" >
+                                        <!-- class取值，今天：today；周末：weekend；昨天：past -->
+                                        <div class="ui-date-item row-1" ng-repeat="dateItem in dateRow.dateRowListArray track by $index">
+                                            <span ng-click="func.onDateClick(dateItem.day)" ng-if="dateItem" ng-class="dateItem.dayClass"><i ng-class="dateItem.dayDescClass">{{dateItem.date}}</i></span>
+                                            <span ng-if="!dateItem" ></span>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="">
+                                        <!-- event row -->
+                                        <div class="ui-date-flex event" ng-repeat="rowData in dateRow.rowDatas track by $index " ng-if="dateRow.rowDatas.length > 0" >
+                                            <div class="ui-date-item row-1 {{rowDataItem.eventClass?rowDataItem.eventClass:''}} " ng-repeat="rowDataItem in rowData track by $index " ng-click="func.onClickEvent(rowDataItem)">
+                                                <p ng-if="rowDataItem" ng-class="rowDataItem.amountClass">{{rowDataItem.eventAmount}}</p>
+                                                <p ng-if="!rowDataItem"></p>
+                                            </div>
+                                            <!-- pay:存工资；loan:还房贷；account:到账 -->
+                                        </div>
+                                        <!-- product row -->
+                                        <!-- 由row-1到row-7控制产品销售时间跨度，每个row里的比例相加务必等于7-->
+                                        <!--<div class="ui-date-flex ui-row"  style="width: auto;" ng-click="func.onClickCalenDarProduct(rowsDataForProForeItem.event,$event)" ng-if="dateRow.rowsDataForProFore" ng-repeat="rowsDataForProForeItem in dateRow.rowsDataForProFore track by $index " ng-bind-html="rowsDataForProForeItem.rowHtmlForProForeItem">
+
+                                        </div>-->
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="home-date-add" ng-click="func.onOpenAddPlanModal()" >
+                            <p class="a"><i></i>添加计划</p>
+                            <p class="b">智能管理每一分钱</p>
+                        </div>
+                    </ion-content>
+                </ion-slide>
+            </ion-slide-box>
+        </ion-content>
+            <!-- 新手指引 -->
+            <div class="ui-popup calendar-newer-guide" ng-if="data.isNewBeeGuideShown">
+                <div class="popup-wrap">
+                    <div class="calendar-newer-guide-con">
+                        <i></i>
+                        <p>左右滑动可以查看<br/>前后6个月的日历计划</p>
+                        <button ng-click="func.onClickCloseNewBeeGuide()">知道了</button>
+                    </div>
+                </div>
+            </div>
+            <loading show-loading="data.showLoading"></loading>
+            <div style="height:2rem;"></div>
+
+            <script id="add-plan.html" type="text/ng-template">
+                <section class="calendar-add-card" style="top: inherit;">
+                    <dl class="calendar-add-wrap modal" style="top: inherit;">
+                        <dt class="px-a"><i ng-click="func.onCloseAddPlanModal()"></i>添加计划</dt>
+                        <dd class="px-a" ng-click="func.onClickSalaryPlan()" ng-if="data.salaryPlan.planInfo == null">
+                            <i class="save"></i>
+                            <span class="n">存工资</span>
+                            <span class="sm">工资到帐立即理财</span>
+                        </dd>
+
+                        <dd class="px-a" ng-click="func.onClickMortgagePlan()" ng-if="data.mortgage.planInfo == null">
+                            <i class="loan"></i>
+                            <span class="n">还房贷</span>
+                            <span class="sm">制定计划自动还贷</span>
+                        </dd>
+
+                        <dd class="px-a" ng-click="func.onClickTransOutScenePlan(data.planForRent.planInfo, data.PLAN_CATAGRY.PAY_RENT)" ng-if="func.isStrongAccount() && data.planForRent.planInfo == null">
+                            <i class="rent"></i>
+                            <span class="n">交房租</span>
+                            <span class="sm">自动交租省心省事</span>
+                        </dd>
+
+                        <dd class="px-a" ng-click="func.onClickTransOutScenePlan(data.planForParent.planInfo, data.PLAN_CATAGRY.RESPECT_PARENT)" ng-if="func.isStrongAccount() && data.planForParent.planInfo==null">
+                            <i class="caring"></i>
+                            <span class="n">孝敬父母</span>
+                            <span class="sm">每月给父母点关爱</span>
+                        </dd>
+
+                        <dd><i class="add"></i><span class="n" ng-click="func.onClickMakePlan()" >自定义计划</span><span class="sm"></span></dd>
+                    </dl>
+                </section>
+             </script>
+    </div>
+</ion-view>

@@ -1,0 +1,189 @@
+<ion-view>
+    <div class="lc">
+        <ion-header-bar>
+            <div class="menu-ba">
+                <header class="menu"><button class="menu-return" ng-click="func.back()"></button>购买</header>
+            </div>
+        </ion-header-bar>
+
+        <ion-content class="has-header" has-bouncing="false">
+            <p class="cy-wd">
+                <span class="l">现在买入{{data.prodInfo.prod_name}}</span>
+            </p>
+
+
+            <div class="cy-wrap">买入金额
+                <div class="po">
+                    <keyboard-input
+                            type="number"
+                            hjtype = "je"
+                            class="it"
+                            placeholder="{{data.minAmount}}元起购，{{data.incAmount}}元递增"
+                            hj-model="data.amount"  hj-blur="func.blurInput()"
+                            hj-focus="func.focusInput()"
+                            hj-change="func.onInputChanged()">
+                    </keyboard-input>
+                </div>
+                <i class="act" ng-if="data.showInputAct"></i>
+            </div>
+            <p class="cy-tip" ng-if="data.showInputAmountTips">{{data.inputAmountTipsContent}}</p>
+
+            <p class="cy-ws">
+                <!--限制了单笔,不限制单日-->
+                <span ng-if="data.prodInfo.p_single_purchase_max_amount > 0 && data.prodInfo.p_day_purchase_max_amount <= 0">
+                    每人单笔限购<i class="p-c-lorange">{{data.prodInfo.p_single_purchase_max_amount | formatMoneyShort}}元</i>
+                    <em ng-if="data.buyLimit && data.maxAmountBuyLimit">，本次最多可购买<i class="p-c-lorange">{{data.maxAmountBuyLimit | formatMoneyShort}}元</i></em>
+                </span>
+
+                <!--限制了单日,不限制单笔-->
+                <span ng-if="data.prodInfo.p_single_purchase_max_amount <= 0 && data.prodInfo.p_day_purchase_max_amount > 0">
+                    每人每日限购<i class="p-c-lorange">{{data.prodInfo.p_day_purchase_max_amount | formatMoneyShort}}元</i>
+                    <em ng-if="data.buyLimit && data.maxAmountBuyLimit">，本次最多可购买<i class="p-c-lorange">{{data.maxAmountBuyLimit | formatMoneyShort}}元</i></em>
+                </span>
+
+                <!--限制了单笔和单日-->
+                <span ng-if="data.prodInfo.p_single_purchase_max_amount > 0 && data.prodInfo.p_day_purchase_max_amount > 0">
+                    每人单笔限购<i class="p-c-lorange">{{data.prodInfo.p_single_purchase_max_amount | formatMoneyShort}}元</i>，每日限购<i class="p-c-lorange">{{data.prodInfo.p_day_purchase_max_amount | formatMoneyShort}}元</i>
+                    <em ng-if="data.buyLimit && data.maxAmountBuyLimit">，本次最多可购买<i class="p-c-lorange">{{data.maxAmountBuyLimit | formatMoneyShort}}元</i></em>
+                </span>
+            </p>
+
+
+            <div class="cy-wrap-a" ng-click="func.onSelectPayWay()">
+                <span class="t-l">付款账户</span>
+                <p class="t-m" ng-if="func.isCurrentPlus()">
+                    <img class="hq_icon" src="../img/slice/hq@3x.png">
+                </p>
+                <p class="t-m" ng-if="func.isWeBankAccount()">
+                    <img class="hq_ib" src="../img/bankHead/yh-0@2x.png">微众卡{{data.mainCard.number | abridgeAccountNumber}}
+                </p>
+                <p class="t-m" ng-if="func.isOtherBank()">
+                    {{data.AccountData.otherBankAccount.cardInfo.bankName + ' ' }}
+                    {{data.AccountData.otherBankAccount.cardInfo.cardType}}
+                    {{data.AccountData.otherBankAccount.cardInfo.cardNo | abridgeAccountNumber}}
+                </p>
+                <i class="k"></i>
+            </div>
+            <p class="cy-tip" ng-if="data.showNeedBindCard">请绑定一张银行卡</p>
+
+            <div class="cy-wrap" style="margin-top:20px;" ng-if="data.isAddrNeeded">电子邮箱
+                <div class="po">
+                    <input type="email" placeholder="接收电子保单" ng-model="data.email" ng-focus="focusEmail()" ng-blur="blurEmail()" class="it">
+                </div>
+            </div>
+            <p class="cy-tip" ng-if="data.showEmailTips && data.isAddrNeeded">请输入合法的邮箱地址</p>
+
+            <div class="ui-address-wrap mgt20 px" ng-if="data.isAddrNeeded">
+                <p class="title px-a">详细地址</p>
+                <ul class="city-list flex">
+                    <li ng-click="func.onClickSelectProvince()" class="item"><span>{{data.province}}</span><i></i></li>
+                    <li ng-click="func.onClickSelectCity()" ng-if="data.city != ''" class="item"><span>{{data.city}}</span><i></i></li>
+                    <li ng-click="func.onClickSelectDistrict()" class="item"><span>{{data.district}}</span><i></i></li>
+                </ul>
+                <div class="msg px-b"><textarea placeholder="请填写街道地址" ng-model="data.addressDetail" ng-focus="func.focusAddress()" ng-blur="func.blurAddress()"></textarea></div>
+            </div>
+            <p class="cy-tip" ng-if="data.showAddressTips && data.isAddrNeeded">地址过短或者不包含汉字，请填写详细的地址</p>
+
+            <div class="mt-b">
+                <user-agreement
+                        agreement-code = "data.agreementCode"
+                        agreement-desc ="data.agreementDesc"
+                        is-agreed="data.isAgreed"
+                        on-click-agree-checkbox="func.onClickAgreeCheckbox">
+                </user-agreement>
+            </div>
+
+            <dl class="sm-k" style="padding-top:10px;">
+                <dt>说明</dt>
+                <dd>现在购买，{{data.incomeGenDate}}开始产生收益，{{data.incomeViewDate}}可查看首笔收益</dd>
+            </dl>
+
+            <p class="cy-wd">
+                <span class="l"><a ng-click="func.onClickRuleDetail()" >查看详细交易规则</a></span>
+            </p>
+
+            <div class="btn-wrap pd20">
+                <button class="{{data.ButtonClass}}" ng-click="func.onClickPurchase()">立即购买</button>
+            </div>
+
+            <div style="height: 300px" ng-if="data.addHigh"></div>
+        </ion-content>
+
+        <account-selector
+                input-amount="data.amount"
+                account-data="data.AccountData"
+                show="data.showAccountSelector"
+                hide="hideAccountSelector"
+                bind-card="func.bindCard"
+                on-account-selected="func.onAccountSelected"
+        >
+        </account-selector>
+
+        <div pwd-input
+             ng-model="data.vm.formData.confirmPassword"
+             is-pwd-show="data.isPwdShow"
+             sig-on-pwd-commit="data.sigOnPwdCommit"
+             pwd-sub-title="data.pwdSubTitle"
+             pwd-trans-desc="data.pwdTransDesc"
+             pay-way-desc="data.payWayDesc"
+             on-click-change-pay-way="func.onSelectPayWay"
+        >
+        </div>
+
+        <div pop-confirm out-value = "data.outValue"></div>
+
+        <loading show-loading="data.showLoading"></loading>
+
+
+        <common-select
+                list-items="data.provinceList"
+                header-text="data.provinceHeaderText"
+                callback="onSelectProvince"
+                show-select="showProvinceSelect"
+                set-selected="setProvinceSelected">
+        </common-select>
+
+        <common-select
+                list-items="data.cityList"
+                header-text="data.cityHeaderText"
+                callback="onSelectCity"
+                show-select="showCitySelect"
+                set-selected="setCitySelected">
+        </common-select>
+
+        <common-select
+                list-items="data.districtList"
+                header-text="data.districtHeaderText"
+                callback="onSelectDistrict"
+                show-select="showDistrictSelect"
+                set-selected="setDistrictSelected">
+        </common-select>
+
+        <common-select
+                list-items="data.regionList"
+                callback="onSelectRegion"
+                show-select="showRegion"
+                set-selected="setRegionSelected">
+        </common-select>
+
+        <!--div class="pop-bg-hj" ng-if="data.showRedeem">
+            <div class="pop bg-b">
+                <header class="hd">请选择到期资金安排<i class="close" ng-click="onClickDstClose()"></i></header>
+                <ul class="card" style="padding-bottom:5px;">
+                    <li ng-click="onClickRedeemLi('02')" ng-class="onClassRedeemLi('02')">
+                        <p class="cd-name">赎回到<img style="width: 51px;height: 20px;margin: 0 0 0 4px;vertical-align: bottom;" src="../img/slice/hq@3x.png"></p>
+                        <p class="yv" style="padding-right:30px;">到期后，本金及收益自动转入到活期+，享受活期+收益，使用时可随时转出（下一工作日24:00前到账）</p>
+                    </li>
+                    <li ng-click="onClickRedeemLi('01')" ng-class="onClassRedeemLi('01')">
+                        <p class="cd-name">赎回到<img style="width: 25px;height: 25px;margin: 0 0 -5px 0;" src="../img/bankHead/yh-0@2x.png">微众卡</p>
+                        <p class="yv" style="padding-right:30px;">到期后，本金及收益自动转入到微众卡，可马上用于投资其他理财产品（下一工作日24:00前到账）</p>
+                    </li>
+
+                </ul>
+            </div>
+        </div-->
+        <!--<div slider-up-part-redeem option="data.partRedeemOption"></div>-->
+        <!--<div slider-up-confirm slider-up-confirm-option="data.sliderUpConfirmOption"></div>-->
+
+    </div>
+</ion-view>

@@ -1,0 +1,28 @@
+<ion-view>
+    <div class="trf bnf p-c-blue">
+        <ion-header-bar>
+            <div class="menu-ba">
+                <header class="menu">
+                    <button class="menu-return" ng-click="back()"></button>福利中心</header>
+            </div>
+        </ion-header-bar>
+        <ion-content has-bouncing="true" class="has-header">
+            <section class="benecenter">
+                <ul class="formlike formlike-ls mgt20">
+                    <li class="flex p-bgc-fff px" ng-click="onClickGoToApply()">
+                        <div class="item left">兑换福利</div>
+                        <div class="item right aright p-c-lgray allow-enter">神秘福利，切莫错过</div>
+                    </li>
+                    <li class="flex p-bgc-fff px mgt20" ng-click="onClickGoToRecord()">
+                        <div class="item left">福利记录</div>
+                        <div class="item right aright p-c-lgray allow-enter">
+                            <span ng-if="newRecordCount <= 0">已获得的福利</span>
+                            <i class="tipsnum" ng-if="newRecordCount === 1"></i>
+                            <i class="tipsnum" ng-if="newRecordCount > 1" ng-bind="newRecordCount"></i>
+                        </div>
+                    </li>
+                </ul>
+            </section>
+        </ion-content>
+    </div>
+</ion-view>

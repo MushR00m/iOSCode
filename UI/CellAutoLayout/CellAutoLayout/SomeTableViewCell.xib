@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SomeTableViewCell"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="126" id="8xS-B8-Ccx" customClass="SomeTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="410" height="126"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8xS-B8-Ccx" id="2Fk-lM-Ywf">
+                <rect key="frame" x="0.0" y="0.0" width="410" height="126"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9h9-yr-cP1">
+                        <rect key="frame" x="23" y="23" width="364" height="79"/>
+                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda. 那么这使得对于不同宽度的table view，我们都可以基于其宽度而得到cell的正确高度。 但是，我们不需要在-[tableView:cellForRowAtIndexPath]方法中做相同的处理，  因为，cell被用到table view中时，这是自动完成的。 也要注意，一些情况下，cell的最终宽度可能不等于table view的宽度  例如当table view的右边显示了section index的时候，必须要减去这个</string>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottomMargin" secondItem="9h9-yr-cP1" secondAttribute="bottom" constant="15" id="HvB-y4-2PC"/>
+                    <constraint firstItem="9h9-yr-cP1" firstAttribute="top" secondItem="2Fk-lM-Ywf" secondAttribute="topMargin" constant="15" id="Iet-X1-dgn"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="9h9-yr-cP1" secondAttribute="trailing" constant="15" id="XHP-md-hMM"/>
+                    <constraint firstItem="9h9-yr-cP1" firstAttribute="leading" secondItem="2Fk-lM-Ywf" secondAttribute="leadingMargin" constant="15" id="YWh-mH-Jvi"/>
+                </constraints>
+            </tableViewCellContentView>
+            <point key="canvasLocation" x="537" y="319"/>
+        </tableViewCell>
+    </objects>
+</document>

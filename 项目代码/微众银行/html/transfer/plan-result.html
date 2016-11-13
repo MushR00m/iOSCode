@@ -1,0 +1,52 @@
+<ion-view>
+    <div class="trf trfr">
+        <ion-header-bar>
+            <div class="menu-ba">
+                <header class="menu"><span class="menu-wd" ></span>{{data.planDesc}}<span class="menu-wd" ng-click="func.onClickFinish()" >完成</span></header>
+            </div>
+        </ion-header-bar>
+
+        <ion-content class="has-header" has-bouncing="false">
+            <h1 class="p-c-lorange mgt40">计划设定成功</h1>
+            <div class="white-box flex mgt20">
+                <span class="item card" ng-if="data.payType == 1">{{data.bankName}}<br>{{data.cardType}}{{data.cardNo|abridgeAccountNumber}}</span>
+                <span class="item plus" ng-if="data.payType == 2">
+                    <i class="cplus">活期+</i>
+                </span>
+                <span class="item card" ng-if="data.payType == 3">
+                    <i class="wcard">微众卡</i>
+                </span>
+                <span class="item toright">
+                    <span class="p-c-lorange num">{{data.amount}}元</span><br>
+                    <span class="p-c-gray">{{data.dateDesc}}</span>
+                </span>
+                    <span class="item card" ng-if="data.recvType == 1">{{data.bankName}}<br>{{data.cardType}}{{data.cardNo|abridgeAccountNumber}}</span>
+                <span class="item plus" ng-if="data.recvType == 2">
+                    <i class="cplus">活期+</i>
+                </span>
+                <span class="item card" ng-if="data.recvType == 3">
+                    <i class="wcard">微众卡</i>
+                </span>
+            </div>
+            <div class="date-list-wrap">
+                <ul class="date-list mgt20" ng-if="data.isRepeated">
+                    <li class="o"><i></i>{{data.today | formatDateWithoutYear}} 今天 计划设定成功</li>
+                    <li class="sx o"><i></i></li>
+                    <li><i></i>{{data.nextDate | formatDateWithoutYear}} 23:59前 执行第1期</li>
+                    <li class="sx"><i></i></li>
+                    <li><i></i>{{data.dateStrAfterNext}} 23:59前 执行第2期</li>
+                    <!-- <li class="sx do"><i></i></li> -->
+                </ul>
+                <ul class="date-list mgt20" ng-if="!data.isRepeated">
+                    <li class="o"><i></i>{{data.today | formatDateWithoutYear}} 今天 计划设定成功</li>
+                    <li class="sx"><i></i></li>
+                    <li><i></i>{{data.nextDate | formatDateWithoutYear}} 23:59前 执行</li>
+                </ul>
+            </div>
+            <div class="p-clear"></div>
+            <div class="tip-block p-c-lgray mgt20" ng-if="data.isRepeated">每期执行前可随时修改或删除该计划</div>
+            <div class="tip-block p-c-lgray mgt20" ng-if="!data.isRepeated">执行前可随时修改或删除该计划</div>
+            <!--<div class="has-btn-block mgt10 mgb30"><button class="p-btn p-btn-block" ng-click="func.onClickFinish()">完成</button></div>-->
+        </ion-content>
+    </div>
+</ion-view>

@@ -1,0 +1,21 @@
+<ion-view>
+	<div class="set">
+		<ion-header-bar>
+			<div class="menu-ba">
+				<header class="menu"><button class="menu-return" ng-click="back()"></button>转出限额</header>
+			</div>
+		</ion-header-bar>
+
+		<ion-content has-bouncing="true" class="has-header" >
+
+			<ul class="set-list mgt20">
+				<li ng-click="onClickLimitPerDay()" ng-class="onClassLimit()"><span class="a">单日转出限额</span><span class="b" ng-if="limitNum>=0">{{limitNum | number}}{{'万元'}}</span></li>
+
+			</ul>
+			<div class="lc">
+				<p class="cy-j ">转账额度最低0元，最高9,999万元</p>
+			</div>
+
+		</ion-content>
+	</div>
+</ion-view>

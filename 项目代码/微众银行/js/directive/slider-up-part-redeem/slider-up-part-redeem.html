@@ -1,0 +1,90 @@
+<script id="slider-up-part-redeem.html" type="text/ng-template">
+    <ion-view style="top:30%;bottom: 0;overflow: visible;" class="modal">
+        <ion-slide-box>
+            <!-- 到期设置-->
+            <ion-slide>
+                <section class="confirm-card confirm-card-redeem">
+                    <dl class="formlike redeem p-bgc-lgray" style="top:0;">
+                        <dt class="p-bgc-fff px"><span class="btn-clz" ng-click="onClickReturn()"></span>到期后设置</dt>
+
+                        <dd class="{{initPageAllRewnewClass}}"  ng-click="onClickRedeemType(11)">
+                            全部购买下一期
+                            <div class="func"><span class="p-radio"></span></div>
+                        </dd>
+
+                        <dd class="hint p-c-lgray" ng-if="!option.hasRollProd">到期后<span class="p-c-lorange">{{option.redeemAmount | number:2}}</span>元自动购买下一期，<span class="p-c-lorange">{{option.redeemIncome | number:2}}</span>元收益赎回至微众卡</dd>
+                        <dd class="hint p-c-lgray" ng-if="option.hasRollProd">到期后<span class="p-c-lorange">{{option.redeemAmount | number:2}}</span>元自动购买{{option.rollProdValueDate.substr(4, 4)}}期，<span class="p-c-lorange">{{option.redeemIncome | number:2}}</span>元收益赎回至微众卡；{{option.rollProdValueDate.substr(4, 4)}}期预期年化收益率<span class="p-c-lorange">{{option.rollProdIncomeRate | number:2}}%</span>，投资期限预估为<span class="p-c-lorange">{{option.rollProdLife}}</span>天</dd>
+
+                        <dd class="{{initPageAllRedeemClass}}" ng-click="onClickRedeemType(100)">
+                            全部赎回
+                            <div class="func"><span class="p-radio"></span></div>
+                        </dd>
+                        <dd class="flex p-bgc-fff px twin p-c-lgray"  ng-click="onClickRedeemType(10)">
+                            <span ng-if="settingPageRedeemType * 1 == 1">赎回至 微众卡</span>
+                            <span ng-if="settingPageRedeemType * 1 == 2">赎回至 <i class="cplus mgl5"></i></span>
+                            <div class="func"><span class="allow-enter">　</span></div>
+                        </dd>
+
+                        <dd class="hint p-c-lgray">到期后本金<span class="p-c-lorange">{{option.redeemAmount | number:2}}</span>元及其收益全部赎回</dd>
+
+                        <dd class="{{initPageAllPartRedeemClass}}"  ng-click="onClickRedeemType(102)" ng-if="option.showPartRedeem"> <!-- 勾选为checked，展开下栏说明文字为open -->
+                            部分赎回，剩余购买下一期
+                            <div class="func"><span class="p-radio"></span></div>
+                        </dd>
+
+                        <dd class="flex p-bgc-fff px twin p-c-lgray"  ng-click="onClickRedeemType(12)"  ng-if="option.showPartRedeem">
+                            <p ng-if="settingPagePartRedeemType * 1 == 2">{{settingPageRedeemAmount | number:2}}元赎回至<i class="cplus mgl5"></i></p>
+                            <p ng-if="settingPagePartRedeemType * 1 == 1">{{settingPageRedeemAmount | number:2}}元赎回至微众卡</p>
+                            <p>剩余{{settingPageRewnewAmount}}元自动购买下一期</p>
+
+                            <div class="func"><span class="allow-enter">　</span></div>
+                        </dd>
+
+                        <dd class="hint p-c-lgray" ng-if="lastSelected != 12 && option.showPartRedeem">到期后部分本金及其收益赎回，剩余部分本金自动购买下一期、收益以分红发放</dd>
+
+                    </dl>
+                </section>
+            </ion-slide>
+
+            <!--部分赎回-->
+            <ion-slide>
+                <section class="confirm-card confirm-card-redeem">
+                    <dl class="formlike redeem p-bgc-lgray" style="top: 0;">
+                        <dt class="p-bgc-fff px"><span class="btn-bak" ng-click="onClickReturn()"></span>部分赎回 部分自动购买<span class="{{saveButtonClass}}" ng-click="onClickSavePartRedeem()" >保存</span></dt>
+                        <dd class="flex p-bgc-fff px mgt10" ng-click="onClickPartRedeemType()">
+                            <div class="item left">赎回至</div>
+                            <div class="item right allow-enter" ng-if="partRedeemLastSelected * 1 == '01'">微众卡</div>
+                            <div class="item right allow-enter" ng-if="partRedeemLastSelected * 1 == '02'"><i class="cplus mgl5"></i></div>
+                        </dd>
+                        <dd class="flex p-bgc-fff px mgt10">
+                            <div class="item left">金额</div>
+                            <div class="item right" ng-if="showInput">
+                                <keyboard-input type="number" hjtype = "je"  class="it"  placeholder="最低赎回{{minRedeemAmount | number:2}}元"   hj-model="data.partRedeemAmount"  hj-blur="onChangeInput()" hj-reflash-keyboard="data.hjReflashKeyboard"></keyboard-input>
+                            </div>
+                            <div class="p-tip-form" ng-if="partRedeemErrorStr">{{partRedeemErrorStr}}</div>
+                        </dd>
+                        <dd ng-if="partRedeemTipsStr" class="hint p-c-lgray" ng-bind-html="partRedeemTipsStr | toTrusted"></dd>
+                    </dl>
+                </section>
+            </ion-slide>
+
+            <!--赎回选择-->
+            <ion-slide>
+                <section class="confirm-card confirm-card-redeem">
+                    <dl class="formlike redeem p-bgc-lgray" style="top: 0;">
+                        <dt class="p-bgc-fff px"><span class="btn-bak"  ng-click="onClickReturn()"></span>{{selectPageHead}}</dt>
+                        <dd class="{{selectPageWebankClass}}"  ng-click="onClickSelectRedeemType('01')">
+                            微众卡
+                            <div class="func"><span class="p-radio"></span></div>
+                        </dd>
+                        <dd class="{{selectPageHJClass}}"  ng-click="onClickSelectRedeemType('02')">
+                            <i class="cplus">活期+</i>
+                            <div class="func"><span class="p-radio"></span></div>
+                        </dd>
+                    </dl>
+                </section>
+            </ion-slide>
+
+        </ion-slide-box>
+    </ion-view>
+</script>

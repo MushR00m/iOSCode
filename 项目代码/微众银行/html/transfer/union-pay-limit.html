@@ -1,0 +1,36 @@
+<ion-view>
+    <div class="bx">
+        <ion-header-bar>
+            <div class="menu-ba">
+                <header class="menu"><button class="menu-return" ng-click="func.back()"></button>银联支付转账限额</header>
+            </div>
+        </ion-header-bar>
+        <ion-content class="has-header" has-bouncing="false" scrollbar-y="false" >
+            <div class="hs-wrap">
+                <ul class="hs-list tj kj">
+                    <li class="flex title">
+                        <span class="item">银行</span>
+                        <span class="item">单笔限额(元)</span>
+                        <span class="item">日累计限额(元)</span>
+                    </li>
+                </ul>
+            </div>
+        </ion-content>
+        <ion-content has-bouncing="false" delegate-handle="myContent" style="top: 91px;">
+            <div class="hs-wrap">
+                <div  ng-repeat="limitItem in data.limitList">
+                    <p ng-if="$index > 0" style="font-size:12px;padding:1px 0 1px 25px;color:#acb2c1;background-color:#f7f7f7;">{{item.iYear}}</p>
+                    <div>
+                        <ul class="hs-list tj kj">
+                            <li class="flex">
+                                <span class="item">{{limitItem.bank}}</span>
+                                <span class="item">{{limitItem.transLimit}}</span>
+                                <span class="item">{{limitItem.dayLimit}}</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </ion-content>
+    </div>
+</ion-view>

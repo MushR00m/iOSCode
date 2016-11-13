@@ -1,0 +1,47 @@
+<ion-view>
+    <ion-header-bar>
+        <div class="mod-menu">
+            <header class="mod-menu"><button class="mod-menu-return" ng-click="back()"></button>立即转入</header>
+        </div>
+    </ion-header-bar>
+
+    <ion-content class="has-header" has-bouncing="false">
+        <div class="mod-block-item" ng-click="">
+            <div class="title">买入克数</div>
+            <div class="content">
+                <keyboard-input class="content s-fz15" type="number" hjtype = "je" accuracy="4" placeholder="{{data.prodInfo.min_buy_weight}}克起购，{{data.prodInfo.incr_buy_weight}}克递增" hj-model="data.amount"  hj-blur="blurInput()" hj-focus="focusInput()" hj-change="changeInput()"></keyboard-input>
+            </div>
+
+        </div>
+
+        <p class="mod-warning" ng-if="data.showInputAmountTips">{{data.inputAmountTipsContent}}</p>
+
+        <div>
+            <p class="ui-below-tip">仅支持从<span class="s-orange">活期金</span>转入，活期金余额：<span class="s-orange">{{data.myData.available_vol | formatGoldString}}克</span></p>
+        </div>
+
+        <p class="mod-tip">
+            <user-agreement
+                    agreement-code = "data.agreementCode"
+                    agreement-desc ="data.agreementDesc"
+                    is-agreed="data.isAgreed"
+                    on-click-agree-checkbox="data.onClickAgreeCheckbox">
+            </user-agreement>
+        </p>
+
+        <button class="{{data.ButtonClass}}" ng-click="onClickPurchase()">确认买入</button>
+
+    </ion-content>
+
+    <div pwd-input
+         ng-model="vm.formData.confirmPassword"
+         is-pwd-show="data.isPwdShow"
+         sig-on-pwd-commit="data.sigOnPwdCommit"
+         pwd-sub-title="data.pwdSubTitle"
+         pwd-trans-desc="data.pwdTransDesc"
+         pay-way-desc="data.payWayDesc"
+         on-click-change-pay-way="onSelectPayWay"
+            >
+    </div>
+
+</ion-view>

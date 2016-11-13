@@ -1,0 +1,42 @@
+<ion-view style="background-color: #fff;">
+    <ion-header-bar>
+        <div class="mod-menu">
+            <header class="mod-menu">
+                <!--<button class="mod-menu-return"></button>-->
+                交易结果
+                <span class="mod-menu-finish" ng-click="onClickOK()">完成</span>
+            </header>
+        </div>
+    </ion-header-bar>
+
+    <ion-content class="has-header" has-bouncing="false">
+        <div class="mod-result-hd ui-px-a">
+            <span class="ok" ng-if="data.status == 1">卖出成功</span>
+
+            <span class="ok" ng-if="data.status == 2">卖出申请已受理</span>
+            <p ng-if="data.status == 2">需要确认卖出结果，可在首页查看进展</p>
+
+            <span class="fall" ng-if="data.status == 3">卖出失败</span>
+            <ol ng-if="data.status == 3">
+                <li>失败原因：{{data.transInfo.result.retMsg}}</li>
+            </ol>
+        </div>
+
+        <div class="mod-result-con">
+            <p class="title">详情</p>
+
+            <ul class="info-list">
+                <li class="ui-flex"><span class="item info-name">产品名称</span><span class="lg-item s-tar">微众金-活期金</span></li>
+                <li class="ui-flex" ng-if="data.status == 1 && data.transInfo.result.retData.real_price"><span class="item info-name">卖出价格</span><span class="lg-item s-tar">{{data.transInfo.result.retData.real_price | formatMoneyStringV2}}元/克</span></li>
+                <li class="ui-flex" ng-if="data.status == 1 && data.transInfo.result.retData.real_weight"><span class="item info-name">卖出克数</span><span class="lg-item s-tar">{{data.transInfo.result.retData.real_weight | formatGoldString}}克</span></li>
+                <li class="ui-flex" ng-if="data.status == 1 && data.transInfo.result.retData.real_amount"><span class="item info-name">卖出金额</span><span class="lg-item s-tar">{{data.transInfo.result.retData.real_amount | formatMoneyStringV2}}元</span></li>
+                <li class="ui-flex" ng-if="data.status != 1"><span class="item info-name">卖出克数</span><span class="lg-item s-tar">{{data.transInfo.request.application_weight | formatGoldString}}克</span></li>
+                <li class="ui-flex" ng-if="data.transInfo.request.deal_type == 3"><span class="item info-name">收款账户</span><span class="lg-item s-tar"><i class="ui-hqj-icon"></i></span></li>
+                <li class="ui-flex" ng-if="data.transInfo.request.deal_type == 1"><span class="item info-name">收款账户</span><span class="lg-item s-tar">微众卡</span></li>
+                <li class="ui-flex"><span class="item info-name">交易时间</span><span class="lg-item s-tar">{{data.today | formatDateObjToString}} {{data.today | formatDateObjToTimeString}}</span></li>
+            </ul>
+
+            <button class="mod-button-normal" ng-if="data.showButton" ng-click="onClickRequest()">转为挂单卖出</button>
+        </div>
+    </ion-content>
+</ion-view>

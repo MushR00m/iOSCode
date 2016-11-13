@@ -1,0 +1,21 @@
+<li class="px-b" >
+    <div class="act-bg">
+        <div class="v-l">
+            <div ng-if="prodInfo.beforeTime" class="limit-wd"></div>
+
+            <p ng-if="!prodInfo.beforeTime" ng-class="prodInfo.incomeClass"><span>{{prodInfo.earningsRate.split('.')[0]}}<i>.{{prodInfo.earningsRate.split('.')[1]}}%</i></span></p>
+            <p ng-if="!prodInfo.beforeTime" class="s-b">{{prodInfo.earningsDesc}}</p>
+        </div>
+        <div class="v-r">
+            <p class="s-a">{{prodInfo.titleTag}} {{prodInfo.productDesc}}</p>
+            <p class="s-b">{{prodInfo.productName}}</p>
+            <ol class="label-list" ng-if="prodInfo.renderTag" ng-bind-html="prodInfo.renderTag | toTrusted">
+            </ol>
+        </div>
+    </div>
+    <!-- 灰化加off-->
+    <div ng-if="prodInfo.sealDetail" class="{{prodInfo.sealClass}}" ng-bind-html="prodInfo.sealDetail | toTrusted">
+    </div>
+    <!-- <div ng-if="prodInfo.tipsClass == 'ly' || prodInfo.tipsClass == 'ly off'" ng-class="prodInfo.tipsClass"><span>{{prodInfo.saleDateDesc}}<br>{{prodInfo.saleStatusDesc}}</span></div>
+    <div ng-if="prodInfo.tipsClass == 'ly three-word' || prodInfo.tipsClass == 'ly three-word off'" ng-class="prodInfo.tipsClass"><span>{{prodInfo.saleStatusDesc}}</span></div> -->
+</li>

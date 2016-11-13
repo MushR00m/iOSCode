@@ -1,0 +1,103 @@
+<ion-view>
+    <div class="lc">
+        <ion-header-bar>
+            <div class="menu-ba">
+                <header class="menu"><button class="menu-return" ng-click="back()"></button>{{data.prodInfo.prod_name}}</header>
+            </div>
+        </ion-header-bar>
+
+        <ion-content class="has-header" has-bouncing="false">
+            <div class="mod-income">
+                <p class="msg ui-msg-lr-line">
+                    <span>
+                        <em ng-if="data.showWeight">总资产(克)</em>
+                        <em ng-if="!data.showWeight">总资产(元)</em>
+                        <i class="ui-icon-info" ng-click="onClickTotalWealth()"></i>
+                    </span>
+                </p>
+
+                <p class="num" >
+                    <span id="gold" class="{{data.weightClass}}">{{data.GoldAmountWeight | formatGoldString}}</span>
+                    <span id="money" class="{{data.amountClass}}">{{data.GoldAmount | formatMoneyStringV2}}</span>
+                </p>
+
+                <p class="msg" ng-if="data.showWeight" ng-click="onClickShowMoney()">按人民币计算<i class="ui-icon-transform"></i></p>
+                <p class="msg" ng-if="!data.showWeight" ng-click="onClickShowGold()">按黄金计算<i class="ui-icon-transform"></i></p>
+
+                <ul class="ui-flex tab">
+                    <li class="item ui-px-r">
+                        <h2 ng-if="data.myData.last_income_date && data.showYesterday">昨日收益(克)</h2>
+                        <h2 ng-if="data.myData.last_income_date && !data.showYesterday">{{data.myData.last_income_date | formatDateToCNWithoutYear}}收益(克)</h2>
+                        <p ng-if="data.myData.last_income">{{data.myData.last_income | formatGoldString}}</p>
+
+                        <h2 ng-if="!data.myData.last_income_date">昨日收益(克)</h2>
+                        <p ng-if="!data.myData.last_income">0.0000</p>
+                    </li>
+                    <li class="item">
+                        <h2>累计收益(克)<i class="ui-icon-info" ></i></h2>
+                        <p ng-if="data.myData.total_income">{{data.myData.total_income | formatGoldString}}</p>
+                        <p ng-if="!data.myData.total_income">0.0000</p>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="mod-table s-mt20 ui-px">
+                <h2 class="s-pt15 s-pb15 ui-px-a">本期({{data.transDayStr.substr(4, 4)}})</h2>
+                <div class="mod-progress-bar">
+                    <div class="ui-flex flex-box">
+                        <div class="flex-item node node-a light">
+                            <span>转入成功</span>
+                            <i></i>
+                            <span>{{data.transDayStr.substr(4, 2)}}-{{data.transDayStr.substr(6, 2)}}</span>
+                        </div>
+                        <div class="flex-item node node-c">
+                            <span>起息</span>
+                            <i></i>
+                            <span>{{data.valueDayStr.substr(4, 2)}}-{{data.valueDayStr.substr(6, 2)}}</span>
+                        </div>
+                        <div class="flex-item node node-c">
+                            <span>到期</span>
+                            <i></i>
+                            <span>08-06</span>
+                        </div>
+                        <div class="flex-item node node-d">
+                            <span>到账</span>
+                            <i></i>
+                            <span>08-12</span>
+                        </div>
+                    </div>
+                    <div class="pro-wrap pro-bg"></div>
+                </div>
+                <p class="s-fz12 s-lgray s-pb15">到期按持有克数全部转出至活期金</p>
+            </div>
+
+            <gold-price></gold-price>
+
+            <dl class="mod-table s-mt20 ui-px" ng-click="onClickProductDetail()">
+                <dt>产品详情</dt>
+            </dl>
+
+        </ion-content>
+
+        <ion-footer-bar class="bar bar-footer">
+            <div class="mod-button-bottom flex">
+                <button class="item" ng-click="onClickSale()">提前转出</button>
+                <button class="item" ng-click="onClickBuy()">继续转入</button>
+            </div>
+        </ion-footer-bar>
+
+        <div slider-up-confirm slider-up-confirm-option="data.sliderUpConfirmOption"></div>
+
+        <!--遮罩层start-->
+        <div ng-class="data.maskClass">
+            <h2>{{data.maskTitle}}</h2>
+            <p>{{data.maskDetail}}</p>
+            <div class="funcs"><button class="p-btn p-btn-outline p-btn-block" ng-click="onClickCancelMask()">知道了</button></div>
+        </div>
+        <!--遮罩层end-->
+
+    </div>
+</ion-view>
+
+<risk-assessment option="data.riskOption"></risk-assessment>
+

@@ -1,0 +1,57 @@
+<ion-view>
+
+    <ion-header-bar>
+        <div class="mod-menu">
+            <header class="mod-menu"><button class="mod-menu-return"  ng-click="back()"></button>{{headStr}}</header>
+        </div>
+    </ion-header-bar>
+
+        <ion-content class="has-header" has-bouncing="true" >
+            <!--头部 板块-->
+            <div class="intro-content hot-investment" ng-if="isPlates">
+                <h1 class="s-fz16 s-mb6">{{renderData.title}}<span class="s-fz10 hot">hot</span></h1>
+                <p class="s-fz14 s-lh18  s-lgray">{{renderData.descMore}}</p>
+            </div>
+
+            <!--头部 明星-->
+            <div class="intro-content manager-star" ng-if="isStar">
+                <div class="ui-user-info">
+                    <div class="ui-user-photo s-mr8"><img ng-src="{{renderData.icon}}" ></div>
+                    <span class="s-fz16">{{renderData.name}}</span>
+                    <i class="s-ml5 ui-icon-medal"></i>
+                </div>
+                <p class="s-fz14 s-lh18 s-lgray">{{renderData.descMore}}</p>
+            </div>
+
+            <!--列表-->
+            <div class="hot-investment mod-product-list  ui-px-a s-mb20">
+                <div ng-class="{'item':!$index,'item ui-px-b':$index}" ng-repeat="info in renderData.showList track by $index" ng-bind-html="info.htmlStr | toTrusted" ng-click="onClickProduct(info,isPlates)"></div>
+            </div>
+
+            <!--<div class="hot-investment mod-product-list  ui-px s-mt20">-->
+                <!--<div class="item">-->
+                    <!--<div class="left">-->
+                        <!--<p class="number s-fz24">21.90<span class="s-fz12">%</span></p>-->
+                        <!--<p class="tip">近一年涨幅</p>-->
+                    <!--</div>-->
+                    <!--<div class="right">-->
+                        <!--<h1>汇添富环保行业</h1>-->
+                        <!--<p><span class="ui-px-r s-pr8">费率1折</span><span class="s-pl8">领跑3年</span></p>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<div class="item ui-px-b">-->
+                    <!--<div class="left">-->
+                        <!--<p class="number s-fz24">21.90<span class="s-fz12">%</span></p>-->
+                        <!--<p class="tip">近一年涨幅</p>-->
+                    <!--</div>-->
+                    <!--<div class="right">-->
+                        <!--<h1>博时裕益混合</h1>-->
+                        <!--<p><span class="ui-px-r s-pr8">费率1折</span><span class="s-pl8">领跑3年</span></p>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+
+        </ion-content>
+
+
+</ion-view>

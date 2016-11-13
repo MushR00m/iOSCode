@@ -1,0 +1,29 @@
+<div class="set">
+    <ion-header-bar>
+        <div class="menu-ba">
+            <header class="menu"><button class="menu-return" ng-click="back()"></button>版本管理</header>
+        </div>
+    </ion-header-bar>
+    <ion-content class="has-header" has-bouncing="true">
+        <div class="ot-box" ng-click="onClickWeBank()">微众银行{{nativeVersion}}({{H5Version}})</div>
+        <div style="text-align: center;" ng-if="isInternalVersion">{{internalVersionDesc}}</div>
+
+        <ul class="set-list mgt20" >
+            <li ng-click="onClickScore()" ng-if="showScore"><span class="a">去评分</span></li>
+            <!--todo 注释掉欢迎页-->
+            <!--<li ng-click="onClickWelcome()"><span class="a">欢迎页</span></li>-->
+            <li ng-click="onClickWelcome2()"><span class="a">欢迎页</span></li>
+            <li ng-click="onClickAdvice()" ng-if="showAdvice"><span class="a">反馈建议</span></li>
+            <!--<li ng-click="onClickIntroduce()" ><span class="a">微众介绍</span></li>-->
+            <!--<li ng-click="onClickCheckUpdate()" ng-if="showCheckUpdate" ng-class="data.itemClass"><span class="a">{{data.updateTip}}</span></li>-->
+            <!--<li ng-click="onClickAdvice()" ng-if="showAdvice" class="px-b"><span class="a">欢迎页</span></li>-->
+            <li ng-click="onClickCheckUpdate()" ng-if="showCheckUpdate" ng-class="data.itemClass"><span class="a">版本更新</span><span class="b">{{data.updateTip}}</span><span ng-if="showNew" class="c">NEW</span></li>
+
+        </ul>
+
+        <div ng-repeat="info in data.traceLog">
+            <span style="font-size:10px">{{info}}</span>
+        </div>
+    </ion-content>
+    <p class="ot-t"><span class="p-c-bblue" ng-click="onClickAgreement()">微众银行服务协议</span><br><span class="ot-t-b">Copyright © 2014-2016 WeBank. All Rights Reserved.<span ng-if = "showYingYongBaoAD"><br>微众银行官方发布渠道：应用宝 http://myapp.com</span></span></p>
+</div>

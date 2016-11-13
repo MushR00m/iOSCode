@@ -1,0 +1,33 @@
+<ion-view>
+    <ion-header-bar>
+        <div class="mod-menu">
+            <header class="mod-menu">
+                <span class="mod-menu-left" ng-click="back()">取消</span>
+                选择实体店
+                <!--<span class="mod-menu-finish">完成</span>-->
+            </header>
+        </div>
+    </ion-header-bar>
+
+    <ion-content class="has-header" has-bouncing="false">
+        <div class="mod-block-item s-mt0" ng-click="onClickSelectCity()">
+            <i class="ui-icon-location"></i>
+            <p class="content s-pl5">{{data.city}}</p>
+            <span class="s-blue">更多</span>
+        </div>
+
+        <div class="mod-form s-mt20" ng-if="data.cityArray && data.cityArray.length>0">
+            <div class="item ui-px-b" ng-repeat="item in data.cityArray" ng-click="selectLocation(item)">
+                <div class="s-lh24">
+                    <p>{{item.n}}</p>
+                    <p class="s-lgray s-fz14">地址：{{item.d}}</p>
+                    <p class="s-lgray s-fz14">电话：{{item.m}}</p>
+                </div>
+                <i class="ui-icon-right" ng-if="data.selectLocation == item.n"></i>
+            </div>
+        </div>
+    </ion-content>
+
+    <hj-common-picker show-common-picker="showCommonPicker"></hj-common-picker>
+
+</ion-view>

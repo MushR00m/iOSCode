@@ -1,0 +1,16 @@
+<ion-view style="z-index: 9;">
+    <div class="fc">
+        <ion-header-bar>
+            <div class="menu-ba">
+                <header class="menu"><span class="menu-wd"></span>开户<span class="menu-wd" ng-click="func.back()">完成</span></header>
+            </div>
+        </ion-header-bar>
+
+        <ion-content class="has-header" has-bouncing="false">
+            <section class="icon-xl wait mgt70">
+                <h1></h1>
+                <p ng-repeat="message in data.messageList" class="mgt20">{{message}}</p>
+            </section>
+        </ion-content>
+    </div>
+</ion-view>

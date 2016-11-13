@@ -1,0 +1,41 @@
+<ion-view style="background-color: #fff;">
+    <ion-header-bar>
+        <div class="mod-menu">
+            <header class="mod-menu">
+                <!--<button class="mod-menu-return"></button>-->
+                交易结果
+                <span class="mod-menu-finish" ng-click="onClickOK()">完成</span>
+            </header>
+        </div>
+    </ion-header-bar>
+
+    <ion-content class="has-header" has-bouncing="false">
+        <div class="mod-result-hd ui-px-a">
+            <span class="ok" ng-if="data.status == 1">定投计划已删除</span>
+
+            <span class="ok" ng-if="data.status == 2">定投计划删除申请已受理</span>
+            <p ng-if="data.status == 2">需要确认结果，可在首页查看进展</p>
+
+            <span class="fall" ng-if="data.status == 3">定投计划删除失败</span>
+            <ol ng-if="data.status == 3">
+                <li>失败原因：{{data.transInfo.result.retMsg}}</li>
+            </ol>
+        </div>
+
+        <div class="mod-result-con">
+            <p class="title">详情</p>
+
+            <ul class="info-list">
+                <li class="ui-flex"><span class="item info-name">产品名称</span><span class="lg-item s-tar">微众金-活期金</span></li>
+                <li class="ui-flex" ng-if="data.transInfo.result.retData.applicationWeight"><span class="item info-name">买入克数</span><span class="lg-item s-tar">{{data.transInfo.result.retData.applicationWeight | formatGoldString}}克</span></li>
+                <li class="ui-flex" ng-if="data.transInfo.result.retData.applicationAmount"><span class="item info-name">买入金额</span><span class="lg-item s-tar">{{data.transInfo.result.retData.applicationAmount | formatMoneyStringV2}}克</span></li>
+                <li class="ui-flex" ng-if="data.transInfo.result.retData.freqType == '1'"><span class="item info-name">买入频率</span><span class="lg-item s-tar">每周一次</span></li>
+                <li class="ui-flex" ng-if="data.transInfo.result.retData.freqType == '2'"><span class="item info-name">买入频率</span><span class="lg-item s-tar">每月一次</span></li>
+                <li class="ui-flex" ng-if="data.transInfo.result.retData.freqType == '1'"><span class="item info-name">买入日期</span><span class="lg-item s-tar">每周{{data.transInfo.result.retData.freqNum}}</span></li>
+                <li class="ui-flex" ng-if="data.transInfo.result.retData.freqType == '2'"><span class="item info-name">买入日期</span><span class="lg-item s-tar">每月{{data.transInfo.result.retData.freqNum}}日</span></li>
+                <li class="ui-flex"><span class="item info-name">定投截止日期</span><span class="lg-item s-tar">{{data.transInfo.result.retData.endDate | formatYYYYMMDDString}}</span></li>
+                <li class="ui-flex"><span class="item info-name">交易时间</span><span class="lg-item s-tar">{{data.today | formatDateObjToString}} {{data.today | formatDateObjToTimeString}}</span></li>
+            </ul>
+        </div>
+    </ion-content>
+</ion-view>

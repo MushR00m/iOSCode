@@ -1,0 +1,45 @@
+<ion-view>
+    <div class="rg">
+        <ion-header-bar>
+            <div class="menu-ba">
+                <header class="menu">
+                    <span class="menu-wd" ng-click="back()">取消</span>
+                    转出限额
+                    <span class="menu-wd" ng-click="onClickSure()">确定</span>
+                </header>
+            </div>
+        </ion-header-bar>
+
+        <ion-content has-bouncing="true" class="has-header" >
+
+            <section class="wrap-a mgt20">
+                <div class="register-input-wrap">
+                    <div class="input-box">
+
+                        <div class="zsy">
+
+                            <keyboard-input type="text"
+                                            hjtype = "sfz"
+                                            class="w-input"
+                                            hj-model="data.limitPerDay"
+                                            hj-show-keyboard="func.showKeyboard"
+                                            hj-change="changeLimit()"  style="color:#acb2c1;"
+                                            maxlength="18">
+                            </keyboard-input>
+                        </div>
+                        <span class="info">万元</span>
+                    </div>
+
+                </div>
+                <p class="cy-tip" ng-if="data.isAmountTipShown">超出最大可设置限额</p>
+
+            </section>
+            <div class="lc">
+                <p class="cy-j ">同名绑定卡转入转出不受此限额的限制</p>
+                <p class="cy-j ">{{onTest()}}</p>
+                <p class="cy-j ">{{limitPerDay}}</p>
+            </div>
+
+        </ion-content>
+    </div>
+</ion-view>

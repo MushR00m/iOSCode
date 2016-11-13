@@ -1,0 +1,43 @@
+<ion-view>
+    <div class="trf p-c-blue p-bgc-fff">
+        <ion-header-bar>
+            <div class="menu-ba">
+                <header class="menu">
+                    撤销购买
+                </header>
+            </div>
+        </ion-header-bar>
+
+        <ion-content class="has-header" has-bouncing="false">
+            <section class="result-word pdt30 pdb20 p-bgc-lgray">
+                <h1 class="p-c-lorange" ng-if="isSuccess"><i class="res-succ"></i>撤销成功</h1>
+                <h1 class="" ng-if="!isSuccess"><i class="res-fail"></i>撤销失败</h1>
+                <p ng-if="isSuccess">{{amount}}元</p>
+                <p ng-if="isSuccess && returnType == 2">资金已退回到您的<i class="cplus">活期+</i>账户当中</p>
+                <p ng-if="isSuccess && returnType == 1">资金已退回到您的微众卡账户当中</p>
+                <!--<h1 ng-if="!isSuccess"><i class="res-fail"></i>撤销失败</h1>-->
+                <p ng-if="!isSuccess && errMsg">{{errMsg}}</p>
+            </section>
+            <section class="result-card">
+                <dl class="p-bgc-fff px-b pdb30">
+                    <dt class="px-a px-lt">详情</dt>
+                    <dd>
+                        <div class="date-list-wrap mg0">
+                            <ul class="date-list mgb30">
+                                <li class="do p-c-lgray"><i></i>{{beginStr}} 购买成功</li>
+                                <li class="sx o"><i></i></li>
+                                <li class="o"><i></i>{{endStr}}</li>
+                            </ul>
+                        </div>
+                        <div class="has-btn-block mgt30" ng-if="isSuccess && returnType == 2" ng-click="onClickButton(2)"><button class="p-btn p-btn-block">查看活期+账户</button></div>
+                        <div class="has-btn-block mgt30" ng-if="isSuccess && returnType == 1" ng-click="onClickButton(1)"><button class="p-btn p-btn-block">查看微众卡</button></div>
+                        <div class="has-btn-block mgt30" ng-if="!isSuccess" ng-click="onClickReturn()"><button class="p-btn p-btn-block">返 回</button></div>
+                        <div class="has-btn-block mgt10" ng-if="isSuccess" ng-click="onClickDone()"><button class="p-btn p-btn-block p-btn-outline p-btn-outline-bblue">完成</button></div>
+                    </dd>
+                </dl>
+            </section>
+
+        </ion-content>
+    </div>
+</ion-view>
+<style type="text/css">body{background-color:#fff;}</style>

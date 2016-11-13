@@ -1,0 +1,31 @@
+<ion-view>
+    <div class="register trf">
+        <ion-header-bar>
+            <div class="menu-ba">
+                <header class="menu">开户<span class="menu-wd" ng-click="func.onClickFinish()">关闭</span></header>
+            </div>
+        </ion-header-bar>
+
+        <ion-content class="has-header" has-bouncing="false">
+            <section class="icon-xl done mgt40">
+                <h1 class="p-c-lorange">账户登记成功，待激活</h1>
+                <p class="p-fz-16 mgt10">请绑定一张银行卡以激活账户</p>
+                <div class="has-btn-block mgt30"><button class="p-btn p-btn-block" ng-click="func.onClickBindNewCard()">绑定银行卡</button></div>
+                <p class="p-c-bblue mgt20" ng-if="false" ng-click="func.onClickViewCardList()">查看支持绑定的银行卡</p>
+            </section>
+            <div class="qr-extra-area qr-msg" ng-if="func.shouldShowAd()">
+                <img src="../img/qrcode/qr-banner.png" class="qr-extra-img">
+            </div>
+
+        </ion-content>
+
+        <!--遮罩层start-->
+        <div class="p-mask" ng-if="data.isMaskShown">
+            <h2>绑卡说明</h2>
+            <p>建议您绑定以下支持委托扣款的银行储蓄卡：<br>暂支持工行、农行、中行、建行、交行、中信、招行、广发、光大、平安、民生、兴业、华夏、浦发、邮储、上海银行。</p>
+            <div class="funcs"><button class="p-btn p-btn-outline p-btn-block" ng-click="func.onClickCancelMask()">知道了</button></div>
+        </div>
+        <!--遮罩层end-->
+
+    </div>
+</ion-view>

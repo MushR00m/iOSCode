@@ -1,0 +1,66 @@
+<ion-view>
+    <ion-header-bar>
+        <div class="mod-menu">
+            <header class="mod-menu">
+                <button class="mod-menu-return" ng-click="back()"></button>
+                提取实物金
+                <span class="mod-menu-finish" ng-if="data.obj.status == '01' || data.obj.status == '03' || data.obj.status == '04'" ng-click="onClickCancel()">撤销</span>
+            </header>
+        </div>
+    </ion-header-bar>
+
+    <ion-content class="has-header" has-bouncing="false">
+        <div class="mod-form" ng-click="">
+            <p class="s-orange s-fz12 s-pt15" ng-if="data.obj.status == '01' || data.obj.status == '03' || data.obj.status == '04'">申请待确认</p>
+            <p class="s-orange s-fz12 s-pt15" ng-if="data.obj.status == '05' || data.obj.status == '12' || data.obj.status == '13'">申请已确认，待到货通知</p>
+            <p class="s-orange s-fz12 s-pt15" ng-if="data.obj.status == '07'">实物金已到货，待领取</p>
+            <p class="s-orange s-fz12 s-pt15" ng-if="data.obj.status == '08'">实物金领取成功</p>
+            <p class="s-orange s-fz12 s-pt15" ng-if="data.obj.status == '11'">实物金领取撤销中</p>
+            <p class="s-orange s-fz12 s-pt15" ng-if="data.obj.status == '06' || data.obj.status == '14'">实物金领取申请失败，金额将退还到活期金账户</p>
+            <p class="s-pt2 s-mb15 s-fz24">{{data.obj.amounts | formatMoneyStringV2}}<span class="s-fz12">克</span></p>
+            <div class="item ui-px-b">
+                <p class="s-w105 s-lgray">提金编码</p>
+                <p class="content" ng-if="!data.obj.withdraw_code">待确认</p>
+                <p class="content" ng-if="data.obj.withdraw_code">{{data.obj.withdraw_code}}</p>
+            </div>
+            <div class="item ui-px-b" ng-if="extractType">
+                <p class="s-w105 s-lgray">提取规格</p>
+                <p class="content">{{extractType.gold_weight | formatMoneyStringV2}}克/份</p>
+            </div>
+            <div class="item ui-px-b">
+                <p class="s-w105 s-lgray">提取份数</p>
+                <p class="content">{{count}}份</p>
+            </div>
+            <div class="item ui-px-b">
+                <p class="s-w105 s-lgray">提取克数</p>
+                <p class="content">{{data.obj.amounts | formatMoneyStringV2}}克</p>
+            </div>
+            <div class="item ui-px-b">
+                <p class="s-w105 s-lgray">手续费</p>
+                <p class="content">{{data.obj.fee_amt | formatMoneyStringV2}}元</p>
+            </div>
+            <div class="item ui-px-b">
+                <p class="s-w105 s-lgray">网点地址</p>
+                <p class="content">{{data.obj.address}}</p>
+            </div>
+            <div class="item ui-px-b" ng-if="addressInfo">
+                <p class="s-w105 s-lgray">联系方式</p>
+                <p class="content">{{addressInfo.m}}</p>
+            </div>
+        </div>
+    </ion-content>
+
+    <div slider-up-confirm slider-up-confirm-option="data.sliderUpConfirmOption"></div>
+
+    <div pwd-input
+         ng-model="vm.formData.confirmPassword"
+         is-pwd-show="data.isPwdShow"
+         sig-on-pwd-commit="data.sigOnPwdCommit"
+         pwd-sub-title="data.pwdSubTitle"
+         pwd-trans-desc="data.pwdTransDesc"
+         pay-way-desc="data.payWayDesc"
+         on-click-change-pay-way="onSelectPayWay"
+            >
+    </div>
+
+</ion-view>

@@ -1,0 +1,37 @@
+<ion-view>
+    <div class="trf bnf p-c-blue p-bgc-fff">
+        <ion-header-bar>
+            <div class="menu-ba">
+                <header class="menu">
+                    <button class="menu-return" ng-click="back()"></button>兑换详情</header>
+            </div>
+        </ion-header-bar>
+        <ion-content has-bouncing="true" class="has-header">
+            <section class="result-word pdt30 pdb20 p-bgc-lgray">
+                <h1 class="p-c-lorange" ng-show="applyResult.ret === '1'"><i class="res-succ"></i>兑换成功</h1>
+                <h1 ng-show="applyResult.ret === '0'"><i class="res-fail"></i>兑换失败</h1>
+                <p ng-show="applyResult.ret === '0'" ng-bind-html="applyResult.msg"></p>
+            </section>
+            <section class="result-card">
+                <dl class="p-bgc-fff px-b pdb50">
+                    <dt class="px-a px-lt">详情</dt>
+                    <dd class="flex">
+                        <div class="item left">内容</div>
+                        <div class="item right" ng-bind="applyResult.content"></div>
+                    </dd>
+                    <dd class="flex">
+                        <div class="item left">使用方式</div>
+                        <div class="item right" ng-bind="applyResult.use_desc"></div>
+                    </dd>
+                    <dd class="flex">
+                        <div class="item left">兑换时间</div>
+                        <div class="item right" ng-bind="applyResult.use_time"></div>
+                    </dd>
+                    <dd class="has-btn-block">
+                        <button class="p-btn p-btn-block" ng-click="nextAction()" ng-bind="applyResult.button_text"></button>
+                    </dd>
+                </dl>
+            </section>
+        </ion-content>
+    </div>
+</ion-view>

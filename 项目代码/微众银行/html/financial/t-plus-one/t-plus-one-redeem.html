@@ -1,0 +1,68 @@
+<ion-view>
+    <div class="lc">
+        <ion-header-bar>
+            <div class="menu-ba">
+                <header class="menu"><button class="menu-return" ng-click="func.back()"></button>赎回</header>
+            </div>
+        </ion-header-bar>
+
+        <ion-content class="has-header" has-bouncing="false">
+            <p class="cy-wd">
+                <span class="l">赎回{{data.prodInfo.prod_name}}</span>
+            </p>
+
+            <div class="cy-wrap">赎回金额
+                <div class="po">
+                    <keyboard-input type="number"
+                                    hjtype = "je" class="it"
+                                    placeholder="{{data.maxRedeemDesc}}"
+                                    hj-model="data.amount"
+                                    hj-blur="func.blurInput()"
+                                    hj-focus="func.focusInput()">
+                    </keyboard-input>
+                </div>
+                <span class="all" ng-click="func.onClickRedeemAll()">全部赎回</span></div>
+            <p class="cy-tip" ng-if="data.showInputAmountTips">{{data.inputAmountTipsContent}}</p>
+
+            <div class="cy-wrap-a" ng-click="func.onSelectPayWay()" style="margin-top:20px;">
+                <span class="t-l">赎回至</span>
+                <p class="t-m" ng-if="func.isCurrentPlus()">
+                    <img class="hq_icon" src="../img/slice/hq@3x.png">
+                </p>
+                <p class="t-m" ng-if="func.isWeBankAccount()">
+                    <img class="hq_ib" src="../img/bankHead/yh-0@2x.png">微众卡
+                </p>
+                <i class="k"></i>
+            </div>
+
+            <dl class="sm-k" style="padding-top:10px;">
+                <dt>说明</dt>
+                <dd>{{data.descText1}}</dd>
+            </dl>
+            <p style="color:#3399eb;font-size:12px;padding:10px 0 0 40px;" ng-click="func.onClickRules()"><span>更多申购及赎回规则</span></p>
+
+            <div class="btn-wrap pd20">
+                <button ng-class="data.redeemButtonClass" ng-click="func.onClickRedeem()">赎回</button>
+            </div>
+
+        </ion-content>
+
+        <account-selector
+                account-data="data.AccountData"
+                show="showAccountSelector"
+                hide="hideAccountSelector"
+                hide-amount="data.hideAmount"
+                >
+        </account-selector>
+
+        <div pwd-input
+             ng-model="data.vm.formData.confirmPassword"
+             is-pwd-show="data.isPwdShow"
+             sig-on-pwd-commit="data.sigOnPwdCommit"
+             pwd-sub-title="data.pwdSubTitle"
+             pwd-trans-desc="data.pwdTransDesc"
+             pay-way-desc="data.payWayDesc"
+                >
+        </div>
+    </div>
+</ion-view>

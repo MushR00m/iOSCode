@@ -1,0 +1,123 @@
+<ion-view>
+    <div class="register">
+        <ion-header-bar>
+            <div class="menu-ba">
+                <header class="menu"><button class="menu-return" ng-click="func.back()"></button>开户</header>
+            </div>
+        </ion-header-bar>
+
+        <ion-content class="has-header" has-bouncing="false">
+            <section class="mgt20 px">
+                <ul class="info-list">
+                    <li class="px-a">
+                        <div>
+                            <span class="info-name">姓&#12288;名</span>
+                            <span class="info-con"><input type="text" ng-click="func.reportClickInput('name')" placeholder="输入真实姓名" maxlength="32" class="w-input" ng-model="data.name" ng-change="func.onNameChanged()" ng-blur="func.onNameBlur()"></span>
+                        </div>
+                        <p class="rg-tip" ng-if="data.isNameInvalid">{{data.inputNameTipsContent}}</p>
+                    </li>
+                    <li class="px-a">
+                        <div>
+                            <span class="info-name">身份证</span>
+                            <span class="info-con"><div class="zsy">
+                                <keyboard-input type="text" hj-click="func.reportClickInput('id_card')" hjtype = "sfz" class="w-input" placeholder="输入18位身份证号码" hj-model="data.IDCard" hj-change="func.onIDCardChanged()" hj-blur="func.onIDCardBlur()" maxlength="18"></keyboard-input>
+                            </div></span>
+                        </div>
+                        <p class="rg-tip" ng-if="data.isIDCardInvalid">{{data.inputIDCardTipsContent}}</p>
+                    </li>
+                    <li class="px-a">
+                        <div>
+                            <span class="info-name">手机号</span>
+                            <span class="info-con">
+                                <!--<input type="text" placeholder="输入常用手机号" maxlength="32" class="w-input">-->
+                                <div class="zsy">
+                                    <keyboard-input type="tel" hj-click="func.reportClickInput('phone')" hjtype = "sz" class="w-input" placeholder="输入常用手机号" hj-model="data.phone" hj-change="func.onPhoneChanged()" hj-blur="func.onPhoneInputBlur()" maxlength="11"></keyboard-input>
+                                </div>
+                            </span>
+                        </div>
+                        <p class="rg-tip" ng-if="data.isPhoneInvalid">{{data.inputPhoneTipsContent}}</p>
+                    </li>
+                    <li>
+                        <div class="register-yz">
+                            <span class="info-name">验证码</span>
+                            <span class="info-con"><div class="zsy">
+                                <keyboard-input type="text" hj-click="func.reportClickInput('optNum')" hjtype = "sz" pattern="[0-9]*" class="w-input" hj-model="data.otpNum" hj-change="func.onOtpChanged()" hj-blur="func.onOtpBlur()" maxlength="6" ></keyboard-input>
+                            </div></span>
+                            <button ng-class="data.otpButtonClass" ng-if="data.showTimeoutButton" ng-click="func.onClickOtp()">获取验证码</button>
+                            <span class="ts" ng-if="!data.showTimeoutButton">重新获取({{data.timeout}})</span>
+                        </div>
+                        <p class="rg-tip" ng-if="data.isOTPInvalid">{{data.inputOtpTipsContent}}</p>
+                    </li>
+                </ul>
+            </section>
+
+            <div class="mt-a">
+                <user-agreement
+                        agreement-type="100"
+                        agreement-desc ="data.agreementName"
+                        is-agreed="data.isAgreed"
+                        agreement-callback="func.onClickUserAgreement"
+                        on-click-agree-checkbox="func.onClickAgreeCheckbox"
+                >
+                </user-agreement>
+            </div>
+
+            <button class="{{data.nextButtonClass}}" ng-click="func.onClickNextStep()">下一步</button>
+        </ion-content>
+
+        <!--遮罩层start-->
+        <!--<div class="{{data.maskClass}}">-->
+        <!--<h2>{{data.maskTitle}}</h2>-->
+        <!--<h3>{{data.maskSubTitle1}}</h3>-->
+        <!--<p>{{data.maskDetail1}}</p>-->
+        <!--<h3>{{data.maskSubTitle2}}</h3>-->
+        <!--<p>{{data.maskDetail2}}</p>-->
+        <!--<div class="funcs"><button class="p-btn p-btn-outline p-btn-block" ng-click="func.onClickCancelMask()">知道了</button></div>-->
+        <!--</div>-->
+        <!--遮罩层end-->
+
+        <div class="pop-bg-hj" ng-if="data.isBgShown">
+            <div password-setting
+                 set-password="func.startSettingPassword"
+                 ng-model="data.vm.formData.confirmPassword"
+                 on-setting-password-finish="func.onSettingPasswordFinish"
+                 on-setting-password-canceled="func.onSettingPasswordCanceled"
+                 on-setting-password-error="func.onSettingPasswordError"
+                 pwd-popup-style="data.pwdPopupStyle">
+            </div>
+
+            <div class="pwd-control-wrap item-show-animate" ng-show="data.isLastStepDialogShown">
+                <div class="pwd-box-hd px-a"><i ng-click="func.onClickHideLastStepPopUp()"></i>设置微众银行交易密码</div>
+                <div class="pwd-result-wrap">
+                    <i src="" alt="" class="ok-icon"></i>
+                    <p class="p-a">交易密码设置成功</p>
+                    <p class="p-b">{{data.checkFaceNextStepTips}}</p>
+                    <button class="ui-btn" ng-click="func.onClickCheckFace()">人脸验证</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div ng-if="data.showInviterDlg" class="qr-mask"></div>
+    <div ng-if="data.showInviterDlg" class="qr-pop">
+        <div class="qr-poptitle">
+            <span class="qr-popclose" ng-click="func.closeInviterDlg()"></span>
+        </div>
+        <div class="qr-cont">
+            <div class="user-intro">
+                <img ng-src="{{data.headImgUrl}}" class="icon">
+                <div>
+                    <h3>HI,我是{{data.nickname}}</h3>
+                    <p>欢迎来到微众银行</p>
+                </div>
+            </div>
+
+            <p class="txt">开户并成功购买理财产品后,</p>
+            <p class="txt">奖品会在福利中心等你哟！</p>
+            <button class="mod-button-normal qr-button-normal" ng-click="func.closeInviterDlg()">立即开户</button>
+        </div>
+
+    </div>
+
+</ion-view>

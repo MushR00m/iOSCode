@@ -1,0 +1,31 @@
+<ion-view>
+    <div class="bx">
+        <ion-header-bar>
+            <div class="menu-ba">
+                <!--<header class="menu"><button class="menu-return" ng-click="back()"></button>{{productInfo.onSaleDesc}}<span class="menu-tip share"></span></header>-->
+                <header class="menu"><button class="menu-return" ng-click="back()"></button>历史万份收益</header>
+
+            </div>
+        </ion-header-bar>
+        <ion-content  class="has-header" has-bouncing="false" scrollbar-y="false">
+            <div class="hs-wrap">
+                <ul class="hs-list tz">
+                    <li ng-repeat="item in incomeHistory"><!--
+                    --><span class="l">{{item.date|formatYYYYMMDDString}}</span><span class="r">{{item.incomeTenThousand}}</span></li>
+                </ul>
+            </div>
+
+
+            <ion-infinite-scroll
+                    ng-if="func.hasMoreData()"
+                    on-infinite="func.loadMoreData()"
+                    distance="1%"
+                    spinner="ios"
+                    immediate-check="false"
+            >
+            </ion-infinite-scroll>
+
+        </ion-content>
+
+    </div>
+</ion-view>

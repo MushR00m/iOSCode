@@ -1,0 +1,9 @@
+<dl class="news p-whitebox mgt20" ng-if="dataList.announceArr.length">
+    <dt class="px-a" style="font-size: 16px;">{{dataList.announceTitle}}</dt>
+    <dd ng-repeat="item in dataList.announceArr" ng-class="onClass($last)" ng-click="onClickItem(item)">{{item.name}}</dd>
+</dl>
+
+<dl class="news p-whitebox mgt20" ng-if="dataList.agreeArr.length">
+    <dt class="px-a" style="font-size: 16px;">{{dataList.agreeTitle}}</dt>
+    <dd ng-repeat="item in dataList.agreeArr" ng-class="onClass($last)" ng-click="onClickItem(item)">{{item.name}}</dd>
+</dl>

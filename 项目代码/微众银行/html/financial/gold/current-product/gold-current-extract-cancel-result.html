@@ -1,0 +1,38 @@
+<ion-view style="background-color: #fff;">
+    <ion-header-bar>
+        <div class="mod-menu">
+            <header class="mod-menu">
+                <!--<button class="mod-menu-return"></button>-->
+                交易结果
+                <span class="mod-menu-finish" ng-click="onClickOK()">完成</span>
+            </header>
+        </div>
+    </ion-header-bar>
+
+    <ion-content class="has-header" has-bouncing="false">
+        <div class="mod-result-hd ui-px-a">
+            <span class="ok" ng-if="data.status == 1">撤销成功</span>
+
+            <span class="ok" ng-if="data.status == 2">撤销申请已受理</span>
+            <p ng-if="data.status == 2">需要确认结果，可在首页查看进展</p>
+
+            <span class="fall" ng-if="data.status == 3">撤销失败</span>
+            <ol ng-if="data.status == 3">
+                <li>失败原因：{{data.transInfo.result.retMsg}}</li>
+            </ol>
+        </div>
+
+        <div class="mod-result-con">
+            <p class="title">详情</p>
+
+            <ul class="info-list">
+                <li class="ui-flex"><span class="item info-name">产品名称</span><span class="lg-item s-tar">微众金-活期金</span></li>
+                <li class="ui-flex"><span class="item info-name">提取克数</span><span class="lg-item s-tar">{{data.transInfo.result.retData.amounts | formatGoldString}}克</span></li>
+                <li class="ui-flex"><span class="item info-name">提取费用</span><span class="lg-item s-tar">{{data.transInfo.result.retData.fee_amt | formatMoneyStringV2}}克</span></li>
+                <li class="ui-flex"><span class="item info-name">交易时间</span><span class="lg-item s-tar">{{data.today | formatDateObjToString}} {{data.today | formatDateObjToTimeString}}</span></li>
+            </ul>
+
+            <p class="msg" ng-if="data.status == 1">黄金已返还到您的活期金账户，提取费用也已解冻。</p>
+        </div>
+    </ion-content>
+</ion-view>

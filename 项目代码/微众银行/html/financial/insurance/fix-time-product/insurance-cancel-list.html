@@ -1,0 +1,41 @@
+<ion-view>
+    <!--<div class="bx">-->
+
+
+        <!--<ion-content class="has-header" has-bouncing="false"  >-->
+            <!--<div class="set">-->
+                <!--<ul class="set-list mgt20">-->
+                    <!--<li ng-click="onClickItem(item)" ng-repeat="item in info.listArr">-->
+                        <!--<span class="a">{{item.amount}}元</span>-->
+                        <!--<span class="a">{{item.dataStr}}</span>-->
+                        <!--<span class="a">{{item.bankStr}}</span>-->
+                    <!--</li>-->
+
+                <!--</ul>-->
+
+            <!--</div>-->
+        <!--</ion-content>-->
+
+    <!--</div>-->
+
+
+    <div class="lc">
+        <ion-header-bar>
+            <div class="menu-ba">
+                <header class="menu"><button class="menu-return" ng-click="back()"></button>{{info.title}}</header>
+            </div>
+        </ion-header-bar>
+
+        <ion-content class="has-header" has-bouncing="false">
+            <div class="db-box mgt20"  ng-repeat="item in info.listArr">
+                <p class="o-a">{{item.amount}}元</p>
+                <p class="o-b">{{item.dataStr}}</p>
+                <p class="o-b">{{item.bankStr}}</p>
+                <div class="btn-cancel" ng-click="onClickItem(item)" >
+                    <span class="p-c-bblue">撤销购买</span>
+                </div>
+            </div>
+
+        </ion-content>
+    </div>
+</ion-view>

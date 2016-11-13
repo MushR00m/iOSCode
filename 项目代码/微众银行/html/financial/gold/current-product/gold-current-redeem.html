@@ -1,0 +1,87 @@
+<ion-view>
+    <ion-header-bar>
+        <div class="menu-ba">
+            <header class="menu"><button class="menu-return" ng-click="back()"></button>立即卖出</header>
+        </div>
+    </ion-header-bar>
+
+    <ion-content class="has-header" has-bouncing="false">
+        <div class="mod-block-item" ng-click="">
+            <div class="title s-h35">
+                <p class="s-fz18 s-orange" ng-if="data.price">{{data.price | formatMoneyStringV2}}</p>
+                <p class="s-fz12 s-lgray">实时价格(元/克)</p>
+            </div>
+            <div class="content gold-ref-price">
+                <span class="ui-icon-refresh loading"></span>
+            </div>
+        </div>
+
+        <p class="ui-below-tip" ng-if="data.price">以成交时刻价格为准，不低于<span class="s-orange">{{(data.price - data.tolerance) | formatMoneyStringV2}}</span>元则立即为您卖出</p>
+
+        <div class="mod-block-item" ng-click="">
+            <div class="title">卖出克数</div>
+            <div class="content">
+                <keyboard-input class="content s-fz15" type="number" hjtype = "je" accuracy="4" placeholder="0.0001克起售" hj-model="data.amount"  hj-blur="blurInput()" hj-focus="focusInput()" hj-change="changeInput()"></keyboard-input>
+            </div>
+            <span class="s-bblue s-fz13" ng-click="onClickSaleAll()">全部卖出</span>
+        </div>
+
+        <p class="mod-warning" ng-if="data.showInputAmountTips">{{data.inputAmountTipsContent}}</p>
+
+        <div ng-if="data.showInputAct && data.price">
+            <p class="ui-below-tip">卖出总金额：<span class="s-orange">{{data.amount * data.price | formatMoneyStringV2}}</span>元，卖出成功后将转入收款账户</p>
+            <p class="ui-below-tip">按系统确认时刻价格为准，若系统确认时刻价格<span class="s-orange">不低于({{data.price - data.tolerance | formatMoneyStringV2}})元/克</span>，将立即为您卖出</p>
+        </div>
+
+        <div class="mod-block-item" ng-click="onSelectPayWay()">
+            <div class="title">收款账户</div>
+            <div class="content">
+                <div ng-if="isCurrentPlus()" class=""><i class="ui-hqj-icon"></i></div>
+                <div ng-if="isWeBankAccount()" class="ui-inline"><i class="ui-wz-icon"></i>微众卡{{data.mainCard.number | abridgeAccountNumber}}</div>
+            </div>
+            <i class="ui-arrow"></i>
+        </div>
+
+        <div class="mod-block-item s-pt7 s-pb7">
+            <div class="title">最低卖出价</div>
+            <div class="content s-orange" ng-if="data.price">{{(data.price - data.tolerance) | formatMoneyStringV2}}</div>
+            <div class="mod-number-mp">
+                <button type="button" ng-click="onClickReduceTolerance()">-</button>
+                <span class="number">{{data.tolerance | formatMoneyStringV2}}</span>
+                <button type="button" ng-click="onClickAddTolerance()">+</button>
+            </div>
+        </div>
+
+        <p class="mod-tip">
+            <user-agreement
+                    agreement-code = "data.agreementCode"
+                    agreement-desc ="data.agreementDesc"
+                    is-agreed="data.isAgreed"
+                    on-click-agree-checkbox="data.onClickAgreeCheckbox">
+            </user-agreement>
+        </p>
+
+        <button class="{{data.ButtonClass}}" ng-click="onClickRedeem()">确认卖出</button>
+
+    </ion-content>
+
+    <account-selector
+            account-data="data.AccountData"
+            show="data.showAccountSelector"
+            hide="hideAccountSelector"
+            on-account-selected="onAccountSelected"
+            >
+    </account-selector>
+
+    <div pwd-input
+         ng-model="vm.formData.confirmPassword"
+         is-pwd-show="data.isPwdShow"
+         sig-on-pwd-commit="data.sigOnPwdCommit"
+         pwd-sub-title="data.pwdSubTitle"
+         pwd-trans-desc="data.pwdTransDesc"
+         pay-way-desc="data.payWayDesc"
+         on-click-change-pay-way="onSelectPayWay"
+            >
+    </div>
+
+</ion-view>

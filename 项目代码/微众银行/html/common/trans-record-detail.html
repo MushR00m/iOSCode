@@ -1,0 +1,105 @@
+<ion-view>
+    <div class="trar p-c-blue">
+        <ion-header-bar>
+            <div class="menu-ba">
+                <header class="menu">
+                    <button class="menu-return" ng-click="back()"></button>
+                    交易详情
+                </header>
+            </div>
+        </ion-header-bar>
+        <ion-content class="has-header" has-bouncing="true">
+            <section class="records-card px mgt20">
+                <ul>
+                    <li>
+                        <h1 class="p-c-lorange p-fz-14">{{transDesc}}</h1>
+                        <p ng-if="!partAmountFailStr"><span class="num">{{transAmount}}</span>{{transAmountLast}}</p>
+                        <p ng-if="partAmountFailStr"><span class="mgr5">确认金额</span><span class="num">{{partAmountSucessStr}}</span>{{partAmountLastStr}}</p>
+                        <p ng-if="partAmountFailStr"><span class="mgr5">失败金额</span><span class="num">{{partAmountFailStr}}</span>{{partAmountLastStr}}</p>
+                    </li>
+                    <li class="flex px-b px-lt" ng-if="!transSucess">
+                        <div class="item">失败原因</div>
+                        <div class="item">{{errLog}}</div>
+                    </li>
+                    <li class="flex px-b px-lt">
+                        <div class="item">交易类型</div>
+                        <div class="item">{{transType}}</div>
+                    </li>
+                    <li class="flex px-b px-lt" ng-if="prodType">
+                        <div class="item">产品类型</div>
+                        <div class="item">{{prodType}}</div>
+                    </li>
+                    <li class="flex px-b px-lt" ng-if="prodName">
+                        <div class="item">产品名称</div>
+                        <div class="item">{{prodName}}</div>
+                    </li>
+
+                    <!--收款账户-->
+                    <li class="flex px-b px-lt" ng-if="diffNameTo && transToName && !notShowRecv">
+                        <div class="item">收款人</div>
+                        <div class="item">{{transToName}}</div>
+                    </li>
+                    <li class="flex px-b px-lt" ng-if="diffNameTo && !notShowRecv">
+                        <div class="item">收款银行</div>
+                        <div class="item">{{transToBank}}</div>
+                    </li>
+                    <li class="flex px-b px-lt" ng-if="diffNameTo && !notShowRecv">
+                        <div class="item">收款账户</div>
+                        <div class="item"><span class="num">{{transToCard | splitAccountNumber}}</span></div>
+                    </li>
+                    <li class="flex px-b px-lt" ng-if="!diffNameTo && transToBank=='活期+'  && !notShowRecv">
+                        <div class="item">收款账户</div>
+                        <div class="item"><i class="cplus" >活期+</i></div>
+                    </li>
+                    <li class="flex px-b px-lt" ng-if="!diffNameTo && transToBank!='活期+' && transToBank && !notShowRecv">
+                        <div class="item">收款账户</div>
+                        <div class="item">{{transToBank}}</div>
+                    </li>
+
+                    <!--付款账户-->
+                    <li class="flex px-b px-lt" ng-if="diffNameFrom && transFromName">
+                        <div class="item">付款人</div>
+                        <div class="item">{{transFromName}}</div>
+                    </li>
+                    <li class="flex px-b px-lt" ng-if="diffNameFrom">
+                        <div class="item">付款银行</div>
+                        <div class="item">{{transFromBank}}</div>
+                    </li>
+                    <li class="flex px-b px-lt" ng-if="diffNameFrom">
+                        <div class="item">付款账户</div>
+                        <div class="item"><span class="num">{{transFromCard | splitAccountNumber}}</span></div>
+                    </li>
+                    <li class="flex px-b px-lt" ng-if="!diffNameFrom && transFromBank=='活期+' ">
+                        <div class="item">付款账户</div>
+                        <div class="item"><i class="cplus" >活期+</i></div>
+                    </li>
+                    <li class="flex px-b px-lt" ng-if="!diffNameFrom && transFromBank!='活期+' && transFromBank">
+                        <div class="item">付款账户</div>
+                        <div class="item">{{transFromBank}}</div>
+                    </li>
+
+                    <!--黄金-->
+                    <li class="flex px-b px-lt" ng-if="goldPrice">
+                        <div class="item">成交价格</div>
+                        <div class="item">{{goldPrice | formatMoneyStringV2}}元/克</div>
+                    </li>
+
+
+                    <li class="flex px-b px-lt">
+                        <div class="item">交易时间</div>
+                        <div class="item">{{dateStr}}</div>
+                    </li>
+                    <li class="flex px-b px-lt">
+                        <div class="item">订单编号</div>
+                        <div class="item p-fz-12">{{transSerno}}</div>
+                    </li>
+                    <li class="flex px-b px-lt" ng-if="remark && remark.length > 0">
+                        <div class="item">备注</div>
+                        <div class="item">{{remark}}</div>
+                    </li>
+                </ul>
+            </section>
+        </ion-content>
+    </div>
+
+</ion-view>

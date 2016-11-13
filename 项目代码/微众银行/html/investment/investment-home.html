@@ -1,0 +1,108 @@
+<ion-view can-swipe-back="false">
+
+    <ion-header-bar>
+        <div class="mod-menu">
+            <header class="mod-menu">
+                <span class="menu-user" ng-if="isLogin" ng-click="onClickSettingsBtn()">
+                    <span class="avatar"><img ng-src="{{avatarUrl}}"></span>
+                   <span class="reddot" ng-if="showMsgDot"></span>
+                </span>
+                <span class="menu-info" ng-if="!isLogin" ng-click="onClickSettingsBtn()"></span>
+                投资
+                <span class="mod-menu-finish" ng-if="isHasAccount" ng-click="onClickTransLog()">交易查询</span>
+            </header>
+        </div>
+    </ion-header-bar>
+
+    <ion-content class="has-header" has-bouncing="true" style="bottom: 54px;" delegate-handle="myContent">
+
+        <!--头部-->
+        <div class="mod-vision ui-px-a" style="margin-bottom: 20px;padding: 0px;" ng-if="isGoldGray">
+            <ul class="mod-image-tab ui-px-a s-mb20" ng-if="isGoldGray">
+                <li>
+                    <h3 class="icon-tab-investment" ng-click="onClickAllStock()">基金</h3>
+                </li>
+                <li class="ui-px-l">
+                    <h3 class="icon-tab-gold" ng-click="onClickAllGold()">黄金</h3>
+                </li>
+            </ul>
+        </div>
+
+        <!--We视角 资讯-->
+        <div class="mod-vision ui-px" ng-if="articleList.length">
+            <div class="header">
+                <div class="title"><span class="s-blue s-fz14">We视角</span></i>
+
+                    <p class="s-pl5">{{updateTimeStr}}</p></div>
+                <span ng-click="onClickMoreArticle()">更多<i class="ui-arrow"></i></span>
+            </div>
+            <ion-scroll scrollbar-x="false" scrollbar-y="false" direction="x" delegate-handle="weArticleContent">
+                <div class="cards">
+                    <div class="item"  ng-repeat="item in articleList track by $index" ng-click="onClickArticle(item)">
+                        <h2>{{item.title}}</h2>
+
+                        <p>{{item.content}}</p>
+                    </div>
+                </div>
+            </ion-scroll>
+        </div>
+
+        <!--精选基金 头部-->
+        <div class="mod-block-item header">
+            <span class="s-blue s-fz14">精选产品</span>
+        </div>
+        <div class="mod-product-list ui-px-a">
+            <div ng-class="{'item':!$index,'item ui-px-b':$index}" ng-repeat="info in renderData.showList" ng-bind-html="info.htmlStr | toTrusted" ng-click="onClickProduct(info)"></div>
+        </div>
+
+        <!--全部基金 入口-->
+        <div class="investment-more mod-block-item s-mb20"  ng-click="onClickAllStock()" ng-if="!isGoldGray">
+            <div class="investment-more-icon">
+                <i class="ui-icon-investment"></i>
+                <i class="ui-icon-investment-plane"></i>
+                <i class="ui-icon-star"></i>
+                <i class="ui-icon-star"></i>
+                <i class="ui-icon-star"></i>
+            </div>
+            <div class="content">
+                <span class="s-fz18 s-fwb">带你<span class="s-red">投资</span>带你飞</span>
+                <p class="s-fz12 s-pt7">热点、明星经理、业绩排名</p>
+            </div>
+            <i class="ui-arrow"></i>
+        </div>
+        <div class="ui-safe-wd s-mt20"><p>基金过往业绩不预示其未来表现</p><p>基金投资有风险，请仔细阅读基金合同和招募说明书</p></div>
+        <div style="height:20px;"></div>
+
+
+    </ion-content>
+
+    <ion-footer-bar class="bar bar-footer">
+        <div class="main-nav-wrap">
+            <ul class="main-nav flex">
+                <li class="item i-a" ng-click="onClickMainTab(1)">总览</li>
+                <li class="item i-b" ng-click="onClickMainTab(2)">理财</li>
+                <li class="item i-c i-on">投资</li>
+                <li class="item i-d" ng-click="onClickMainTab(3)">转账</li>
+
+            </ul>
+        </div>
+    </ion-footer-bar>
+    <div class="p-mask-sp p-mask-sp-guide2fin" ng-if="showGuide1" ng-click="onClickGuide(1)">
+        <div class="mask-guide2fin">
+            <div class="icon"></div>
+            <h2>活期+、短期+、定期+等产品</h2>
+            <p>兼顾灵活与收益</p>
+            <div class="btn"><button class="p-btn p-btn-outline">知道了</button></div>
+        </div>
+        <div class="lighter-guide2fin"><span>理财</span></div>
+    </div>
+    <div class="p-mask-sp p-mask-sp-guide2inv" ng-if="showGuide2" ng-click="onClickGuide(2)">
+        <div class="mask-guide2inv">
+            <div class="icon"></div>
+            <h2>基金等产品</h2>
+            <p>风险与收益并存</p>
+            <div class="btn"><button class="p-btn p-btn-outline">知道了</button></div>
+        </div>
+        <div class="lighter-guide2inv"><span>投资</span></div>
+    </div>
+</ion-view>

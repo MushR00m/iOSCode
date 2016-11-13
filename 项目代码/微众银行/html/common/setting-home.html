@@ -1,0 +1,86 @@
+<ion-view>
+    <div class="set">
+        <ion-header-bar>
+            <div class="menu-ba">
+                <header class="menu">
+                    <button class="menu-return" ng-click="back()"></button>
+                    微众银行
+                </header>
+            </div>
+        </ion-header-bar>
+
+        <ion-content has-bouncing="true" class="has-header">
+            <div>
+                <div class="tx-wrap px-a" ng-if="!isOpenAccount">
+                    <img ng-src="{{headImg}}" alt="" class="avatar-box">
+
+                    <div class="con">
+                        <span ng-if="!isLogin" class="name">未登录</span>
+                        <span ng-if="isLogin&&!isOpenAccount" class="name" ng-bind="nickName"></span>
+                    </div>
+                    <span ng-if="!isLogin" class="sm" ng-click="onClickHead()">去登录</span>
+                    <span ng-if="isLogin&&!isOpenAccount" class="sm" ng-click="onClickHead()">去开户</span>
+                </div>
+
+                <div class="wb-card-wrap" ng-if="isOpenAccount" ng-click="onClickCard()">
+                    <div class="inner">
+                        <div class="con">
+                            <p>微众卡</p>
+
+                            <p ng-bind="webankCardNum | splitAccountNumber"></p>
+                        </div>
+                        <div class="avatar-wrap">
+                            <img ng-src="{{headImg}}" alt="">
+                            <dl>
+                                <dt ng-bind="personalNameMask"></dt>
+                                <dd ng-bind="nickName"
+                                    style="text-overflow: ellipsis;overflow: hidden;white-space: nowrap;max-width: 120px;"></dd>
+                            </dl>
+                        </div>
+                    </div>
+                </div>
+
+                <ul class="set-list mgt20">
+                    <li ng-click="onClickMessageCenter()" ng-if="isOpenAccount"><span class="a">消息</span><span class="b"><i class="num" ng-if="unreadMessageNum" ng-bind="unreadMessageNum">0</i></span></li>
+                    <li ng-click="onClickPromoCenter()">
+                        <span class="a">福利中心</span>
+                        <span class="b">
+                            <i class="num" ng-if="newRecordCount === 1"></i>
+                            <i class="num" ng-if="newRecordCount > 1" ng-bind="newRecordCount"></i>
+                        </span>
+                    </li>
+                    <li ng-click="onClickInvite()" ng-if="data.showInviteMenu">
+                        <span class="a">邀请好友</span>
+                        <span class="b layout-flex">
+                            <span ng-if="data.inviteAward && !shouldShowRedPoint()">{{data.inviteAward}}</span>
+                            <i class="dot" ng-if="shouldShowRedPoint()"></i>
+                        </span>
+                    </li>
+                </ul>
+
+                <ul class="set-list mgt20" ng-if="isOpenAccount">
+                    <li ng-click="onClickBingdingInfoBtn()"><span class="a">个人信息</span></li>
+                    <li ng-click="onClickPasswdMngBtn()"><span class="a">密码安全</span></li>
+                    <li ng-click="onClickWePay()" ng-if="canUseWePay"><span class="a">We支付</span><span class="b">{{wePayStatusStr}}<i class="dot" ng-if="showTipDot"></i></span></li>
+                    <li ng-click="onClickRiskAssessmentBtn()"><span class="a">风险偏好</span><span class="b" ng-bind="accessStr"></span></li>
+                    <li ng-click="onClickLimit()" ng-if="isStrong"><span class="a">转出限额</span></li>
+                </ul>
+
+
+                <ul class="set-list mgt20">
+                    <li ng-click="onClickConnect()"><span class="a">联系客服</span></li>
+                    <li ng-click="onClickHelpCenterBtn()"><span class="a">常见问题</span></li>
+                    <li ng-click="onClickAboutBtn()"><span class="a">关于我们</span></li>
+                    <li ng-click="onClickVersionConfig()"><span class="a">版本管理</span></li>
+                </ul>
+
+                <p class="px" ng-if="isLogin" ng-click="logout()" style="line-height: 44px;text-align: center;background-color: #fff;margin-top: 20px;font-size: 16px;margin-bottom: 20px;color:#acb2c1;">退出登录</p>
+
+            </div>
+
+        </ion-content>
+    </div>
+
+    <div pop-confirm out-value="outValue"></div>
+    <loading show-loading="data.showLoading"></loading>
+</ion-view>

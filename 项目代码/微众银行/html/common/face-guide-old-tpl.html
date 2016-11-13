@@ -1,0 +1,33 @@
+<ion-view style="z-index: 9;">
+    <loading show-loading="data.hasFaceGuide && data.showLoading"></loading>
+    <div class="fc">
+        <ion-header-bar>
+            <div class="menu-ba">
+                <header class="menu"><button class="menu-return" ng-click="func.back()"></button>人脸验证</header>
+            </div>
+        </ion-header-bar>
+
+        <ion-content class="has-header" has-bouncing="false">
+            <p class="h1">验证时，请将前置摄像头<br>对准您的脸并注意以下提示</p>
+            <div class="pic-r-wrap"><img src="../img/face-a.jpg" alt=""></div>
+            <ul class="pic-f-wrap flex">
+                <li class="item">
+                    <span class="img-wrap"><img src="../img/face-b.jpg" alt=""></span>
+                    <p>不要遮挡眼睛</p>
+                </li>
+                <li class="item">
+                    <span class="img-wrap"><img src="../img/face-c.jpg" alt=""></span>
+                    <p>不要戴帽</p>
+                </li>
+                <li class="item">
+                    <span class="img-wrap"><img src="../img/face-d.jpg" alt=""></span>
+                    <p>不要光线太暗</p>
+                </li>
+            </ul>
+            <div class="btn-wrap pd20">
+                <button class="btn-c" ng-click="func.verifyUserFace()">知道了，下一步</button>
+            </div>
+        </ion-content>
+        <div pop-confirm out-value="outValue"></div>
+    </div>
+</ion-view>

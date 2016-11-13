@@ -1,0 +1,218 @@
+<ion-view>
+    <div class="lc bx" ng-if="func.hasAccount()">
+        <ion-header-bar>
+            <div class="menu-ba">
+                <header class="menu"><button class="menu-return" ng-click="func.back()"></button>{{data.prodInfo.prod_name}}
+                    <span ng-class="data.shareClass" ng-click="func.share()"></span>
+                </header>
+            </div>
+        </ion-header-bar>
+
+        <!--人话版-->
+        <hj-up-down-box up-down-init="data.upDownInit">
+            <ion-content has-bouncing="false" class="has-header" style="bottom:50px;"  delegate-handle="myContent">
+                <div class="ba-income-wrap">
+
+                    <!--7日年化收益率-->
+                    <p class="title p-line-lr-h" ng-if="!data.wealthData.hasWealth"><span>{{data.titleDesc}}</span></p>
+                    <p class="num" ng-if="!data.wealthData.hasWealth">{{data.prodInfo.expect_income_rate}}<span class="sub">%</span></p>
+
+                    <!--产品状态-->
+                    <p class="title p-line-lr-h" ng-if="data.wealthData.hasWealth"><span>{{data.incomeDateStr}}</span></p>
+                    <p class="num" ng-if="data.wealthData.hasWealth">{{data.wealthStateDesc}}</p>
+                    <p class="pq" style="margin-top:-15px;">&nbsp;{{data.wealthDescDetail}}&nbsp;</p>
+
+                    <div class="xs flex">
+                        <div class="item p-line-r" ng-click="func.onClickAsset()">持有资产(元)<span>{{data.wealthData.totalAmount}}</span></div>
+                        <div class="item" ng-click="func.onClickAccumulateIncome()">累计收益(元)<span>{{data.accumulatedIncome}}</span></div>
+                    </div>
+                </div>
+
+                <!--等待收益-->
+                <div class="px-a" ng-repeat="item in data.waitingIncomeList">
+                    <p class="nv no-icon">{{item}}</p>
+                </div>
+                <!--购买在途-->
+                <div class="px-a" ng-if="!data.hideBuyInTransBar" ng-repeat="item in data.purchaseInTransList">
+                    <p class="nv no-icon">{{item}}</p>
+                </div>
+                <!--赎回在途-->
+                <div class="px-a" ng-repeat="item in data.redeemInTransList">
+                    <p class="nv no-icon">{{item}}</p>
+                </div>
+
+                <!--收益-->
+                <div class="px-a" ng-if="data.incomeRedeemText">
+                    <p class="nv no-icon">{{data.incomeRedeemText}}</p>
+                </div>
+
+                <!--退款-->
+                <div class="px-a" ng-if="data.refundAmount && data.refundDayNum">
+                    <p class="nv-no">您有{{data.refundAmount}}元退款确认中，预计{{data.refundDayNum}}个工作日完成</p>
+                </div>
+
+                <div class="subnav flex px mgt20" style="height:44px;line-height:normal;" ng-if="data.isRecentIncomeDataShown">
+                    <div class="{{data.incomeRateCls}}" ng-click="func.onClickIncomeRate()"><span style="font-size:12px;">近7日年化收益率<br>{{data.prodInfo.expect_income_rate}}%</span></div>
+                    <div class="{{data.incomeTheThousandCls}}" ng-click="func.onClickIncomeTenThousand()"><span style="font-size:12px;">万份收益(元)<br>{{data.prodInfo.million_income_value}}</span></div>
+                </div>
+
+                <!--七日年化-->
+                <div class="hs-wrap px-a" ng-show='data.isRecentIncomeDataShown && data.showIncomeRate' ng-click="func.onClickIncomeRate()" style="padding-bottom:15px;">
+                    <div stockcharts show-chart='func.showChart' chart-options="data.chartOptions" style="width:100%; height:250px;"></div>
+                    <ul class="hs-month" style="padding-bottom:5px;">
+                        <li ng-if="data.show7DayBtn" ng-class="func.onClassTime(7)" ng-click="func.onClickTime(7)">7日</li>
+                        <li ng-if="data.show1MonBtn" ng-class="func.onClassTime(30)" ng-click="func.onClickTime(30)">1个月</li>
+                        <li ng-if="data.show2MonBtn" ng-class="func.onClassTime(365)" ng-click="func.onClickTime(365)">1年</li>
+                    </ul>
+                </div>
+
+                <!--万份收益-->
+                <div class="hs-wrap px-a" ng-if="data.isRecentIncomeDataShown && !data.showIncomeRate" >
+                    <ul class="hs-list">
+                        <li ng-repeat="item in data.historyIncomeInfo"><!--
+                     --><span class="l">{{item.date|formatYYYYMMDDString}}</span><!--
+                     --><span class="r">{{item.incomeTenThousand}}</span></li>
+                    </ul>
+                    <p class="mk" ng-click="func.onClickViewMoreTenThousand()">查看更多</p>
+                </div>
+
+
+                <!--交易规则-->
+                <div compile="data.transactionRuleHtml"></div>
+
+                <!-- 产品说明 -->
+                <div compile="data.prodIntroHtml"></div>
+
+                <!--利益演示-->
+                <div class="px" ng-if="data.isIncomeDemoShown">
+                    <p class="jt" ng-click="func.onClickIncomeDemo()">利益演示</p>
+                </div>
+
+                <div class="px">
+                    <p class="jt" ng-click="func.onClickMoreInfo()">{{data.detailBtnText}}</p>
+                </div>
+
+                <div style="height:20px;" ng-if="!(data.prodInfo.load_desc && data.showSecond)"></div>
+
+                <section class="jumping-down" ng-if="data.prodInfo.load_desc && data.showSecond"><i></i>{{data.prodInfo.load_desc}}</section>
+            </ion-content>
+
+            <ion-content class="has-header" has-bouncing="false" style="visibility: hidden;">
+                <div ng-if="data.showSecond" compile="data.secondPageStr" >
+
+                </div>
+            </ion-content>
+        </hj-up-down-box>
+
+        <ion-footer-bar class="bar bar-footer" style="height:50px;">
+            <!--无赎回资产-->
+            <!--<div class="hj-by-wrap" ng-if="true">-->
+            <div class="hj-by-wrap flex" ng-if="!data.canRedeem">
+                <!--购买-->
+                <button class="item" ng-if="data.canPurchase" ng-click="func.onClickPurchase()">立即购买</button>
+                <!--设置购买提醒-->
+                <button class="{{data.calendarButtonClass}}" ng-disabled="data.isCalDisabled" ng-if="!data.canPurchase && data.isSetCalanderShown" ng-click="func.onClickSetClock()">{{data.calendarButtonStr}}</button>
+                <!--无法购买,也不在预售期-->
+                <button class="item off" ng-disabled="true" ng-if="!data.canPurchase && !data.isSetCalanderShown">{{data.limitWords}}</button>
+            </div>
+
+            <!--有赎回资产-->
+            <!--<div class="hj-by-wrap" ng-if="false">-->
+            <div class="hj-by-wrap flex" ng-if="data.canRedeem">
+                <button class="item" ng-click="func.onClickRedeem()">赎回</button>
+                <button class="item" ng-if="data.canPurchase" ng-click="func.onClickPurchase()">{{data.purchaseBtnText}}</button>
+                <button class="{{data.calendarButtonClass}}" ng-disabled="data.isCalDisabled" ng-if="!data.canPurchase && data.isSetCalanderShown" ng-click="func.onClickSetClock()">{{data.calendarButtonStr}}</button>
+                <button class="item off" ng-disabled="true" ng-if="!data.canPurchase && !data.isSetCalanderShown && !data.limitWords">立即购买</button>
+                <button class="item off" ng-disabled="true" ng-if="!data.canPurchase && !data.isSetCalanderShown && data.limitWords">{{data.limitWords}}</button>
+            </div>
+        </ion-footer-bar>
+    </div>
+
+
+    <!--未登录-->
+    <div class="lc bx" ng-if="!func.hasAccount()">
+        <ion-header-bar>
+            <div class="menu-ba">
+                <header class="menu"><button class="menu-return" ng-click="func.back()"></button>{{data.prodInfo.prod_name}}
+                    <span ng-class="data.shareClass" ng-click="func.share()"></span>
+                </header>
+            </div>
+        </ion-header-bar>
+
+        <!--人话版-->
+        <hj-up-down-box up-down-init="data.upDownInit">
+            <ion-content has-bouncing="false" class="has-header" style="bottom:50px;"  delegate-handle="myContent">
+                <div class="ba-income-wrap">
+
+                    <!--7日年化收益率-->
+                    <p class="title p-line-lr-h"><span>{{data.titleDesc}}</span></p>
+                    <p class="num">{{data.prodInfo.expect_income_rate}}<span class="sub">%</span></p>
+
+                    <p class="pq" style="margin-top:-15px;"></p>
+                    <div class="xs flex">
+                        <div class="item p-line-r" ng-click="func.onTrigerLogin()">持有资产(元)<span>0.00</span></div>
+                        <div class="item" ng-click="func.onTrigerLogin()">累计收益(元)<span>0.00</span></div>
+                    </div>
+                </div>
+
+                <div class="subnav flex px mgt20" style="height:44px;line-height:normal;" ng-if="data.isRecentIncomeDataShown">
+                    <div class="{{data.incomeRateCls}}" ng-click="func.onClickIncomeRate()"><span style="font-size:12px;">近7日年化收益率<br>{{data.prodInfo.expect_income_rate}}%</span></div>
+                    <div class="{{data.incomeTheThousandCls}}" ng-click="func.onClickIncomeTenThousand()"><span style="font-size:12px;">万份收益(元)<br>{{data.prodInfo.million_income_value}}</span></div>
+                </div>
+
+                <!--七日年化-->
+                <div class="hs-wrap px-a" ng-show='data.showIncomeRate && data.isRecentIncomeDataShown' ng-click="func.onClickIncomeRate()" style="padding-bottom:15px;">
+                    <div stockcharts show-chart='func.showChart' chart-options="data.chartOptions" style="width:100%; height:250px;"></div>
+                    <ul class="hs-month" style="padding-bottom:5px;">
+                        <li ng-class="func.onClassTime(7)" ng-click="func.onClickTime(7)">7日</li>
+                        <li ng-class="func.onClassTime(30)" ng-click="func.onClickTime(30)">1个月</li>
+                        <li ng-class="func.onClassTime(60)" ng-click="func.onClickTime(60)">2个月</li>
+                    </ul>
+                </div>
+
+                <!--万份收益-->
+                <div class="hs-wrap px-a" ng-if="!data.showIncomeRate && data.isRecentIncomeDataShown" >
+                    <ul class="hs-list">
+                        <li ng-repeat="item in data.historyIncomeInfo"><!--
+                     --><span class="l">{{item.date|formatYYYYMMDDString}}</span><!--
+                     --><span class="r">{{item.incomeTenThousand}}</span></li>
+                    </ul>
+                    <p class="mk" ng-click="func.onClickViewMoreTenThousand()">查看更多</p>
+                </div>
+
+
+                <!--交易规则-->
+                <div compile="data.transactionRuleHtml"></div>
+
+                <!-- 产品说明 -->
+                <div compile="data.prodIntroHtml"></div>
+
+                <!--利益演示-->
+                <div class="px" ng-if="data.isIncomeDemoShown">
+                    <p class="jt" ng-click="func.onClickIncomeDemo()">利益演示</p>
+                </div>
+
+                <div class="px">
+                    <p class="jt" ng-click="func.onClickMoreInfo()">{{data.detailBtnText}}</p>
+                </div>
+                <div style="height:20px;" ng-if="!(data.prodInfo.load_desc && data.showSecond)"></div>
+
+                <section class="jumping-down" ng-if="data.prodInfo.load_desc && data.showSecond"><i></i>{{data.prodInfo.load_desc}}</section>
+            </ion-content>
+
+            <ion-content class="has-header" has-bouncing="false" style="visibility: hidden;">
+                <div ng-if="data.showSecond" compile="data.secondPageStr" >
+
+                </div>
+            </ion-content>
+        </hj-up-down-box>
+
+        <ion-footer-bar class="bar bar-footer">
+            <div class="buy-btn-wrap">
+                <div class="lc-buy-btn" ng-click="func.onTrigerLogin()">立即购买</div>
+            </div>
+        </ion-footer-bar>
+    </div>
+    <div slider-up-confirm slider-up-confirm-option="data.sliderUpConfirmOption"></div>
+</ion-view>
+<risk-assessment option="data.riskOption"></risk-assessment>

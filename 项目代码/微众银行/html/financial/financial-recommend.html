@@ -1,0 +1,200 @@
+<ion-view  can-swipe-back="false">
+    <div class="lc-b refresh-white ui-safe">
+        <ion-header-bar>
+            <div class="menu-ba">
+                <header class="menu">
+                    <span class="menu-user" ng-if="data.isLogin" ng-click="onClickSettingsBtn()">
+                        <span class="avatar">
+                            <img ng-src="{{data.avatarUrl}}" alt="用户名">
+                        </span>
+                        <span class="reddot" ng-if="data.showMsgDot"></span>
+                    </span>
+                    <span class="menu-info" ng-if="!data.isLogin" ng-click="onClickSettingsBtn()"></span>
+                    理财
+                    <span class="menu-wd" ng-if="data.isHasAccount" ng-click="onClickTransLog()">交易查询</span>
+                </header>
+            </div>
+        </ion-header-bar>
+
+        <ion-content class="has-header" has-bouncing="true" style="bottom: 54px;" delegate-handle="myContent">
+            <!--头部banner-->
+            <section ng-click="onClickBanner()">
+                <div ng-bind-html="data.sectionHtml"></div>
+            </section>
+            <!--活期+-->
+            <div class="con-dq px-a" style="margin-top:0;">
+                <p class="title px-a"><span class="hq"></span>{{data.onSaleMonetoryList.productTypeDesc}}</p>
+                <div class="con-wrap">
+                    <ul class="product-list">
+                        <li class="px-b" ng-repeat="prod in data.onSaleMonetoryList.productList" ng-click="onClickMonetaryProd(prod)">
+                            <div class="act-bg" style="padding:15px 0;">
+                                <div class="v-l">
+                                    <p class="s-a" style="top:0;"><span>{{prod.earningsRate.split('.')[0]}}<i>.{{prod.earningsRate.split('.')[1]}}%</i></span></p>
+                                    <p class="s-b" style="padding-top:6px;">{{prod.earningsDesc}}</p>
+                                </div>
+                                <div class="v-r">
+                                    <p class="s-a" style="padding-top:18px;">{{prod.productDesc}}</p>
+                                    <p class="s-b" ng-if="prod.productName">{{prod.productName}}</p>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!--短期+-->
+            <div class="con-dq px" ng-if="data.onSaleShortList.productList.length>0">
+                <p class="title px-a"><span class="sq"></span>{{data.onSaleShortList.productTypeDesc}} <i class="more" ng-if="data.showMore3" ng-click="onClickMore(3)">更多</i></p>
+                <div class="con-wrap">
+                    <ul class="product-list">
+                        <li class="px-b" ng-repeat="prod in data.onSaleShortList.productList" ng-click="onClickInsuranceProdIntro(prod)">
+                            <div class="act-bg">
+                                <div class="v-l">
+                                    <!--<div class="hide">-->
+                                        <p ng-if="!prod.beforeTime" class="s-a"><span>{{prod.earningsRate.split('.')[0]}}<i>.{{prod.earningsRate.split('.')[1]}}%</i></span></p>
+                                        <p ng-if="!prod.beforeTime" class="s-b">{{prod.earningsDesc}}</p>
+                                    <!--</div>-->
+                                    <div ng-if="prod.beforeTime" class="limit-wd"></div>
+                                    <!--<div class="limit-wd"></div>-->
+                                </div>
+                                <div class="v-r">
+                                    <p class="s-a">{{prod.productDesc}}</p>
+                                    <p class="s-b">{{prod.productName}}<span ng-if="prod.cooperationCompany"> - {{prod.cooperationCompany}}</span></p>
+                                    <!--<ol class="label-list">-->
+                                        <!--<li class="o"><span>保本</span></li>-->
+                                        <!--<li><span>180个好友购买</span></li>-->
+                                    <!--</ol>-->
+                                    <ol class="label-list" ng-if="prod.tagArr.length">
+                                        <li ng-repeat="tag in prod.tagArr" class="{{tag.class}}"><span>{{tag.item}}</span></li>
+                                    </ol>
+                                    <!--增加额度标签显示-->
+                                    <div class="show-sale-wrap" ng-if="!prod.sealWords && prod.saleStatusTag && prod.saleStatusTagDesc && prod.saleStatusTagFlag" ><i class='show-sale-status'>{{prod.saleStatusTagFlag}}</i><span class="show-sale-desc">{{prod.saleStatusTagDesc}}</span></div>
+                                </div>
+                            </div>
+
+                            <!-- 灰化加off -->
+                            <div ng-if="prod.sealWords" class="{{prod.sealClass}}">
+                                <!-- 行数分别对应row-3,row-2,row-1 -->
+                                <span class="{{prod.sealRaw}}" ng-bind-html="prod.sealWords | toTrusted"></span>
+                            </div>
+
+                            <!--右上角角标-->
+                            <!--<div ng-if="prod.tipsClass == 'ly' || prod.tipsClass == 'ly off'" ng-class="prod.tipsClass"><span>{{prod.saleDateDesc}}<br>{{prod.saleStatusDesc}}</span></div>-->
+                            <!--<div ng-if="prod.tipsClass == 'ly three-word' || prod.tipsClass == 'ly three-word off'" ng-class="prod.tipsClass"><span>{{prod.saleStatusDesc}}</span></div>-->
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!--短期+ 空-->
+            <div class="con-dq px" ng-if="data.onSaleShortList.productList.length==0">
+                <p class="title"><span class="sq"></span>{{data.onSaleShortList.productTypeDesc}}</p>
+                <div class="con-wrap">
+                    <p class="fto"><i></i>敬请期待...</p>
+                </div>
+            </div>
+
+            <!--定期+-->
+            <div class="con-dq px" ng-if="data.onSaleInsurancelList.productList.length>0">
+                <p class="title px-a"><span class="dq"></span>{{data.onSaleInsurancelList.productTypeDesc}} <i class="more" ng-if="data.showMore1" ng-click="onClickMore(1)">更多</i></p>
+                <div class="con-wrap">
+                    <ul class="product-list">
+                        <li class="px-b" ng-repeat="prod in data.onSaleInsurancelList.productList" ng-click="onClickInsuranceProdIntro(prod)">
+                            <div class="act-bg">
+                                <div class="v-l">
+                                    <!--<div class="hide">-->
+                                        <p ng-if="!prod.beforeTime" class="s-a"><span>{{prod.earningsRate.split('.')[0]}}<i>.{{prod.earningsRate.split('.')[1]}}%</i></span></p>
+                                        <p ng-if="!prod.beforeTime" class="s-b">{{prod.earningsDesc}}</p>
+                                    <!--</div>-->
+                                    <div ng-if="prod.beforeTime" class="limit-wd"></div>
+                                    <!--<div class="limit-wd"></div>-->
+                                </div>
+                                <div class="v-r">
+                                    <p class="s-a">{{prod.productDesc}}</p>
+                                    <p class="s-b">{{prod.productName}}<span ng-if="prod.cooperationCompany"> - {{prod.cooperationCompany}}</span></p>
+                                    <!--<ol class="label-list">-->
+                                        <!--<li class="o"><span>保本</span></li>-->
+                                        <!--<li><span>180个好友购买</span></li>-->
+                                    <!--</ol>-->
+                                    <ol class="label-list" ng-if="prod.tagArr.length">
+                                        <li ng-repeat="tag in prod.tagArr" class="{{tag.class}}"><span>{{tag.item}}</span></li>
+                                    </ol>
+                                    <!--增加额度标签显示-->
+                                    <div class="show-sale-wrap" ng-if="!prod.sealWords && prod.saleStatusTag && prod.saleStatusTagDesc && prod.saleStatusTagFlag" ><i class='show-sale-status'>{{prod.saleStatusTagFlag}}</i><span class="show-sale-desc">{{prod.saleStatusTagDesc}}</span></div>
+                                </div>
+                            </div>
+
+                            <!-- 灰化加off -->
+                            <div ng-if="prod.sealWords" class="{{prod.sealClass}}">
+                                <!-- 行数分别对应row-3,row-2,row-1 -->
+                                <span class="{{prod.sealRaw}}" ng-bind-html="prod.sealWords | toTrusted"></span>
+                            </div>
+
+                            <!--右上角角标-->
+                            <!--<div ng-if="prod.tipsClass == 'ly' || prod.tipsClass == 'ly off'" ng-class="prod.tipsClass"><span>{{prod.saleDateDesc}}<br>{{prod.saleStatusDesc}}</span></div>-->
+                            <!--<div ng-if="prod.tipsClass == 'ly three-word' || prod.tipsClass == 'ly three-word off'" ng-class="prod.tipsClass"><span>{{prod.saleStatusDesc}}</span></div>-->
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!--定期+ 空-->
+            <div class="con-dq px" ng-if="data.onSaleInsurancelList.productList.length==0">
+                <p class="title"><span class="dq"></span>{{data.onSaleInsurancelList.productTypeDesc}}</p>
+                <div class="con-wrap">
+                    <p class="fto"><i></i>敬请期待...</p>
+                </div>
+            </div>
+
+            <!--股基-->
+            <div class="con-gp px" name="stock" id="stock" ng-if="data.onSaleStockList.productList.length>0">
+                <p class="title px-a"><span>基金</span>{{data.onSaleStockList.productTypeDesc}} <i class="more" ng-if="data.showMore2" ng-click="onClickMore(2)">更多</i></p>
+                <div class="con-wrap">
+                    <ul class="product-list">
+                        <li class="px-b" ng-repeat="prod in data.onSaleStockList.productList" ng-click="onClickStockProdIntro(prod)">
+                            <div class="act-bg">
+                                <div class="v-l">
+                                    <div ng-if="prod.beforeTime" class="limit-wd"></div>
+
+                                    <p ng-if="!prod.beforeTime" ng-class="prod.incomeClass"><span>{{prod.earningsRate.split('.')[0]}}<i>.{{prod.earningsRate.split('.')[1]}}%</i></span></p>
+                                    <p ng-if="!prod.beforeTime" class="s-b">{{prod.earningsDesc}}</p>
+                                </div>
+                                <div class="v-r">
+                                    <p class="s-a">{{prod.productDesc}}</p>
+                                    <p class="s-b">{{prod.productName}}</p>
+                                    <ol class="label-list" ng-if="prod.tagArr.length">
+                                        <li ng-repeat="tag in prod.tagArr" class="{{tag.class}}"><span>{{tag.item}}</span></li>
+                                    </ol>
+                                </div>
+                            </div>
+                            <!-- 灰化加off-->
+                            <div ng-if="prod.sealWords" class="{{prod.sealClass}}">
+                                <span class="{{prod.sealRaw}}" ng-bind-html="prod.sealWords | toTrusted"></span>
+                            </div>
+                            <!-- <div ng-if="prod.tipsClass == 'ly' || prod.tipsClass == 'ly off'" ng-class="prod.tipsClass"><span>{{prod.saleDateDesc}}<br>{{prod.saleStatusDesc}}</span></div>
+                            <div ng-if="prod.tipsClass == 'ly three-word' || prod.tipsClass == 'ly three-word off'" ng-class="prod.tipsClass"><span>{{prod.saleStatusDesc}}</span></div> -->
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!--股基 空-->
+            <div class="con-gp px" ng-if="data.onSaleStockList.productList.length==0">
+                <p class="title"><span>基金</span>{{data.onSaleInsurancelList.productTypeDesc}}</p>
+                <div class="con-wrap">
+                    <p class="fto"><i></i>敬请期待...</p>
+                </div>
+            </div>
+            <div social-data="income"></div>
+        </ion-content>
+    </div>
+    <ion-footer-bar>
+        <div class="main-nav-wrap">
+            <ul class="main-nav flex">
+                <li class="item i-a" ng-click="onClickMainTab(1)">首页</li>
+                <li class="item i-b i-on">理财</li>
+                <li class="item i-d" ng-click="onClickMainTab(3)">转账</li>
+                <!--<li class="item i-d" ng-click="onClickMainTab(4)">投资</li>-->
+            </ul>
+        </div>
+    </ion-footer-bar>
+
+    <loading show-loading="data.showLoading"></loading>
+</ion-view>

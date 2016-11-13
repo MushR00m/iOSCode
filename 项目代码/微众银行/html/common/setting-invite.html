@@ -1,0 +1,80 @@
+<ion-view>
+    <div class="set">
+        <ion-header-bar>
+            <div class="menu-ba">
+                <!--<header class="menu"><button class="menu-return" ng-click="func.back()"></button>邀请好友<div class="nav-share" ng-click="func.onClickShare()">分享</div></header>-->
+                <header class="menu ng-binding"><button class="menu-return" ng-click="func.back()"></button>邀请好友
+                    <span ng-click="func.onClickShare()" class="menu-tip share hjButton"></span>
+                </header>
+            </div>
+        </ion-header-bar>
+
+        <ion-content class="has-header" has-bouncing="true">
+            <div ng-if="data.userType == data.USER_TYPE.DITUI">
+                <!-- 二维码邀请工卡样式 -->
+                <div class="qr-wrap">
+                    <div class="qr-img">
+                        <!--<qrcode version="6" error-correction-level="L" size="150" data="{{data.inviteUrl}}"></qrcode>-->
+                        <qrcode version="{{func.qrBestLevel(data.inviteUrl)}}" error-correction-level="{{data.qrErrorCorrection}}" size="150" data="{{data.inviteUrl}}"></qrcode>
+                    </div>
+                    <p class="txt s-mt20">打开微信/手Q，扫描二维码</p>
+                </div>
+            </div>
+            <div ng-if="data.userType == data.USER_TYPE.SEED">
+                <div class="qr-yaoqing">
+                    <section class="qr-yaoqing-hd">
+                        <img ng-src="{{data.bannerImgUrl}}">
+                    </section>
+
+                    <div class="qr-yaoqing-btn">
+                        <button class="mod-button-normal" ng-click="func.onClickShare()">邀请好友</button>
+                    </div>
+
+                    <div class="qr-yaoqing-txt" ng-click="func.showQrDlg()">
+                        <i class="icon">
+                            <img src="../../www/img/qrcode/ewm.png" height="29" width="29">
+                        </i>
+                        <span>面对面邀请</span>
+                    </div>
+
+                    <!-- 活动说明 start -->
+                    <div class="rule-box">
+                        <div compile="data.awardContent"></div>
+                        <!--<div class="title"><img src="../../www/img/qrcode/rule-title.png" height="14">-->
+                            <!--<h2>活动说明</h2></div>-->
+                        <!--<ul class="items">-->
+                            <!--<li>1、将本页面分享给好友，邀请好友加入微众银行</li>-->
+                            <!--<li>2、好友接受邀请，下载微众银行APP完成开户，并在开户7天内成功购买定期+产品（不包括齐鲁系列和万能险产品）</li>-->
+                            <!--<li>3、您和您的好友即可获得邀请奖励，可在APP福利中心查看领取</li>-->
+                        <!--</ul>-->
+                    </div>
+                    <!-- 活动说明 end -->
+                </div>
+
+            </div>
+            <div ng-if="data.userType == data.USER_TYPE.NORMAL">
+                <section class="qr-general">
+                    <img src="../../www/img/qrcode/mailer.png" class="mailer">
+                    <p>邀请好友下载微众银行App</p>
+                    <p>一起发财一起嗨~</p>
+                    <button class="mod-button-normal" ng-click="func.onClickShare()">邀请好友</button>
+
+                    <div class="yq mt-30" ng-click="func.showQrDlg()"><i class="icon"></i><span class="">面对面邀请</span></div>
+                </section>
+            </div>
+
+        </ion-content>
+    </div>
+    <!-- 邀请二维码弹窗 -->
+    <div ng-if="data.showInviteQrDlg" class="qr-mask"></div>
+    <div ng-if="data.showInviteQrDlg" class="qr-pop qr-popaccept">
+        <span class="qr-popclose" ng-click="func.hideQrDlg()"></span>
+        <div class="qr-pop-link">
+            <qrcode version="{{func.qrBestLevel(data.inviteUrl)}}" class="qr-icon-big" error-correction-level="{{data.qrErrorCorrection}}" size="150" data="{{data.inviteUrl}}"></qrcode>
+            <!--<span class="qr-icon-small">-->
+                <!--<img src="img/qr-icon.png">-->
+            <!--</span>-->
+        </div>
+        <p class="s-mt20">打开微信/手Q，扫描二维码</p>
+    </div>
+</ion-view>

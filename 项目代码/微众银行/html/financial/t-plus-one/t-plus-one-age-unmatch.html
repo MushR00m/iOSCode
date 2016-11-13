@@ -1,0 +1,23 @@
+<ion-view>
+    <div class="oti">
+        <ion-header-bar>
+            <div class="menu-ba">
+                <header class="menu">订单信息</header>
+            </div>
+        </ion-header-bar>
+
+        <ion-content class="has-header" has-bouncing="false">
+            <div class="into-logo fall">
+                <p class="a">年龄不符</p>
+                <p class="c" style="padding:0 25px;text-align: left;">
+                    小We很遗憾的告诉您，微众银行仅限年龄在{{data.prodInfo.age_down_limit}}-{{data.prodInfo.age_up_limit}}岁之间的用户在线购买，您的年龄不符。如需购买请致电{{data.prodInfo.company_name}}，电话：{{data.prodInfo.company_service_phone}}。非常抱歉
+                </p>
+                <!--<p class="b">资金已返还到您的微众基础账户</p>-->
+            </div>
+
+            <div class="btn-wrap mgt40">
+                <button class="btn-c" ng-click="onClickOK()">购买其他产品</button>
+            </div>
+        </ion-content>
+    </div>
+</ion-view>

@@ -1,0 +1,38 @@
+<ion-view>
+    <div class="bx">
+        <ion-header-bar>
+            <div class="menu-ba">
+                <header class="menu"><button class="menu-return" ng-click="back()"></button>{{data.onSaleDesc}}</header>
+            </div>
+        </ion-header-bar>
+        <ion-content class="has-header" has-bouncing="false" delegate-handle="myContent">
+            <div class="hs-wrap px-a" ng-if="data.prodList.length">
+                <div style="padding-left:2px;" class="px-a">
+                    <div class="flex title">
+                        <span class="item">往期</span>
+                        <span class="item">预期年化</span>
+                        <span class="item" style="margin-right: 4px;">当前状态</span>
+                    </div>
+                </div>
+            </div>
+
+        </ion-content>
+        <ion-content style="top:90px;" has-bouncing="false" delegate-handle="myContent">
+            <div class="hs-wrap px-a" ng-if="data.prodList.length">
+                <ul class="hs-list tj kj">
+                    <li class="flex ft14" ng-repeat="obj in data.prodList" ng-click="onClickHistoryProductDetail(obj.prodCode)">
+                        <span class="item">{{obj.valueDate.substr(4, 4)}}</span>
+                        <span class="item">{{obj.incomeRate.toFixed(2)}}%</span>
+                        <span class="item it-row red" ng-if="obj.prodStatus==1">待起息</span>
+                        <span class="item it-row" ng-if="obj.prodStatus==2">封闭期</span>
+                        <span class="item it-row" ng-if="obj.prodStatus==3">已到期</span>
+                        <span class="item it-row" ng-if="obj.prodStatus==4">兑付中</span>
+                        <span class="item it-row" ng-if="obj.prodStatus==5">已兑付</span>
+                    </li>
+                </ul>
+            </div>
+        </ion-content>
+
+        <img ng-if="!data.prodList.length && data.noCache" src="../img/ih-more@2x.png" alt="" style="display: block;width: 146px;height: 96px;margin: 150px auto 0;">
+    </div>
+</ion-view>

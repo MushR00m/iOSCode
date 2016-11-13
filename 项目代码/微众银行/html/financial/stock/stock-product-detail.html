@@ -1,0 +1,284 @@
+<ion-view>
+    <div class="bx">
+        <ion-header-bar>
+            <div class="menu-ba">
+                <header class="menu">
+                    <button class="menu-return" ng-click="back()"></button><span>{{data.prodInfo.on_sale_desc | longProdName}}</span><span>({{data.prodInfo.on_sale_code}})</span>
+                    <span ng-class="data.shareClass" ng-click="share()"></span>
+                </header>
+            </div>
+        </ion-header-bar>
+
+        <hj-up-down-box up-down-init="upDownInit">
+            <ion-content class="has-header" has-bouncing="false" ng-style="contentStyle()">
+                <div style="min-height: 100%;">
+                    <div class="ba-income-wrap">
+                        <p class="title p-line-lr-h" ng-if="data.period >= 4">
+                            <span>{{data.earningsDesc}}</span>
+                        </p>
+
+                        <p class="num" ng-if="data.period == 1 || data.period == 2 || data.period == 3">暂无收益</p>
+                        <p class="num" ng-if="data.period == 4">--</p>
+                        <p class="num" ng-if="(data.period >= 5 ) && data.earningsRate">{{data.earningsRate}}
+                            <span class="sub">%</span>
+                        </p>
+                        <p class="num" ng-if="(data.period >= 5 ) && !data.earningsRate"></p>
+
+                        <p class="pq" ng-if="data.period >= 4">数据更新至
+                            <span>{{data.prodInfo.income_update_date.substr(0,4)}}-{{data.prodInfo.income_update_date.substr(4,2)}}-{{data.prodInfo.income_update_date.substr(6,2)}}</span>
+                        </p>
+
+                        <div class="pz-wrap flex">
+                            <div class="item">
+                                <span class="k" ng-click="onClickRealValue()">单位净值(元)</span>
+                                <span>{{data.realValue}}</span>
+                            </div>
+                            <div class="item">
+                                <span class="k" ng-click="onClickChangeRate()">日涨跌幅</span>
+                                <span class="" ng-if="data.period <= 4">--</span>
+                                <span class="{{data.changeRateClass}}" ng-if="data.period >= 5">{{data.yesterdayChangeRate}}%</span>
+                            </div>
+                            <div class="item">
+                                <span class="k">风险等级</span>
+                                <span class="{{data.riskRateClass}}">{{data.riskDesc}}</span>
+                            </div>
+                        </div>
+                        <!--<i class="jsq"></i>-->
+                        <!--risk tips-->
+                        <div class="pz-risk px-a" ng-if="data.noneRisk">
+                            <p>本产品需要风险评估后才能购买</p>
+                            <p ng-click="onClickToRisk()">去进行风险评估<i class="arrow-right"></i></p>
+                        </div>
+                    </div>
+
+                    <!-- 如果只有一行文字请在class加 only -->
+                    <div class="px mgt20 remind-box only" ng-if="data.period==1">
+                        <i></i>
+                        <p ng-if="data.period==1">{{data.prodInfo.start_buy_date | formatDateToCNWithoutYear}} {{data.prodInfo.start_buy_time.substr(0,5)}}开放认购</p>
+                    </div>
+
+                    <div class="djs-box px-a" ng-if="data.period==2">
+                        <div class="djs-con">
+                            <div style="overflow:hidden;">
+                                <div class="j-l" >
+                                    <p ng-if="data.isToday">本期剩余时间</p>
+                                    <p ng-if="!data.isToday">本期购买截至</p>
+                                </div>
+                                <div class="j-r">
+                                    <!-- 倒计时 -->
+                                    <div class="countdown" ng-if="data.isToday">
+                                        <div class="bloc-time hours" data-init-value="{{data.countdownHour}}">
+                                            <div class="figure hours hours-1">
+                                                <span class="top">0</span>
+                                                <span class="top-back"><span>0</span></span>
+                                                <span class="bottom">0</span>
+                                                <span class="bottom-back"><span>0</span></span>
+                                            </div>
+                                            <div class="figure hours hours-2">
+                                                <span class="top">0</span>
+                                                <span class="top-back"><span>0</span></span>
+                                                <span class="bottom">0</span>
+                                                <span class="bottom-back"><span>0</span></span>
+                                            </div>
+                                        </div>
+
+                                        <i class="mh">:</i>
+
+                                        <div class="bloc-time min" data-init-value="{{data.countdownMinute}}">
+                                            <div class="figure min min-1">
+                                                <span class="top">0</span>
+                                                <span class="top-back"><span>0</span></span>
+                                                <span class="bottom">0</span>
+                                                <span class="bottom-back"><span>0</span></span>
+                                            </div>
+                                            <div class="figure min min-2">
+                                                <span class="top">0</span>
+                                                <span class="top-back"><span>0</span></span>
+                                                <span class="bottom">0</span>
+                                                <span class="bottom-back"><span>0</span></span>
+                                            </div>
+                                        </div>
+
+                                        <i class="mh">:</i>
+
+                                        <div class="bloc-time sec" data-init-value="{{data.countdownSecond}}">
+                                            <div class="figure sec sec-1">
+                                                <span class="top">0</span>
+                                                <span class="top-back"><span>0</span></span>
+                                                <span class="bottom">0</span>
+                                                <span class="bottom-back"><span>0</span></span>
+                                            </div>
+                                            <div class="figure sec sec-2">
+                                                <span class="top">0</span>
+                                                <span class="top-back"><span>0</span></span>
+                                                <span class="bottom">0</span>
+                                                <span class="bottom-back"><span>0</span></span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 截至时间 -->
+                                    <div class="countdown cd-b" ng-if="!data.isToday">
+                                        <div class="bloc-time hours">
+                                            <div class="figure hours hours-1">
+                                                <span class="top">{{data.prodInfo.end_buy_date.substr(4,2)}}</span>
+                                                <span class="bottom">{{data.prodInfo.end_buy_date.substr(4,2)}}</span>
+                                            </div>
+                                            <span class="wd">月</span>
+                                            <div class="figure hours hours-2">
+                                                <span class="top">{{data.prodInfo.end_buy_date.substr(6,2)}}</span>
+                                                <span class="bottom">{{data.prodInfo.end_buy_date.substr(6,2)}}</span>
+                                            </div>
+                                            <span class="wd">日</span>
+                                            <span class="dt">{{data.prodInfo.end_buy_time.substr(0,5)}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <p class="kk px-b">购买成功后，将进入封闭期（预计{{data.close_period_start_date | formatDateToCNWithoutYear}}-{{data.close_period_end_date | formatDateToCNWithoutYear}}）。封闭期不支持基金申购和资金赎回。</p>
+                    </div>
+
+                    <ul class="lc-wrap mgt20 px" ng-if="data.period==3 || data.period==4 || data.period ==6">
+                        <li class="h-s px-b" ng-if="data.period==3">当前状态<span style="padding-left:10px;color:#f29360;">待进入封闭期</span></li>
+                        <li class="h-s px-b" ng-if="data.period==4 || data.period == 6">当前状态<span style="padding-left:10px;color:#f29360;">资金封闭期</span></li>
+                        <li class="h-s px-b">封闭时间<span style="padding-left:10px;">{{data.close_period_start_date | formatDateToCNWithoutYear}}{{data.close_period_start_time.substr(0,5)}}-{{data.close_period_end_date | formatDateToCNWithoutYear}}{{data.close_period_end_time.substr(0,5)}}</span></li>
+                    </ul>
+
+                    <div class="px mgt20 remind-box only" ng-if="data.period==3 || data.period==4 || data.period == 6">
+                        <i></i>
+                        <p >封闭期不支持基金申购和资金赎回，预计封闭期结束后第一个交易日9:00进入开放期</p>
+                    </div>
+
+                    <div compile="data.sectionHtml"></div>
+
+                    <div ng-if="data.period==5 || data.period==7 || data.period == 6">
+                        <div class="subnav flex px mgt20">
+                            <div class="{{data.realValueMapTab}}" ng-click="onClickRealValueMap()">收益率走势</div>
+                            <div class="{{data.realValueTableTab}}" ng-click="onClickRealValueTable()">历史净值(元)</div>
+                        </div>
+
+                        <div class="hs-wrap px-a" ng-show="data.showRealValueMap">
+                            <p class="p-o p-line-lr-h"><span>{{data.monthStr}}<i>{{data.preRate}}%</i></span></p>
+                            <div stockcharts show-chart='func.showChart' chart-options="data.chartOptions" style="width:100%; height:250px;"></div>
+                            <div class="hs-q">
+                                <div class="im"><i class="a"></i>本产品</div>
+                                <div class="im" ng-click="onClickThreeeHandred()"><i class="b"></i>沪深300<span class="i"></span></div>
+                            </div>
+                            <ul class="hs-month">
+                                <li ng-class="onClassTime(1)" ng-click="onClickTime(1)">1月</li>
+                                <li ng-class="onClassTime(3)" ng-click="onClickTime(3)">3月</li>
+                                <li ng-class="onClassTime(6)" ng-click="onClickTime(6)">6月</li>
+                                <li ng-class="onClassTime(12)" ng-click="onClickTime(12)">1年</li>
+                            </ul>
+                        </div>
+
+                        <div class="hs-wrap px-a" ng-hide="data.showRealValueMap">
+                            <ul class="hs-list tj">
+                                <li class="flex title">
+                                    <span class="item">日期</span>
+                                    <span class="item">单位净值</span>
+                                    <span class="item">累计净值</span>
+                                    <span class="item">涨跌幅</span>
+                                </li>
+                                <li class="flex" ng-repeat="info in data.realValueInfoList7Days">
+                                    <span class="item">{{info.date.substr(4, 2)}}-{{info.date.substr(6 ,2)}}</span>
+                                    <span class="item">{{(info.realValue).toFixed(4)}}</span>
+                                    <span class="item">{{(info.accuValue).toFixed(4)}}</span>
+                                    <span ng-class="info.class">{{info.diffRate}}%</span>
+                                </li>
+                            </ul>
+                            <p class="mk" ng-click="onClickViewMoreHistory()">查看更多</p>
+                        </div>
+                    </div>
+
+                    <div class="{{getExtraRuleStyle($index)}}"
+                         ng-if="data.extraRules.length > 0"
+                         ng-repeat="rule in data.extraRules" ng-click="onClickExtraRule($index)">
+
+                        <p class="sid-p">{{rule.name}}</p>
+                        <p class="sid-wd" ng-repeat="text in rule.contents track by $index">{{text}}</p>
+                    </div>
+
+                    <div class="lc-wrap mgt20 px" style="padding-bottom:15px;">
+                        <p class="px-b" style="padding:15px 0 8px;">交易规则</p>
+                        <table class="gz-table">
+                            <tr ng-repeat="rule in data.tradeRules">
+                                <td class="a">{{rule.name}}</td>
+                                <td><p ng-repeat="subRule in rule.contents track by $index">{{subRule}}</p></td>
+                            </tr>
+                        </table>
+
+                        <p ng-click="onClickMoreRules()" style="text-align:right;padding:5px 25px 0 0;">
+                            <span style="font-size:12px;color:#6298e2;">更多规则</span>
+                        </p>
+                    </div>
+
+                    <div class="px click-line" ng-click="onClickAssetsDetail()"><p class="jt">资产配置</p></div>
+
+                    <div class="px click-line" ng-click="onClickTransRates()"><p class="jt">交易费率</p></div>
+
+                    <div class="px click-line" ng-click="onClickProdManager()">
+                        <p class="jt">
+                            <span>基金经理</span>
+                            <span style="float:right;margin-right:45px;">{{data.prodInfo.fund_mgr}}</span>
+                        </p>
+                    </div>
+
+                    <div style="padding-bottom:40px;">
+                        <div class="px click-line" ng-click="onClickMoreDetail()"><p class="jt">更多详情</p></div>
+                    </div>
+                </div>
+
+                <section class="jumping-down" ng-if="data.prodInfo.load_desc && data.showSecond"><i></i>{{data.prodInfo.load_desc}}</section>
+            </ion-content>
+
+            <ion-content class="has-header" has-bouncing="false" style="visibility: hidden;">
+                <div ng-if="data.showSecond" compile="data.secondPageStr" >
+
+                </div>
+            </ion-content>
+        </hj-up-down-box>
+
+        <ion-footer-bar ng-if="data.showBuyButton && canPurchase()">
+            <div class="buy-btn-wrap" ng-if="data.period==1">
+                <div class="lc-buy-btn off">暂未开始购买</div>
+            </div>
+
+            <div class="buy-btn-wrap" ng-if="data.period==2 && data.prodInfo.fund_status != 9">
+                <p class="g">认购费：{{data.realPurchaseFeeRate}}%<span ng-if="data.purchaseFeeRate>0 && data.purchaseFeeRate!=data.realPurchaseFeeRate">（原{{data.purchaseFeeRate}}%）</span></p>
+                <div class="lc-buy-btn" ng-click="onClickPurchase()">立即购买</div>
+            </div>
+
+            <div class="buy-btn-wrap" ng-if="data.period==2 && data.prodInfo.fund_status == 9">
+                <div class="lc-buy-btn off">已售罄</div>
+            </div>
+
+            <div class="buy-btn-wrap" ng-if="data.period==3">
+                <div class="lc-buy-btn off">已售罄</div>
+            </div>
+
+            <div class="buy-btn-wrap" ng-if="data.period==4 || data.period == 6">
+                <div class="lc-buy-btn off">封闭期</div>
+            </div>
+
+            <div class="buy-btn-wrap" ng-if="data.period==5 || data.period== 7">
+                <p class="g">申购费：{{data.realPurchaseFeeRate}}%<span ng-if="data.purchaseFeeRate>0 && data.purchaseFeeRate!=data.realPurchaseFeeRate">（原{{data.purchaseFeeRate}}%）</span></p>
+                <div class="lc-buy-btn" ng-click="onClickPurchase()">立即购买</div>
+            </div>
+        </ion-footer-bar>
+
+        <div pop-confirm out-value="data.outValue"></div>
+        <!--遮罩层start-->
+        <div ng-class="data.maskClass">
+            <h2>{{data.maskTitle}}</h2>
+            <p>{{data.maskDetail}}</p>
+            <div class="funcs"><button class="p-btn p-btn-outline p-btn-block" ng-click="onClickCancelMask()">知道了</button></div>
+        </div>
+        <!--遮罩层end-->
+
+    </div>
+    <div slider-up-confirm slider-up-confirm-option="data.sliderUpConfirmOption"></div>
+</ion-view>
+<risk-assessment option="data.riskOption"></risk-assessment>

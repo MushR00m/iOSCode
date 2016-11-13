@@ -1,0 +1,407 @@
+<ion-view can-swipe-back="false">
+    <div class="idx p-c-blue refresh-blue">
+        <!--headBegin-->
+        <ion-header-bar>
+            <div class="menu-ba">
+                <header class="menu">
+                    <span class="menu-user" ng-click="func.onClickSettingsBtn()">
+                        <span class="avatar"><img ng-src="{{data.avatarUrl}}" alt="用户名"></span>
+                        <span class="reddot" ng-if="data.showMsgDot"></span>
+                    </span>
+                    微众银行
+                    <span class="menu-wd" ng-click="func.onClickTransLog()">交易查询</span>
+                </header>
+            </div>
+        </ion-header-bar>
+        <!--headEnd-->
+
+        <!--contentBegin-->
+        <ion-content has-bouncing="false" class="has-header" style="bottom: 53px;">
+            <ion-refresher
+                    pulling-text="refreshText"
+                    refreshing-text="refreshingText1"
+                    on-refresh="func.refreshData()"
+                    on-pulling="func.pullingData()"
+                    end-pulling="func.endPullingData()"
+                    spinner="ios"
+                    pulling-icon = "false"
+                    >
+            </ion-refresher>
+
+            <section class="asset-overview p-bgc-blue">
+                <ul class="assets">
+                    <li class="title p-c-lblue"><span ng-click="func.onClickAssetExplanation()">总资产(元)<i class="excl"></i></span></li>
+                    <li class="sum num p-c-fff" style="{{data.amountFontSize}}" ng-click="func.onClickAssetTotal()" >{{data.totalAmount}}</li>
+                    <li class="profit flex p-c-lblue" ng-if="!func.isShowSocialData()" ng-click="func.onClickMyIncomes()">
+                        <div>昨日收益<br><span class="num">{{data.yesterdayTotalIncome}}</span></div>
+                        <div>累计收益<br><span class="num">{{(data.accumulatedMonetaryTotalIncome+data.accumulatedInsuranceTotalIncome+data.accumulatedStockTotalIncome+data.accumulatedTPlusOneTotalIncome).toFixed(2)}}</span></div>
+                    </li>
+                    <li social-data="trade" class="ui-aum" ng-if="func.isShowSocialData()"></li>
+                </ul>
+                <notice-marquee ng-cloak></notice-marquee>
+            </section>
+
+            <section ng-click="func.onClickHomeMiddleBanner()">
+                <!--<img src="../img/slice/index_banner_1.png" alt="">-->
+                <div ng-bind-html="data.sectionHtml"></div>
+            </section>
+
+            <section class="product-overview p-bgc-fff">
+                <ul class="products">
+                    <!--微众卡-->
+                    <li class="wcard flex px-b" ng-if="data.showWeBankCard" ng-click="func.onClickWeBankCard()">
+                        <div class="item left">微众卡</div>
+                        <div class="item right has1row num">{{data.weBankCardAmount}}</div>
+                    </li>
+
+                    <!--货基已购买-->
+                    <li class="cplus flex px-b" ng-if="data.hasHJ" ng-click="func.onClickViewMyHJProducts()">
+                        <div class="item left"><i class="cplus">活期+</i></div>
+                        <div class="item right has2rows">
+                            <span class="num">{{data.HJAmount}}</span>
+                            <span class="p-c-lgray"><span>昨日</span><span class="num">{{data.yesterdayHJIncome}}</span></span>
+                        </div>
+                    </li>
+
+                    <!--货基未购买，并且无推荐配置-->
+                    <li class="cplus flex px-b" ng-if="!data.hasHJ && !data.financialRecomData[data.RECOM_PROD_TYPE.CURRENT_PLUS]" ng-click="func.onClickViewMyHJProducts()">
+                        <div class="item left"><i class="cplus">活期+</i></div>
+                        <div class="item right allow-enter">
+                            <span ng-if="data.HJIncomeRate" class="p-c-lgray">年化收益<span class="p-c-lorange num">{{data.HJIncomeRate}}%</span></span>
+                        </div>
+                    </li>
+
+                    <!--货基未购买，并且有推荐配置-->
+                    <li class="cplus flex px-b" ng-if="!data.hasHJ && data.financialRecomData[data.RECOM_PROD_TYPE.CURRENT_PLUS]" ng-click="func.onClickViewMyHJProducts()">
+                        <div class="item left"><i class="cplus">活期+</i></div>
+                        <div class="item right allow-enter">
+                            <span class="p-c-lgray">
+                                {{data.financialRecomData[data.RECOM_PROD_TYPE.CURRENT_PLUS].text1}}
+                                <span class="p-c-lorange num" ng-if="data.financialRecomData[data.RECOM_PROD_TYPE.CURRENT_PLUS].isIncomeRateShown">
+                                    {{data.financialRecomData[data.RECOM_PROD_TYPE.CURRENT_PLUS].incomeRate}}%
+                                </span>
+                                {{data.financialRecomData[data.RECOM_PROD_TYPE.CURRENT_PLUS].text2}}
+                            </span>
+                        </div>
+                    </li>
+
+                    <!--短期+ 已购买-->
+                    <li class="splus flex px-b" ng-if="data.hasShort" ng-click="func.onClickViewMyShortPeroid()">
+                        <div class="item left"><i class="splus">短期+</i></div>
+                        <div class="item right has2rows">
+                            <span class="num">{{data.ShortAmount}}</span>
+                            <span class="p-c-lgray"><span>预估昨日</span><span class="num">{{data.yesterdayShortIncome}}</span></span>
+                        </div>
+                    </li>
+
+                    <!--短期+ 未购买，并且没有推荐配置-->
+                    <li class="splus flex px-b" ng-if="!data.hasShort && !data.financialRecomData[data.RECOM_PROD_TYPE.SHORT_PEROID]" ng-click="func.onClickPurchaseShortPeroid()">
+                        <div class="item left"><i class="splus">短期+</i></div>
+                        <div class="item right allow-enter">
+                            <span class="p-c-lgray">精选最优产品</span>
+                        </div>
+                    </li>
+
+                    <!--短期+ 未购买，并且有推荐配置-->
+                    <li class="splus flex px-b" ng-if="!data.hasShort && data.financialRecomData[data.RECOM_PROD_TYPE.SHORT_PEROID]" ng-click="func.onClickRecomShortPeroid()">
+                        <div class="item left"><i class="splus">短期+</i></div>
+                        <div class="item right allow-enter">
+                            <span class="p-c-lgray" ng-click="func.onClickRecomShortPeroid()">
+                                {{data.financialRecomData[data.RECOM_PROD_TYPE.SHORT_PEROID].text1}}
+                                <span class="p-c-lorange num" ng-if="data.financialRecomData[data.RECOM_PROD_TYPE.SHORT_PEROID].isIncomeRateShown">
+                                    {{data.financialRecomData[data.RECOM_PROD_TYPE.SHORT_PEROID].incomeRate}}%
+                                </span>
+                                {{data.financialRecomData[data.RECOM_PROD_TYPE.SHORT_PEROID].text2}}
+                            </span>
+                        </div>
+                    </li>
+
+                    <!--保险已购买-->
+                    <li class="dplus flex px-b" ng-if="data.hasBX" ng-click="func.onClickViewMyInsurance()">
+                        <div class="item left"><i class="dplus">定期+</i></div>
+                        <div class="item right has2rows">
+                            <span class="num">{{data.BXAmount}}</span>
+                            <span class="p-c-lgray"><span>预估昨日</span><span class="num">{{data.yesterdayBXIncome}}</span></span>
+                        </div>
+                    </li>
+
+                    <!--保险未购买，并且没有推荐配置-->
+                    <li class="dplus flex px-b" ng-if="!data.hasBX && !data.financialRecomData[data.RECOM_PROD_TYPE.TIME_DEPOSIT]" ng-click="func.onClickPurchaseInsurance()">
+                        <div class="item left"><i class="dplus">定期+</i></div>
+                        <div class="item right allow-enter">
+                            <span class="p-c-lgray">精选最优产品</span>
+                        </div>
+                    </li>
+
+                    <!--保险未购买，并且有推荐配置-->
+                    <li class="dplus flex px-b" ng-if="!data.hasBX && data.financialRecomData[data.RECOM_PROD_TYPE.TIME_DEPOSIT]" ng-click="func.onClickRecomInsurance()">
+                        <div class="item left"><i class="dplus">定期+</i></div>
+                        <div class="item right allow-enter">
+                            <span class="p-c-lgray" ng-click="func.onClickRecomInsurance()">
+                                {{data.financialRecomData[data.RECOM_PROD_TYPE.TIME_DEPOSIT].text1}}
+                                <span class="p-c-lorange num" ng-if="data.financialRecomData[data.RECOM_PROD_TYPE.TIME_DEPOSIT].isIncomeRateShown">
+                                    {{data.financialRecomData[data.RECOM_PROD_TYPE.TIME_DEPOSIT].incomeRate}}%
+                                </span>
+                                {{data.financialRecomData[data.RECOM_PROD_TYPE.TIME_DEPOSIT].text2}}
+                            </span>
+                        </div>
+                    </li>
+
+                    <!--股基已购买-->
+                    <li class="{{data.stockTabClass}}" ng-if="data.hasGJ" ng-click="func.onClickViewMyStockProducts()">
+                        <div class="item left">基金</div>
+                        <div class="item right has2rows">
+                            <span class="num">{{data.GJAmount}}</span>
+                            <span class="p-c-lgray"><span>昨日</span><span class="num">{{data.yesterdayGJIncome}}</span></span>
+                        </div>
+                    </li>
+
+                    <!--股基未购买，并且没有推荐配置-->
+                    <li class="{{data.stockTabClass}}" ng-if="!data.hasGJ && !data.financialRecomData[data.RECOM_PROD_TYPE.STOCK]" ng-click="func.onClickPurchaseStockProducts()">
+                        <div class="item left">基金</div>
+                        <div class="item right allow-enter">
+                            <span class="p-c-lgray">追求更高收益</span>
+                        </div>
+                    </li>
+
+                    <!--股基未购买，并且有推荐配置-->
+                    <li class="{{data.stockTabClass}}" ng-if="!data.hasGJ && data.financialRecomData[data.RECOM_PROD_TYPE.STOCK]" ng-click="func.onClickRecomStock()">
+                        <div class="item left">基金</div>
+                        <div class="item right allow-enter">
+                            <span class="p-c-lgray" ng-click="func.onClickRecomStock()">
+                                {{data.financialRecomData[data.RECOM_PROD_TYPE.STOCK].text1}}
+                                <span class="p-c-lorange num" ng-if="data.financialRecomData[data.RECOM_PROD_TYPE.STOCK].isIncomeRateShown">
+                                    {{data.financialRecomData[data.RECOM_PROD_TYPE.STOCK].incomeRate}}%
+                                </span>
+                                {{data.financialRecomData[data.RECOM_PROD_TYPE.STOCK].text2}}
+                            </span>
+                        </div>
+                    </li>
+
+                    <!--黄金-->
+                    <li class="gold flex px" ng-if="data.hasGold && data.isGoldGray" ng-click="func.onClickViewGoldProducts()">
+                        <div class="item left">黄金</div>
+                        <div class="item right has2rows">
+                            <span class="num">{{data.GoldAmount}}</span>
+                            <span class="p-c-lgray">总持有{{data.GoldAmountWeight | formatGoldString}}克，昨日＋{{data.yesterdayGoldIncomeWeight | formatGoldString}}克</span>
+                        </div>
+                    </li>
+
+                    <li class="gold flex px" ng-if="!data.hasGold && !data.financialRecomData[data.RECOM_PROD_TYPE.GOLD] && data.isGoldGray" ng-click="func.onClickGoldCurrentProd()">
+                        <div class="item left">黄金</div>
+                        <div class="item right allow-enter">
+                            <span class="p-c-lgray">投资黄金，对抗通胀</span>
+                        </div>
+                    </li>
+
+                    <li class="gold flex px" ng-if="!data.hasGold && data.financialRecomData[data.RECOM_PROD_TYPE.GOLD] && data.isGoldGray" ng-click="func.onClickGoldCurrentProd()">
+                        <div class="item left">黄金</div>
+                        <div class="item right allow-enter">
+                            <span class="p-c-lgray">
+                                {{data.financialRecomData[data.RECOM_PROD_TYPE.GOLD].text1}}
+                                <span class="p-c-lorange num" ng-if="data.financialRecomData[data.RECOM_PROD_TYPE.GOLD].isIncomeRateShown">
+                                    {{data.financialRecomData[data.RECOM_PROD_TYPE.GOLD].incomeRate}}%
+                                </span>
+                                {{data.financialRecomData[data.RECOM_PROD_TYPE.GOLD].text2}}
+                            </span>
+                        </div>
+                    </li>
+                </ul>
+            </section>
+            <section class="event-timeline" ng-if="!data.isShowNewCalenDarModel" >
+                <!--没有时间轴end-->
+                <!--有时间轴start-->
+                <h2 class="p-c-lblue" ng-if="func.isTimelineShown()">智能管理每一分钱</h2>
+                <ul class="timeline p-bgc-fff px-b" ng-if="func.isTimelineShown()">
+                    <!--past-->
+                    <li class="past flex" ng-repeat-start="item in data.timeLinePassAwayItem">
+                        <span class="item">{{item.trans_date|formatDateForTimeLine}}</span>
+                        <span class="item">{{item.remark}}</span>
+                        <span class="item">{{item.self_tranc_desc}}</span>
+                        <span class="item">{{item.trans_amt|number:2}}元</span>
+                    </li>
+                    <li class="past line px-a" ng-repeat-end></li>
+                    <li class="{{func.getTimeTodayLiItemClass()}}" ng-if="data.timeLineTodayItem" ng-click="func.onClickTimelineItem(data.timeLineTodayItem)">
+                        <span class="{{func.getTimelineTodayItemStyle()}}">今天</span>
+                        <span class="{{func.getTimelineTodayItemStyle()}}">{{data.timeLineTodayItem.remark}}</span>
+                        <span class="{{func.getTimelineTodayItemStyle()}}">{{data.timeLineTodayItem.self_tranc_desc}}</span>
+                        <span class="{{func.getTimelineTodayItemStyle()}}">{{data.timeLineTodayItem.trans_amt|number:2}}元</span>
+                    </li>
+                    <li class="{{func.getTimelineTodayItemContinueLineStyle()}}"
+                        ng-if="data.timeLineTodayItem && data.timelineFuture.length > 0"></li>                    <li class="future flex" ng-repeat-start="item in data.timelineFuture" ng-click="func.onClickTimelineItem(item)">
+                    <span class="item">{{item.trans_date|formatDateForTimeLine}}</span>
+                    <span class="item">{{item.remark}}</span>
+                    <span class="item">{{item.self_tranc_desc}}</span>
+                    <span class="item">{{item.trans_amt|number:2}}元</span>
+                </li>
+                    <li class="future line px-a" ng-if="func.hasMorePlanInTimeLine(item)"  ng-repeat-end></li>
+                    <li class="future line end"  ng-if="!func.hasMorePlanInTimeLine(item)" ng-repeat-end></li>
+                </ul>
+                <!--没有时间轴start-->
+                <div class="slogan p-bgc-fff p-c-lblue" ng-if="!func.isTimelineShown()" ng-click="func.onClickSalaryPlan()"><span>存工资，绝不浪费一天收益 ></span></div>
+                <!--有时间轴end-->
+            </section>
+            <section style="background-color: #f7f7f7;padding-bottom: 15px;padding-top:15px;" ng-if="data.isShowNewCalenDarModel" >
+                <div class="home-date manager-star mod-block-item " ng-click="func.onClickHomeCalendar()" style="margin-top: 0;" >
+                    <div class="home-date-inner">
+                        <span ng-if="data.ShowPlatFormClass == 'android'">{{data.today.getDate()}}</span>
+                        <span ng-if="data.ShowPlatFormClass == 'ios'">{{data.today.getDate()}}</span>
+                        <span class="s-orange">{{data.todayWeekDesc}}</span>
+                    </div>
+                    <!-- 2行 -->
+                    <div class="content" ng-if="!data.hasNextSeventDaysEvent && !data.hasNoneEventSceneEvent" >
+                        <h1>添加计划</h1>
+                        <h2 class="s-fz12">智能管理每一分钱</h2>
+                    </div>
+                    <div class="content" ng-if="!data.hasNextSeventDaysEvent && data.hasNoneEventSceneEvent" >
+                        <h1>近7天无事上奏</h1>
+                        <h2 class="s-fz12 s-lh16" >去随便逛逛</h2>
+                    </div>
+                    <!-- 1行 -->
+                    <div class="content" ng-if="data.hasNextSeventDaysEvent">
+                        <h2 class="s-fz12 s-lh16" ng-bind-html="data.selectNoneEventSceneEventHtml" ></h2>
+                    </div>
+                    <i class="ui-arrow" ></i>
+                </div>
+            </section>
+
+        </ion-content>
+        <!--contentEnd-->
+        <div class="main-nav-wrap" ng-if="!showInvestment">
+            <ul class="main-nav flex">
+                <li class="item i-a i-on">首页</li>
+                <li class="item i-b" ng-click="func.onClickMainTab(2)">理财</li>
+                <li class="item i-d" ng-click="func.onClickMainTab(3)">转账</li>
+
+            </ul>
+        </div>
+        <div class="main-nav-wrap" ng-if="showInvestment">
+            <ul class="main-nav flex">
+                <li class="item i-a i-on">总览</li>
+                <li class="item i-b" ng-click="func.onClickMainTab(2)">理财</li>
+                <li class="item i-c" ng-click="func.onClickMainTab(4)">投资</li>
+                <li class="item i-d" ng-click="func.onClickMainTab(3)">转账</li>
+            </ul>
+        </div>
+
+    </div>
+
+    <loading show-loading="data.showLoading"></loading>
+
+    <!--主动弹窗-->
+    <!--p0 打款验证, p2 代发刷脸-->
+    <div pop-confirm out-value="data.outValue"></div>
+    <!--p1 公告-->
+    <div class="ui-popup ng-hide" ng-show="data.notice.show">
+        <div class="popup-wrap">
+            <div class="popup-con">
+                <header class="hd px-a" ng-bind="data.notice.head"></header>
+                <section class="con">{{data.notice.nickName}}<br>{{data.notice.desc}}</section>
+                <footer class="qx-menu flex px-b">
+                    <div class="item p-line-r" ng-click="func.notice.view()">了解详情</div>
+                    <div class="item" ng-click="func.notice.hide()">知道了</div>
+                </footer>
+            </div>
+        </div>
+    </div>
+    <!--p3 收益结算弹窗-->
+    <section class="p-mask-sp p-mask-sp-profstat" ng-if="data.showArrival">
+        <div class="main">
+            <h2>{{data.arrivalData.extraObj.boxSentence1}}<span>{{data.arrivalData.extraObj.boxSentence2}}</span></h2>
+            <p class="pd35h mgt15">
+                <button class="p-btn p-btn-block" ng-click="func.onClickArrivalDetail(data.arrivalData)">点击查看详情</button>
+            </p>
+            <div class="clz" ng-click="func.onClickCloseArrival(data.arrivalData)"></div>
+        </div>
+    </section>
+    <!--p4 异形弹窗-->
+    <div ng-if="data.showBigBanner" compile="data.bigBannerHtml"></div>
+    <!--p5 新手引导-->
+    <div class="{{data.maskClass}}" ng-if="data.isNewBeeGuideShown">
+        <div class="penguin"></div>
+        <div class="text">总资产是你各类资产的总和<br>预估收益将不计入总资产</div>
+        <div class="funcs"><button class="p-btn p-btn-outline clz" ng-click="func.onClickCloseNewBeeGuide()">{{data.newBeeButtonStr}}</button></div>
+    </div>
+    <!--p6 红包-->
+    <red-packet init="initRedpacket"></red-packet>
+    <!--主动弹窗-->
+
+    <!--p7 消费支付开通弹窗-->
+    <section class="p-mask-sp p-mask-wepay-open wep" ng-if="data.showOpenWePayTip">
+        <div class="main p-bgc-fff">
+            <div class="head"></div>
+            <section class="hgroup mgt30 pdlr15">
+                <h1>We支付开通</h1>
+                <p class="p-ta-l mgt10">开通后，您可以在以下渠道使用活期+支付啦！<span class="p-fz-14 p-c-bblue" ng-click="func.onClickWePayMoreMsg()">了解更多</span></p>
+            </section>
+            <ul class="options mgt20">
+                <li>
+                    <i class="pay-wx"></i>微信支付
+                </li>
+                <li>
+                    <i class="pay-qq"></i>QQ钱包支付
+                </li>
+                <li>
+                    <i class="pay-up"></i>银联在线支付
+                </li>
+            </ul>
+            <p class="pdlr15 mgt30 p-fz-12">
+                <user-agreement
+                        agreement-type="100"
+                        agreement-desc ="data.wePay_agreementName"
+                        is-agreed="data.wePay_isAgreed"
+                        on-click-agree-checkbox="func.clickAgreementCheckBox"
+                        agreement-callback="func.clickAgreement"
+                        >
+                </user-agreement>
+            </p>
+            <div class="has-btn-block pdlr15 mgt30 mgb30"><button ng-class="data.openWepayBtnClass" ng-click="func.onClickOpenWePay()">立即开通</button></div>
+            <div class="clz" ng-click="func.onClickCloseOpenWePayTip(true)"></div>
+        </div>
+    </section>
+
+    <!--p8 消费支付新用户提示绑卡弹窗-->
+    <section class="p-mask-sp p-mask-wepay-open wep" ng-if="data.showWePayBindTip">
+        <div class="main p-bgc-fff">
+            <div class="head"></div>
+            <section class="hgroup pdt30 pdb20">
+                <h1>您可以使用活期+支付啦！</h1>
+                <p class="p-fz-12 p-c-lgray mgt5">支持银联在线支付或添加微众卡支付</p>
+            </section>
+            <ul class="formlike">
+                <li class="flex px-b px-lt allow-enter" ng-click="func.onClickWXBind()">
+                    <div class="item left"><i class="pay-wx"></i>微信支付</div>
+                    <div class="item right">去添加</div>
+                </li>
+                <li class="flex px-b px-lt allow-enter twin" ng-click="func.onClickQQBind()">
+                    <div class="item left"><i class="pay-qq"></i>QQ钱包支付</div>
+                    <div class="item right">去添加</div>
+                </li>
+            </ul>
+            <div class="clz" ng-click="func.onClickCloseBindWePayTip(true)"></div>
+        </div>
+    </section>
+
+    <!--资产说明(被动弹窗)-->
+    <div class="p-mask" ng-if="data.isMaskShown">
+        <h2>{{data.maskTitle}}</h2>
+        <p ng-bind-html="data.maskDetail"></p>
+        <div class="funcs"><button class="p-btn p-btn-outline p-btn-block" ng-click="func.onClickCancelMask()">知道了</button></div>
+    </div>
+
+    <!--短期+引导弹窗-->
+    <div class="{{data.shortPeroidMaskClass}}" ng-if="data.isNewBeeShortPeroid">
+        <div class="content">
+            <div class="fake-banner"><img src="http://hjdata.webank.com/querydata/html/home/home_banner0.png" alt=""></div>
+            <div class="guiding">
+                <div class="penguin">
+                    <div class="line"></div>
+                    <div class="location"></div>
+                </div>
+                <div class="wording">亲～齐鲁搬家啦！<br>1月27日起，期限小于1个月的<br>产品都在“短期+”分类下啦</div>
+                <div class="p-clear"></div>
+            </div>
+            <div class="has-btn p-ta-c"><button class="p-btn p-btn-outline" ng-click="func.onClickNewBeeShortPeroid()">知道了</button></div>
+        </div>
+    </div>
+</ion-view>

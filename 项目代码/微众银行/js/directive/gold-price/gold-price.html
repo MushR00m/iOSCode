@@ -1,0 +1,47 @@
+<div class="mod-tab ui-flex ui-px s-mt20">
+    <div class="{{data.realValueMapClass}}" ng-click="onClickRealValueMap()">实时金价走势(元/克)</div>
+    <div class="{{data.historyValueClass}}" ng-click="onClickHistoryValue()">历史黄金价格(元/克)</div>
+</div>
+
+<div class="mod-col-info ui-px-a">
+    <div class="no-data" ng-show="data.transLimit && data.showRealValueMap">
+        <i class="ui-icon-none"></i>
+    </div>
+
+    <div ng-show="!data.transLimit && data.showRealValueMap">
+        <div class="ui-flex tab">
+            <div class="item ui-px-r">
+                <p class="title">实时卖出价</p>
+                <p class="s-blue" ng-if="data.salePrice">{{data.salePrice | formatMoneyStringV2}}</p>
+            </div>
+            <div class="item ui-px-r">
+                <p class="title">实时买入价</p>
+                <p class="s-blue" ng-if="data.buyPrice">{{data.buyPrice | formatMoneyStringV2}}</p>
+            </div>
+            <div class="item">
+                <p class="title">今日涨跌幅</p>
+                <p class="s-red" ng-if="data.change >= 0">{{data.change}}%</p>
+                <p class="s-green" ng-if="data.change < 0">{{data.change}}%</p>
+            </div>
+        </div>
+
+        <div hjstockcharts show-chart='func.showChart'  style="width:100%; height:250px;"></div>
+        <p class="ui-gray-tip">曲线走势代表买入与卖出平均价格走势</p>
+    </div>
+
+    <dl class="mod-table ui-px-a three-col" ng-show="data.showHistoryValue">
+        <dt class="mod-table-title ui-flex">
+            <span class="item">日期</span>
+            <span class="item">价格(元/克)</span>
+            <span class="item">涨跌幅</span>
+        </dt>
+        <dd class="mod-table-con ui-px-b ui-flex" ng-repeat="info in data.historyValueList">
+            <span class="item">{{info.date}}</span>
+            <span class="item">{{info.value | formatMoneyStringV2}}</span>
+            <span class="{{info.class}}">{{info.change}}%</span>
+        </dd>
+        <dd class="mod-table-con ui-px-b">
+            <p class="ui-gray-tip" ng-click="onClickViewMoreHistory()">查看更多</p>
+        </dd>
+    </dl>
+</div>

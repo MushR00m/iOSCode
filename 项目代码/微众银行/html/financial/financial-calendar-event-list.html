@@ -1,0 +1,39 @@
+<ion-view>
+    <div  class="calendar-product">
+        <ion-header-bar>
+            <div class="menu-ba">
+                <header class="menu">
+                    <span class="menu-wd" ></span><button class="menu-return" ng-click="func.back()"></button>事件列表
+                </header>
+            </div>
+        </ion-header-bar>
+        <ion-content delegate-handle="myCalendarEventListContent" class="has-header" has-bouncing="true" id="myCalendarEventListContent">
+            <div ng-repeat="monthItem in data.montEventListData track by $index">
+                <span class="calendar-product-month" id="{{monthItem.monthId}}" >{{monthItem.monthFirstDate.getFullYear()}}-{{monthItem.monthFirstDate.getMonth()+1}} </span>
+                <div class="calendar-product-wrap px">
+                    <ul class="calendar-product-list">
+                        <li class="{{dateItem.dayClass}}" ng-repeat="dateItem in monthItem.dateList" >
+                            <div class="calendar-product-con px-a" >
+                                <span class="date">
+                                    {{dateItem.date.getMonth()+1}}-{{dateItem.date.getDate()}} {{dateItem.weekenDesc}}
+                                </span>
+                                 <div class="info-container" ng-class="event.evenClass" ng-repeat="event in dateItem.eventList" ng-bind-html="event.evenItemtHtml" ng-click="func.onClickEvent(event.event)">
+
+                                 </div>
+
+
+                            </div>
+                            <i class="spot"></i>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="ui-date-none" ng-if="data.noMoreEventsData" >
+                <i></i>
+                <p>无事件</p>
+            </div>
+        </ion-content>
+        <loading show-loading="data.showLoading"></loading>
+    </div>
+    <div style="height:2rem;"></div>
+</ion-view>

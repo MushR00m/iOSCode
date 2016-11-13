@@ -1,0 +1,57 @@
+<ion-view>
+    <div class="{{data.ShowPlatFormClass}}">
+        <ion-header-bar>
+            <div class="menu-ba">
+                <header class="menu"><button class="menu-return" ng-click="func.back()"></button>日历
+                </header>
+            </div>
+        </ion-header-bar>
+        <ion-content class="has-header" has-bouncing="false"  >
+            <div class="ui-date-wrap" style="position: relative;z-index: 1;height: 70px;">
+                <div class="ui-date-ym"><em style="display: inline-block;width: 60px;height: 22px;vertical-align: middle;" ng-click="func.previousMonthAssert()" ></em><i class="ui-arrow i-left" ng-click="func.previousMonthAssert()"></i><span class="ym">{{data.currentYearSelected}}年{{data.currentMonthSelected}}月</span><i class="ui-arrow" ng-click="func.nextMonthAssert()"></i><em style="display: inline-block;width: 60px;height: 22px;vertical-align: middle;" ng-click="func.nextMonthAssert()" ></em></div>
+                <div class="ui-date week">
+                    <div class="ui-date-flex week">
+                        <div class="ui-date-item row-1"><span>日</span></div><!--
+                     --><div class="ui-date-item row-1"><span>一</span></div><!--
+                     --><div class="ui-date-item row-1"><span>二</span></div><!--
+                     --><div class="ui-date-item row-1"><span>三</span></div><!--
+                     --><div class="ui-date-item row-1"><span>四</span></div><!--
+                     --><div class="ui-date-item row-1"><span>五</span></div><!--
+                     --><div class="ui-date-item row-1"><span>六</span></div>
+                    </div>
+                </div>
+            </div>
+        </ion-content>
+        <ion-content style="margin-top: 70px;" has-bouncing="true" class="has-header" >
+            <!--<ion-content  has-bouncing="true"  style="margin-top: 2.3rem;">-->
+            <ion-slide-box auto-play="false" show-pager="false" active-slide="data.initshowMonthSlideIndex" on-slide-changed="func.slideHasChanged($index)"  does-continue="true">
+                <ion-slide ng-repeat="month in data.currentMonthList track by $index">
+                    <ion-content  has-bouncing="true" hjdelegatehandle="{{'assertcalendarDelegateHandle'+$index}}"  id="{{'assertcalendarDelegateHandle'+$index}}" >
+                        <div class="box ui-calendar-wrap" style="background-color:#fff;">
+                            <div class="ui-calendar-inner px-a " >
+                                <div class="ui-date px-a" ng-repeat="dateRow in month.dateRowList track by $index">
+                                    <div class="ui-date-flex day" >
+                                        <!-- class取值，今天：today；周末：weekend；昨天：past -->
+                                        <div class="ui-date-item row-1" ng-repeat="dateItem in dateRow.dateRowListArray track by $index">
+                                            <span ng-click="func.onDateClick(dateItem)" ng-if="dateItem" ng-class="dateItem.dayClass"><i ng-class="dateItem.dayDescClass">{{dateItem.date}}</i></span>
+                                            <span ng-if="!dateItem" ></span>
+                                        </div>
+
+                                    </div>
+                                    <div class="">
+                                        <div class="ui-date-flex event no-ab" style="padding: 0;">
+                                            <!-- 资产-->
+                                            <div class="ui-date-item row-1" style="padding: 0;"  ng-click="func.onClickEvent(dataItem)"  ng-repeat="dataItem in dateRow.assetDataRowList track by $index" ><p ng-class="dataItem.AmountClass" ng-if="dataItem != ''">{{dataItem.eventAmount}}</p></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </ion-content>
+                </ion-slide>
+            </ion-slide-box>
+        </ion-content>
+        <div style="height:2rem;"></div>
+        <loading show-loading="data.showLoading"></loading>
+    </div>
+</ion-view>

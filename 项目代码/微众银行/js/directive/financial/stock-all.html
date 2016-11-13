@@ -1,0 +1,11 @@
+<div class="it-wrap px">
+    <div class="it-title-wrap px-a"><span class="l">{{headStr}}</span><span class="m">基金名称</span><span class="r">单位净值(元)</span></div>
+
+    <ol class="it-list-wrap">
+        <li  ng-repeat="prod in sourceData[selectIndex].itemList" ng-click="onClickStockProdIntro(prod)">
+            <span ng-class="prod.incomeClass">{{prod.earningsRateStr}}</span>
+            <span class="m"><i class="a">{{prod.productName}}</i><i class="b">{{prod.productCode}}</i></span>
+            <span class="r">{{prod.realValue}}</span>
+        </li>
+    </ol>
+</div>

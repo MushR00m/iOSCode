@@ -1,0 +1,55 @@
+<ion-view>
+    <div class="bx">
+        <ion-header-bar>
+            <div class="menu-ba">
+                <header class="menu"><button class="menu-return" ng-click="back()"></button>{{data.productInfo.on_sale_desc}}({{data.productInfo.value_date.substr(4, 4)}})
+                    <span ng-class="data.shareClass" ng-click="share()"></span>
+                </header>
+            </div>
+        </ion-header-bar>
+
+        <ion-content class="has-header" has-bouncing="false">
+            <div class="ba-income-wrap">
+                <p class="title p-line-lr-h"><span>预期年化收益率</span></p>
+                <p class="num">{{data.productInfo.income_rate | number:2}}<span class="sub">%</span></p>
+                <div class="pz-wrap flex">
+                    <div class="item">起购金额(元)<span>{{data.productInfo.min_amount}}</span></div>
+                    <div class="item">投资期限(天)<span>{{data.productInfo.life_time}}</span></div>
+                    <div class="item">风险等级<span>{{data.riskDesc}}</span></div>
+                </div>
+                <!--<i class="jsq"></i>-->
+            </div>
+
+            <ul class="lc-wrap px-a">
+                <li class="h-s px-b" ng-if="data.productInfo.prodStatus==1">当前状态<span style="padding-left:10px;color:#f29360;">待起息</span></li>
+                <li class="h-s px-b" ng-if="data.productInfo.prodStatus==2">当前状态<span style="padding-left:10px;">封闭期</span></li>
+                <li class="h-s px-b" ng-if="data.productInfo.prodStatus==3">当前状态<span style="padding-left:10px;">已到期</span></li>
+                <li class="h-s px-b" ng-if="data.productInfo.prodStatus==4">当前状态<span style="padding-left:10px;">兑付中</span></li>
+                <li class="h-s px-b" ng-if="data.productInfo.prodStatus==5">当前状态<span style="padding-left:10px;">已兑付</span></li>
+                <li class="h-s px-b">开放时间<span style="padding-left:10px;">{{data.productInfo.start_buy_date | formatDateToCNWithoutYear}} {{data.productInfo.start_buy_time.substr(0, 5)}} - {{data.productInfo.end_buy_date | formatDateToCNWithoutYear}} {{data.productInfo.end_buy_time.substr(0, 5)}}</span></li>
+            </ul>
+
+            <!--<div ng-bind-html="data.sectionHtml"></div>-->
+            <div compile="data.sectionHtml"></div>
+
+            <ul class="lc-wrap mgt20 px">
+                <li class="px-b">产品特点</li>
+                <li class="h-s px-b">
+                    <span class="im"  ng-repeat="tag in data.productInfo.tags track by $index">{{tag}}</span>
+                </li>
+                <li class="h-s" style="padding:0 25px 15px 0;" ng-if="data.productInfo.characteristics"><i class="i-c"></i>{{data.productInfo.characteristics | toTrusted}}</li>
+                <!--<li class="h-s px-b"><i class="i-b"></i>{{data.productInfo.promopt}}</li>-->
+                <li class="h-s px-b" ng-if="data.productInfo.promopt"><i class="i-b"></i>{{data.productInfo.promopt}}</li>
+            </ul>
+
+
+
+            <div class="px">
+                <p class="jt" ng-click="onClickProductIntroduction()">更多详情</p>
+            </div>
+
+            <div style="padding-bottom:70px;"></div>
+        </ion-content>
+
+    </div>
+</ion-view>

@@ -1,0 +1,29 @@
+<ion-view>
+    <div class="trf bnf p-c-blue">
+        <ion-header-bar>
+            <div class="menu-ba">
+                <header class="menu">
+                    <button class="menu-return" ng-click="back()"></button>兑换福利</header>
+            </div>
+        </ion-header-bar>
+        <ion-content has-bouncing="true" class="has-header">
+            <section class="invicode">
+                <ul class="formlike formlike-ls mgt20">
+                    <li class="flex p-bgc-fff px">
+                        <div class="item">
+                            <input type="text" ng-model="promo.code" ng-change="verify()" placeholder="请输入需要兑换的邀请码或福利码">
+                        </div>
+                    </li>
+                    <li class="hint p-c-lgray mgt10" style="min-height:80px;">
+                        <p class="load-wrap ng-hide" ng-show="isLoading" ng-cloak>
+                            <ion-spinner icon="ios-small" style="vertical-align:-5px;"></ion-spinner>邀请码或福利码详情加载中
+                        </p>
+                        <div class="ng-hide" ng-show="promo.desc && !isLoading" ng-bind-html="promo.desc" ng-cloak></div>
+                    </li>
+                    <li class="has-btn-block mgt30 mgb30">
+                        <button class="p-btn p-btn-block" ng-disabled="!promo.valid" ng-click="onClickApply()">确认兑换</button>
+                    </li>
+            </section>
+        </ion-content>
+    </div>
+</ion-view>

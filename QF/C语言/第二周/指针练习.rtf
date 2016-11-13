@@ -1,0 +1,632 @@
+{\rtf1\ansi\ansicpg936\cocoartf1265\cocoasubrtf200
+{\fonttbl\f0\fnil\fcharset134 STHeitiSC-Light;\f1\froman\fcharset0 TimesNewRomanPSMT;\f2\fswiss\fcharset0 Helvetica;
+}
+{\colortbl;\red255\green255\blue255;\red164\green8\blue0;\red217\green11\blue0;\red255\green83\blue8;
+\red155\green44\blue1;}
+{\*\listtable{\list\listtemplateid1\listhybrid{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{decimal\}.}{\leveltext\leveltemplateid1\'02\'00.;}{\levelnumbers\'01;}\fi-360\li720\lin720 }{\listname ;}\listid1}}
+{\*\listoverridetable{\listoverride\listid1\listoverridecount0\ls1}}
+\paperw11900\paperh16840\margl1440\margr1440\vieww11220\viewh12200\viewkind0
+\deftab420
+\pard\pardeftab420\ri714\qj
+
+\f0\fs28 \cf0 \'a1\'a1\'a1\'a1\'a1\'a1\'a1\'a1\'a1\'a1\'a1\'a1\'a1\'a1\'a1\'a1
+\f1\b \
+\pard\pardeftab420\li450\fi-450\ri714\qj
+\ls1\ilvl0
+\f0\b0 \cf0 \'d6\'b8\'d5\'eb\'bb\'f9\'b4\'a1\'d6\'aa\'ca\'b6\'a3\'a8\'c0\'ed\'bd\'e2\'d6\'b8\'d5\'eb\'b8\'c5\'c4\'ee\'a3\'a9
+\f1\b \
+\pard\pardeftab420\ri714\qj
+
+\b0 \cf0 \
+\pard\pardeftab420\ri714\qj
+
+\f2 \cf0 1
+\f0 \'a3\'ae\'d2\'d1\'d6\'aa\'d3\'d0\'d2\'d4\'cf\'c2\'b5\'c4\'cb\'b5\'c3\'f7\'a3\'ac
+\f2 \
+int a[]=\{8,1,2,5,0,4,7,6,3,9\};\
+\pard\pardeftab420\ri714\qj
+
+\f0 \cf0 \'c4\'c7\'c3\'b4
+\f2 a[*(a+a[3])]
+\f0 \'b5\'c4\'d6\'b5\'ce\'aa
+\f2 _0_.\
+\
+2
+\f0 \'a3\'ae\'cf\'c2\'c1\'d0\'b3\'cc\'d0\'f2\'d4\'cb\'d0\'d0\'ba\'f3\'b5\'c4\'bd\'e1\'b9\'fb\'ce\'aa\'a3\'ba
+\f2 \
+\pard\pardeftab420\ri714\qj
+\cf2 A.\cf0 10 0    B.0 10     C.10 10     D.
+\f0 \'d2\'d4\'c9\'cf\'bd\'e1\'b9\'fb\'b6\'bc\'b2\'bb\'b6\'d4
+\f2 \
+int main()\
+\{\
+	int a = 10;\
+	int *p,**q;\
+	p = &a;\
+	q = &p;\
+	printf("%d %d",*p,*q);\
+\}\
+\
+3
+\f0 \'a3\'ae\'c8\'f4\'d3\'d0\'d2\'d4\'cf\'c2\'cb\'b5\'c3\'f7\'ba\'cd\'d3\'ef\'be\'e4\'a3\'ac\'c7\'d2
+\f2 0<=i<10,
+\f0 \'d4\'f2\'cf\'c2\'c3\'e6\'c4\'c4\'b8\'f6\'ca\'c7\'b6\'d4\'ca\'fd\'d7\'e9\'d4\'aa\'cb\'d8\'b5\'c4\'b4\'ed\'ce\'f3\'d2\'fd\'d3\'c3
+\f2 ?\
+int a[]=\{1,2,3,4,5,6,7,8,9,0\}, *p, i;\
+p=a;\
+A. *(a+i)   B. a[p-a]  \cf3 C\cf0 . p+i  D. *(&a[i])\
+\
+4
+\f0 \'a3\'ae\'c8\'f4\'d3\'d0\'d2\'d4\'cf\'c2\'cb\'b5\'c3\'f7\'ba\'cd\'d3\'ef\'be\'e4\'a3\'ac\'c7\'d2
+\f2 0<=i<10,
+\f0 \'d4\'f2\'cf\'c2\'c3\'e6\'c4\'c4\'b8\'f6\'ca\'c7\'b6\'d4\'ca\'fd\'d7\'e9\'d4\'aa\'cb\'d8\'b5\'d8\'d6\'b7\'b5\'c4\'d5\'fd\'c8\'b7\'b1\'ed\'ca\'be
+\f2 ?\
+int a[]=\{1,2,3,4,5,6,7,8,9,0\}, *p,i;\
+p=a;\
+A. &(a+1)  \cf2  B\cf0 . a++   C. &p   D. &p[i] \
+\
+5
+\f0 \'a3\'ae\'d2\'d4\'cf\'c2\'b3\'cc\'d0\'f2\'b5\'c4\'ca\'e4\'b3\'f6\'bd\'e1\'b9\'fb\'ca\'c7\'c4\'c4\'d2\'bb\'cf\'ee
+\f2 ?\
+#include <stdio.h>\
+main()\
+\{ int a[12]=\{1,2,3,4,5,6,7,8,9,10,11,12\}, *p[4],i;\
+  for(i=0;i<4;i++)\
+     p[i]=&a[i*3];\
+  printf("%d\\n",*p[3]);\
+\}\
+A.
+\f0 \'ca\'e4\'b3\'f6\'cf\'ee\'b2\'bb\'ba\'cf\'b7\'a8
+\f2    B. 4    C. 7        \cf2  D.\cf0  10\
+\
+6
+\f0 \'a3\'ae\'d3\'d0\'d2\'d4\'cf\'c2\'cb\'b5\'c3\'f7\'ba\'cd\'d3\'ef\'be\'e4\'a3\'ac
+\f2 ,
+\f0 \'d4\'f2
+\f2 p2-p1
+\f0 \'b5\'c4\'d6\'b5\'ce\'aa\'b6\'e0\'c9\'d9
+\f2 ?(
+\f0 \'b5\'a5\'d1\'a1
+\f2 ) \
+int a[10], *p1, *p2;\
+p1=a;\
+p2=&a[5];\
+\cf4 A.\cf0  5  B. 6  C. 10 D.
+\f0 \'c3\'bb\'d3\'d0\'d6\'b8\'d5\'eb\'d3\'eb\'d6\'b8\'d5\'eb\'b5\'c4\'bc\'f5\'b7\'a8
+\f2 \
+\
+7
+\f0 \'a3\'ae\'c8\'f4\'d3\'d0\'d2\'d4\'cf\'c2\'b6\'a8\'d2\'e5\'ba\'cd\'d3\'ef\'be\'e4
+\f2 :\uc0\u8232  int s[4][5],(*ps)[5];\u8232  ps=s;\u8232 
+\f0 \'d4\'f2\'b6\'d4
+\f2 s
+\f0 \'ca\'fd\'d7\'e9\'d4\'aa\'cb\'d8\'b5\'c4\'d5\'fd\'c8\'b7\'d2\'fd\'d3\'c3\'d0\'ce\'ca\'bd\'ca\'c7
+\f2  \uc0\u8232 A) ps+1     \cf2 B)\cf0  *(ps+3)       C) ps[0][2]       \cf3 D\cf0 ) *(ps+1)+3\
+\
+8
+\f0 \'a3\'ae\'c8\'f4\'d3\'d0\'d2\'d4\'cf\'c2\'b5\'c4\'b6\'a8\'d2\'e5\'a3\'ac
+\f2 int t[3][2]
+\f0 \'a3\'bb\'c4\'dc\'d5\'fd\'c8\'b7\'b1\'ed\'ca\'be
+\f2 t
+\f0 \'ca\'fd\'d7\'e9\'d4\'aa\'cb\'d8\'b5\'d8\'d6\'b7\'b5\'c4\'b1\'ed\'b4\'ef\'ca\'bd\'ca\'c7
+\f2 \uc0\u8232 A) &t[3][2]
+\f0 \'a1\'a1
+\f2 B) t[3]
+\f0 \'a1\'a1
+\f2 \cf5 C)\cf0  t[1]
+\f0 \'a1\'a1\'a1\'a1
+\f2 D) *t[2]\
+9
+\f0 \'a3\'ae\'d2\'d4\'cf\'c2\'b3\'cc\'d0\'f2\'b5\'c4\'ca\'e4\'b3\'f6\'bd\'e1\'b9\'fb\'ca\'c7
+\f2 a=\ul    \ulnone _, b= 
+\f0 \ul \'a1\'a1\'a1\'a1\'a1\'a1
+\f2  \ulnone _,   c=
+\f0 \ul \'a1\'a1\'a1\'a1
+\f2    \ulnone _
+\f0 \'a1\'a3
+\f2 \
+#include <stdio.h>\
+int func(int a,int *p);\
+void main()\
+\{  int a=1,b=2,c;\
+  c=func(a,&b);
+\f0 \'a1\'a1
+\f2 a=1,b=4,c=6;\
+  b=func(c,&a); c=6,a=9,b=16\
+  a=func(b,&c); b=16,c=19,a=36;\
+  printf("a=%d,b=%d,c=%d",a,b,c);   \
+\}\
+int func(int a,int *p)\
+\{   a+ +;\
+   *p=a+2;\
+   return(*p+a);\
+\}\
+\
+10
+\f0 \'a3\'ae\'d3\'d0\'d2\'d4\'cf\'c2\'b3\'cc\'d0\'f2
+\f2 \uc0\u8232 void fun(char *c,int d)\u8232  \{*c=*c+1;d=d+1;\u8232  printf("%c,%c,",*c,d);\u8232  \}\u8232  main()\u8232  \{char a='A',b='a';\u8232  fun(&b,a); printf("%c,%c\\n",a,b);\u8232  \}\u8232 
+\f0 \'b3\'cc\'d0\'f2\'d4\'cb\'d0\'d0\'ba\'f3\'b5\'c4\'ca\'e4\'b3\'f6\'bd\'e1\'b9\'fb\'ca\'c7\'a1\'a3
+\f2 \uc0\u8232 A) B,a,B,a B) a,B,a,B C) A,b,A,b \cf2 D)\cf0  b,B,A,b\
+\
+11
+\f0 \'a3\'ae\'d4\'da\'cb\'b5\'c3\'f7\'d3\'ef\'be\'e4\'a3\'ba
+\f2 int *f();
+\f0 \'d6\'d0
+\f2 ,
+\f0 \'b1\'ea\'ca\'b6\'b7\'fb
+\f2 f
+\f0 \'b4\'fa\'b1\'ed\'b5\'c4\'ca\'c7
+\f2  \uc0\u8232 A)
+\f0 \'d2\'bb\'b8\'f6\'d3\'c3\'d3\'da\'d6\'b8\'cf\'f2\'d5\'fb\'d0\'cd\'ca\'fd\'be\'dd\'b5\'c4\'d6\'b8\'d5\'eb\'b1\'e4\'c1\'bf
+\f2  \uc0\u8232 B)
+\f0 \'d2\'bb\'b8\'f6\'d3\'c3\'d3\'da\'d6\'b8\'cf\'f2\'d2\'bb\'ce\'ac\'ca\'fd\'d7\'e9\'b5\'c4\'d0\'d0\'d6\'b8\'d5\'eb
+\f2  \uc0\u8232 C)
+\f0 \'d2\'bb\'b8\'f6\'d3\'c3\'d3\'da\'d6\'b8\'cf\'f2\'ba\'af\'ca\'fd\'b5\'c4\'d6\'b8\'d5\'eb\'b1\'e4\'c1\'bf
+\f2  \uc0\u8232 D)
+\f0 \'d2\'bb\'b8\'f6\'b7\'b5\'bb\'d8\'d6\'b5\'ce\'aa\'d6\'b8\'d5\'eb\'d0\'cd\'b5\'c4\'ba\'af\'ca\'fd\'c3\'fb
+\f2  \
+\
+12
+\f0 \'a3\'ae\'d2\'d4\'cf\'c2\'b3\'cc\'d0\'f2\'b6\'ce\'b8\'f8\'ca\'fd\'d7\'e9\'cb\'f9\'d3\'d0\'d4\'aa\'cb\'d8\'ca\'e4\'c8\'eb\'ca\'fd\'be\'dd\'a3\'ac\'d3\'a6\'d4\'da\'cf\'c2\'bb\'ae\'cf\'df\'b4\'a6\'cc\'ed\'c8\'eb\'b5\'c4\'ca\'c7
+\f2 \uc0\u8232 A
+\f0 \'a3\'a9
+\f2 a+(i++) B
+\f0 \'a3\'a9
+\f2 &a[i+1] C
+\f0 \'a3\'a9
+\f2 a+i D
+\f0 \'a3\'a9
+\f2 &a[++i]\uc0\u8232 main( )\u8232 \{ int a[10], i=0;\u8232 while(i<10) scanf(\'93%d\'94,_____);\u8232 \'85\'85\u8232 \}\
+\
+13
+\f0 \'a3\'ae\'d2\'d4\'cf\'c2\'b3\'cc\'d0\'f2\'b5\'c4\'ca\'e4\'b3\'f6\'bd\'e1\'b9\'fb\'ca\'c7\'a3\'a8\'a3\'a9
+\f2 \uc0\u8232 A
+\f0 \'a3\'a9
+\f2 17      B
+\f0 \'a3\'a9
+\f2 18     C
+\f0 \'a3\'a9
+\f2 19       D
+\f0 \'a3\'a9
+\f2 20\uc0\u8232 main( )\u8232 \{\
+int a[ ]=\{2,4,6,8,10\},y=1,x,*p;\uc0\u8232 p=&a[1];\u8232 for (x=0;x<3;x++) y+=*(p+x);\u8232 printf(\'93%d\\n\'94,y);\u8232 \}\
+14.
+\f0 \'cf\'c2\'c1\'d0\'b3\'cc\'d0\'f2\'b6\'ce\'b5\'c4\'ca\'e4\'b3\'f6\'bd\'e1\'b9\'fb\'ca\'c7
+\f2 _______(24)______
+\f0 \'a1\'a3
+\f2 \
+\pard\pardeftab420\fi358\ri714\qj
+\cf0 int i,x[3][3]=\{9,8,7,6,5,4,3,2,1\},*p=&x[1][1];\
+for(i=0;i<4;i+=2) \
+   printf("%d  ",*(p+i));\
+A. 5  2       B. 5  1      C. 5   3       D. 9   7\
+\pard\pardeftab420\li420\ri714\qj
+\cf0 \
+\pard\pardeftab420\ri714\qj
+\cf0 15
+\f0 \'a1\'a2\'c8\'f4\'d3\'d0\'ba\'af\'ca\'fd\'c9\'f9\'c3\'f7
+\f2 "int sub(int (*x1)(),int *x2);"
+\f0 \'a3\'ac\'d4\'f2\'d0\'ce\'ca\'bd\'b2\'ce\'ca\'fd
+\f2 x1
+\f0 \'ca\'c7\'d6\'b8\'cf\'f2
+\f2 ____ (4) ____
+\f0 \'b5\'c4\'d6\'b8\'d5\'eb\'b1\'e4\'c1\'bf\'a1\'a3
+\f2 \
+16.
+\f0 \'cf\'c2\'c1\'d0\'b3\'cc\'d0\'f2\'d4\'cb\'d0\'d0\'ba\'f3\'b5\'c4\'bd\'e1\'b9\'fb\'ca\'c7\'a3\'ba
+\f2 \
+A.8     B.9    C.10     D.0\
+ int main()\
+\{\
+	int a[9][4] = \{1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16\};\
+	printf("%d\\n",**(a+8));	\
+\}\
+\
+17.
+\f0 \'cf\'c2\'c1\'d0\'b3\'cc\'d0\'f2\'d4\'cb\'d0\'d0\'ba\'f3\'b5\'c4\'bd\'e1\'b9\'fb\'ca\'c7\'a3\'ba
+\f2 \
+A.8     B.9    C.10     D.11\
+ int main()\
+\{\
+	int a[9][4] = \{1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16\};\
+	int *q;\
+	q = *a;\
+	printf("%d ",*(q+10));\
+\}\
+\
+18.
+\f0 \'cf\'c2\'c1\'d0\'b3\'cc\'d0\'f2\'d4\'cb\'d0\'d0\'ba\'f3\'b5\'c4\'bd\'e1\'b9\'fb\'ca\'c7\'a3\'ba
+\f2 \
+A.3     B.5    C.7     D.9\
+ int main()\
+\{\
+	int a[9][4] = \{1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16\};\
+	int (*q)[4];\
+	q = a;\
+	printf("%d ",*(*(q+1)+2));\
+\}\
+\
+19. 
+\f0 \'cf\'c2\'c1\'d0\'b3\'cc\'d0\'f2\'d4\'cb\'d0\'d0\'ba\'f3\'b5\'c4\'bd\'e1\'b9\'fb\'ca\'c7\'a3\'ba
+\f2 \
+A.9     B.10    C.11     D.12\
+int main()\
+\{\
+	int a[9][4] = \{1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16\};\
+	printf("%d ",*(*a + 10));\
+\}\
+\
+20.
+\f0 \'cf\'c2\'c3\'e6\'b3\'cc\'d0\'f2\'d4\'da\'b1\'e0\'d2\'eb\'bb\'f2\'d4\'cb\'d0\'d0\'bd\'e1\'b9\'fb\'d6\'d0\'bb\'e1\'b3\'f6\'cf\'d6\'ca\'b2\'c3\'b4\'d1\'f9\'b5\'c4\'c7\'e9\'bf\'f6
+\f2 \
+A.
+\f0 \'ca\'e4\'b3\'f6\'a3\'ba
+\f2 20
+\f0 \'a1\'a1\'a1\'a1\'a1\'a1\'a1\'a1\'a1\'a1\'a1\'a1\'a1\'a1\'a1\'a1\'a1\'a1\'a1\'a1\'a1\'a1\'a1\'a1
+\f2 B.
+\f0 \'ca\'e4\'b3\'f6\'d2\'bb\'b8\'f6\'b5\'d8\'d6\'b7
+\f2 \
+C.
+\f0 \'b1\'e0\'d2\'eb\'b3\'f6\'b4\'ed
+\f2                         D.
+\f0 \'d4\'cb\'d0\'d0\'ba\'f3\'b3\'cc\'d0\'f2\'d2\'ec\'b3\'a3\'d6\'d0\'d6\'b9
+\f2                       \
+int main()\
+\{\
+	int *p;\
+	p = 20;\
+	printf("%d ",*p);\
+\}\
+\pard\pardeftab420\li420\ri714\qj
+
+\f1\b \cf0 \
+\pard\pardeftab420\ri714\qj
+
+\f0\b0 \cf0 \'b6\'fe\'a3\'ae\'b1\'e0\'b3\'cc\'cc\'e2
+\f1\b \
+\pard\pardeftab420\ri714\qj
+
+\b0 \cf0 \
+\pard\pardeftab420\ri714\qj
+
+\f2 \cf0 1.
+\f0 \'b1\'e0\'d0\'b4\'ba\'af\'ca\'fd
+\f2 int atoi(char s[ ])
+\f0 \'a3\'ac\'bd\'ab\'d7\'d6\'b7\'fb\'b4\'ae
+\f2 s
+\f0 \'d7\'aa\'bb\'af\'ce\'aa\'d5\'fb\'d0\'cd\'ca\'fd\'b7\'b5\'bb\'d8\'a1\'a3\'d7\'a2\'d2\'e2\'b8\'ba\'ca\'fd\'b4\'a6\'c0\'ed\'b7\'bd\'b7\'a8\'a1\'a3
+\f2 \
+\
+2.
+\f0 \'b7\'d6\'b1\'f0\'b1\'e0\'d0\'b4\'cf\'c2\'c1\'d0\'d7\'d6\'b7\'fb\'b4\'ae\'b4\'a6\'c0\'ed\'ba\'af\'ca\'fd
+\f2 \
+\pard\pardeftab420\fi120\ri714\qj
+\cf0 (1
+\f0 \'a3\'a9
+\f2 char *strcat1(char *s,const char *ct);\
+
+\f0 \'bd\'ab\'b4\'ae
+\f2 ct
+\f0 \'bd\'d3\'b5\'bd\'b4\'ae
+\f2 s
+\f0 \'b5\'c4\'ba\'f3\'c3\'e6\'a3\'ac\'d0\'ce\'b3\'c9\'d2\'bb\'b8\'f6\'b3\'a4\'b4\'ae\'a1\'a3\'d2\'d4\'ca\'fd\'d7\'e9\'ce\'aa\'b2\'ce\'ca\'fd\'a3\'ac\'cf\'d6\'d3\'c3\'d6\'b8\'d5\'eb\'ce\'aa\'b2\'ce\'ca\'fd\'a1\'a3
+\f2 \
+\pard\pardeftab420\ri714\qj
+
+\f0 \cf0 \'a3\'a8
+\f2 2
+\f0 \'a3\'a9
+\f2 int strlen1(const char * s);\
+\pard\pardeftab420\fi120\ri714\qj
+
+\f0 \cf0 \'c7\'f3\'d7\'d6\'b7\'fb\'b4\'ae\'b3\'a4\'b6\'c8\'b5\'c4\'ba\'af\'ca\'fd\'a3\'ac\'b7\'b5\'bb\'d8\'b4\'ae\'b3\'a4\'a3\'a8\'b2\'bb\'b0\'fc\'c0\'a8\'b4\'ae\'bd\'e1\'ca\'f8\'b7\'fb\'a3\'a9\'a1\'a3
+\f2 \
+\pard\pardeftab420\ri714\qj
+
+\f0 \cf0 \'a3\'a8
+\f2 3
+\f0 \'a3\'a9
+\f2 char * reverse (char *);\
+\pard\pardeftab420\fi120\ri714\qj
+
+\f0 \cf0 \'b7\'b4\'d6\'c3\'d7\'d6\'b7\'fb\'b4\'ae
+\f2 s
+\f0 \'a3\'ac\'bc\'b4\'bf\'c9\'bd\'ab
+\f2 \'93break\'94
+\f0 \'b3\'c9\'ce\'aa
+\f2 \'93kaerb\'94
+\f0 \'a1\'a3
+\f2 \
+\pard\pardeftab420\ri714\qj
+
+\f0 \cf0 \'a3\'a8
+\f2 4
+\f0 \'a3\'a9
+\f2 char * strchr( const char *cs,char c);\
+\pard\pardeftab420\fi120\ri714\qj
+
+\f0 \cf0 \'b2\'e9\'d5\'d2\'d7\'d6\'b7\'fb
+\f2 c
+\f0 \'d4\'da\'b4\'ae
+\f2 cs
+\f0 \'d6\'d0\'b5\'da\'d2\'bb\'b4\'ce\'b3\'f6\'cf\'d6\'b5\'c4\'ce\'bb\'d6\'c3\'a3\'ac\'b7\'b5\'bb\'d8\'d6\'b8\'cf\'f2\'b8\'c3\'d7\'d6\'b7\'fb\'b5\'c4\'d6\'b8\'d5\'eb\'a3\'ac\'c8\'f4\'c3\'bb\'d3\'d0\'b3\'f6\'cf\'d6\'d4\'f2\'b7\'b5\'bb\'d8
+\f2 NULL
+\f0 \'a1\'a3
+\f2 \
+\pard\pardeftab420\ri714\qj
+\cf0 \
+3.
+\f0 \'bd\'ab\'d5\'fb\'ca\'fd
+\f2 n
+\f0 \'d7\'aa\'bb\'bb\'ce\'aa\'ca\'ae\'bd\'f8\'d6\'c6\'b1\'ed\'ca\'be\'b5\'c4\'d7\'d6\'b7\'fb\'b4\'ae
+\f2 .\
+\pard\pardeftab420\fi240\ri714\qj
+
+\f0 \cf0 \'ba\'af\'ca\'fd\'b8\'f1\'ca\'bd\'d2\'aa\'c8\'e7\'cf\'c2\'a3\'ba
+\f2 char *itoa (int n,char *string);\
+\pard\tx916\tx1832\tx2748\tx3664\tx4580\tx5496\tx6412\tx7328\tx8244\tx9160\tx10076\tx10992\tx11908\tx12824\tx13740\tx14656\pardeftab420\ri714
+\cf0 \
+4.\expnd0\expndtw0\kerning0
+ 
+\f0 \'d0\'b4\'d2\'bb\'b8\'f6\'ba\'af\'ca\'fd\'a3\'ac\'bd\'ab
+\f2 N*N
+\f0 \'be\'d8\'d5\'f3\'d7\'aa\'d6\'c3
+\f2 \
+\pard\pardeftab420\ri714\qj
+\cf0 \kerning1\expnd0\expndtw0 \
+5.
+\f0 \'c7\'f3\'b7\'e5\'d6\'b5\'a3\'ac\'ce\'ca\'cc\'e2\'c3\'e8\'ca\'f6\'c8\'e7\'cf\'c2\'a3\'ba\'d3\'d0\'d2\'bb\'b8\'f6\'ca\'fd\'d7\'e9
+\f2 A
+\f0 \'a3\'ac\'d5\'d2\'b3\'f6
+\f2 A
+\f0 \'d6\'d0\'c2\'fa\'d7\'e3\'b4\'f3\'d3\'da\'bb\'f2\'d0\'a1\'d3\'da\'d7\'f3\'d3\'d2\'c1\'bd\'b8\'f6\'d4\'aa\'cb\'d8\'b5\'c4\'d4\'aa\'cb\'d8\'a3\'ac\'ca\'d7\'ce\'b2\'c1\'bd\'b8\'f6\'d4\'aa\'cb\'d8\'ba\'f6\'c2\'d4\'a3\'ac\'c0\'fd\'c8\'e7
+\f2 A=\{12,45,32,0,14,25,62,48,51\}
+\f0 \'a3\'ac\'d4\'f2\'bd\'e1\'b9\'fb\'ce\'aa
+\f2 :45,0,62,48\
+\pard\tx916\tx1832\tx2748\tx3664\tx4580\tx5496\tx6412\tx7328\tx8244\tx9160\tx10076\tx10992\tx11908\tx12824\tx13740\tx14656\pardeftab420\ri714\sl330
+\cf0 6. 
+\f0 \'c9\'e8\'bc\'c6\'ba\'af\'ca\'fd
+\f2 char *insert(s1,s2,n),
+\f0 \'d3\'c3\'d6\'b8\'d5\'eb\'ca\'b5\'cf\'d6\'d4\'da\'d7\'d6\'b7\'fb\'b4\'ae
+\f2 s1
+\f0 \'d6\'d0\'b5\'c4\'d6\'b8\'b6\'a8\'ce\'bb\'d6\'c3
+\f2 n
+\f0 \'b4\'a6\'b2\'e5\'c8\'eb\'d7\'d6\'b7\'fb\'b4\'ae
+\f2 s2\
+\
+7.
+\f0 \'b4\'d3\'bc\'fc\'c5\'cc\'c9\'cf\'ca\'e4\'c8\'eb
+\f2 10
+\f0 \'b8\'f6\'d5\'fb\'ca\'fd\'b4\'e6\'b7\'c5\'b5\'bd\'d2\'bb\'ce\'ac\'ca\'fd\'d7\'e9\'d6\'d0\'a3\'ac\'bd\'ab\'c6\'e4\'d6\'d0\'d7\'ee\'d0\'a1\'b5\'c4\'ca\'fd\'d3\'eb\'b5\'da\'d2\'bb\'b8\'f6\'ca\'fd\'b6\'d4\'bb\'bb\'a3\'ac\'d7\'ee\'b4\'f3\'b5\'c4\'ca\'fd\'d3\'eb\'d7\'ee\'ba\'f3\'d2\'bb\'b8\'f6\'ca\'fd\'b6\'d4\'bb\'bb\'a1\'a3\'d2\'aa\'c7\'f3\'bd\'f8\'d0\'d0\'ca\'fd\'be\'dd\'bd\'bb\'bb\'bb\'b5\'c4\'b4\'a6\'c0\'ed\'b9\'fd\'b3\'cc\'b1\'e0\'d0\'b4\'b3\'c9\'d2\'bb\'b8\'f6\'ba\'af\'ca\'fd\'a3\'ac\'ba\'af\'ca\'fd\'d6\'d0\'b6\'d4\'ca\'fd\'be\'dd\'b5\'c4\'b4\'a6\'c0\'ed\'d2\'aa\'d3\'c3\'d6\'b8\'d5\'eb\'b7\'bd\'b7\'a8\'ca\'b5\'cf\'d6
+\f2 (
+\f0 \'c0\'fd\'c8\'e7\'a3\'ba\'b2\'bb\'c4\'dc\'b3\'f6\'cf\'d6
+\f2 a[0] = 4
+\f0 \'d6\'ae\'c0\'e0\'b5\'c4\'d3\'ef\'be\'e4
+\f2 )
+\f0 \'a1\'a3
+\f2 \
+\
+8.
+\f0 \'b1\'e0\'d0\'b4\'d2\'bb\'b8\'f6\'ba\'af\'ca\'fd\'a3\'ac\'ba\'af\'ca\'fd\'b5\'c4\'b9\'a6\'c4\'dc\'ca\'c7\'d2\'c6\'b6\'af\'d7\'d6\'b7\'fb\'b4\'ae\'d6\'d0\'b5\'c4\'c4\'da\'c8\'dd\'a1\'a3\'d2\'c6\'b6\'af\'b5\'c4\'b9\'e6\'d4\'f2\'c8\'e7\'cf\'c2\'a3\'ba\'b0\'d1\'b5\'da
+\f2 1
+\f0 \'b5\'bd\'b5\'da
+\f2 m
+\f0 \'b8\'f6\'d7\'d6\'b7\'fb\'a3\'ac\'c6\'bd\'d2\'c6\'b5\'bd\'d7\'d6\'b7\'fb\'b4\'ae\'b5\'c4\'d7\'ee\'ba\'f3\'a3\'bb\'d4\'d9\'b0\'d1\'b5\'da
+\f2 m+1
+\f0 \'b5\'bd\'d7\'ee\'ba\'f3\'b5\'c4\'d7\'d6\'b7\'fb\'d2\'c6\'b6\'af\'b5\'bd\'d7\'d6\'b7\'fb\'b4\'ae\'b5\'c4\'c7\'b0\'b2\'bf\'a1\'a3\'c0\'fd\'c8\'e7\'a3\'ac\'d7\'d6\'b7\'fb\'b4\'ae\'d6\'d0\'d4\'ad\'d3\'c9\'b5\'c4\'c4\'da\'c8\'dd\'ce\'aa\'a3\'ba
+\f2 ABCDEFGHIJK
+\f0 \'a3\'ac
+\f2 m
+\f0 \'b5\'c4\'d6\'b5\'ce\'aa
+\f2 3
+\f0 \'a3\'ac\'d4\'f2\'d2\'c6\'b6\'af\'ba\'f3\'a3\'ac\'d7\'d6\'b7\'fb\'b4\'ae\'d6\'d0\'b5\'c4\'c4\'da\'c8\'dd\'d3\'a6\'b8\'c3\'ca\'c7
+\f2 DEFGHIJKABC
+\f0 \'a1\'a3\'d4\'da\'d6\'f7\'ba\'af\'ca\'fd\'d6\'d0\'ca\'e4\'c8\'eb\'d2\'bb\'b8\'f6\'b3\'a4\'b6\'c8\'b2\'bb\'b4\'f3\'d3\'da
+\f2 20
+\f0 \'b5\'c4\'d7\'d6\'b7\'fb\'b4\'ae\'ba\'cd\'c6\'bd\'d2\'c6\'b5\'c4\'d6\'b5
+\f2 m
+\f0 \'a3\'ac\'b5\'f7\'d3\'c3\'ba\'af\'ca\'fd\'cd\'ea\'b3\'c9\'d7\'d6\'b7\'fb\'b4\'ae\'b5\'c4\'c6\'bd\'d2\'c6\'a1\'a3\'d2\'aa\'c7\'f3\'d3\'c3\'d6\'b8\'d5\'eb\'b7\'bd\'b7\'a8\'b4\'a6\'c0\'ed\'d7\'d6\'b7\'fb\'b4\'ae\'a1\'a3
+\f2 \
+\pard\pardeftab420\ri714\qj
+\cf0 \
+9.
+\f0 \'b2\'bb\'ca\'b9\'d3\'c3\'bf\'e2\'ba\'af\'ca\'fd\'a3\'ac\'ca\'b5\'cf\'d6\'ba\'af\'ca\'fd
+\f2 strcmp(char *s1,char *s2)
+\f0 \'b5\'c4\'b9\'a6\'c4\'dc
+\f2 \
+\pard\pardeftab420\ri714\qj
+
+\f0 \cf0 \'a1\'a1\'b5\'b1
+\f2 s1
+\f0 \'d3\'eb
+\f2 s2
+\f0 \'cf\'e0\'b5\'c8\'ca\'b1\'b7\'b5\'bb\'d8
+\f2 0
+\f0 \'a3\'ac\'b7\'f1\'d4\'f2\'b7\'b5\'bb\'d8
+\f2 -1\
+\
+10.
+\f0 \'ca\'b9\'d3\'c3\'d6\'b8\'d5\'eb\'d7\'f7\'ba\'af\'ca\'fd\'b2\'ce\'ca\'fd\'a3\'ac\'b1\'e0\'d0\'b4\'d3\'c3\'d3\'da\'bd\'bb\'bb\'bb\'c1\'bd\'b8\'f6\'b2\'ce\'ca\'fd\'d6\'b5\'b5\'c4\'ba\'af\'ca\'fd\'a1\'a3\'b5\'f7\'d3\'c3\'b8\'c3\'ba\'af\'ca\'fd\'d3\'c3\'d3\'da\'b4\'d3\'bc\'fc\'c5\'cc\'ca\'e4\'c8\'eb\'b5\'c4\'c1\'bd\'b8\'f6\'d5\'fb\'ca\'fd\'bd\'f8\'d0\'d0\'bd\'bb\'bb\'bb\'a3\'ac\'bd\'bb\'bb\'bb\'bd\'e1\'b9\'fb\'d0\'e8\'d2\'aa\'d4\'da
+\f2 main
+\f0 \'ba\'af\'ca\'fd\'d6\'d0\'b4\'f2\'d3\'a1\'a1\'a3\'ba\'af\'ca\'fd\'d4\'ad\'d0\'cd\'ce\'aa
+\f2 void exchange 
+\f0 \'a3\'a8
+\f2 int *a,int *b
+\f0 \'a3\'a9
+\f2 \
+Input:x = 100,y = 200\
+Output:x = 200,y = 100.\
+\
+11.
+\f0 \'d3\'c3\'d6\'b8\'d5\'eb\'b7\'bd\'b7\'a8\'a3\'ac\'b1\'e0\'d0\'b4\'d2\'bb\'b8\'f6\'ba\'af\'ca\'fd\'a3\'ac\'c7\'f3\'be\'d8\'d5\'f3\'d6\'f7\'b6\'d4\'bd\'c7\'cf\'df\'d4\'aa\'cb\'d8\'d6\'ae\'ba\'cd
+\f2 \
+\
+12.
+\f0 \'b4\'d3\'c1\'bd\'b8\'f6\'ca\'fd\'d7\'e9\'b5\'c4\'d7\'ee\'ba\'f3\'d2\'bb\'b8\'f6\'d4\'aa\'cb\'d8\'b1\'c8\'bd\'cf\'c1\'bd\'b8\'f6\'ca\'fd\'d7\'e9\'d6\'d0\'b2\'bb\'cd\'ac\'d4\'aa\'cb\'d8\'b5\'c4\'b8\'f6\'ca\'fd\'a3\'ac\'c8\'e7\'d3\'d0
+\f2 s1[5] =\{77,21,1,3,5\},s2[3] = \{1,3,5\},
+\f0 \'b4\'d3
+\f2 s1[4]
+\f0 \'d3\'eb
+\f2 s2[2]
+\f0 \'bf\'aa\'ca\'bc\'b1\'c8\'bd\'cf\'a3\'ac\'b5\'bd
+\f2 s1[2]
+\f0 \'d3\'eb
+\f2 s2[0]
+\f0 \'b1\'c8\'bd\'cf\'bd\'e1\'ca\'f8\'a1\'a3\'d5\'e2\'d1\'f9\'b5\'c3\'b3\'f6\'cb\'fc\'c3\'c7\'b2\'bb\'cd\'ac\'d4\'aa\'cb\'d8\'b8\'f6\'ca\'fd\'ce\'aa
+\f2 0
+\f0 \'a3\'ac\'c8\'f4
+\f2 s1[6] = \{77,21,1,3,5,7\}
+\f0 \'a3\'ac\'c4\'c7\'c3\'b4\'cb\'fb\'c3\'c7\'b2\'bb\'cd\'ac\'d4\'aa\'cb\'d8\'ce\'aa
+\f2 3.\
+
+\f0 \'ba\'af\'ca\'fd\'d4\'ad\'d0\'cd\'ce\'aa\'a3\'ba
+\f2 void fun(int *s1,int *s2,int *result);\
+S1 
+\f0 \'d3\'eb
+\f2 s2
+\f0 \'b1\'ed\'ca\'be\'d2\'aa\'b1\'c8\'bd\'cf\'b5\'c4\'ca\'fd\'d7\'e9\'a3\'ac
+\f2 result
+\f0 \'b1\'ed\'ca\'be\'b7\'b5\'bb\'d8\'d6\'f7\'ba\'af\'ca\'fd\'b5\'c4\'b1\'c8\'bd\'cf\'bd\'e1\'b9\'fb\'a1\'a3
+\f2 \
+ \
+13.
+\f0 \'c7\'eb\'b1\'e0\'d0\'b4\'d2\'bb\'b8\'f6\'ba\'af\'ca\'fd\'a3\'ac\'d3\'c3\'d6\'b8\'d5\'eb\'ca\'b5\'cf\'d6\'bd\'ab\'d3\'c3\'bb\'a7\'ca\'e4\'c8\'eb\'d3\'c9\'ca\'fd\'d7\'d6\'d7\'d6\'b7\'fb\'ba\'cd\'b7\'c7\'ca\'fd\'d7\'d6\'d7\'d6\'b7\'fb\'d7\'e9\'b3\'c9\'b5\'c4\'d7\'d6\'b7\'fb\'b4\'ae\'d6\'d0\'b5\'c4\'ca\'fd\'d7\'d6\'cc\'e1\'c8\'a1\'b3\'f6\'c0\'b4\'a3\'ac\'c0\'fd\'c8\'e7\'ca\'e4\'c8\'eb
+\f2 \'93asds23rt456,;789sf\'94
+\f0 \'a3\'ac\'d4\'f2\'b2\'fa\'c9\'fa\'b5\'c4\'ca\'fd\'d7\'d6\'b7\'d6\'b1\'f0\'ca\'c7
+\f2 123,456,789.\
+\
+14.
+\f0 \'c7\'b0\'ba\'f3\'b5\'df\'b5\'b9\'ca\'e4\'c8\'eb\'b5\'c4\'d3\'a2\'ce\'c4\'d6\'d0\'b5\'c4\'b5\'a5\'b4\'ca\'ce\'bb\'d6\'c3\'a3\'ac\'b1\'ea\'b5\'e3\'b7\'fb\'ba\'c5\'a3\'a8\'d6\'bb\'bf\'c9\'d2\'d4\'b3\'f6\'cf\'d6\'d4\'da\'be\'e4\'ce\'b2\'a3\'a9\'ce\'bb\'d6\'c3\'b2\'bb\'b1\'e4\'a3\'ac\'c8\'e7\'ca\'e4\'c8\'eb
+\f2 \'93my name is guo hua!\'94
+\f0 \'ca\'e4\'b3\'f6\'d3\'a6\'b8\'c3\'ce\'aa
+\f2 \'93hua guo is name my!\'94
+\f0 \'a1\'a3
+\f2 \
+\
+15.
+\f0 \'ba\'af\'ca\'fd
+\f2 void SumColum(int a[][N],int *sum)
+\f0 \'b5\'c4\'b9\'a6\'c4\'dc\'ca\'c7\'c7\'f3\'b3\'f6\'a3\'cd\'d0\'d0\'a3\'ce\'c1\'d0\'b6\'fe\'ce\'ac\'ca\'fd\'d7\'e9\'c3\'bf\'c1\'d0\'d4\'aa\'cb\'d8\'d6\'d0\'b5\'c4\'d6\'d0\'b5\'c4\'d7\'ee\'d0\'a1\'d6\'b5\'a3\'ac\'b2\'a2\'bc\'c6\'cb\'e3\'cb\'fc\'c3\'c7\'b5\'c4\'ba\'cd\'d6\'b5\'a3\'ac\'bd\'ab\'ba\'cd\'d6\'b5\'cd\'a8\'b9\'fd\'d0\'ce\'b2\'ce\'b4\'ab\'bb\'d8\'d6\'f7\'ba\'af\'ca\'fd\'ca\'e4\'b3\'f6\'a1\'a3
+\f2 \
+\
+16.
+\f0 \'c9\'e8\'d3\'d0\'a3\'ce\'b8\'f6\'c8\'cb\'ce\'a7\'d7\'f8\'d2\'bb\'c8\'a6\'b2\'a2\'cb\'b3\'ca\'b1\'d5\'eb\'b7\'bd\'cf\'f2\'b4\'d3
+\f2 1
+\f0 \'b5\'bd\'a3\'ce\'b1\'e0\'ba\'c5\'a3\'ac\'b4\'d3\'b5\'da\'a3\'d3\'b8\'f6\'c8\'cb\'bf\'aa\'ca\'bc\'bd\'f8\'d0\'d0
+\f2 1
+\f0 \'b5\'bd\'a3\'cd\'b1\'a8\'ca\'fd\'a3\'ac\'b1\'a8\'ca\'fd\'b5\'bd\'b5\'da\'a3\'cd\'b8\'f6\'c8\'cb\'ca\'b1\'a3\'ac\'b4\'cb\'c8\'cb\'b3\'f6\'c8\'a6\'a3\'ac\'d4\'d9\'b4\'d3\'cb\'fb\'b5\'c4\'cf\'c2\'d2\'bb\'b8\'f6\'d6\'d8\'d0\'c2\'bf\'aa\'ca\'bc
+\f2 1
+\f0 \'b5\'bd\'a3\'cd\'b5\'c4\'b1\'a8\'ca\'fd\'a3\'ac\'c8\'e7\'b4\'cb\'bd\'f8\'d0\'d0\'cf\'c2\'c8\'a5\'d6\'b1\'b5\'bd\'cb\'f9\'d3\'d0\'c8\'cb\'b6\'bc\'b3\'f6\'c8\'a6\'ce\'aa\'d6\'b9\'a1\'a3\'cf\'d6\'d2\'aa\'b4\'f2\'d3\'a1\'b3\'f6\'c8\'a6\'b4\'ce\'d0\'f2\'a1\'a3
+\f2 \
+
+\f0 \'d2\'aa\'c7\'f3\'ca\'b5\'cf\'d6\'ba\'af\'ca\'fd\'a3\'ba
+\f2 \
+Void fun(int n,int s,int m,int *p)\
+
+\f0 \'ca\'e4\'c8\'eb\'a3\'ba
+\f2 n
+\f0 \'d3\'ce\'cf\'b7\'d7\'dc\'c8\'cb\'ca\'fd\'a1\'a1\'a1\'a1
+\f2 s
+\f0 \'b1\'a8\'ca\'fd\'b5\'c4\'c6\'f0\'ca\'bc\'b1\'e0\'ba\'c5\'a1\'a1\'a1\'a1
+\f2 m
+\f0 \'b1\'a8\'ca\'fd\'b5\'c4\'ca\'fd\'d6\'b5
+\f2 \
+
+\f0 \'ca\'e4\'b3\'f6\'a3\'ba
+\f2 p
+\f0 \'d6\'b8\'cf\'f2\'cf\'f2\'b6\'c8\'ce\'aa
+\f2 n
+\f0 \'b5\'c4\'ca\'fd\'d7\'e9\'a3\'ac\'b3\'f6\'c8\'a6\'b4\'ce\'d0\'f2\'b1\'a3\'b4\'e6\'d4\'da
+\f2 p
+\f0 \'d6\'b8\'cf\'f2\'b5\'c4\'ca\'fd\'d7\'e9\'d6\'d0
+\f2 \
+
+\f0 \'ca\'be\'c0\'fd
+\f2 :n = 7,s = 3,m = 3,
+\f0 \'b3\'f6\'c8\'a6\'b4\'ce\'d0\'f2\'ce\'aa
+\f2 :4 7 3 1 6 2 5\
+\
+17.
+\f0 \'d3\'d0\'d2\'bb\'b8\'f6\'ca\'fd\'d7\'e9
+\f2 int A[nSize]
+\f0 \'a3\'ac\'d2\'aa\'c7\'f3\'d0\'b4\'d2\'bb\'b8\'f6\'ba\'af\'ca\'fd\'a3\'ba
+\f2 \
+Int *func(int *p,int nSize);
+\f0 \'bd\'ab\'a3\'c1\'d6\'d0\'b5\'c4
+\f2 0
+\f0 \'b6\'bc\'d2\'c6\'d6\'c1\'ca\'fd\'d7\'e9\'c4\'a9\'ce\'b2\'a3\'ac\'bd\'ab\'b7\'c7
+\f2 0
+\f0 \'b5\'c4\'d2\'c6\'d6\'c1\'bf\'aa\'ca\'bc\'a3\'a8\'b1\'a3\'b3\'d6\'d4\'ad\'cb\'b3\'d0\'f2\'b2\'bb\'b1\'e4\'a3\'a9
+\f2 \
+
+\f0 \'c0\'fd\'c8\'e7\'a3\'ba
+\f2 \
+A
+\f0 \'d4\'ad\'c0\'b4\'ca\'c7\'a3\'ba
+\f2 1,0,3,4,0,-3,5  
+\f0 \'b4\'a6\'c0\'ed\'ba\'f3\'ce\'aa\'a3\'ba
+\f2 1,3,4,-3,5,0,0\
+\
+18.
+\f0 \'c7\'eb\'d4\'da\'d0\'a1\'d3\'da
+\f2 9999
+\f0 \'b5\'c4\'d5\'fd\'d5\'fb\'ca\'fd\'d6\'d0\'d5\'d2\'b7\'fb\'ba\'cf\'cf\'c2\'c1\'d0\'cc\'f5\'bc\'fe\'b5\'c4\'ca\'fd\'a3\'ac\'cb\'fc\'bc\'c8\'ca\'c7\'cd\'ea\'c8\'ab\'c6\'bd\'b7\'bd\'ca\'fd\'a3\'ac\'d3\'d6\'d3\'d0\'c1\'bd\'ce\'bb\'ca\'fd\'d7\'d6\'cf\'e0\'cd\'ac\'a3\'ac\'c8\'e7\'a3\'ba
+\f2 144
+\f0 \'a3\'ac
+\f2 676
+\f0 \'a3\'a8\'b4\'cb\'cc\'e2\'b2\'bb\'b1\'d8\'d2\'bb\'b6\'a8\'d3\'c3\'b5\'bd\'d6\'b8\'d5\'eb\'a3\'a9
+\f2 \
+\
+19.
+\f0 \'b1\'b3\'b0\'fc\'ce\'ca\'cc\'e2\'a3\'ba\'b8\'f8\'b6\'a8
+\f2 n
+\f0 \'d6\'d6\'ce\'ef\'c6\'b7\'ba\'cd\'d2\'bb\'b8\'f6\'b1\'b3\'b0\'fc\'a3\'ac\'ce\'ef\'c6\'b7
+\f2 i
+\f0 \'b5\'c4\'d6\'d8\'c1\'bf\'ca\'c7
+\f2 w\sub i\nosupersub , 
+\f0 \'b1\'b3\'b0\'fc\'b5\'c4\'c8\'dd\'c1\'bf\'ce\'aa
+\f2 C
+\f0 \'a1\'a3\'c8\'e7\'ba\'ce\'d1\'a1\'d4\'f1\'d7\'b0\'c8\'eb\'b1\'b3\'b0\'fc\'b5\'c4\'ce\'ef\'c6\'b7\'a3\'ac\'ca\'b9\'b5\'c3\'b1\'b3\'b0\'fc\'d6\'d0\'d6\'d8\'c1\'bf\'d7\'ee\'b4\'f3\'a3\'bf
+\f2  \
+\pard\pardeftab420\ri714
+
+\f0 \cf0 \'c0\'fd\'c8\'e7\'a3\'ba\'c9\'e8\'d3\'d0
+\f2 n=8
+\f0 \'b8\'f6\'cc\'e5\'bb\'fd\'b7\'d6\'b1\'f0\'ce\'aa
+\f2 54
+\f0 \'a3\'ac
+\f2 45
+\f0 \'a3\'ac
+\f2 43
+\f0 \'a3\'ac
+\f2 29
+\f0 \'a3\'ac
+\f2 23
+\f0 \'a3\'ac
+\f2 21
+\f0 \'a3\'ac
+\f2 14
+\f0 \'a3\'ac
+\f2 1
+\f0 \'b5\'c4\'ce\'ef\'cc\'e5\'ba\'cd\'d2\'bb\'b8\'f6\'c8\'dd\'bb\'fd\'ce\'aa
+\f2 C=110
+\f0 \'b5\'c4\'b1\'b3\'b0\'fc\'a3\'a8\'d7\'ee\'d3\'c5\'bd\'e2\'a3\'ba
+\f2 43+23+29+14+1=110
+\f0 \'a3\'a9\'a1\'a3
+\f2 \
+
+\f0 \'b3\'cc\'d0\'f2\'ca\'e4\'b3\'f6\'ce\'aa\'a3\'ba
+\f2 43+23+29+14+1=110\
+\pard\pardeftab420\ri714\qj
+\cf0 \
+20.
+\f0 \'bc\'d9\'c8\'e7\'d2\'bb\'b8\'f6\'cb\'e3\'ca\'bd\'a3\'a8\'cb\'e3\'ca\'bd\'d6\'d0\'b6\'bc\'ce\'aa\'d5\'fb\'ca\'fd\'a3\'ac\'d6\'bb\'d3\'d0\'bc\'d3\'bc\'f5\'b7\'a8\'a3\'ac\'c3\'bb\'d3\'d0\'d0\'a1\'c0\'a8\'ba\'c5\'a3\'ac\'c8\'e7\'b9\'fb\'ca\'b1\'bc\'e4\'b3\'e4\'b7\'d6\'a3\'ac\'bf\'c9\'d2\'d4\'ca\'d4\'ca\'d4\'b0\'fc\'ba\'ac\'bc\'d3\'bc\'f5\'b3\'cb\'b3\'fd\'b5\'c4\'cb\'c4\'d4\'f2\'d4\'cb\'cb\'e3\'a3\'a9\'ca\'c7\'d2\'bb\'b8\'f6\'d7\'d6\'b7\'fb\'b4\'ae\'a3\'ac\'c7\'eb\'b1\'e0\'b3\'cc\'b5\'c3\'b5\'bd\'d5\'e2\'b8\'f6\'cb\'e3\'ca\'bd\'b5\'c4\'bd\'e1\'b9\'fb
+\f2 \
+\pard\pardeftab420\ri714\qj
+
+\f0 \cf0 \'c0\'fd\'c8\'e7\'cb\'e3\'ca\'bd\'d7\'d6\'b7\'fb\'b4\'ae
+\f2 str = \'934+2-4+3\'94
+\f0 \'a3\'ac\'d4\'f2\'bd\'e1\'b9\'fb\'ce\'aa
+\f2 5\
+\
+}

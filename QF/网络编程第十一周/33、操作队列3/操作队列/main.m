@@ -1,0 +1,93 @@
+//
+//  main.m
+//  操作队列
+//
+//  Created by chen cheng on 14-9-22.
+//  Copyright (c) 2014年 chen cheng. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+
+
+@interface MyOperation : NSOperation
+
+@end
+
+
+@implementation MyOperation
+
+- (void)main
+{
+    NSLog(@"MyOperation [NSThread currentThread] = %@", [NSThread currentThread]);
+    int i = 0;
+    while (i < 4)
+    {
+        NSLog(@"MyOperation i = %d", i++);
+        sleep(1);
+    }
+
+}
+
+@end
+
+
+@interface MyOperation2 : NSOperation
+
+@end
+
+
+@implementation MyOperation2
+
+- (void)main
+{
+    NSLog(@"MyOperation2 [NSThread currentThread] = %@", [NSThread currentThread]);
+    int i = 0;
+    while (i < 4)
+    {
+        NSLog(@"MyOperation2 i = %d", i++);
+        sleep(1);
+    }
+}
+
+@end
+
+
+int main(int argc, const char * argv[])
+{
+    @autoreleasepool
+    {
+        NSLog(@"main [NSThread currentThread] = %@", [NSThread currentThread]);
+        
+        
+        MyOperation *myOperation = [[MyOperation alloc] init];
+
+        MyOperation2 *myOperation2 = [[MyOperation2 alloc] init];
+        
+        NSOperationQueue  *operationQueue = [[NSOperationQueue alloc] init];
+        
+        //让操作2依赖于操作1
+        [myOperation2 addDependency:myOperation];
+        
+        
+        [operationQueue addOperation:myOperation];
+        [operationQueue addOperation:myOperation2];
+        
+        
+        [myOperation release];
+        [myOperation2 release];
+        
+        [operationQueue release];
+        
+        int i = 0;
+        while (1)
+        {
+            NSLog(@"main i = %d", i);
+            sleep(1);
+        }
+
+        
+        
+    }
+    return 0;
+}
+

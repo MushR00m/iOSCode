@@ -1,0 +1,153 @@
+<ion-view can-swipe-back="false">
+    <div class="trf p-c-blue">
+        <ion-header-bar>
+            <div class="menu-ba">
+                <header class="menu">
+                    <span class="menu-user" ng-if="data.isLogin" ng-click="func.onClickSettingsBtn()">
+                        <span class="avatar">
+                            <img ng-src="{{data.avatarUrl}}" alt="用户名">
+                        </span>
+                        <span class="reddot" ng-if="data.showMsgDot"></span>
+                    </span>
+                    <span class="menu-info" ng-if="!data.isLogin" ng-click="func.onClickSettingsBtn()"></span>
+                    转账
+                    <span class="menu-wd" ng-if="data.isHasAccount" ng-click="func.onClickTransLog()">交易查询</span>
+                </header>
+            </div>
+        </ion-header-bar>
+
+        <ion-content has-bouncing="true" class="has-header" style="bottom: 54px;" >
+            <!--未登录或者未开户-->
+            <div ng-if="!func.isUserRegistered()">
+                <ul class="mainfunc p-bgc-fff px-a">
+                    <li class="trf-out" ng-click="func.onClickLoginRegin()">
+                        <h3>转出</h3>
+                        <!--<p class="p-c-lgray">实时到账</p>-->
+                    </li>
+                    <li class="trf-in p-line-l" ng-click="func.onClickLoginRegin()">
+                        <h3>转入</h3>
+                        <!--<p class="p-c-lgray">活期+收益到达5.4%</p>-->
+                    </li>
+                </ul>
+                <dl class="plans p-bgc-fff px-a">
+                    <dt class="p-bgc-lgray px-a" ng-click="func.onClickLoginRegin()">存取计划</dt>
+                    <dd class="flex px-a px-lt plan-in-1" ng-click="func.onClickLoginRegin()">
+                        <h4 class="item">存工资</h4>
+                        <p class="item p-c-lgray">工资到账立即理财</p>
+                    </dd>
+                    <dd class="flex px-a px-lt plan-out-1" ng-click="func.onClickLoginRegin()">
+                        <h4 class="item">还房贷</h4>
+                        <p class="item p-c-lgray">制定计划自动还贷</p>
+                    </dd>
+                    <dd class="flex px-a px-lt plan-custom" ng-click="func.onClickLoginRegin()">
+                        <h4 class="item">自定义计划</h4>
+                    </dd>
+                </dl>
+            </div>
+
+            <!--已登录且已开户-->
+            <div ng-if="func.isUserRegistered()">
+                <ul class="mainfunc p-bgc-fff px-a">
+                    <li class="trf-out" ng-click="func.onClickTransferOut()">
+                        <h3>转出</h3>
+                        <!--<p class="p-c-lgray">实时到账</p>-->
+                    </li>
+                    <li class="trf-in p-line-l" ng-click="func.onClickTransferIn()">
+                        <h3>转入</h3>
+                        <!--<p class="p-c-lgray">活期+收益到达5.4%</p>-->
+                    </li>
+                </ul>
+
+                <dl class="plans p-bgc-fff px-a">
+                    <dt class="p-bgc-lgray px-a">
+                        <i class="menu-add p-c-bblue" ng-if="func.canMakeNewPlan()" ng-click="func.onClickMakePlan()">+添加计划</i>存取计划
+                    </dt>
+                    <dd class="flex px-a px-lt plan-syj" ng-click="func.onClickTaxPlan()" ng-if="data.showTaxPlan && data.hasRunningTaxPlan != true">
+                        <h4 class="item">益点心意</h4>
+                        <p class="item p-c-lgray">微小收益，众在参与</p>
+                    </dd>
+                    <dd class="flex px-a px-lt plan-syj" ng-click="func.onClickTaxPlan()" ng-if="data.showTaxPlan && data.hasRunningTaxPlan == true">
+                        <h4 class="item">益点心意</h4>
+                        <p class={{data.donateDescClass}}>{{data.taxFirstDesc}}<br>{{data.taxSecondDesc}}</p>
+                    </dd>
+                    <dd class="flex px-a px-lt plan-in-1" ng-click="func.onClickSalaryPlan()" ng-if="data.salaryPlan.planInfo == null">
+                        <h4 class="item">存工资</h4>
+                        <p class="item p-c-lgray">工资到账立即理财</p>
+                    </dd>
+                    <dd class="flex px-a px-lt plan-in-1" ng-click="func.onClickModifySalaryPlan(data.salaryPlan.planInfo)" ng-if="data.salaryPlan.planInfo != null">
+                        <h4 class="item">存工资</h4>
+                        <p class="item p-c-lgray has2rows">{{data.salaryPlan.dateDesc}}<br>{{data.salaryPlan.amountDesc}}</p>
+                    </dd>
+
+                    <dd class="flex px-a px-lt plan-out-1" ng-click="func.onClickMortgagePlan()" ng-if="data.mortgage.planInfo == null">
+                        <h4 class="item">还房贷</h4>
+                        <p class="item p-c-lgray">制定计划自动还贷</p>
+                    </dd>
+                    <dd class="flex px-a px-lt plan-out-1" ng-click="func.onClickModifyMortgagePlan(data.mortgage.planInfo)" ng-if="data.mortgage.planInfo != null">
+                        <h4 class="item">还房贷</h4>
+                        <p class="item p-c-lgray has2rows">{{data.mortgage.dateDesc}}<br>{{data.mortgage.amountDesc}}</p>
+                    </dd>
+
+                    <dd class="flex px-a px-lt plan-out-2" ng-click="func.onClickTransOutScenePlan(data.planForRent.planInfo, data.PLAN_CATAGRY.PAY_RENT)" ng-if="func.isStrongAccount() && data.planForRent.planInfo == null">
+                        <h4 class="item">交房租</h4>
+                        <p class="item p-c-lgray">自动交租省心省事</p>
+                    </dd>
+                    <dd class="flex px-a px-lt plan-out-2" ng-click="func.onClickTransOutScenePlan(data.planForRent.planInfo, data.PLAN_CATAGRY.PAY_RENT)" ng-if="func.isStrongAccount() && data.planForRent.planInfo != null">
+                        <h4 class="item">交房租</h4>
+                        <p class="item p-c-lgray has2rows">{{data.planForRent.dateDesc}}<br>{{data.planForRent.amountDesc}}</p>
+                    </dd>
+
+                    <dd class="flex px-a px-lt plan-out-3" ng-click="func.onClickTransOutScenePlan(data.planForParent.planInfo, data.PLAN_CATAGRY.RESPECT_PARENT)" ng-if="func.isStrongAccount() && data.planForParent.planInfo==null">
+                        <h4 class="item">孝敬父母</h4>
+                        <p class="item p-c-lgray">每月给父母点关爱</p>
+                    </dd>
+                    <dd class="flex px-a px-lt plan-out-3" ng-click="func.onClickTransOutScenePlan(data.planForParent.planInfo, data.PLAN_CATAGRY.RESPECT_PARENT)" ng-if="func.isStrongAccount() && data.planForParent.planInfo!=null">
+                        <h4 class="item">孝敬父母</h4>
+                        <p class="item p-c-lgray has2rows">{{data.planForParent.dateDesc}}<br>{{data.planForParent.amountDesc}}</p>
+                    </dd>
+
+                    <dd class="flex px-a px-lt plan-custom" ng-repeat="plan in data.commonPlanList" ng-click="func.onClickCommonPlan(plan.planInfo)">
+                        <h4 class="item">{{plan.name}}</h4>
+                        <p class="item p-c-lgray has2rows">{{plan.dateDesc}}<br>{{plan.typeDesc}}</p>
+                    </dd>
+                </dl>
+
+                <dl class="cards p-bgc-fff px-a">
+                    <dt class="p-bgc-lgray px-a">
+                        <i class="menu-add p-c-bblue" ng-click="func.onClickBindNewCard()">+添加银行卡</i>管理银行卡 <span class="p-c-lgray">({{data.cardCount + data.mainCard.num}})</span>
+                    </dt>
+                    <dd class="allow-enter p-c-lgray px-a" ng-if="data.mainCard.num" ng-click="onClickMainCard()">
+                        <img ng-src="{{data.mainCard.bankImg1}}" alt=""><i class="p-c-blue">{{data.mainCard.bankName}}</i> {{data.mainCard.number | abridgeAccountNumber}}
+                    </dd>
+                    <dd class="allow-enter p-c-lgray px-a" ng-repeat="card in data.cardList" ng-click="onClickViewCardInfoBtn(card)">
+                        <img ng-src="{{card.bankImg1}}" alt=""><i class="p-c-blue">{{card.bankName}}</i> {{card.cardType+' '}}{{card.number|abridgeAccountNumber}}
+                    </dd>
+                    <dd class="allow-enter p-c-lgray px-a" ng-repeat="card in data.regCardList" ng-click="onClickViewCardInfoBtn(card, true)">
+                        <img ng-src="{{card.bankImg1}}" alt=""><i class="p-c-blue">{{card.bankName}}</i> {{card.cardType+' '}}{{card.number|abridgeAccountNumber}}
+                        <div class="text">待汇款</div>
+                    </dd>
+                </dl>
+                <div style="height:20px;"></div>
+            </div>
+        </ion-content>
+
+        <div class="main-nav-wrap" ng-if="!showInvestment">
+            <ul class="main-nav flex">
+                <li class="item i-a" ng-click="func.onClickMainTab(1)">首页</li>
+                <li class="item i-b" ng-click="func.onClickMainTab(2)">理财</li>
+                <li class="item i-d i-on">转账</li>
+
+            </ul>
+        </div>
+        <div class="main-nav-wrap" ng-if="showInvestment">
+            <ul class="main-nav flex">
+                <li class="item i-a" ng-click="func.onClickMainTab(1)">总览</li>
+                <li class="item i-b" ng-click="func.onClickMainTab(2)">理财</li>
+                <li class="item i-c" ng-click="func.onClickMainTab(4)">投资</li>
+                <li class="item i-d i-on">转账</li>
+            </ul>
+        </div>
+    </div>
+
+    <loading show-loading="data.showLoading"></loading>
+</ion-view>

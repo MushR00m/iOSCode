@@ -1,0 +1,407 @@
+<ion-view>
+    <div class="bx">
+        <ion-header-bar>
+            <div class="menu-ba">
+                <header class="menu">
+                    <button class="menu-return" ng-click="back()"></button>
+                    {{data.prodInfo.prod_name}}
+                    <span ng-class="data.shareClass" ng-click="share()"></span>
+                </header>
+            </div>
+        </ion-header-bar>
+
+        <hj-up-down-box up-down-init="upDownInit">
+            <ion-content class="has-header" has-bouncing="false" style="bottom: 50px;">
+                <div style="min-height: 100%;">
+                    <div class="ba-income-wrap">
+                        <p class="title p-line-lr-h"><span ng-click="onClickIncomeRate()">{{data.prodInfo.income_rate_desc}}<i
+                                class="sm"></i></span></p>
+                        <p class="num">{{data.prodInfo.expe_income_rate}}<span class="sub">%</span></p>
+                        <div class="xs flex">
+                            <div class="item p-line-r">起购金额(元)<span>{{data.prodInfo.p_start_buy_min_amount}}</span>
+                            </div>
+                            <!--这里特别注意一下，hesitation_period为10和11的时候，都要展示为10-->
+                            <div class="item" ng-if="!isYGProd()"><em ng-click="onClickHesitation()">犹豫期(天)<i
+                                    class="sm"></i></em><span>10</span></div>
+                            <div class="item" ng-if="isYGProd()"><em ng-click="onClickHesitation()">犹豫期(天)<i
+                                    class="sm"></i></em><span>15</span></div>
+                        </div>
+
+                        <!--修改的地方 LUX-->
+                        <div class="pz-risk px-a" ng-if="data.limitAge">
+                            <p>{{data.limitAgeStr}}</p>
+                        </div>
+                        <div class="pz-risk px-a" ng-if="data.limitId">
+                            <p>{{data.limitIdStr}}</p>
+                        </div>
+                        <div class="pz-risk px-a" ng-if="!data.limitAge&&!data.limitId&&!data.hasPreBuyInfo">
+                            <p>
+                                提前填写购买信息可以增加购买几率
+                            </p>
+                            <p ng-click="onClickFillInfo()">
+                                提前填写购买信息
+                            </p>
+                        </div>
+
+                    </div>
+
+                    <div class="ui-alarm-wrap mgb20 px" ng-if="data.period == 1"><span><em
+                            ng-if="data.startBuyTime.getFullYear() != data.today.getFullYear()">{{data.startBuyTime.getFullYear()}}年</em>{{data.startBuyTime | formatDateObjToCNString}} {{data.prodInfo.ipostart_time.substr(0, 2)}}:{{data.prodInfo.ipostart_time.substr(2, 2)}}</span>起售
+                    </div>
+
+                    <div class="ui-alarm-wrap mgb20 px" ng-if="data.period == 2 && data.balance > 0">剩余额度 <span>{{data.balanceDesc}}</span>
+                    </div>
+                    <!--运营推广图片-->
+                    <div compile="data.bannerHtml"></div>
+                    <!--运营文案配置区块-->
+                    <div compile="data.bannerTextHtml"></div>
+                    <!--理财周期-->
+                    <dl class="ui-cycle-wrap px">
+                        <dt class="px-a">理财周期</dt>
+                        <dd class="progress-wrap">
+                            <div class="flex-box flex">
+                                <div class="item item-a light">
+                                    <span><em ng-if="data.period == 1">起售</em><em
+                                            ng-if="data.period != 1">今天</em></span>
+                                    <i></i>
+                                <span>
+                                    <em ng-if="data.period == 1">
+                                        {{data.startDay.getMonth()+1}}-{{data.startDay.getDate()}}
+                                    </em>
+                                    <em ng-if="data.period != 1">{{data.today.getMonth()+1}}-{{data.today.getDate()}}</em>
+                                </span>
+                                </div>
+                                <div class="item item-b">
+                                    <span>起息</span>
+                                    <i></i>
+                                <span>
+                                    <em ng-if="data.period == 1">
+                                        <em ng-if="data.tomorrow.getFullYear() != data.startDay.getFullYear()">{{data.tomorrow.getFullYear()}}-</em>{{data.tomorrow.getMonth()+1}}-{{data.tomorrow.getDate()}}
+                                    </em>
+                                    <em ng-if="data.period != 1">
+                                        <em ng-if="data.tomorrow.getFullYear() != data.today.getFullYear()">{{data.tomorrow.getFullYear()}}-</em>{{data.tomorrow.getMonth()+1}}-{{data.tomorrow.getDate()}}
+                                    </em>
+                                </span>
+                                </div>
+                                <div class="item item-c">
+                                    <span>查看首笔收益</span>
+                                    <i></i>
+                                    <span><em ng-if="data.showIncomeDay.getFullYear() != data.tomorrow.getFullYear()">{{data.showIncomeDay.getFullYear()}}-</em>{{data.showIncomeDay.getMonth()+1}}-{{data.showIncomeDay.getDate()}}</span>
+                                </div>
+                                <div class="item item-d">
+                                    <span style="visibility: hidden;">placeholder</span>
+                                    <em></em>
+                                    <span><em ng-if="data.prodInfo.prod_term_desc">{{data.prodInfo.prod_term_desc}}</em><em
+                                            ng-if="!data.prodInfo.prod_term_desc">最长可持有{{data.prodTermUnitDesc}}</em></span>
+                                </div>
+                            </div>
+                            <div class="pro-wrap pro-blue" style="width:0;"></div>
+                            <div class="pro-wrap pro-bg"></div>
+                        </dd>
+                        <dd class="result">购买成功后，
+                            <em ng-if="data.tomorrow.getFullYear() != data.today.getFullYear()">
+                                {{data.tomorrow.getFullYear()}}年
+                            </em>
+                            {{data.tomorrow | formatDateObjToCNString}}开始产生收益，
+                            <em ng-if="data.hesitatePeriodEnd.getFullYear() != data.today.getFullYear()">
+                                {{data.hesitatePeriodEnd.getFullYear()}}年
+                            </em>
+                            {{data.hesitatePeriodEnd | formatDateObjToCNString}}24:00前可免费赎回本金
+                            <em ng-if="data.prodInfo.free_refund_date.length>0">，此后每月{{data.prodInfo.free_refund_date[0]}}日<em
+                                    ng-repeat="obj in data.prodInfo.free_refund_date" ng-if="$index>0">、{{obj}}日</em>可免费赎回
+                            </em>
+                            <em ng-if="isYGProd()">
+                                <em ng-if="data.showIncomeDay.getFullYear() != data.today.getFullYear()">
+                                    {{data.showIncomeDay.getFullYear()}}年
+                                </em>
+                                ，{{data.showIncomeDay | formatDateObjToCNString}}可查看犹豫期15天的累计收益
+                            </em>
+                            <em ng-if="isYGProd()">
+                                ，一年内赎回需收取手续费
+                            </em>
+                            <em ng-if="isMSProd()">，半年后免费赎回日为{{data.firseOpenDay |
+                                formatDateObjToCNString}}、{{data.secondOpenDay |
+                                formatDateObjToCNString}}、{{data.thirdOpenDay | formatDateObjToCNString}}
+                            </em>
+                        </dd>
+                    </dl>
+
+                    <!--交易规则-->
+                    <div compile="data.transactionRuleHtml"></div>
+                    <!--产品说明-->
+                    <div compile="data.prodDescHtml"></div>
+                    <!--利益演示-->
+                    <div class="px">
+                        <p class="jt" ng-click="onClickIncomeDemo()">利益演示</p>
+                    </div>
+                    <!--更多产品详情-->
+                    <div class="px">
+                        <p class="jt" ng-click="onClickProductIntroduction()">更多产品详情</p>
+                    </div>
+                    <div style="padding-bottom:20px;"></div>
+                </div>
+                <section class="jumping-down" ng-if="data.prodInfo.load_desc && data.showSecond"><i></i>{{data.prodInfo.load_desc}}
+                </section>
+
+            </ion-content>
+
+            <ion-content class="has-header" has-bouncing="false" style="visibility: hidden;">
+                <div ng-if="data.showSecond" compile="data.secondPageStr">
+
+                </div>
+            </ion-content>
+        </hj-up-down-box>
+        <ion-footer-bar ng-if="!data.limitAge && !data.limitId"><!--满足年龄和国籍——>
+            <!-- 灰化class加off -->
+            <!-- 在售 -->
+            <div class="buy-btn-wrap" ng-if="!data.limitWords && data.period == 2 && data.balance > 0">
+                <!-- 不是团购 -->
+                <div ng-if="!data.groupon.is_groupon_prod">
+                    <!-- 不符合mgm 条件, 即是新人(如果设置了新人专享) -->
+                    <div class="lc-buy-btn" ng-if="!data.isMgm" ng-click="onClickContinueBuy()">立即购买</div>
+                    <!-- 符合mgm 且 有卡 -->
+                    <div class="lc-buy-btn" ng-if="data.isMgm && data.hasMgmCard" ng-click="onClickContinueBuy()">
+                        使用特权卡购买
+                    </div>
+                    <!-- 符合mgm 且 没卡-->
+                    <div class="lc-buy-btn" ng-if="data.isMgm && !data.hasMgmCard" ng-click="onClickMgm()">我是老用户，我也想买
+                    </div>
+                </div>
+                <!-- 是团购 -->
+                <div ng-if="data.groupon.is_groupon_prod">
+                    <!-- 团购成功 或者 团购过期/取消 -->
+                    <div ng-if="data.groupon.groupon_succ || data.groupon.groupon_expire">
+                        <div class="lc-buy-btn" ng-click="onClickContinueBuy()">立即购买</div>
+                    </div>
+                    <!-- 团购尚未成功 且 团购未过期/取消 -->
+                    <div ng-if="!data.groupon.groupon_succ && !data.groupon.groupon_expire">
+                        <!-- 已发起团购 -->
+                        <div ng-if="data.groupon.group.group_id">
+                            <p class="g">已有{{data.groupon.group.members.length}}人参与拼团</p>
+                            <div class="lc-buy-btn" ng-click="onClickViewGroupon()">查看我的拼团</div>
+                        </div>
+                        <!-- 尚未发起团购 -->
+                        <div ng-if="!data.groupon.group.group_id">
+                            <p class="g">发起拼团, 即可立即购买</p>
+                            <div class="lc-buy-btn" ng-click="onClickCreateGroupon()">发起拼团</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 预售 -->
+            <div class="buy-btn-wrap" ng-if="!data.limitWords && data.period == 1">
+                <!-- 不是团购 -->
+                <div ng-if="!data.groupon.is_groupon_prod">
+                    <div class="{{data.calendarButtonClass}}" ng-if="!data.lessSixMinutes" ng-click="onClickSetClock()">
+                        {{data.calendarButtonStr}}
+                    </div>
+                    <div class="lc-buy-btn off"
+                         ng-if="data.lessSixMinutes && data.todayString == data.prodInfo.ipostart_date">
+                        <em ng-if="!data.countDownFlag">{{data.prodInfo.ipostart_time.substr(0,
+                            2)}}:{{data.prodInfo.ipostart_time.substr(2, 2)}}起售</em>
+                        <em ng-if="data.countDownFlag">离起售还剩余 <em class="hj-minites"></em>:<em class="hj-seconds"></em></em>
+                    </div>
+                    <div class="lc-buy-btn off"
+                         ng-if="data.lessSixMinutes && data.todayString != data.prodInfo.ipostart_date">
+                        {{data.prodInfo.ipostart_date.substr(4,2)}}月{{data.prodInfo.ipostart_date.substr(6,2)}}日起售
+                    </div>
+                </div>
+                <!-- 是团购 -->
+                <div ng-if="data.groupon.is_groupon_prod">
+                    <!-- 团购成功 或者 团购过期/取消 -->
+                    <div ng-if="data.groupon.groupon_succ || data.groupon.groupon_expire">
+                        <div class="{{data.calendarButtonClass}}" ng-if="!data.lessSixMinutes"
+                             ng-click="onClickSetClock()">
+                            {{data.calendarButtonStr}}
+                        </div>
+                        <div class="lc-buy-btn off"
+                             ng-if="data.lessSixMinutes && data.todayString == data.prodInfo.ipostart_date">
+                            <em ng-if="!data.countDownFlag">{{data.prodInfo.ipostart_time.substr(0,
+                                2)}}:{{data.prodInfo.ipostart_time.substr(2, 2)}}起售</em>
+                            <em ng-if="data.countDownFlag">离起售还剩余 <em class="hj-minites"></em>:<em
+                                    class="hj-seconds"></em></em>
+                        </div>
+                        <div class="lc-buy-btn off"
+                             ng-if="data.lessSixMinutes && data.todayString != data.prodInfo.ipostart_date">
+                            {{data.prodInfo.ipostart_date.substr(4,2)}}月{{data.prodInfo.ipostart_date.substr(6,2)}}日起售
+                        </div>
+                    </div>
+                    <!-- 团购尚未成功 且 团购未过期/取消 -->
+                    <div ng-if="!data.groupon.groupon_succ && !data.groupon.groupon_expire">
+                        <!-- 已发起团购 -->
+                        <div ng-if="data.groupon.group.group_id">
+                            <p class="g">已有{{data.groupon.group.members.length}}人参与拼团</p>
+                            <div class="lc-buy-btn" ng-click="onClickViewGroupon()">查看我的拼团</div>
+                        </div>
+                        <!-- 尚未发起团购 -->
+                        <div ng-if="!data.groupon.group.group_id">
+                            <p class="g" ng-if="data.lessSixMinutes && data.todayString == data.prodInfo.ipostart_date">
+                                发起拼团, 即可在{{data.prodInfo.ipostart_time.substr(0,
+                                2)}}:{{data.prodInfo.ipostart_time.substr(2, 2)}}购买</p>
+                            <p class="g" ng-if="data.lessSixMinutes && data.todayString != data.prodInfo.ipostart_date">
+                                发起拼团,
+                                即可在{{data.prodInfo.ipostart_date.substr(4,2)}}月{{data.prodInfo.ipostart_date.substr(6,2)}}日购买</p>
+                            <div class="lc-buy-btn" ng-click="onClickCreateGroupon()">发起拼团</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="buy-btn-wrap" ng-if="!data.limitWords && data.period == 2 && data.balance <= 0">
+                <div class="lc-buy-btn off">已售罄</div>
+            </div>
+
+            <div class="buy-btn-wrap" ng-if="data.limitWords && data.period == 1">
+                <div class="lc-buy-btn off">{{data.limitWords}}</div>
+            </div>
+
+            <div class="buy-btn-wrap" ng-if="data.limitWords && data.period == 2 && data.balance <= 0">
+                <div class="lc-buy-btn off">已售罄</div>
+            </div>
+
+            <div class="buy-btn-wrap"
+                 ng-if="data.limitWords && data.period == 2 && data.balance > 0 && data.limitButton">
+                <div class="lc-buy-btn off">{{data.limitWords}}</div>
+            </div>
+
+            <div class="buy-btn-wrap"
+                 ng-if="data.limitWords && data.period == 2 && data.balance > 0 && !data.limitButton"
+                 ng-click="onClickContinueBuy()">
+                <div class="lc-buy-btn">{{data.limitWords}}</div>
+            </div>
+        </ion-footer-bar>
+        //
+        <ion-footer-bar ng-if="data.limitAge||data.limitId"><!--不满足年龄条件或者身份类型-->
+            <div class="buy-btn-wrap">
+                <!-- 灰化class加off -->
+                <!-- 在售 -->
+                <div class="buy-btn-wrap" ng-if="!data.limitWords && data.period == 2 && data.balance > 0">
+                    <!-- 不是团购 -->
+                    <div ng-if="!data.groupon.is_groupon_prod">
+                        <!-- 不符合mgm 条件, 即是新人(如果设置了新人专享) -->
+                        <div class="lc-buy-btn off" ng-if="!data.isMgm">立即购买</div>
+                        <!-- 符合mgm 且 有卡 -->
+                        <div class="lc-buy-btn off" ng-if="data.isMgm && data.hasMgmCard">
+                            使用特权卡购买
+                        </div>
+                        <!-- 符合mgm 且 没卡-->
+                        <div class="lc-buy-btn off" ng-if="data.isMgm && !data.hasMgmCard">我是老用户，我也想买
+                        </div>
+                    </div>
+                    <!-- 是团购 -->
+                    <div ng-if="data.groupon.is_groupon_prod">
+                        <!-- 团购成功 或者 团购过期/取消 -->
+                        <div ng-if="data.groupon.groupon_succ || data.groupon.groupon_expire">
+                            <div class="lc-buy-btn off">立即购买</div>
+                        </div>
+                        <!-- 团购尚未成功 且 团购未过期/取消 -->
+                        <div ng-if="!data.groupon.groupon_succ && !data.groupon.groupon_expire">
+                            <!-- 已发起团购 -->
+                            <div ng-if="data.groupon.group.group_id">
+                                <p class="g">已有{{data.groupon.group.members.length}}人参与拼团</p>
+                                <div class="lc-buy-btn off">查看我的拼团</div>
+                            </div>
+                            <!-- 尚未发起团购 -->
+                            <div ng-if="!data.groupon.group.group_id">
+                                <p class="g">发起拼团, 即可立即购买</p>
+                                <div class="lc-buy-btn off">发起拼团</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 预售 -->
+                <div class="buy-btn-wrap" ng-if="!data.limitWords && data.period == 1">
+                    <!-- 不是团购 -->
+                    <div ng-if="!data.groupon.is_groupon_prod">
+                        <div class="{{data.calendarButtonClass}}" ng-if="!data.lessSixMinutes" ng-click="onClickSetClock()">
+                            {{data.calendarButtonStr}}
+                        </div>
+                        <div class="lc-buy-btn off"
+                             ng-if="data.lessSixMinutes && data.todayString == data.prodInfo.ipostart_date">
+                            <em ng-if="!data.countDownFlag">{{data.prodInfo.ipostart_time.substr(0,
+                                2)}}:{{data.prodInfo.ipostart_time.substr(2, 2)}}起售</em>
+                            <em ng-if="data.countDownFlag">离起售还剩余 <em class="hj-minites"></em>:<em class="hj-seconds"></em></em>
+                        </div>
+                        <div class="lc-buy-btn off"
+                             ng-if="data.lessSixMinutes && data.todayString != data.prodInfo.ipostart_date">
+                            {{data.prodInfo.ipostart_date.substr(4,2)}}月{{data.prodInfo.ipostart_date.substr(6,2)}}日起售
+                        </div>
+                    </div>
+                    <!-- 是团购 -->
+                    <div ng-if="data.groupon.is_groupon_prod">
+                        <!-- 团购成功 或者 团购过期/取消 -->
+                        <div ng-if="data.groupon.groupon_succ || data.groupon.groupon_expire">
+                            <div class="{{data.calendarButtonClass}}" ng-if="!data.lessSixMinutes">
+                                {{data.calendarButtonStr}}
+                            </div>
+                            <div class="lc-buy-btn off"
+                                 ng-if="data.lessSixMinutes && data.todayString == data.prodInfo.ipostart_date">
+                                <em ng-if="!data.countDownFlag">{{data.prodInfo.ipostart_time.substr(0,
+                                    2)}}:{{data.prodInfo.ipostart_time.substr(2, 2)}}起售</em>
+                                <em ng-if="data.countDownFlag">离起售还剩余 <em class="hj-minites"></em>:<em
+                                        class="hj-seconds"></em></em>
+                            </div>
+                            <div class="lc-buy-btn off"
+                                 ng-if="data.lessSixMinutes && data.todayString != data.prodInfo.ipostart_date">
+                                {{data.prodInfo.ipostart_date.substr(4,2)}}月{{data.prodInfo.ipostart_date.substr(6,2)}}日起售
+                            </div>
+                        </div>
+                        <!-- 团购尚未成功 且 团购未过期/取消 -->
+                        <div ng-if="!data.groupon.groupon_succ && !data.groupon.groupon_expire">
+                            <!-- 已发起团购 -->
+                            <div ng-if="data.groupon.group.group_id">
+                                <p class="g">已有{{data.groupon.group.members.length}}人参与拼团</p>
+                                <div class="lc-buy-btn off">查看我的拼团</div>
+                            </div>
+                            <!-- 尚未发起团购 -->
+                            <div ng-if="!data.groupon.group.group_id">
+                                <p class="g" ng-if="data.lessSixMinutes && data.todayString == data.prodInfo.ipostart_date">
+                                    发起拼团, 即可在{{data.prodInfo.ipostart_time.substr(0,
+                                    2)}}:{{data.prodInfo.ipostart_time.substr(2, 2)}}购买</p>
+                                <p class="g" ng-if="data.lessSixMinutes && data.todayString != data.prodInfo.ipostart_date">
+                                    发起拼团,
+                                    即可在{{data.prodInfo.ipostart_date.substr(4,2)}}月{{data.prodInfo.ipostart_date.substr(6,2)}}日购买</p>
+                                <div class="lc-buy-btn off">发起拼团</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="buy-btn-wrap" ng-if="!data.limitWords && data.period == 2 && data.balance <= 0">
+                    <div class="lc-buy-btn off">已售罄</div>
+                </div>
+
+                <!--<div class="buy-btn-wrap" ng-if="data.limitWords && data.period == 1">-->
+                    <!--<div class="lc-buy-btn off">{{data.limitWords}}</div>-->
+                <!--</div>-->
+
+                <div class="buy-btn-wrap" ng-if="data.limitWords && data.period == 2 && data.balance <= 0">
+                    <div class="lc-buy-btn off">已售罄</div>
+                </div>
+
+                <!--<div class="buy-btn-wrap"-->
+                     <!--ng-if="data.limitWords && data.period == 2 && data.balance > 0 && data.limitButton">-->
+                    <!--<div class="lc-buy-btn off">{{data.limitWords}}</div>-->
+                <!--</div>-->
+
+                <!--<div class="buy-btn-wrap"-->
+                     <!--ng-if="data.limitWords && data.period == 2 && data.balance > 0 && !data.limitButton"-->
+                     <!--ng-click="onClickContinueBuy()">-->
+                    <!--<div class="lc-buy-btn">{{data.limitWords}}</div>-->
+                <!--</div>-->
+            </div>
+        </ion-footer-bar>
+
+        <!--遮罩层start-->
+        <div ng-class="data.maskClass">
+            <h2>{{data.maskTitle}}</h2>
+            <p>{{data.maskDetail}}</p>
+            <div class="funcs">
+                <button class="p-btn p-btn-outline p-btn-block" ng-click="onClickCancelMask()">知道了</button>
+            </div>
+        </div>
+        <!--遮罩层end-->
+    </div>
+</ion-view>

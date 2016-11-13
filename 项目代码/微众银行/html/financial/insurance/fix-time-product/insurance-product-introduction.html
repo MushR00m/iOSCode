@@ -1,0 +1,15 @@
+<ion-view>
+    <div class="bx">
+        <ion-header-bar>
+            <div class="menu-ba">
+                <header class="menu"><button class="menu-return" ng-click="back()"></button>更多详情</header>
+            </div>
+        </ion-header-bar>
+
+        <ion-content class="has-header" has-bouncing="false" delegate-handle="myContent">
+            <div ng-bind-html="data.part1"></div>
+            <div announcement code="code" class="ef" style="padding-bottom:0;"></div>
+            <div ng-bind-html="data.part2"></div>
+        </ion-content>
+    </div>
+</ion-view>

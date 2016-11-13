@@ -1,0 +1,103 @@
+<ion-view>
+    <ion-header-bar>
+        <div class="menu-ba">
+            <header class="menu"><button class="menu-return" ng-click="back()"></button>挂单卖出</header>
+        </div>
+    </ion-header-bar>
+
+    <ion-content class="has-header" has-bouncing="false">
+        <div class="mod-block-item" ng-click="">
+            <div class="title s-h35">
+                <p class="s-fz18 s-orange" ng-if="data.price">{{data.price | formatMoneyStringV2}}</p>
+                <p class="s-fz12 s-lgray">实时价格(元/克)</p>
+            </div>
+            <div class="content gold-ref-price">
+                <span class="ui-icon-refresh loading"></span>
+            </div>
+        </div>
+
+        <dl class="mod-table s-mt20 ui-px">
+            <!--<dt>交易规则</dt>-->
+            <dd class="mod-table-con ui-px-b s-pdb0 s-pdr0">
+                <div class="ui-flex s-pdb15 s-pdr25">
+                    <span class="item s-tal">卖出克数</span>
+                    <div class="lg-item">
+                        <div class="ui-flex">
+                            <keyboard-input type="number" accuracy="4" hjtype = "je" class="item s-fz14 s-tal" placeholder="0.0001克起售" hj-model="data.amount"  hj-blur="blurInput()" hj-focus="focusInput()" hj-change="changeInput()"></keyboard-input>
+                        </div>
+                    </div>
+                    <span class="s-bblue" ng-click="onClickSaleAll()">全部卖出</span>
+                </div>
+                <p class="mod-warning" ng-if="data.showInputAmountTips">{{data.inputAmountTipsContent}}</p>
+            </dd>
+
+            <dd class="mod-table-con ui-px-b">
+                    <span class="ui-flex">
+                        <span class="item s-tal">挂单价格</span>
+                        <span class="lg-item">
+                            <keyboard-input type="number" hjtype = "je" class="item s-fz14 s-tal" placeholder="以此价格挂单卖出" hj-model="data.buyRequestPrice"  hj-blur="blurPrice()" ></keyboard-input>
+                        </span>
+                    </span>
+                <p class="mod-warning" ng-if="data.showInputAmountTips2">{{data.inputAmountTipsContent2}}</p>
+            </dd>
+
+            <dd class="mod-table-con ui-px-b">
+                <div class="ui-flex">
+                    <span class="item s-tal">有效期至</span>
+                    <div class="lg-item" ng-click="showDatePicker()">
+                        <div class="ui-flex">
+                            <input class="item s-fz14 s-tal" readonly="readonly" placeholder="最长有效期限一年" ng-model="data.untilDateStr">
+                            <i class="ui-icon-calendar"></i>
+                        </div>
+                    </div>
+                </div>
+            </dd>
+        </dl>
+
+        <div ng-if="data.showInputAct">
+            <p class="ui-below-tip s-orange">卖出总金额{{data.amount * data.buyRequestPrice | formatMoneyStringV2}}元，卖出成功后将转入收款账户</p>
+            <p class="ui-below-tip">挂单有效期内若金价不低于{{data.buyRequestPrice | formatMoneyStringV2}}元/克为你卖出，否则不执行此交易</p>
+        </div>
+
+        <div class="mod-block-item" ng-click="onSelectPayWay()">
+            <div class="title">收款账户</div>
+            <div class="content">
+                <div ng-if="isCurrentPlus()" class=""><i class="ui-hqj-icon"></i></div>
+                <div ng-if="isWeBankAccount()" class="ui-inline"><i class="ui-wz-icon"></i>微众卡{{data.mainCard.number | abridgeAccountNumber}}</div>
+            </div>
+            <i class="ui-arrow"></i>
+        </div>
+
+        <p class="mod-tip">
+            <user-agreement
+                    agreement-code = "data.agreementCode"
+                    agreement-desc ="data.agreementDesc"
+                    is-agreed="data.isAgreed"
+                    on-click-agree-checkbox="data.onClickAgreeCheckbox">
+            </user-agreement>
+        </p>
+
+        <button class="{{data.ButtonClass}}" ng-click="onClickRedeem()">确认挂单</button>
+
+    </ion-content>
+
+    <account-selector
+            account-data="data.AccountData"
+            show="data.showAccountSelector"
+            hide="hideAccountSelector"
+            on-account-selected="onAccountSelected"
+            >
+    </account-selector>
+
+    <div pwd-input
+         ng-model="vm.formData.confirmPassword"
+         is-pwd-show="data.isPwdShow"
+         sig-on-pwd-commit="data.sigOnPwdCommit"
+         pwd-sub-title="data.pwdSubTitle"
+         pwd-trans-desc="data.pwdTransDesc"
+         pay-way-desc="data.payWayDesc"
+         on-click-change-pay-way="onSelectPayWay"
+            >
+    </div>
+
+</ion-view>

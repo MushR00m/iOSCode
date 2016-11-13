@@ -1,0 +1,27 @@
+<ion-view>
+    <div class="pc">
+        <ion-header-bar>
+            <div class="menu-ba">
+                <header class="menu"><button class="menu-return" ng-click="back()"></button>购买申明</header>
+            </div>
+        </ion-header-bar>
+        <ion-content class="has-header" scroll="false">
+
+            <!--首页说明-->
+            <div >
+                <p style="padding:30px 20px 30px 25px;color:#888f9b;line-height:22px;">请确认您已详细阅读《电子签名约定书》的相关条款并点击确认同意或接受相关电子合同、风险揭示书或其他文书上手写签名或者盖章具有同等的法律效力，无须另行签署纸质合同或纸质风险揭示书或其他文书</p>
+            </div>
+
+            <!--结果页面-->
+            <div class="tc" >
+                <div class="bt-box">
+                    <p ng-if="location" style="margin-bottom:30px;color:#888f9b;font-size:14px;">查看文件<span style="color:#3399eb;" ng-click="onClickURL()">《电子签名约定书》</span></p>
+                    <div class="btn-wrap">
+                        <button class="btn-c" ng-click="onClickSure()">确认</button>
+                        <button class="btn" ng-click="onClickBack()">返回</button>
+                    </div>
+                </div>
+            </div>
+        </ion-content>
+    </div>
+</ion-view>

@@ -1,0 +1,58 @@
+<ion-view style="background-color: #fff;">
+    <ion-header-bar>
+        <div class="menu-ba">
+            <header class="menu">购买</header>
+        </div>
+    </ion-header-bar>
+
+    <ion-content class="has-header" has-bouncing="false">
+        <div class="ui-result-hd px-a">
+            <span class="ok" ng-if="data.status == 1">购买成功</span>
+
+            <span class="ok" ng-if="data.status == 2">购买申请已受理</span>
+            <p ng-if="data.status == 2">需要与保险公司确认购买结果，可在首页查看进展</p>
+
+            <span class="fall" ng-if="data.status == 3">购买申请未受理</span>
+            <ol ng-if="data.status == 3">
+                <li>原因：{{data.obj.ret_msg}}</li>
+            </ol>
+        </div>
+
+        <div class="ui-result-con">
+            <p class="title">详情</p>
+
+            <div class="progress-wrap" ng-if="data.status == 1 || data.status == 2">
+                <ol class="order-line" ng-if="data.status == 1">
+                    <li class="first on"><i></i>{{data.today.getMonth()+1}}-{{data.today.getDate()}} 购买成功 {{data.prodInfo.prod_name}} {{data.amount}}元</li>
+                    <li><i></i>{{data.valueDay.getMonth()+1}}-{{data.valueDay.getDate()}} 开始产生收益</li>
+                    <li ng-if="!isYGProd()"><i></i>{{data.showValueDay.getMonth()+1}}-{{data.showValueDay.getDate()}} 可查看首笔收益</li>
+                    <li ng-if="isYGProd()"><i></i>{{data.showValueDay.getMonth()+1}}-{{data.showValueDay.getDate()}} 可查看犹豫期15天的累计收益</li>
+                    <li class="last" ng-if="data.nextOpenDay"><i></i>{{data.nextOpenDay.getMonth()+1}}-{{data.nextOpenDay.getDate()}} 最近一次可免费赎回本金和收益</li>
+                    <li class="last" ng-if="!data.nextOpenDay"><i></i>{{data.lockPeriodEnd.getFullYear()}}-{{data.lockPeriodEnd.getMonth()+1}}-{{data.lockPeriodEnd.getDate()}} 可免费赎回本金和收益</li>
+                </ol>
+                <ol class="order-line" ng-if="data.status == 2">
+                    <li class="first on"><i></i>{{data.today.getMonth()+1}}-{{data.today.getDate()}} 申请购买 {{data.prodInfo.prod_name}} {{data.amount}}元</li>
+                    <li class="last"><i></i>{{data.comfirmDay.getMonth()+1}}-{{data.comfirmDay.getDate()}} 反馈购买结果</li>
+                </ol>
+            </div>
+
+            <ul class="info-list" ng-if="data.status == 3">
+                <li><span class="info-name">产品名称</span>{{data.prodInfo.prod_name}}</li>
+                <li><span class="info-name">购买金额</span>{{data.amount}}元</li>
+                <li><span class="info-name">付款账户</span>
+                    <span class="acount-bank" ng-if="data.obj.payAccountData.ctrlData.accountType==1"><img ng-src="../img/bankHead/yh-{{data.obj.payAccountData.otherBankAccount.cardInfo.bankBinCode}}@nb.png" alt="{{data.obj.payAccountData.otherBankAccount.cardInfo.bankName}}">{{data.obj.payAccountData.otherBankAccount.cardInfo.bankName}} {{data.obj.payAccountData.otherBankAccount.cardInfo.cardType}}{{data.obj.payAccountData.otherBankAccount.cardInfo.cardNo | abridgeAccountNumber}}</span>
+                    <span class="hqj-icon" ng-if="data.obj.payAccountData.ctrlData.accountType==2"><img src="../img/slice/hq@3x.png" alt="活期+"></span>
+                    <span class="we-card" ng-if="data.obj.payAccountData.ctrlData.accountType==3"><img src="../img/bankHead/yh-0@nb.png" alt="微众卡">微众卡</span>
+                </li>
+                <li><span class="info-name">交易时间</span>{{data.today.getFullYear()}}-{{data.today.getMonth()+1}}-{{data.today.getDate()}} {{data.today.getHours()}}:{{data.today.getMinutes()}}</li>
+            </ul>
+
+            <p class="msg" ng-if="data.status == 1">保单将发送至指定邮箱{{data.obj.email}}，如有疑问，请联系{{data.prodInfo.company_service_phone}}</p>
+        </div>
+
+        <div class="btn-wrap pd20 mgt10">
+            <button class="btn-c" ng-if="data.status == 1 && data.prodInfo.is_use_visit_flag == '1'" ng-click="review()">下一步</button>
+            <button class="btn-c" ng-if="data.status != 1 || data.prodInfo.is_use_visit_flag != '1'" ng-click="onClickOK()">确&#12288;认</button>
+        </div>
+    </ion-content>
+</ion-view>

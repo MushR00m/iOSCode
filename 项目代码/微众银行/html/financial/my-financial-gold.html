@@ -1,0 +1,113 @@
+<ion-view>
+    <div class="lc lcl">
+        <ion-header-bar>
+            <div class="mod-menu">
+                <header class="mod-menu"><button class="mod-menu-return" ng-click="back()"></button>黄金<span class="mod-menu-finish" ng-click="onCheckTransLog()">交易查询</span></header>
+            </div>
+        </ion-header-bar>
+
+        <ion-content has-bouncing="false" class="has-header"  delegate-handle="myContent">
+            <div class="mod-income">
+                <ul class="ui-flex info">
+                    <li class="item ui-px-r" ng-click="onClickTab()">
+                        <h2 ng-if="data.showWeight">持有金额（克）</h2>
+                        <h2 ng-if="!data.showWeight">持有金额（元）</h2>
+                        <p ng-if="data.showWeight">{{data.totalGoldAmountWeight | formatGoldString}}<i class="ui-icon-transform"></i></p>
+                        <p ng-if="!data.showWeight">{{data.totalGoldAmount | formatMoneyStringV2}}<i class="ui-icon-transform"></i></p>
+                    </li>
+                    <li class="item">
+                        <h2>持有产品（个）</h2>
+                        <p>{{data.goldCount}}</p>
+                    </li>
+                </ul>
+
+                <ul class="ui-flex tab">
+                    <li class="item">
+                        <h2>昨日收益(克)</h2>
+                        <p>{{data.yesterdayIncome | formatGoldString}}</p>
+                    </li>
+                    <li class="item">
+                        <h2>累计收益(克)</h2>
+                        <p>{{data.totalIncome | formatGoldString}}</p>
+                    </li>
+                    <li class="item">
+                        <h2>持仓盈亏(元)</h2>
+                        <p>{{data.holdIncome | formatMoneyStringV2}}</p>
+                    </li>
+                </ul>
+            </div>
+
+            <ul class="mod-card-list gold" ng-if="data.myData">
+                <li ng-click="onClickMyCurrentGoldProduct()">
+                    <div class="hd">
+                        <span class="name">活期金</span>
+                    </div>
+                    <div class="bd">
+                        <div class="con">
+                            <div class="l">
+                                <div class="sy" ng-if="data.myData.last_income > 0 && data.myData.last_income_date">
+                                    <em ng-if="data.myData.last_income_date == data.yesterdayStr">
+                                        昨日收益
+                                    </em>
+                                    <em ng-if="data.myData.last_income_date != data.yesterdayStr">
+                                        {{data.myData.last_income_date | formatDateToCNWithoutYear}}
+                                    </em>
+                                    <span class="up">
+                                        <span class="fz">
+                                            {{data.myData.last_income | formatGoldString}}
+                                        </span>
+                                    </span>
+                                </div>
+
+                                <div class="wt" ng-if="!data.myData.last_income || !data.myData.last_income_date">
+                                    暂无收益
+                                </div>
+                            </div>
+                            <div class="r">
+                                <p>{{data.myData.available_vol | formatGoldString}}克</p>
+                                <p class="trans">({{data.myData.available_amount | formatMoneyStringV2}}元)</p>
+                            </div>
+                        </div>
+                        <p class="wd" ng-repeat="item in data.requestList track by $index">{{item}}</p>
+                        <p class="wd" ng-repeat="item in data.extractList track by $index">{{item}}</p>
+                        <p class="wd" ng-if="data.goldCurrentInvestmentCount > 0">您已设置{{data.goldCurrentInvestmentCount}}笔定投计划</p>
+                    </div>
+                </li>
+            </ul>
+
+            <ul class="mod-card-list gold">
+                <li ng-repeat="item in data.goldListArr" ng-click="onClickGoldFixTime(item)">
+                    <div class="hd">
+                        <span class="name">{{item.prodName}}</span>
+                        <span class="msg">预期年化{{item.incomeRate}}%</span>
+                    </div>
+                    <div class="bd">
+                        <div class="con">
+                            <div class="l">
+                                <div class="sy" ng-if="item.lastIncome">
+                                    <em ng-if="item.lastIncomeDate == data.yesterdayStr">
+                                        昨日收益
+                                    </em>
+                                    <em ng-if="item.lastIncomeDate != data.yesterdayStr">
+                                        {{item.lastIncomeDate | formatDateToCNWithoutYear}}
+                                    </em>
+                                    <span class="up">
+                                        <span class="fz">
+                                            {{item.lastIncome | formatGoldString}}
+                                        </span>
+                                    </span>
+                                </div>
+                                <div class="wt" ng-if="!item.lastIncome">暂无收益</div>
+                            </div>
+                            <div class="r">
+                                <p>{{item.availableVol | formatGoldString}}克</p>
+                                <p class="trans">({{item.availableAmount | formatMoneyStringV2}}元)</p>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+
+        </ion-content>
+    </div>
+</ion-view>

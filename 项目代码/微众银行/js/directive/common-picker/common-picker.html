@@ -1,0 +1,39 @@
+
+    <div ng-class="{'city-picker-backdrop' : vm.backdrop }">
+        <ion-modal-view class="city-picker-bg">
+            <div class="city-bgclose" ng-click="vm.clickToClose()"></div>
+            <div class="city-picker ">
+                <header class="city-picker-header">
+                    <a class="confirm-btn" ng-click="vm.returnOk()">{{vm.okText}}</a>
+                </header>
+                <div class="city-picker-inner has-header">
+                    <div class="row ">
+                        <div class="col col-33" id="provinceDiv">
+                            <ion-scroll delegate-handle={{vm.provinceHandle}} on-scroll="vm.getData('province')" scrollbar-y=false>
+                                <ul style="text-align: right;">
+                                    <li ng-repeat="province in vm.cityData">{{province.name}}</li>
+                                </ul>
+                            </ion-scroll>
+                        </div>
+                        <div class="col col-33" id="cityDiv">
+                            <ion-scroll delegate-handle={{vm.cityHandle}} on-scroll="vm.getData('city')" scrollbar-y=false>
+                                <ul ng-if="vm.cityList.length" style="text-align: center;">
+                                    <li ng-repeat="city in vm.cityList">{{city.name}}</li>
+                                </ul>
+                            </ion-scroll>
+                        </div>
+                        <div class="col col-33" id="countryDiv">
+                            <ion-scroll delegate-handle={{vm.countryHandle}} on-scroll="vm.getData('country')" scrollbar-y=false>
+                                <ul  ng-if="vm.countryList.length" style="text-align: left;">
+                                    <li ng-repeat="country in vm.countryList">{{country.name}}</li>
+                                </ul>
+                            </ion-scroll>
+                        </div>
+                    </div>
+                    <div class="picker-center-highlight">
+                        <div class="ui-px"></div>
+                    </div>
+                </div>
+            </div>
+        </ion-modal-view>
+    </div>

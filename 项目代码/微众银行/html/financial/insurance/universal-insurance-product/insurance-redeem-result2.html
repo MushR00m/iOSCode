@@ -1,0 +1,35 @@
+<ion-view style="background-color: #fff;">
+    <ion-header-bar>
+        <div class="menu-ba">
+            <header class="menu"><span class="menu-wd" ></span>赎回<span class="menu-wd" ng-click="onClickOK()" >完成</span></header>
+        </div>
+    </ion-header-bar>
+
+    <ion-content class="has-header" has-bouncing="false">
+        <div class="ui-result-hd px-a">
+            <span class="ok" ng-if="data.status == 1 || data.status == 2">赎回申请已受理</span>
+            <p ng-if="data.status == 1 || data.status == 2">该产品需要与保险公司确认赎回结果，您可以在首页查看进展</p>
+
+            <span class="fall" ng-if="data.status == 3">赎回失败</span>
+            <ol ng-if="data.status == 3">
+                <li>原因：{{data.obj.ret_msg}}</li>
+            </ol>
+        </div>
+
+
+        <div class="ui-result-con">
+            <p class="title">详情</p>
+
+            <div class="progress-wrap" ng-if="data.status == 1 || data.status == 2">
+                <ol class="order-line">
+                    <li class="first hf on"><i></i>{{data.today.getMonth()+1}}-{{data.today.getDate()}} 申请赎回 {{data.prodInfo.prod_name}} {{data.amount}}元</li>
+                    <li><i></i>{{data.confirmDay.getMonth()+1}}-{{data.confirmDay.getDate()}} 申请结果确认</li>
+                    <li class="last hf"><i></i>{{data.arriveAccountDay.getMonth()+1}}-{{data.arriveAccountDay.getDate()}} 资金到账</li>
+                </ol>
+            </div>
+        </div>
+        <!--<div class="btn-wrap pd20 mgt10">
+            <button class="btn-c" ng-click="onClickOK()">完&#12288;成</button>
+        </div>-->
+    </ion-content>
+</ion-view>

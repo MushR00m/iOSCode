@@ -1,0 +1,76 @@
+<ion-view>
+    <div class="rg ui-safe">
+        <ion-header-bar>
+            <div class="menu-ba">
+                <header class="menu"><button class="menu-return" ng-click="back()"></button>{{data.title}}</header>
+            </div>
+        </ion-header-bar>
+
+        <ion-content class="has-header" has-bouncing="false">
+
+            <section class="wrap-a">
+                <div class="register-input-wrap">
+                    <div class="input-box">
+                        <span class="info">持卡人</span>
+                        <div class="zsy"><input readonly="readonly" type="text" class="w-input" ng-model="data.userName" style="color:#acb2c1;"></div>
+                    </div>
+
+                    <div class="input-box">
+                        <span class="info">卡&#12288;号</span>
+                        <div class="zsy">
+                            <!--<input type="tel" class="w-input" placeholder="输入常用银行卡卡号" ng-model="data.bankCard" ng-blur="changeBankCard(true)" ng-change="changeBankCard()"  maxlength="20">-->
+                            <keyboard-input type="tel" hjtype = "yhk" class="w-input" placeholder="输入常用银行卡卡号" hj-model="data.bankCard" hj-change="changeBankCard()" hj-blur="changeBankCard(true)" maxlength="23"></keyboard-input>
+                        </div>
+                        <i class="tz" ng-click="onClickTips()"></i>
+                    </div>
+                </div>
+                <p class="cy-tip" ng-if="inputBankCardTipsContent">{{inputBankCardTipsContent}}</p>
+            </section>
+            <p class="b-card" ng-if="showBankIcon"><img class="i" ng-if="bankImg" ng-src="{{bankImg}}">{{bankName}} {{cardType}}</p>
+
+            <ol class="ol-hk" ng-if="data.isUsingCMBCard">
+                <li>建议您更换其他银行卡进行绑定<span ng-click="onClickChangeCard()">更换</span></li>
+                <li>坚持绑定该银行卡，您将开户成功，但需要通过汇款到您的微众卡进行验证</li>
+                <li>通过汇款验证开的账户，不能解绑该卡，也不能绑定其他银行卡</li>
+            </ol>
+
+            <p class="c-card" ng-if="!data.isUsingCMBCard">请输入绑卡银行预留手机号</p>
+            <section class="wrap-a" ng-if="!data.isUsingCMBCard">
+                <div class="register-input-wrap">
+                    <div class="input-box">
+                        <span class="info">手机号</span>
+                        <div class="zsy">
+                            <!--<input type="tel" placeholder="输入该银行卡的预留手机号" ng-model="data.bindPhoneNumber" nema="" class="w-input" ng-change="changePhone()" >-->
+                            <div class="wbf"><keyboard-input type="tel" hjtype = "sz" class="w-input" placeholder="输入该银行卡的预留手机号" hj-model="data.bindPhoneNumber" hj-change="changePhone()" maxlength="11"></keyboard-input></div>
+                        </div>
+                    </div>
+                </div>
+                <p class="cy-tip" ng-if="inputTelTipsContent">{{inputTelTipsContent}}</p>
+            </section>
+
+            <div class="mt-a" ng-if="!data.isUsingCMBCard">
+                <user-agreement
+                        agreement-type="2"
+                        is-agreed="data.isAgreed"
+                        on-click-agree-checkbox="data.onClickAgreeCheckbox"
+                        >
+                </user-agreement>
+            </div>
+
+            <div class="btn-wrap mgt20" ng-click="onClickStep2()"><button class={{step2ButtonController}}>下一步</button></div>
+
+        </ion-content>
+        <!--遮罩层start-->
+        <div ng-class="maskClass">
+            <h2>{{maskTitle}}</h2>
+            <p>{{maskDetail}}</p>
+            <div class="funcs"><button class="p-btn p-btn-outline p-btn-block" ng-click="onClickCancelMask()">知道了</button></div>
+        </div>
+        <!--遮罩层end-->
+
+        <ion-footer-bar>
+            <p class="ui-safe-wd"><i></i>账户资金安全由微众银行保障</p>
+        </ion-footer-bar>
+
+    </div>
+</ion-view>

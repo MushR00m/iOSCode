@@ -1,0 +1,27 @@
+<ion-view>
+    <div class="trf bnf p-c-blue">
+        <ion-header-bar>
+            <div class="menu-ba">
+                <header class="menu">
+                    <button class="menu-return" ng-click="back()"></button>邀请好友</header>
+            </div>
+        </ion-header-bar>
+        <ion-content has-bouncing="true" class="has-header">
+            <section class="my-invicode mgt30">
+                <h1>您的专属邀请码</h1>
+                <dl class="code-envelop mgt20" ng-click="onClickCopy()">
+                    <dt class="p-c-lorange" ng-bind="promo.code"></dt>
+                    <dd class="p-c-bblue mgt5">复制</dd>
+                </dl>
+            </section>
+            <section class="share-invicode mgt40 mgb30">
+                <dl class="p-c-gray mgt30">
+                    <dt>活动规则：</dt>
+                    <dd>1. 引导新用户下载微众银行App并成功开户后，新用户开户1天内可在 “微众银行App-侧边栏-福利中心-兑换“页面，输入你的邀请码完成兑换，完成一次有效邀请。
+                    </dd>
+                    <dd>2. 邀请新用户开户所获得的奖励，以及受邀新用户所获得的奖励另行约定。</dd>
+                </dl>
+            </section>
+        </ion-content>
+    </div>
+</ion-view>

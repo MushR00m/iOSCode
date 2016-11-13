@@ -1,0 +1,116 @@
+<ion-view>
+    <div class="lc">
+        <ion-header-bar>
+            <div class="menu-ba">
+                <header class="menu"><button class="menu-return" ng-click="back()"></button>活期金</header>
+            </div>
+        </ion-header-bar>
+
+        <ion-content class="has-header" has-bouncing="false">
+            <div class="mod-income">
+                <p class="msg ui-msg-lr-line">
+                    <span>
+                        <em ng-if="data.showWeight">总资产(克)</em>
+                        <em ng-if="!data.showWeight">总资产(元)</em>
+                        <i class="ui-icon-info" ng-click="onClickTotalWealth()"></i>
+                    </span>
+                </p>
+
+                <p class="num" >
+                    <span id="gold" class="{{data.weightClass}}">{{data.GoldAmountWeight | formatGoldString}}</span>
+                    <span id="money" class="{{data.amountClass}}">{{data.GoldAmount | formatMoneyStringV2}}</span>
+                </p>
+
+                <p class="msg" ng-if="data.showWeight" ng-click="onClickShowMoney()">切换为按人民币计算<i class="ui-icon-transform"></i></p>
+                <p class="msg" ng-if="!data.showWeight" ng-click="onClickShowGold()">切换为按黄金计算<i class="ui-icon-transform"></i></p>
+
+                <ul class="ui-flex tab">
+                    <li class="item ui-px-r">
+                        <h2 ng-if="data.myData.last_income_date == data.yesterdayStr">昨日收益(克)</h2>
+                        <h2 ng-if="data.myData.last_income_date != data.yesterdayStr">{{data.myData.last_income_date | formatDateToCNWithoutYear}}收益(克)</h2>
+                        <p>{{data.myData.last_income | formatGoldString}}</p>
+                    </li>
+                    <li class="item">
+                        <h2>成本均价(元/克)<i class="ui-icon-info" ></i></h2>
+                        <p ng-if="data.myData.avg_cost">{{data.myData.avg_cost | formatMoneyStringV2}}</p>
+                        <p ng-if="!data.myData.avg_cost">--</p>
+                    </li>
+                </ul>
+
+                <ul class="ui-flex tab s-mb20 light">
+                    <li class="item ui-px-r">
+                        <h2>累计收益(克)</h2>
+                        <p>{{data.myData.total_income | formatGoldString}}</p>
+                    </li>
+                    <li class="item">
+                        <h2>万克收益(克)<i class="ui-icon-info" ></i></h2>
+                        <p>{{data.prodInfo.int_rate_g}}</p>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="gold-interest-tip ui-px-a" ng-repeat="item in data.requestList track by $index" ng-click="onClickRequest(item)"><div>{{item.str}}</div><i class="ui-arrow"></i></div>
+            <div class="gold-interest-tip ui-px-a" ng-repeat="item in data.extractList track by $index" ng-click="onClickExtract(item)"><div>{{item.str}}</div><i class="ui-arrow"></i></div>
+            <div class="gold-interest-tip ui-px-a" ng-if="data.goldCurrentInvestmentCount > 0" ng-click="onClickInvestment()"><div>您已设置{{data.goldCurrentInvestmentCount}}笔定投计划</div><i class="ui-arrow"></i></div>
+
+            <gold-price></gold-price>
+
+            <div class="mod-block-item" ng-click="onClickGoldExtract()">
+                <div class="content"><h1>提取实物金</h1></div>
+                <i class="ui-arrow"></i>
+            </div>
+
+            <div class="mod-block-item" ng-click="onClickProductDetail()">
+                <div class="content"><h1>产品详情</h1></div>
+                <i class="ui-arrow"></i>
+            </div>
+
+        </ion-content>
+
+        <ion-footer-bar class="bar bar-footer">
+            <div class="mod-button-bottom flex">
+                <button class="item" ng-click="onClickBuy()">买入</button>
+                <button class="item" ng-if="data.GoldAmountWeight>0" ng-click="onClickSale()">卖出</button>
+            </div>
+        </ion-footer-bar>
+
+        <div slider-up-confirm slider-up-confirm-option="data.sliderUpConfirmOption"></div>
+
+        <div class="{{data.purchaseGuideStep}}" ng-if="data.showPurchaseGuide" ng-click="onClickPurchaseGuide()">
+            <div class="button-group">
+                <div class="ui-px-b">立即买入</div>
+                <div class="ui-px-b">挂单买入</div>
+                <div class="ui-px-b">设置定投</div>
+                <div class="s-mt10">取消</div>
+            </div>
+            <div class="masking-top">
+                <div class="tip">{{data.purchaseGuideTips}}</div>
+            </div>
+            <div class="masking-bottom"></div>
+        </div>
+
+        <div class="{{data.redeemGuideStep}}" ng-if="data.showRedeemGuide" ng-click="onClickRedeemGuide()">
+            <div class="button-group">
+                <div class="ui-px-b">立即卖出</div>
+                <div class="ui-px-b">挂单卖出</div>
+                <div class="s-mt10">取消</div>
+            </div>
+            <div class="masking-top">
+                <div class="tip">{{data.redeemGuideTips}}</div>
+            </div>
+            <div class="masking-bottom"></div>
+        </div>
+
+        <!--遮罩层start-->
+        <div ng-class="data.maskClass">
+            <h2>{{data.maskTitle}}</h2>
+            <p>{{data.maskDetail}}</p>
+            <div class="funcs"><button class="p-btn p-btn-outline p-btn-block" ng-click="onClickCancelMask()">知道了</button></div>
+        </div>
+        <!--遮罩层end-->
+
+    </div>
+</ion-view>
+
+<risk-assessment option="data.riskOption"></risk-assessment>
+

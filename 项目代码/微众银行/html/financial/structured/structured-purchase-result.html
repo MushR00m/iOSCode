@@ -1,0 +1,61 @@
+<ion-view>
+    <div class="oti">
+        <ion-header-bar>
+            <div class="menu-ba">
+                <header class="menu"><span class="menu-wd" ></span>购买<span class="menu-wd" ng-click="onClickFinancialRecom()" >完成</span></header>
+            </div>
+        </ion-header-bar>
+
+        <ion-content class="has-header" has-bouncing="false">
+            <div class="into-logo ok" ng-if="purchaseStatus == 1">
+                <p class="a">购买成功</p>
+                <!--<p class="b">需要与合作机构确认购买结果，可在首页查看进展</p>-->
+            </div>
+
+            <div class="into-logo wait" ng-if="purchaseStatus == 2">
+                <p class="a">交易处理中</p>
+                <!--<p class="b">请勿重复操作，处理结果可在交易记录中查询</p>-->
+            </div>
+
+            <div class="into-logo fall" ng-if="purchaseStatus == 3">
+                <p class="a">购买失败</p>
+                <p class="c">原因：{{resultMsg}}</p>
+            </div>
+
+
+            <div class="date-list-wrap" ng-if="purchaseStatus == 1">
+                <ul class="date-list">
+                    <li>{{buyDate | fromatDateTimeToMD}} 购买  {{changeTypeStr}} {{prodName}}产品 {{buyAmount}}元</li>
+                    <li>{{valueBeginDate | fromatDateTimeToMD}}起息日:15：00后确认起息日黄金价格</li>
+                    <li>{{finalObserveDate | fromatDateTimeToMD}}观察日:15：00后确认观察日黄金价格</li>
+                    <li>{{expireDate | fromatDateTimeToMD}}到期日:结算本金和收益</li>
+                    <li>{{arrivalAccountDate | fromatDateTimeToMD}}到账</li>
+
+
+                </ul>
+            </div>
+            <div class="date-list-wrap" ng-if="purchaseStatus == 2">
+                <ul class="date-list">
+                    <li>暂无状态描述</li>
+                    <li></li>
+                </ul>
+            </div>
+            <div class="date-list-wrap" ng-if="purchaseStatus == 3">
+                <ul class="date-list">
+                    <li>产品名称：{{prodName}}</li>
+                    <li>购买金额：{{buyAmount}}</li>
+                    <li>付款账户：</li>
+                    <li>交易时间：{{transTimeStr}}</li>
+                    <li></li>
+                </ul>
+            </div>
+
+            <div class="btn-wrap mgt40" ng-if="data.isSuccShow && !data.isProcessing"><button class="btn-c" ng-click="onClickDetail()">查看已购详情</button></div>
+            <div class="btn-wrap mgt40" ng-if="data.isSuccShow && data.isProcessing"><button class="btn-c" ng-click="onClickTranLog()">查看交易记录</button></div>
+            <!--<div class="btn-wrap mgt20" ng-if="data.isSuccShow"><button class="tph" ng-click="onClickFinancialRecom()">继续理财</button></div>
+            <div class="btn-wrap mgt40" ng-if="!data.isSuccShow"><button class="btn-c" ng-click="onClickFinancialRecom()">继续理财</button></div>
+            <div class="btn-wrap mgt20" ng-if="!data.isSuccShow"><button class="tph" ng-click="onClickHome()">返回首页</button></div>-->
+        </ion-content>
+    </div>
+    <!--<div style="height:20px;"></div>-->
+</ion-view>

@@ -1,0 +1,37 @@
+<ion-view>
+    <div class="ear refresh-white ui-safe">
+
+        <ion-header-bar>
+            <div class="menu-ba">
+                <header class="menu"><button class="menu-return" ng-click="func.back()"></button>我的收益</header>
+            </div>
+        </ion-header-bar>
+
+        <ion-content class="has-header" has-bouncing="false"  delegate-handle="myContent">
+
+            <div class="it px-a"><span class="it-l">累计收益</span>
+                <span class="it-r"><i class="{{func.getTotalIncomeFontStyle()}}">{{data.totalIncome}}</i></span>
+            </div>
+
+            <ul class="list">
+                <li ng-repeat="historyItem in data.incomeHistory" ng-class="data.itemCls[historyItem.date]" ng-click="func.onClickHistoryItem(historyItem.date)">
+                    <div class="mg">
+                        <span class="a" ng-bind="historyItem.date|formatYYYYMMDDString"></span>
+                        <span ng-class="data.detailCls[historyItem.date]" ng-bind="historyItem.dayIncome"></span></div>
+                    <ol class="sub-list">
+                        <li ng-repeat="product in historyItem.productsList track by $index">
+                            <span class="c"><em ng-bind="product.prodName"></em><i ng-if="product.prodType == 'HJ'"></i></span>
+                            <span class="d" ng-bind="product.income"></span>
+                        </li>
+                    </ol>
+                </li>
+            </ul>
+        </ion-content>
+
+        <ion-footer-bar>
+            <p class="ui-safe-wd"><i></i>账户资金安全由微众银行保障</p>
+        </ion-footer-bar>
+
+    </div>
+    <loading show-loading="data.showLoading"></loading>
+</ion-view>

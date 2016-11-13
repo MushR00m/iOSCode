@@ -1,0 +1,114 @@
+<ion-view can-swipe-back="false">
+    <div class="index-b ui-safe">
+        <ion-header-bar>
+            <div class="menu-ba">
+                <header class="menu">
+                    <span class="menu-user" ng-if="data.isLogin" ng-click="onClickSettingsBtn()">
+                        <span class="avatar">
+                            <img ng-src="{{data.avatarUrl}}" alt="用户名">
+                        </span>
+                    </span>
+                    <span class="menu-info" ng-if="!data.isLogin" ng-click="onClickSettingsBtn()"></span>
+                    <!--<i ng-if="data.showTitleText">微众银行</i>-->
+                </header>
+            </div>
+        </ion-header-bar>
+
+        <ion-content class="has-header" has-bouncing="false" style="bottom: 54px;">
+            <div class="hd-wrap">
+                <!-- 未登录，已开户class加v -->
+                <span class="{{data.logoClass}}"></span>
+                <button class="kh-btn" ng-click="go()">{{data.buttonDesc}}</button>
+                <notice-marquee ng-cloak></notice-marquee>
+            </div>
+
+            <div class="bd-card-wrap">
+                <!--活期+-->
+                <div class="bd-card a" ng-click="onClickMonetaryProduct()">
+                    <div class="d-a">
+                        <i class="i-a"></i>
+                        <p class="a"><span ng-repeat="obj in data.monetaryProd.recomReasons">▪ {{obj}} </span></p>
+                        <!--<p class="a">▪ 随存随取 ▪ 实时到账</p>-->
+                    </div>
+                    <p class="c p-a"><span class="o">{{data.monetaryProd.earningsRate}}%</span>{{data.monetaryProd.earningsDesc}}</p>
+                </div>
+
+                <!--短期+-->
+                <div class="bd-card d" ng-click="onClickShortPeroidProduct()">
+                    <div class="d-a">
+                        <i class="i-d"></i>
+                        <p class="a"><span ng-repeat="obj in data.shortPeroidProd.recomReasons">▪ {{obj}} </span></p>
+                        <!--<p class="a">▪ 精选最优产品 ▪ 追求更高收益</p>-->
+                    </div>
+                    <p class="c p-b">
+                        <span class="x">{{data.shortPeroidProd.productName}}</span>
+                        <span class="o">{{data.shortPeroidProd.earningsRate}}%</span>
+                        <span>{{data.shortPeroidProd.earningsDesc}}</span>
+                    </p>
+                </div>
+
+                <!--定期+-->
+                <div class="bd-card b" ng-click="onClickInsuranceProduct()">
+                    <div class="d-a">
+                        <i class="i-b"></i>
+                        <p class="a"><span ng-repeat="obj in data.insuranceProd.recomReasons">▪ {{obj}} </span></p>
+                        <!--<p class="a">▪ 精选最优产品 ▪ 追求更高收益</p>-->
+                    </div>
+                    <p class="c p-b">
+                        <span class="x">{{data.insuranceProd.productName}}</span>
+                        <span class="o">{{data.insuranceProd.earningsRate}}%</span>
+                        <span>{{data.insuranceProd.earningsDesc}}</span>
+                    </p>
+                </div>
+
+                <!--股基-->
+                <div class="bd-card c" ng-click="onClickRecomStockProduct()" ng-if="data.stockProd && (data.stockProd.earningsRate != undefined)"><!--已有涨跌幅-->
+                    <div class="d-a">
+                        <i class="i-c" style="width: 70px;">基金</i>
+                        <p class="a"><span ng-repeat="obj in data.stockProd.recomReasons">▪ {{obj}} </span></p>
+                    </div>
+                    <p class="c p-b">
+                        <span class="x">{{data.stockProd.productName}}</span>
+                        <span class="o">{{data.stockProd.earningsRate}}%</span>
+                        <span>{{data.stockProd.earningsDesc}}</span>
+                    </p>
+                </div>
+
+                <div class="bd-card c nodata" ng-click="onClickRecomStockProduct()" ng-if="data.stockProd && (data.stockProd.earningsRate == undefined)"><!--没有涨跌幅-->
+                    <div class="d-a">
+                        <i class="i-c" style="width: 70px;">基金</i>
+                        <p class="a"><span ng-repeat="obj in data.stockProd.recomReasons">▪ {{obj}} </span></p>
+                    </div>
+                    <p class="c p-b">
+                        <span class="x">{{data.stockProd.productName}}</span>
+                        <span>{{data.stockProd.earningsDesc}}</span>
+                    </p>
+                </div>
+            </div>
+            <div social-data="user"></div>
+        </ion-content>
+    </div>
+    <ion-footer-bar>
+        <div class="main-nav-wrap" ng-if="!showInvestment">
+            <ul class="main-nav flex">
+                <li class="item i-a i-on">首页</li>
+                <li class="item i-b" ng-click="onClickMainTab(2)">理财</li>
+                <li class="item i-d" ng-click="onClickMainTab(3)">转账</li>
+
+            </ul>
+        </div>
+        <div class="main-nav-wrap" ng-if="showInvestment">
+            <ul class="main-nav flex">
+                <li class="item i-a i-on">总览</li>
+                <li class="item i-b" ng-click="onClickMainTab(2)">理财</li>
+                <li class="item i-c" ng-click="onClickMainTab(4)">投资</li>
+                <li class="item i-d" ng-click="onClickMainTab(3)">转账</li>
+            </ul>
+        </div>
+    </ion-footer-bar>
+
+    <loading show-loading="data.showLoading"></loading>
+    <!--红包-->
+    <red-packet init="initRedpacket"></red-packet>
+    <hj-common-picker show-common-picker="showCommonPicker"></hj-common-picker>
+</ion-view>

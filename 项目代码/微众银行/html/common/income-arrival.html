@@ -1,0 +1,51 @@
+<ion-view>
+    <div class="trar p-c-blue">
+        <ion-header-bar>
+            <div class="menu-ba">
+                <header class="menu">
+                    <button class="menu-return" ng-click="back()"></button>
+                    收益详情
+                </header>
+            </div>
+        </ion-header-bar>
+
+        <ion-content has-bouncing="true">
+            <section class="stat-sum succ">
+                <h1>收益已如期兑付(元)</h1>
+                <p class="num">{{renderData.earning}}</p>
+                <p class="p-c-gray">{{renderData.detailSentence}}</p>
+            </section>
+            <ul class="px stat-detail mgt30">
+                <li class="flex px-a px-lt">
+                    <div class="item left">产品名称</div>
+                    <div class="item right">{{renderData.prodName}}</div>
+                </li>
+                <li class="flex px-a px-lt">
+                    <div class="item left">实际年化收益率</div>
+                    <div class="item right">{{renderData.earningRate}}</div>
+                </li>
+                <li class="flex px-a px-lt">
+                    <div class="item left">持有本金</div>
+                    <div class="item right">{{renderData.principal}}</div>
+                </li>
+                <li class="flex px-a px-lt">
+                    <div class="item left">起息时间</div>
+                    <div class="item right">{{renderData.earningsStart}}</div>
+                </li>
+                <li class="flex">
+                    <div class="item left">持有期限</div>
+                    <div class="item right">{{renderData.prodPeriod}}</div>
+                </li>
+            </ul>
+
+            <dl class="px recom-product mgt20" ng-if="recommendProduct.show">
+                <dt class="px-a px-lt">为你推荐</dt>
+                <dd class="flex" ng-click="onClickRecommendProduct(recommendProduct)">
+                    <h4 class="item num p-line-r px-lt">{{recommendProduct.earningsRate}}<span>%</span><span class="name">{{recommendProduct.earningsDesc}}</span></h4>
+                    <p class="item">{{recommendProduct.prodName}}<br>{{recommendProduct.productDesc}}</p>
+                </dd>
+            </dl>
+            <div class="view-more" ng-click="onClickMoreProducts()"><i></i>查看更多理财产品</div>
+        </ion-content>
+    </div>
+</ion-view>

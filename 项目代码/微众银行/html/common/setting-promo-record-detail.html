@@ -1,0 +1,44 @@
+<ion-view>
+    <div class="trar bnf p-c-blue">
+        <ion-header-bar>
+            <div class="menu-ba">
+                <header class="menu">
+                    <button class="menu-return" ng-click="back()"></button>{{record.title}}</header>
+            </div>
+        </ion-header-bar>
+        <ion-content has-bouncing="true" class="has-header">
+            <section class="records-card px mgt20">
+                <ul>
+                    <li class="flex">
+                        <div class="item">详情</div>
+                        <div class="item"></div>
+                    </li>
+                    <li class="flex px-b px-lt">
+                        <div class="item">内容</div>
+                        <div class="item" ng-bind="record.content"></div>
+                    </li>
+                    <li class="flex px-b px-lt">
+                        <div class="item">使用方式</div>
+                        <div class="item" ng-bind="record.use_desc"></div>
+                    </li>
+                    <li class="flex px-b px-lt" ng-if="record.expired_time">
+                        <div class="item">到期时间</div>
+                        <div class="item" ng-bind="record.expired_time"></div>
+                    </li>
+                    <li class="flex px-b px-lt" ng-if="!record.expired_time">
+                        <div class="item">兑换时间</div>
+                        <div class="item" ng-bind="record.use_time"></div>
+                    </li>
+                </ul>
+            </section>
+            <!-- 普通福利 -->
+            <div class="has-btn-block" ng-if="!record.expired_time && (record.prod_code || record.action_param)">
+                <button class="p-btn p-btn-block mgt30" ng-click="nextAction()" ng-bind="record.button_text"></button>
+            </div>
+            <!-- 新人卡特权 -->
+            <div class="has-btn-block" ng-if="record.expired_time && !record.is_expired && record.use_status === 0 && (record.prod_code || record.action_param)">
+                <button class="p-btn p-btn-block mgt30" ng-click="nextAction()" ng-bind="record.button_text"></button>
+            </div>
+        </ion-content>
+    </div>
+</ion-view>

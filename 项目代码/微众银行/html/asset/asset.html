@@ -1,0 +1,60 @@
+<ion-view>
+    <ion-header-bar>
+        <div class="menu-ba">
+            <header class="menu">
+                <span class="menu-wd" ></span>
+                <button class="menu-return" ng-click="func.back()"></button>
+                <span>资产</span>
+            </header>
+        </div>
+    </ion-header-bar>
+    <ion-content class="has-header" has-bouncing="false"  >
+        <div class="ui-px-a">
+            <!-- 图表 -->
+            <div class="asset-highcharts-bg" id="assetChart_container" style="width:100%; height:200px;"></div>
+            <div class="asset-index-total ui-inline" ng-click="func.onClickDate(data.selectedDate)" ng-if="data.asset_currentDate_data.kpi_value != undefined && data.isDateHasData">
+                <div class="wrap">
+                    <p class="date">{{data.selectedDate.getFullYear()}}-{{data.selectedDate | formatDateWithoutYear}}</p>
+                    <p class="count">{{data.asset_currentDate_data.kpi_value | formatMoneyStringV2 }}</p>
+                </div>
+                <i class="date-icon"></i>
+                <i class="ui-arrow"></i>
+            </div>
+            <div class="asset-index-total ui-inline" ng-click="func.onClickDate(data.selectedDate)" ng-if="!data.isDateHasData">
+                <div class="wrap">
+                    <p class="date">{{data.selectedDate.getFullYear()}}-{{data.selectedDate | formatDateWithoutYear}}</p>
+                    <p class="count">暂无数据</p>
+                </div>
+                <i class="date-icon"></i>
+                <i class="ui-arrow"></i>
+            </div>
+            <div class="asset-index-group ui-inline ui-px-a" ng-if="(data.asset_currentDate_group_data && data.asset_currentDate_group_data.length > 0) && data.isDateHasData" >
+                <div class="group-circle" id="group-circle" style="width: 145px;height: 145px;"></div>
+                <ul class="group-con">
+                    <li ng-repeat="groupItem in data.asset_currentDate_group_data track by $index">
+                        <span class="name" ng-if="groupItem.product_type == 0" ><i class="i-b"></i><em class="ui-hqj-icon">活期+</em></span>
+                        <span class="name" ng-if="groupItem.product_type == 1" ><i class="i-d"></i><em class="ui-dqj-icon">定期+</em></span>
+                        <span class="name" ng-if="groupItem.product_type == 2" ><i class="i-e"></i>基金</span>
+                        <span class="name" ng-if="groupItem.product_type == 3" ><i class="i-c"></i><em class="ui-sqj-icon">短期+</em></span>
+                        <span class="name" ng-if="groupItem.product_type == 7" ><i class="i-a"></i>微众卡</span>
+                        <span class="number">{{groupItem.kpi_value | formatMoneyStringV2}}</span>
+                    </li>
+                </ul>
+            </div>
+            <dl class="asset-index-table mod-table ui-px three-col mgt20" ng-if="(data.asset_currentDate_list_data && data.asset_currentDate_list_data.length > 0) && data.isDateHasData" >
+                <dt class="mod-table-title" >
+                    <span class="item-a">产品</span>
+                    <span class="item-b">资产</span>
+                    <span class="item-c">占比</span>
+                </dt>
+                <dd class="mod-table-con ui-px-b" ng-class="listItem.productClass" ng-repeat="listItem in data.asset_currentDate_list_data track by $index">
+                    <span class="item-a" ng-bind-html="listItem.product_name"></span>
+                    <span class="item-b">{{listItem.kpi_value | formatMoneyStringV2}}</span>
+                    <span class="item-c">{{listItem.asset_ratio}}</span>
+                </dd>
+            </dl>
+        </div>
+        <div style="height:20px;"></div>
+    </ion-content>
+    <loading show-loading="data.showLoading"></loading>
+</ion-view>

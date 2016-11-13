@@ -1,0 +1,103 @@
+<ion-view>
+    <ion-header-bar>
+        <div class="mod-menu">
+            <header class="mod-menu"><button class="mod-menu-return" ng-click="back()"></button>立即买入</header>
+        </div>
+    </ion-header-bar>
+
+    <ion-content class="has-header" has-bouncing="false">
+        <div class="mod-tab ui-flex px-a">
+            <div class="{{data.weightTabClass}}" ng-click="onClickWeightTab()">按克数买入</div>
+            <div class="{{data.amountTabClass}}" ng-click="onClickAmountTab()">按金额买入</div>
+        </div>
+
+        <div class="mod-block-item" ng-click="">
+            <div class="title s-h35">
+                <p class="s-fz18 s-orange" ng-if="data.price">{{data.price | formatMoneyStringV2}}</p>
+                <p class="s-fz12 s-lgray">实时价格(元/克)</p>
+            </div>
+            <div class="content gold-ref-price">
+                <span class="ui-icon-refresh loading"></span>
+            </div>
+        </div>
+
+        <div ng-if="data.showWeightTab">
+            <div class="mod-block-item" ng-click="">
+                <div class="title">买入克数</div>
+                <div class="content">
+                    <keyboard-input class="content s-fz15" type="number" hjtype = "je" accuracy="4" placeholder="{{data.prodInfo.min_buy_weight}}克起购，{{data.prodInfo.incr_buy_weight}}克递增" hj-model="data.weight"  hj-blur="blurInput()" hj-focus="focusInput()" hj-change="changeInput()"></keyboard-input>
+                </div>
+            </div>
+
+            <p class="mod-warning" ng-if="data.showInputAmountTips">{{data.inputAmountTipsContent}}</p>
+        </div>
+
+        <div ng-if="!data.showWeightTab">
+            <div class="mod-block-item" ng-click="">
+                <div class="title">买入金额</div>
+                <div class="content">
+                    <keyboard-input class="content s-fz15" type="number" hjtype = "je" placeholder="{{data.prodInfo.min_buy_amount}}元起购，{{data.prodInfo.incr_buy_amount}}元递增" hj-model="data.amount"  hj-blur="blurInput()" hj-focus="focusInput()" hj-change="changeInput()"></keyboard-input>
+                </div>
+            </div>
+
+            <p class="mod-warning" ng-if="data.showInputAmountTips">{{data.inputAmountTipsContent}}</p>
+        </div>
+
+        <div class="mod-block-item" ng-click="onSelectPayWay()">
+            <div class="title">付款账户</div>
+            <div class="content">
+                <div ng-if="isCurrentPlus()" class=""><i class="ui-hqj-icon"></i></div>
+                <div ng-if="isWeBankAccount()" class="ui-inline"><i class="ui-wz-icon"></i>微众卡{{data.mainCard.number | abridgeAccountNumber}}</div>
+            </div>
+            <i class="ui-arrow"></i>
+        </div>
+
+        <div class="mod-block-item s-pt7 s-pb7">
+            <div class="title">最高买入价</div>
+            <div class="content s-orange" ng-if="data.price">{{(data.price + data.tolerance) | formatMoneyStringV2}}</div>
+            <div class="mod-number-mp">
+                <button type="button" ng-click="onClickReduceTolerance()">-</button>
+                <span class="number">{{data.tolerance | formatMoneyStringV2}}</span>
+                <button type="button" ng-click="onClickAddTolerance()">+</button>
+            </div>
+        </div>
+
+        <p class="ui-below-tip" ng-if="data.price && data.showInputAct && data.showWeightTab">买入<span class="s-orange">{{data.weight | formatGoldString}}</span>克（预估最高金额<span class="s-orange">{{data.weight * (data.price + data.tolerance) | formatMoneyStringV2}}</span>元），成交时刻系统价格不高于<span class="s-orange">{{(data.price + data.tolerance) | formatMoneyStringV2}}</span>元/克将立即为你买入</p>
+
+        <p class="ui-below-tip" ng-if="data.price && data.showInputAct && !data.showWeightTab">买入<span class="s-orange">{{data.amount | formatMoneyStringV2}}</span>元（预估最少买入<span class="s-orange">{{data.amount / (data.price +data.tolerance) | formatGoldString}}</span>克），成交时刻系统价格不高于<span class="s-orange">{{(data.price + data.tolerance) | formatMoneyStringV2}}</span>元/克将立即为你买入</p>
+
+
+        <p class="mod-tip">
+            <user-agreement
+                    agreement-code = "data.agreementCode"
+                    agreement-desc ="data.agreementDesc"
+                    is-agreed="data.isAgreed"
+                    on-click-agree-checkbox="data.onClickAgreeCheckbox">
+            </user-agreement>
+        </p>
+
+        <button class="{{data.ButtonClass}}" ng-click="onClickPurchase()">确认买入</button>
+
+    </ion-content>
+
+    <account-selector
+            input-amount="data.amount"
+            account-data="data.AccountData"
+            show="data.showAccountSelector"
+            hide="hideAccountSelector"
+            on-account-selected="onAccountSelected"
+            >
+    </account-selector>
+
+    <div pwd-input
+         ng-model="vm.formData.confirmPassword"
+         is-pwd-show="data.isPwdShow"
+         sig-on-pwd-commit="data.sigOnPwdCommit"
+         pwd-sub-title="data.pwdSubTitle"
+         pwd-trans-desc="data.pwdTransDesc"
+         pay-way-desc="data.payWayDesc"
+         on-click-change-pay-way="onSelectPayWay"
+            >
+    </div>
+
+</ion-view>

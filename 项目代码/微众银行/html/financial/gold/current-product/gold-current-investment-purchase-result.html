@@ -1,0 +1,53 @@
+<ion-view style="background-color: #fff;">
+    <ion-header-bar>
+        <div class="mod-menu">
+            <header class="mod-menu">
+                <!--<button class="mod-menu-return"></button>-->
+                交易结果
+                <span class="mod-menu-finish" ng-click="onClickOK()">完成</span>
+            </header>
+        </div>
+    </ion-header-bar>
+
+    <ion-content class="has-header" has-bouncing="false">
+        <div class="mod-result-hd ui-px-a">
+            <span class="ok" ng-if="data.status == 1">定投设置成功</span>
+
+            <span class="ok" ng-if="data.status == 2">定投设置申请已受理</span>
+            <p ng-if="data.status == 2">需要确认定投设置结果，可在首页查看进展</p>
+
+            <span class="fall" ng-if="data.status == 3">定投设置失败</span>
+            <ol ng-if="data.status == 3">
+                <li>失败原因：{{data.transInfo.result.retMsg}}</li>
+            </ol>
+        </div>
+
+        <div class="mod-result-con">
+            <p class="title">详情</p>
+
+            <div class="mod-v-timestamp s-mt20" ng-if="data.status == 1 || data.status == 2">
+                <div class="node on">
+                    <span class="header first"><i></i>{{data.today | formatDateObjToStringV2}}</span>
+                    <p>今天 计划设置成功</p>
+                    <p ng-if="data.transInfo.request.application_weight">{{data.transInfo.request.freq_desc}} 买入{{data.transInfo.request.application_weight | formatGoldString}}克</p>
+                    <p ng-if="data.transInfo.request.application_amount">{{data.transInfo.request.freq_desc}} 买入{{data.transInfo.request.application_amount | formatMoneyStringV2}}元</p>
+                </div>
+                <div class="node">
+                    <span class="header"><i></i>{{data.transInfo.result.retData.next_time | formatYYYYMMDDStringV2}}</span>
+                    <p>执行第一期，23:59前在活期金账户查看购买结果</p>
+                </div>
+            </div>
+
+            <ul class="info-list" ng-if="data.status == 3">
+                <li class="ui-flex"><span class="item info-name">产品名称</span><span class="lg-item s-tar">微众金-活期金</span></li>
+                <li class="ui-flex" ng-if="data.transInfo.request.application_weight"><span class="item info-name">买入克数</span><span class="lg-item s-tar">{{data.transInfo.request.application_weight | formatGoldString}}克</span></li>
+                <li class="ui-flex" ng-if="data.transInfo.request.application_amount"><span class="item info-name">买入金额</span><span class="lg-item s-tar">{{data.transInfo.request.application_amount | formatMoneyStringV2}}元</span></li>
+                <li class="ui-flex"><span class="item info-name">买入频率</span><span class="lg-item s-tar">{{data.transInfo.request.freq_desc}}</span></li>
+                <li class="ui-flex"><span class="item info-name">定投截止日期</span><span class="lg-item s-tar">{{data.transInfo.request.end_date | formatYYYYMMDDString}}</span></li>
+                <li class="ui-flex"><span class="item info-name">交易时间</span><span class="lg-item s-tar">{{data.today | formatDateObjToString}} {{data.today | formatDateObjToTimeString}}</span></li>
+            </ul>
+
+            <p class="msg" ng-if="data.status == 1 || data.status == 2">每期执行前可随时删除计划</p>
+        </div>
+    </ion-content>
+</ion-view>

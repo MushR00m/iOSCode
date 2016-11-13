@@ -1,0 +1,21 @@
+<ion-view>
+    <ion-header-bar>
+        <div class="mod-menu">
+            <header class="mod-menu"><button class="mod-menu-return"  ng-click="back()"></button>黄金</header>
+        </div>
+    </ion-header-bar>
+
+    <ion-content class="has-header" has-bouncing="false" >
+        <!--头部 板块-->
+        <div class="intro-content gold-product">
+            <h1 class="s-fz16 s-mb6">{{renderData.title}}<span class="s-fz10 hot s-bgc-gold"></span></h1>
+            <p class="s-fz14 s-lh18  s-lgray">{{renderData.descMore}}</p>
+        </div>
+
+        <!--列表-->
+        <div class="gold-product mod-product-list ui-px-a">
+            <div ng-class="{'item':!$index,'item ui-px-b':$index}" ng-repeat="info in renderData.showList" ng-bind-html="info.htmlStr | toTrusted" ng-click="onClickProduct(info)"></div>
+        </div>
+
+    </ion-content>
+</ion-view>

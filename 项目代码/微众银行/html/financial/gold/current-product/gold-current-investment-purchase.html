@@ -1,0 +1,102 @@
+<ion-view>
+    <ion-header-bar>
+        <div class="mod-menu">
+            <header class="mod-menu"><button class="mod-menu-return" ng-click="back()"></button>定投计划</header>
+        </div>
+    </ion-header-bar>
+
+    <ion-content class="has-header" has-bouncing="false">
+        <div class="mod-tab ui-flex px-a">
+            <div class="{{data.weightTabClass}}" ng-click="onClickWeightTab()">按克数定投</div>
+            <div class="{{data.amountTabClass}}" ng-click="onClickAmountTab()">按金额定投</div>
+        </div>
+
+        <div class="mod-block-item" ng-click="">
+            <div class="s-h35">
+                <p class="s-fz18 s-orange" ng-if="data.price">{{data.price | formatMoneyStringV2}}</p>
+                <p class="s-fz12 s-lgray">实时价格(元/克)</p>
+            </div>
+            <div class="gold-ref-price">
+                <span class="ui-icon-refresh loading"></span>
+            </div>
+        </div>
+        <p class="ui-below-tip">实时价格仅作为参考，实际以执行定投时刻的实时价格成交</p>
+
+        <div class="mod-form s-mt20">
+            <div class="item" ng-if="data.showWeightTab">
+                <p class="title">买入克数</p>
+                <div class="content">
+                    <keyboard-input class="s-fz14" type="number" hjtype="je" placeholder="{{data.prodInfo.aip_min_buy_weight}}克起购，{{data.prodInfo.aip_incr_buy_weight}}克递增" hj-model="data.weight"  hj-blur="blurInput()" hj-focus="focusInput()" hj-change="changeInput()"></keyboard-input>
+                </div>
+            </div>
+
+            <div class="item" ng-if="!data.showWeightTab">
+                <p class="title">买入金额</p>
+                <div class="content">
+                    <keyboard-input class="s-fz14" type="number" hjtype="je" placeholder="{{data.prodInfo.aip_min_buy_amount}}元起购，{{data.prodInfo.aip_incr_buy_amount}}元递增" hj-model="data.amount"  hj-blur="blurInput()" hj-focus="focusInput()" hj-change="changeInput()"></keyboard-input>
+                </div>
+            </div>
+
+            <p class="mod-warning" ng-if="data.showInputAmountTips">{{data.inputAmountTipsContent}}</p>
+
+            <div class="item ui-px-b" ng-click="onSelectPayWay()">
+                <p class="title">付款账户</p>
+                <div class="content">
+                    <div ng-if="isCurrentPlus()" class=""><i class="ui-hqj-icon"></i></div>
+                    <div ng-if="isWeBankAccount()" class="ui-inline"><i class="ui-wz-icon"></i>微众卡{{data.mainCard.number | abridgeAccountNumber}}</div>
+                </div>
+                <i class="ui-arrow"></i>
+            </div>
+        </div>
+
+        <div class="mod-block-item" ng-click="onClickFreqType()">
+            <p class="title">频率</p>
+            <div class="content">
+                <input class="s-fz14" type="text" readonly="readonly" placeholder="选择定投频率" ng-model="data.typeDesc">
+            </div>
+        </div>
+
+        <div class="mod-block-item" ng-click="">
+            <p class="title">有效期至</p>
+            <div class="lg-item" ng-click="showDatePicker()">
+                <div class="ui-flex">
+                    <input class="item s-fz14 s-tal" readonly="readonly" placeholder="最长有效期限一年" ng-model="data.untilDateStr">
+                    <i class="ui-icon-calendar"></i>
+                </div>
+            </div>
+        </div>
+        <p class="ui-below-tip" ng-if="data.untilDate">最后一次定投截止至{{data.untilDate | formatDateObjToCNStringV2}}前最后一个交易日24:00</p>
+
+        <p class="mod-tip">
+            <user-agreement
+                    agreement-code = "data.agreementCode"
+                    agreement-desc ="data.agreementDesc"
+                    is-agreed="data.isAgreed"
+                    on-click-agree-checkbox="data.onClickAgreeCheckbox">
+            </user-agreement>
+        </p>
+
+        <button class="{{data.ButtonClass}}" ng-click="onClickPurchase()">确认定投</button>
+    </ion-content>
+
+    <account-selector
+            account-data="data.AccountData"
+            show="data.showAccountSelector"
+            hide="hideAccountSelector"
+            on-account-selected="onAccountSelected"
+            >
+    </account-selector>
+
+    <div pwd-input
+         ng-model="vm.formData.confirmPassword"
+         is-pwd-show="data.isPwdShow"
+         sig-on-pwd-commit="data.sigOnPwdCommit"
+         pwd-sub-title="data.pwdSubTitle"
+         pwd-trans-desc="data.pwdTransDesc"
+         pay-way-desc="data.payWayDesc"
+         on-click-change-pay-way="onSelectPayWay"
+            >
+    </div>
+
+    <hj-common-picker show-common-picker="showCommonPicker"></hj-common-picker>
+</ion-view>

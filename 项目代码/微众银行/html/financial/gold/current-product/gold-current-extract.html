@@ -1,0 +1,86 @@
+<ion-view>
+    <ion-header-bar>
+        <div class="mod-menu">
+            <header class="mod-menu"><button class="mod-menu-return" ng-click="back()"></button>提取实物金<span class="mod-menu-finish" ng-click="onClickExtractIntro()">说明</span></header>
+        </div>
+    </ion-header-bar>
+
+    <ion-content class="has-header" has-bouncing="false">
+        <div class="mod-block-item" ng-click="onClickSelectPlace()">
+            <p class="content"><em ng-if="loaction">{{loaction.n}}</em></p>
+            <i class="ui-icon-location"></i>
+        </div>
+        <p class="ui-below-tip" ng-if="loaction">地址：{{loaction.d}}</p>
+        <p class="ui-below-tip" ng-if="loaction">电话：<span class="s-blue">{{loaction.m}}</span></p>
+
+        <div class="mod-block-item" ng-click="onClickSelectType()">
+            <p class="title">提取规格</p>
+            <div class="content">
+                <span>{{type}}</span>
+            </div>
+            <i class="ui-icon-standard"></i>
+        </div>
+
+        <!--<p class="ui-below-tip">xxxxxx，xxxxxx</p>-->
+
+        <div class="mod-block-item" ng-click="">
+            <p class="title">提取克数</p>
+            <div class="content">
+                <keyboard-input class="content s-fz15" type="number" hjtype = "je" accuracy="4" placeholder="最多可提取{{myData.available_vol | formatGoldString}}" hj-model="data.amount"  hj-blur="blurInput()" hj-focus="focusInput()" hj-change="changeInput()"></keyboard-input>
+            </div>
+        </div>
+
+        <p class="mod-warning" ng-if="showInputAmountTips">{{inputAmountTipsContent}}</p>
+
+        <div class="mod-form s-mt20" ng-click="">
+            <div class="item">
+                <p class="title">提取手续费</p>
+                <div class="content">
+                    <span ng-if="cost">{{cost | formatMoneyStringV2}}元(预估)</span>
+                </div>
+            </div>
+            <div class="item ui-px-b" ng-click="onSelectPayWay()">
+                <p class="title">付款账户</p>
+                <div class="content">
+                    <div ng-if="isCurrentPlus()"><i class="ui-hqj-icon"></i></div>
+                    <div ng-if="isWeBankAccount()" class="ui-inline"><i class="ui-wz-icon"></i>微众卡{{mainCard.number | abridgeAccountNumber}}</div>
+                </div>
+                <i class="ui-arrow"></i>
+            </div>
+        </div>
+
+        <p class="mod-warning" ng-if="showCostAmountTips">{{inputCostTipsContent}}</p>
+
+        <p class="ui-below-tip s-orange" ng-if="isCurrentPlus()">将在您的活期+账户冻结提取手续费</p>
+        <p class="ui-below-tip s-orange" ng-if="isWeBankAccount()">将在您的微众卡账户冻结提取手续费</p>
+
+        <button class="{{ButtonClass}}" ng-click="onClickConfirm()">确认提金</button>
+    </ion-content>
+
+    <account-selector
+            input-amount="cost"
+            account-data="AccountData"
+            show="showAccountSelector"
+            hide="hideAccountSelector"
+            on-account-selected="onAccountSelected"
+            >
+    </account-selector>
+
+    <div pwd-input
+         ng-model="vm.formData.confirmPassword"
+         is-pwd-show="isPwdShow"
+         sig-on-pwd-commit="sigOnPwdCommit"
+         pwd-sub-title="pwdSubTitle"
+         pwd-trans-desc="pwdTransDesc"
+         pay-way-desc="payWayDesc"
+         on-click-change-pay-way="onSelectPayWay"
+            >
+    </div>
+
+    <common-select
+            list-items="typeWeightList"
+            callback="onSelectType"
+            show-select="showType"
+            set-selected="setTypeSelected">
+    </common-select>
+</ion-view>

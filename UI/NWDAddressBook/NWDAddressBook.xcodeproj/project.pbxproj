@@ -1,0 +1,362 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2B057F861DC98874006F8321 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B057F851DC98874006F8321 /* main.m */; };
+		2B057F891DC98874006F8321 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B057F881DC98874006F8321 /* AppDelegate.m */; };
+		2B057F8C1DC98874006F8321 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B057F8B1DC98874006F8321 /* ViewController.m */; };
+		2B057F8F1DC98874006F8321 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B057F8D1DC98874006F8321 /* Main.storyboard */; };
+		2B057F911DC98874006F8321 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B057F901DC98874006F8321 /* Assets.xcassets */; };
+		2B057F941DC98874006F8321 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B057F921DC98874006F8321 /* LaunchScreen.storyboard */; };
+		2B057F9E1DC988DA006F8321 /* NWDAddressBookManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B057F9D1DC988DA006F8321 /* NWDAddressBookManager.m */; };
+		2B057FA11DC988EC006F8321 /* NWDPersonInfoEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B057FA01DC988EC006F8321 /* NWDPersonInfoEntity.m */; };
+		2B057FA61DC98FBC006F8321 /* NWDAddressBookIOS7Manager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B057FA51DC98FBC006F8321 /* NWDAddressBookIOS7Manager.m */; };
+		2B057FA91DC98FC6006F8321 /* NWDAddressBookIOS8Manager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B057FA81DC98FC6006F8321 /* NWDAddressBookIOS8Manager.m */; };
+		2B057FAC1DC98FCF006F8321 /* NWDAddressBookIOS9Manager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B057FAB1DC98FCF006F8321 /* NWDAddressBookIOS9Manager.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		2B057F811DC98874006F8321 /* NWDAddressBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NWDAddressBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2B057F851DC98874006F8321 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		2B057F871DC98874006F8321 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		2B057F881DC98874006F8321 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		2B057F8A1DC98874006F8321 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		2B057F8B1DC98874006F8321 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		2B057F8E1DC98874006F8321 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		2B057F901DC98874006F8321 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		2B057F931DC98874006F8321 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		2B057F951DC98874006F8321 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2B057F9C1DC988DA006F8321 /* NWDAddressBookManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NWDAddressBookManager.h; sourceTree = "<group>"; };
+		2B057F9D1DC988DA006F8321 /* NWDAddressBookManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NWDAddressBookManager.m; sourceTree = "<group>"; };
+		2B057F9F1DC988EC006F8321 /* NWDPersonInfoEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NWDPersonInfoEntity.h; sourceTree = "<group>"; };
+		2B057FA01DC988EC006F8321 /* NWDPersonInfoEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NWDPersonInfoEntity.m; sourceTree = "<group>"; };
+		2B057FA21DC9897B006F8321 /* NWDAddressBookDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NWDAddressBookDefine.h; sourceTree = "<group>"; };
+		2B057FA31DC98C56006F8321 /* NWDAddressBookProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NWDAddressBookProtocol.h; sourceTree = "<group>"; };
+		2B057FA41DC98FBC006F8321 /* NWDAddressBookIOS7Manager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NWDAddressBookIOS7Manager.h; sourceTree = "<group>"; };
+		2B057FA51DC98FBC006F8321 /* NWDAddressBookIOS7Manager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NWDAddressBookIOS7Manager.m; sourceTree = "<group>"; };
+		2B057FA71DC98FC6006F8321 /* NWDAddressBookIOS8Manager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NWDAddressBookIOS8Manager.h; sourceTree = "<group>"; };
+		2B057FA81DC98FC6006F8321 /* NWDAddressBookIOS8Manager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NWDAddressBookIOS8Manager.m; sourceTree = "<group>"; };
+		2B057FAA1DC98FCF006F8321 /* NWDAddressBookIOS9Manager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NWDAddressBookIOS9Manager.h; sourceTree = "<group>"; };
+		2B057FAB1DC98FCF006F8321 /* NWDAddressBookIOS9Manager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NWDAddressBookIOS9Manager.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2B057F7E1DC98874006F8321 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2B057F781DC98874006F8321 = {
+			isa = PBXGroup;
+			children = (
+				2B057F831DC98874006F8321 /* NWDAddressBook */,
+				2B057F821DC98874006F8321 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		2B057F821DC98874006F8321 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2B057F811DC98874006F8321 /* NWDAddressBook.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2B057F831DC98874006F8321 /* NWDAddressBook */ = {
+			isa = PBXGroup;
+			children = (
+				2B057F871DC98874006F8321 /* AppDelegate.h */,
+				2B057F881DC98874006F8321 /* AppDelegate.m */,
+				2B057F8A1DC98874006F8321 /* ViewController.h */,
+				2B057F8B1DC98874006F8321 /* ViewController.m */,
+				2B057F8D1DC98874006F8321 /* Main.storyboard */,
+				2B057F901DC98874006F8321 /* Assets.xcassets */,
+				2B057F921DC98874006F8321 /* LaunchScreen.storyboard */,
+				2B057F951DC98874006F8321 /* Info.plist */,
+				2B057F9B1DC98895006F8321 /* AddressBookManager */,
+				2B057F841DC98874006F8321 /* Supporting Files */,
+			);
+			path = NWDAddressBook;
+			sourceTree = "<group>";
+		};
+		2B057F841DC98874006F8321 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				2B057F851DC98874006F8321 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		2B057F9B1DC98895006F8321 /* AddressBookManager */ = {
+			isa = PBXGroup;
+			children = (
+				2B057FA21DC9897B006F8321 /* NWDAddressBookDefine.h */,
+				2B057F9C1DC988DA006F8321 /* NWDAddressBookManager.h */,
+				2B057F9D1DC988DA006F8321 /* NWDAddressBookManager.m */,
+				2B057FA41DC98FBC006F8321 /* NWDAddressBookIOS7Manager.h */,
+				2B057FA51DC98FBC006F8321 /* NWDAddressBookIOS7Manager.m */,
+				2B057FA71DC98FC6006F8321 /* NWDAddressBookIOS8Manager.h */,
+				2B057FA81DC98FC6006F8321 /* NWDAddressBookIOS8Manager.m */,
+				2B057FAA1DC98FCF006F8321 /* NWDAddressBookIOS9Manager.h */,
+				2B057FAB1DC98FCF006F8321 /* NWDAddressBookIOS9Manager.m */,
+				2B057FA31DC98C56006F8321 /* NWDAddressBookProtocol.h */,
+				2B057F9F1DC988EC006F8321 /* NWDPersonInfoEntity.h */,
+				2B057FA01DC988EC006F8321 /* NWDPersonInfoEntity.m */,
+			);
+			path = AddressBookManager;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		2B057F801DC98874006F8321 /* NWDAddressBook */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2B057F981DC98874006F8321 /* Build configuration list for PBXNativeTarget "NWDAddressBook" */;
+			buildPhases = (
+				2B057F7D1DC98874006F8321 /* Sources */,
+				2B057F7E1DC98874006F8321 /* Frameworks */,
+				2B057F7F1DC98874006F8321 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NWDAddressBook;
+			productName = NWDAddressBook;
+			productReference = 2B057F811DC98874006F8321 /* NWDAddressBook.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2B057F791DC98874006F8321 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0810;
+				ORGANIZATIONNAME = chensongqi;
+				TargetAttributes = {
+					2B057F801DC98874006F8321 = {
+						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = 9W7423KJSN;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 2B057F7C1DC98874006F8321 /* Build configuration list for PBXProject "NWDAddressBook" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 2B057F781DC98874006F8321;
+			productRefGroup = 2B057F821DC98874006F8321 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				2B057F801DC98874006F8321 /* NWDAddressBook */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2B057F7F1DC98874006F8321 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2B057F941DC98874006F8321 /* LaunchScreen.storyboard in Resources */,
+				2B057F911DC98874006F8321 /* Assets.xcassets in Resources */,
+				2B057F8F1DC98874006F8321 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2B057F7D1DC98874006F8321 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2B057F8C1DC98874006F8321 /* ViewController.m in Sources */,
+				2B057F891DC98874006F8321 /* AppDelegate.m in Sources */,
+				2B057FA11DC988EC006F8321 /* NWDPersonInfoEntity.m in Sources */,
+				2B057F861DC98874006F8321 /* main.m in Sources */,
+				2B057F9E1DC988DA006F8321 /* NWDAddressBookManager.m in Sources */,
+				2B057FA61DC98FBC006F8321 /* NWDAddressBookIOS7Manager.m in Sources */,
+				2B057FA91DC98FC6006F8321 /* NWDAddressBookIOS8Manager.m in Sources */,
+				2B057FAC1DC98FCF006F8321 /* NWDAddressBookIOS9Manager.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		2B057F8D1DC98874006F8321 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2B057F8E1DC98874006F8321 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		2B057F921DC98874006F8321 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2B057F931DC98874006F8321 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		2B057F961DC98874006F8321 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		2B057F971DC98874006F8321 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		2B057F991DC98874006F8321 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 9W7423KJSN;
+				INFOPLIST_FILE = NWDAddressBook/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.chensongqi.test1;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		2B057F9A1DC98874006F8321 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 9W7423KJSN;
+				INFOPLIST_FILE = NWDAddressBook/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.chensongqi.test1;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2B057F7C1DC98874006F8321 /* Build configuration list for PBXProject "NWDAddressBook" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2B057F961DC98874006F8321 /* Debug */,
+				2B057F971DC98874006F8321 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2B057F981DC98874006F8321 /* Build configuration list for PBXNativeTarget "NWDAddressBook" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2B057F991DC98874006F8321 /* Debug */,
+				2B057F9A1DC98874006F8321 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 2B057F791DC98874006F8321 /* Project object */;
+}

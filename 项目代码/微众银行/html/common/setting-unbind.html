@@ -1,0 +1,40 @@
+<ion-view>
+    <div class="set">
+    <!-- <div class="menu-ba">
+        <header class="menu"><button class="menu-return" ng-click="back()"></button>绑定<span ng-if="isQQ">QQ</span><span  ng-if="!isQQ">微信</span></header>
+    </div> -->
+        <ion-header-bar>
+            <div class="menu-ba">
+                <header class="menu"><button class="menu-return" ng-click="back()"></button>{{::plat}}<span class="menu-more" ng-click="onClickMenu()" ng-show="showUnbind"></span></header>
+            </div>
+        </ion-header-bar>
+        <ion-content class="has-header" has-bouncing="true">
+            <!-- <div class="tx-wrap">
+                <div class="avatar-box"><img ng-src="{{headImg}}"  alt=""></div>
+                <p class="name">{{nickName}}</p>
+            </div> -->
+            <div style="margin:100px auto 0;">
+                <img ng-src="{{headImg}}" alt="" style="width:75px;height:75px;display:block;margin:0 auto;border-radius: 75px;">
+                <p ng-if="showUnbind" style="width:140px;text-align:center;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;padding-top:20px;margin:0 auto;" ng-bind="showText"></p>
+                <p ng-if="!showUnbind" style="width:80%;text-align:center;padding-top:20px;margin:0 auto;font-size: 14px;" ng-bind="showText"></p>
+            </div>
+
+            <div class="bt-box" ng-if="!showUnbind">
+                <div class="btn-wrap" style="margin-top: 60px;">
+                    <button class="btn-d" ng-click="onClickBind()">开始绑定</button>
+                </div>
+            </div>
+            <!-- <div class="btn-wrap mg20"><button class="btn-c" ng-click="onClickUnbind()">解除绑定</button></div> -->
+        </ion-content>
+
+        <div pwd-input
+             ng-model="vm.formData.confirmPassword"
+             is-pwd-show="isPwdShow"
+             sig-on-pwd-commit="sigOnPwdCommit"
+             pwd-sub-title="pwdSubTitle"
+             >
+        </div>
+
+        <div pop-confirm out-value="outValue"></div>
+    </div>
+</ion-view>

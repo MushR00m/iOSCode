@@ -1,0 +1,193 @@
+<ion-view>
+    <ion-header-bar>
+        <nav class="mod-nav-top">
+            <div class="nav-back" ng-click="back()"></div>
+            <h1 class="nav-title">{{prodInfo.on_sale_desc}}</h1>
+            <div class="nav-share" ng-click="share()">分享</div>
+        </nav>
+    </ion-header-bar>
+
+    <ion-content class="has-header" has-bouncing="false"  delegate-handle="myContent">
+        <!-- 产品概要模块 V2 -->  <!--头部-->
+        <section class="mod-product-summary">
+            <h1 class="summary-title"><strong class="ele-line-aside">预期年化收益率<i class="excl"></i></strong></h1>
+            <div class="summary-ratio"><span class="num">{{expectMinRate}}</span>%<span class="aux">或</span><span class="num">{{expectMaxRate}}</span>%</div>
+            <ul class="mod-flex summary-features">
+                <li class="flex-item">
+                    <h2>起购金额(元)</h2>
+                    <p>{{minAmount}}</p>
+                </li>
+                <li class="flex-item">
+                    <h2>投资期限(天)</h2>
+                    <p>{{lifeTime}}</p>
+                </li>
+                <li class="flex-item">
+                    <h2>风险等级</h2>
+                    <p>{{riskDesc}}</p>
+                </li>
+            </ul>
+        </section>
+        <!-- 文字章节模块 吸附上一段的模块 V2 --> <!--产品摘要 说明-->
+        <article class="mod-section-content mod-section-attached" compile="prodSummary" ng-if="prodSummary">
+            <!--<h1>产品收益率与黄金价格走势挂钩</h1>-->
+            <!--<p>观察日黄金价格较起息日上涨或下跌的幅度，决定产品兑付的预期年化收益率为10%或0%。</p>-->
+        </article>
+
+        <!-- 通用内容模块 V2 --> <!--收益规则-->
+        <section class="mod-section-content s-mt20">
+            <header class="ui-px-a">
+                <h1>收益规则</h1>
+            </header>
+            <div class="content-padded mod-flex structured-purchase-rules">
+                <div class="">买涨占比:{{proportionRise}}</div>
+                <div compile="rule_summary1"></div>
+                <div class="">买涨占比:{{proportionFall}}</div>
+                <div compile="rule_summary2"></div>
+            </div>
+
+            <!-- 产品理财周期模块 V2 -->
+            <div class="content-padded">
+                <h2>理财周期</h2>
+                <div class="mod-product-periods ui-cycle-wrap">
+                    <div class="progress-wrap">
+                        <div class="mod-flex flex-box">
+                            <div class="{{lightDot1}}">
+                                <span>购买日</span>
+                                <i></i>
+                                <span>{{showBuyDate | fromatDateTimeToMDV2}}</span>
+                            </div>
+                            <div class="{{lightDot2}}">
+                                <span>起息日</span>
+                                <i></i>
+                                <span>{{initObserveDate | fromatDateTimeToMDV2}}</span>
+                            </div>
+                            <div class="{{lightDot3}}">
+                                <span>观察日</span>
+                                <i></i>
+                                <span>{{finalObserveDate | fromatDateTimeToMDV2}}</span>
+                            </div>
+                            <div class="{{lightDot4}}">
+                                <span>到期日</span>
+                                <i></i>
+                                <span>{{valueEndDate | fromatDateTimeToMDV2}}</span>
+                            </div>
+                            <div class="{{lightDot5}}">
+                                <span>到账日</span>
+                                <i></i>
+                                <span>{{arrivalAccountDate | fromatDateTimeToMDV2}}</span>
+                            </div>
+                        </div>
+                        <div class="pro-wrap pro-bg"></div>
+                        <div class="pro-wrap pro-blue" ng-style="processPencent"></div>
+                    </div>
+                </div>
+            </div>
+            <footer class="ui-px-b">
+                <div class="ui-enterable" ng-click="onClickMoreProdDetails()">详细交易规则</div>
+            </footer>
+        </section>
+
+        <!-- 通用内容模块 V2 -->
+        <section class="mod-section-content s-mt20">
+            <!-- tab菜单模块 V2 -->
+            <ul class="mod-flex mod-tab">
+                <li class="{{chartTabClass1}}" ng-click="onClickChartTab(1)">黄金走势</li>
+                <li class="{{chartTabClass2}}" ng-click="onClickChartTab(2)">历史黄金价格</li>
+            </ul>
+            <!-- tab内容模块 V2 -->
+            <div class="mod-tab-content" ng-if="showChartView">
+                <div class="hs-wrap px-a" >
+                    <div hjstockcharts show-chart='func.showChart'  style="width:100%; height:250px;"></div>
+                    <ul class="hs-month" style="padding-bottom:5px;">
+                        <li ng-class="onClassTime(7)" ng-click="onClickChartTime(7)">7日</li>
+                        <li ng-class="onClassTime(30)" ng-click="onClickChartTime(30)">1个月</li>
+                        <li ng-class="onClassTime(60)" ng-click="onClickChartTime(90)">3个月</li>
+                    </ul>
+                    <p style="padding:10px 0 18px;text-align:center;font-size:12px;color:#aab2ca;" ng-bind-html="chart_summary | toTrusted"></p>
+                </div>
+            </div>
+
+            <div class="mod-tab-content" ng-if="!showChartView">
+                <div class="s-hide">黄金价格走势图表</div>
+                <div>
+                    <dl class="mod-table ui-px-a custom-table-col">
+                        <dt class="mod-flex mod-table-title">
+                            <span class="flex-item">日期</span>
+                            <span class="flex-item">价格(克/元)</span>
+                            <span class="flex-item">日涨跌幅</span>
+                        </dt>
+                        <dd class="mod-flex mod-table-con mod-table-line" ng-repeat="info in historyIncomeInfo">
+                            <span class="flex-item">{{info.date.substr(4, 2)}}-{{info.date.substr(6 ,2)}}</span>
+                            <span class="flex-item">{{info.price}}</span>
+                            <span class="{{info.class}}">{{info.diffRate}}%</span>
+                        </dd>
+                        <dd class="mod-table-con mod-table-line">
+                            <p class="mod-gray-tip" ng-click="onClickViewHistoryValue()">查看更多</p>
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- 通用内容模块 V2 --> <!--产品说明-->
+        <section class="mod-section-content s-mt20">
+            <!--产品说明-->
+            <div compile="sectionHtml"></div>
+            <!-- -->
+            <!--<header>-->
+                <!--<h1>产品说明</h1>-->
+            <!--</header>-->
+            <!--&lt;!&ndash; 通用表单模块 不分隔的表单模块 V2 &ndash;&gt;-->
+            <!--<div class="mod-form mod-form-collapse">-->
+                <!--<div class="form-row">-->
+                    <!--<div class="form-cell">产品名称</div>-->
+                    <!--<div class="form-cell">灰烬-黄金21天</div>-->
+                <!--</div>-->
+                <!--<div class="form-row">-->
+                    <!--<div class="form-cell">产品类型</div>-->
+                    <!--<div class="form-cell">定向融资计划产品</div>-->
+                <!--</div>-->
+                <!--<div class="form-row">-->
+                    <!--<div class="form-cell">详情介绍</div>-->
+                    <!--<div class="form-cell">产品预期年化收益率与黄金价格走势挂钩。黄金价格是上海期货交易所黄金1606期货合约(合约代码: AU1606) 15:00收盘价</div>-->
+                <!--</div>-->
+            <!--</div>-->
+            <footer>
+                <div class="ui-enterable" ng-click="onClickMoreProdDetails()">更多产品详情</div>
+            </footer>
+        </section>
+
+
+    </ion-content>
+    <ion-footer-bar ng-if="showBuyButton">
+        <!-- 底部按钮模块 V2 -->
+        <section class="mod-flex mod-button-bottom">
+            <!--1;//预售  2;//过期（售罄）  //3在售，最后一天  //4在售，其他-->
+
+            <section class="mod-flex mod-button-bottom" ng-if="status==1">
+                <div ng-if="!lessSixMinutes" ng-click="onClickSetClock()">
+                    {{calendarButtonStr}}
+                </div>
+                <div class="lc-buy-btn off" ng-if="lessSixMinutes && todayString == prodInfo.start_buy_date">
+                    {{prodInfo.start_buy_time.substr(0, 5)}}起售
+                </div>
+                <div class="lc-buy-btn off" ng-if="lessSixMinutes && todayString != prodInfo.start_buy_date">
+                    {{prodInfo.start_buy_date.substr(4,2)}}月{{prodInfo.start_buy_date.substr(6,2)}}日起售
+                </div>
+            </section>
+
+            <section class="mod-flex mod-button-bottom" ng-if="status==2">
+                <div class="lc-buy-btn off">本期已售完</div>
+            </section>
+
+            <section class="mod-flex mod-button-bottom" ng-if="status>=3">
+                <div class="{{btnRiseClass}}" ng-click="onClickBuyProd(codeOfRise)">买涨</div>
+                <div class="{{btnFallClass}}" ng-click="onClickBuyProd(codeOfFall)">买跌</div>
+            </section>
+
+        </section>
+    </ion-footer-bar>
+    <div slider-up-confirm slider-up-confirm-option="sliderUpConfirmOption"></div>
+    <risk-assessment option="riskOption"></risk-assessment>
+</ion-view>

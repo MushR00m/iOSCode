@@ -1,0 +1,48 @@
+<ion-view>
+    <div class="bx">
+        <ion-header-bar>
+            <div class="menu-ba">
+                <header class="menu"><button class="menu-return" ng-click="back()"></button>历史净值</header>
+
+            </div>
+        </ion-header-bar>
+        <ion-content class="has-header" has-bouncing="false" scrollbar-y="false" >
+            <div class="hs-wrap">
+                <ul class="hs-list tj kj">
+                    <li class="flex title">
+                        <span class="item">日期</span>
+                        <span class="item">价格(克/元)</span>
+                        <!--<span class="item">累计净值</span>-->
+                        <span class="item">日涨跌幅</span>
+                    </li>
+                </ul>
+            </div>
+        </ion-content>
+        <ion-content has-bouncing="false" delegate-handle="myContent" style="top: 91px;">
+            <div class="hs-wrap">
+                <div  ng-repeat="item in incomeHistory">
+                    <p ng-if="$index > 0" style="font-size:12px;padding:4px 0 4px 25px;color:#acb2c1;background-color:#f7f7f7;">{{item.iYear}}</p>
+                    <ul class="hs-list tj kj">
+                        <li class="flex" bindonce ng-repeat="info in item.arr track by $index">
+                            <span class="item"><em bo-bind="info.date.substr(4, 2)"></em>-<em bo-bind="info.date.substr(6 ,2)"></em></span>
+                            <span class="item" bo-bind="(info.price).toFixed(4)"></span>
+                            <!--<span class="item" bo-bind="(info.accuValue).toFixed(4)"></span>-->
+                            <span bo-class="info.class" bo-bind="info.diffRate + '%'"></span>
+                        </li>
+                    </ul>
+
+                </div>
+
+            </div>
+            <ion-infinite-scroll
+                    ng-if="isMoreData()"
+                    on-infinite="loadMoreData()"
+                    distance="1%"
+                    spinner="ios"
+                    immediate-check="false"
+                    >
+            </ion-infinite-scroll>
+        </ion-content>
+
+    </div>
+</ion-view>

@@ -1,0 +1,37 @@
+<ion-view>
+
+    <div class="lc-b-gj">
+        <ion-header-bar>
+            <div class="menu-ba">
+                <header class="menu"><button class="menu-return" ng-click="back()"></button>基金</header>
+            </div>
+        </ion-header-bar>
+        <ion-content has-bouncing="true" class="has-header"  >
+            <!-- 显示列表加 show-list -->
+            <div ng-class="showClass" ng-if="titleArr.length">
+                <div class="show-box-main">
+                    <p class="show-item px-a"><span ng-click="onClickTitle()">{{titleArr[selectIndex]}}</span></p>
+                    <ol>
+                        <li ng-repeat="item in data.titleArr" ng-if="$index != selectIndex" ng-click="onClickTitleItem($index)">{{item}}</li>
+                    </ol>
+                </div>
+                <div class="bg"></div>
+            </div>
+
+            <div class="it-wrap px">
+                <div class="it-title-wrap px-a"><span class="l">{{headStr}}</span><span class="m">基金名称</span><span class="r">单位净值(元)</span></div>
+
+                <ol class="it-list-wrap">
+                    <li  ng-repeat="prod in sourceData[selectIndex].itemList" ng-click="onClickStockProdIntro(prod)">
+                        <span ng-class="prod.incomeClass">{{prod.earningsRateStr}}</span>
+                        <span class="m"><i class="a">{{prod.productName}}</i><i class="b">{{prod.productCode}}</i></span>
+                        <span class="r">{{prod.realValue}}</span>
+                    </li>
+                </ol>
+            </div>
+
+
+            <!--<stock-all init="init"></stock-all>-->
+        </ion-content>
+    </div>
+</ion-view>

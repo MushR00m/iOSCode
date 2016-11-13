@@ -1,0 +1,36 @@
+<ion-view>
+
+    <div class="lc-b-dq">
+        <ion-header-bar>
+            <div class="menu-ba">
+                <header class="menu"><button class="menu-return" ng-click="back()"></button>短期+</header>
+            </div>
+        </ion-header-bar>
+        <ion-content has-bouncing="true" class="has-header"  >
+            <div class="con-dq px" ng-repeat="prod in onSaleShortList.productList">
+                <div class="con-wrap">
+                    <ul >
+                        <li class="px-b"  ng-click="onClickShortPeroidIntro(prod)">
+                            <div class="act-bg">
+                                <div class="v-l">
+                                    <p class="s-a"><span><span>{{prod.earningsRate.split('.')[0]}}<i>.{{prod.earningsRate.split('.')[1]}}%</i></span></span></p>
+                                    <p class="s-b">{{prod.earningsDesc}}</p>
+                                </div>
+                                <div class="v-r vr">
+                                    <p class="s-c">{{prod.productPeroid}}</p>
+                                    <p class="s-d">{{prod.productPeroidDesc}}</p>
+                                </div>
+                                <div class="v-r">
+                                    <p class="s-a">{{prod.productName}}</p>
+                                    <p class="s-b">{{prod.minAmountDesc}}</p>
+                                </div>
+                            </div>
+                            <!-- 正在购买：buy;预告：ready;售罄：end -->
+                            <p ng-class="prod.tipsClass"><span class="state">{{prod.tipsWords}}</span><span class="msg">{{prod.saleDateDesc}} <span ng-if="prod.showRedDesc" style="color:#f19366;padding-right:5px;">{{prod.saleStatusDesc}}</span><span ng-if="!prod.showRedDesc">{{prod.saleStatusDesc}}</span></span></p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </ion-content>
+    </div>
+</ion-view>

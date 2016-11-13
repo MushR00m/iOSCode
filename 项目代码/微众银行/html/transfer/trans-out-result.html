@@ -1,0 +1,124 @@
+<ion-view>
+    <div class="trf trfr">
+        <ion-header-bar>
+            <div class="menu-ba">
+                <header class="menu"><span class="menu-wd" ></span>转出<span class="menu-wd" ng-if="data.state == data.TRANS_STATE.SUCCESS" ng-click="func.onClickFinish()" >完成</span></header>
+            </div>
+        </ion-header-bar>
+
+        <ion-content class="has-header" has-bouncing="false">
+            <!--<div class="into-logo ok" ng-if="data.state == data.TRANS_STATE.SUCCESS">
+                <p class="a">转出成功</p>
+                <p class="b">资金已实时到账</p>
+                &lt;!&ndash; <p class="b">{{data.bandName+' ' +data.cardType + ' '}}{{data.cardNo | abridgeAccountNumber}}</p> &ndash;&gt;
+            </div>-->
+            <div class="icon-xl wait mgt40" ng-if="data.state == data.TRANS_STATE.PROCESS">
+                <h1>交易处理中</h1>
+                <p>请勿重新操作<br>处理结果可在交易记录中查询</p>
+            </div>
+            <div class="has-btn-block mgt30 mgb30" ng-if="data.state == data.TRANS_STATE.PROCESS"><button class="p-btn p-btn-block" ng-click="func.onClickTransLog()">查看交易记录</button></div>
+            <h1 class="p-c-lorange mgt40" ng-if="data.state == data.TRANS_STATE.SUCCESS">转出成功</h1>
+            <div class="white-box flex mgt20" ng-if="data.state == data.TRANS_STATE.SUCCESS">
+                <!--未知支付账户-->
+                    <span class="item iconcard" ng-if="func.getPayAccount() == data.ACCOUNT_TYPE.INVALID_TYPE">
+                        <i>绑定卡</i>
+                    </span>
+                <!--他行卡支付-->
+                    <span class="item card" ng-if="func.getPayAccount() == data.ACCOUNT_TYPE.OTHER_BANK_CARD">
+                        {{data.payAccountData.otherBankAccount.cardInfo.bankName}}
+                        <br>{{data.payAccountData.otherBankAccount.cardInfo.cardType}}
+                        {{data.payAccountData.otherBankAccount.cardInfo.cardNo | abridgeAccountNumber}}
+                    </span>
+                <!--活期+支付-->
+                    <span class="item plus" ng-if="func.getPayAccount() == data.ACCOUNT_TYPE.CURRENT_PLUS">
+                        <i class="cplus">活期+</i>
+                    </span>
+                <!--微众卡支付 -->
+                    <span class="item iconcard" ng-if="func.getPayAccount() == data.ACCOUNT_TYPE.WEBANK_CARD">
+                        <i class="wcard">微众卡{{data.mainCard.number | abridgeAccountNumber}}</i>
+                    </span>
+                    <span class="item toright p-c-gray">
+                        <span class="p-c-lorange num" ng-if="data.transAmount">{{data.transAmount}}元</span><br>
+                        <span>实时到账</span>
+                    </span>
+                <!--未知收款账户-->
+                    <span class="item bank" ng-if="func.getRecvAccount() == data.ACCOUNT_TYPE.INVALID_TYPE">
+                        <i class="wbank">微众银行</i>
+                    </span>
+                <!--活期+收款-->
+                    <span class="item plus" ng-if="func.getRecvAccount() == data.ACCOUNT_TYPE.CURRENT_PLUS">
+                        <i class="cplus">活期+</i>
+                    </span>
+                <!--微众卡收款-->
+                    <span class="item iconcard" ng-if="func.getRecvAccount() == data.ACCOUNT_TYPE.WEBANK_CARD">
+                        <i class="wcard">微众卡{{data.mainCard.number | abridgeAccountNumber}}</i>
+                    </span>
+                <!--他行卡支付-->
+                    <span class="item card" ng-if="(func.getRecvAccount() == data.ACCOUNT_TYPE.OTHER_BANK_CARD) && !data.userName">
+                        {{data.recvAccountData.otherBankAccount.cardInfo.bankName}}{{data.recvAccountData.otherBankAccount.cardInfo.cardNo | abridgeAccountNumber}}<br>
+                        {{data.recvAccountData.otherBankAccount.cardInfo.cardType}}
+                    </span>
+                <!--他行卡支付含收款人姓名-->
+                    <span class="item card has3rows" ng-if="(func.getRecvAccount() == data.ACCOUNT_TYPE.OTHER_BANK_CARD) && data.userName">
+                        {{data.userName}}<br>
+                        {{data.recvAccountData.otherBankAccount.cardInfo.bankName}}{{data.recvAccountData.otherBankAccount.cardInfo.cardNo | abridgeAccountNumber}}<br>
+                        {{data.recvAccountData.otherBankAccount.cardInfo.cardType}}
+                    </span>
+            </div>
+
+            <div class="p-fz-14 p-ta-c p-c-lorange mgt20" ng-if="data.state == data.TRANS_STATE.SUCCESS && data.redPacketAmount"><span class="p-label-red">红包奖励</span> {{data.redPacketAmount}}元已转入活期+</div>
+            <div class="p-fz-14 p-ta-c p-c-lorange mgt20" ng-if="data.state == data.TRANS_STATE.SUCCESS && !data.redPacketAmount && data.redPacketError"><span >{{data.redPacketError}}</span></div>
+
+            <div class="date-list-wrap mgt30" ng-if="data.state == data.TRANS_STATE.SUCCESS && data.showPlus">
+                <ul class="date-list">
+                    <li class="o"><i></i>{{data.today|formatDateWithoutYear}} 今天 转到活期+{{' ' + data.transAmount}}元</li>
+                    <li class="sx o"><i></i></li>
+                    <li><i></i>{{data.valueDate|formatDateWithoutYear}} {{data.valueDate|formatWeekdayFormDate}} 开始产生收益</li>
+                    <li class="sx"><i></i></li>
+                    <li><i></i>{{data.arrivalDate|formatDateWithoutYear}} {{data.arrivalDate|formatWeekdayFormDate}} 收益到账</li>
+                </ul>
+            </div>
+
+            <div class="p-clear"></div>
+            <!--<div class="has-btn-block mgt20 mgb30" ng-if="data.state == data.TRANS_STATE.SUCCESS && data.showPlus">
+                <button class="p-btn p-btn-block" ng-click="func.onClickFinish()">完成</button>
+            </div>-->
+
+            <div class="result-card mgt30" ng-if="data.state == data.TRANS_STATE.SUCCESS && !data.showPlus">
+                <dl class="p-bgc-fff px-b pdb50">
+                    <dt class="px-a px-lt">详情</dt>
+                    <dd class="flex">
+                        <div class="item left">金额</div>
+                        <div class="item right">{{data.transAmount}}元</div>
+                    </dd>
+                    <dd class="flex" ng-if="(func.getRecvAccount() == data.ACCOUNT_TYPE.OTHER_BANK_CARD) && data.userName">
+                        <div class="item left" >收款人</div>
+                        <div class="item right">{{data.userName}}</div>
+                    </dd>
+                    <dd class="flex" ng-if="func.getRecvAccount() == data.ACCOUNT_TYPE.OTHER_BANK_CARD">
+                        <div class="item left" >收款卡号</div>
+                        <div class="item right">{{data.recvAccountData.otherBankAccount.cardInfo.cardNo|splitAccountNumber}}</div>
+                    </dd>
+                    <dd class="flex" ng-if="func.getRecvAccount() == data.ACCOUNT_TYPE.OTHER_BANK_CARD">
+                        <div class="item left" >收款银行</div>
+                        <div class="item right">{{data.recvAccountData.otherBankAccount.cardInfo.bankName}}</div>
+                    </dd>
+                    <dd class="flex" ng-if="func.getRecvAccount() == data.ACCOUNT_TYPE.WEBANK_CARD">
+                        <div class="item left">收款</div>
+                        <div class="item right" >微众卡{{data.mainCard.number | abridgeAccountNumber}}</div>
+                    </dd>
+                    <dd class="flex">
+                        <div class="item left">付款</div>
+                        <div class="item right" ng-if="func.getPayAccount() == data.ACCOUNT_TYPE.CURRENT_PLUS"><i class="cplus">活期+</i></div>
+                        <div class="item right" ng-if="func.getPayAccount() == data.ACCOUNT_TYPE.WEBANK_CARD">微众卡{{data.mainCard.number | abridgeAccountNumber}}</div>
+                    </dd>
+                    <dd class="flex">
+                        <div class="item left">交易时间</div>
+                        <div class="item right">{{data.transDateDesc}}</div>
+                    </dd>
+                    <!--<dd class="has-btn-block"><button class="p-btn p-btn-block" ng-click="func.onClickFinish()">完成</button></dd>-->
+                </dl>
+            </div>
+        </ion-content>
+    </div>
+</ion-view>

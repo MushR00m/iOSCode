@@ -1,0 +1,34 @@
+<ion-view can-swipe-back="false">
+    <div class="rg">
+        <ion-header-bar>
+            <div class="menu-ba">
+                <header class="menu"><span class="menu-wd" ng-click="func.onClickClose()">关闭</span>绑卡验证</header>
+            </div>
+        </ion-header-bar>
+        <p class="ckbd-hd">如何验证？</p>
+
+        <ion-content has-bouncing="false" class="has-header" >
+            <div class="ckbd-main px-a">
+                <div class="pd">
+                    <dl>
+                        <dt>方案一</dt>
+                        <dd>请通过待绑定卡所在银行<span>柜台、网银、手机银行</span>等渠道向您的微众卡汇入<span>不少于0.01元</span>以完成验证。
+                            <span ng-click="func.onClickTransFAQ()" style="color: #3399EB">转账指引</span>
+                        </dd>
+                    </dl>
+
+                    <p class="process">{{data.bankName}}&nbsp{{data.cardType}}{{data.cardNo|abridgeAccountNumber}}</p>
+                    <i class="process-to"></i>
+                    <p class="process">微众卡<i>{{data.webankCardNo|splitAccountNumber}}</i><span ng-click="func.onClickCopyWebankCard()">复制</span></p>
+
+                    <p class="process-tip">请在{{data.transDate|formatDateToCNWithoutYear}}前汇入</p>
+                </div>
+            </div>
+
+            <div class="px" style="text-align:center;margin-top:5px;padding:20px;background-color:#fff;">
+                <p style="padding-bottom:10px;">方案二</p>
+                <div class="btn-wrap"><button class="btn-c" ng-click="func.onClickVerifyUserOtherWay()">使用其它银行卡验证</button></div>
+            </div>
+        </ion-content>
+    </div>
+</ion-view>

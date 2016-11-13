@@ -1,0 +1,152 @@
+<ion-view>
+
+    <ion-header-bar>
+        <div class="mod-menu">
+            <header class="mod-menu">
+                <button class="mod-menu-return" ng-click="back()"></button>
+                基金
+            </header>
+        </div>
+    </ion-header-bar>
+
+    <ion-content class="has-header" has-bouncing="false">
+        <!--导航-->
+        <div class="mod-tab ui-flex px-a">
+            <div class="{{menuClass[0]}}" ng-click="onClickMenu(0)">投资热点</div>
+            <div class="{{menuClass[1]}}" ng-click="onClickMenu(1)">明星经理</div>
+            <div class="{{menuClass[2]}}" ng-click="onClickMenu(2)">业绩排名</div>
+        </div>
+    </ion-content>
+
+    <ion-content style="top: 90px;padding-top:0" has-bouncing="true" delegate-handle="myContent">
+        <!--投资热点-->
+        <div ng-if="currentMenuIndex==0">
+            <div ng-repeat="item in platesData track by $index">
+                <div class="hot-investment mod-block-item" ng-click="onClickClassify(item)"  ng-if="item.showList.length">
+                    <div class="ui-px-r title">
+                        <span class="s-fz16 s-tblue">{{item.title}}</span>
+                    </div>
+                    <div class="content desc">
+                        <h2 class="s-fz12">{{item.desc}}</h2>
+                    </div>
+                    <i class="ui-arrow"></i>
+                </div>
+
+                <!--<div class="hot-investment mod-block-item">-->
+                    <!--<div class="ui-px-r title">-->
+                        <!--<span class="s-fz16 s-tblue">国防军工</span>-->
+                    <!--</div>-->
+                    <!--<div class="content desc">-->
+                        <!--<h2 class="s-fz12">东北亚形式紧张事态严重</h2>-->
+                    <!--</div>-->
+                    <!--<i class="ui-arrow"></i>-->
+                <!--</div>-->
+
+
+                <div class="hot-investment mod-product-list ui-px-a"  ng-if="item.showList.length">
+                    <div ng-class="{'item':!$index,'item ui-px-b':$index}" ng-repeat="info in item.showList | limitTo:2  track by $index" ng-bind-html="info.htmlStr | toTrusted" ng-click="onClickProduct(info,'plates')"></div>
+                </div>
+
+                <!--<div class="hot-investment mod-product-list ui-px-a">-->
+                    <!--<div class="item">-->
+                        <!--<div class="left">-->
+                            <!--<p class="number s-fz24">-21.90<span class="s-fz12">%</span></p>-->
+                            <!--<p class="tip">近一年涨幅</p>-->
+                        <!--</div>-->
+                        <!--<div class="right">-->
+                            <!--<h1>汇添富环保行业</h1>-->
+                            <!--<p><span class="ui-px-r s-pr8">费率1折</span><span class="s-pl8">领跑3年</span></p>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="item ui-px-b">-->
+                        <!--<div class="left">-->
+                            <!--<p class="number s-fz24">21.90<span class="s-fz12">%</span></p>-->
+                            <!--<p class="tip">近一年涨幅</p>-->
+                        <!--</div>-->
+                        <!--<div class="right">-->
+                            <!--<h1>博时裕益混合</h1>-->
+                            <!--<p><span class="ui-px-r s-pr8">费率1折</span><span class="s-pl8">领跑3年</span></p>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+
+            </div>
+        </div>
+
+        <!--明星经理-->
+        <div class="con-gp px" ng-if="currentMenuIndex==1">
+            <div ng-repeat="item in starsData track by $index">
+                <div class="manager-star mod-block-item" ng-click="onClickClassify(item)" ng-if="item.showList.length">
+                    <div class="ui-px-r s-w56 s-pl15">
+                        <div class="ui-user-photo"><img ng-src="{{item.icon}}"></div>
+                    </div>
+                    <div class="content s-pl24">
+                        <h1>{{item.name}}</h1>
+
+                        <h2 class="s-fz12">{{item.desc}}</h2>
+                    </div>
+                    <i class="ui-arrow" ></i>
+                </div>
+
+                <!--<div class="mod-block-item">-->
+                    <!--<div class="ui-px-r s-w56 s-pl15">-->
+                        <!--<div class="ui-user-photo"><img src="../../www/img/face-a.jpg" alt="用户名"></div>-->
+                    <!--</div>-->
+                    <!--<div class="content s-pl24">-->
+                        <!--<h1>任泽松</h1>-->
+                        <!--<h2 class="s-fz12">2013年管理的基金获得冠军</h2>-->
+                    <!--</div>-->
+                    <!--<i class="ui-arrow"></i>-->
+                <!--</div>-->
+
+                <div class="hot-investment mod-product-list ui-px-a" ng-if="item.showList.length">
+                    <div ng-class="{'item':!$index,'item ui-px-b':$index}" ng-repeat="info in item.showList | limitTo:2 track by $index" ng-bind-html="info.htmlStr | toTrusted" ng-click="onClickProduct(info,'stars')"></div>
+                </div>
+
+                <!--<div class="hot-investment mod-product-list ui-px-a">-->
+                    <!--<div class="item">-->
+                        <!--<div class="left">-->
+                            <!--<p class="number s-fz24">21.90<span class="s-fz12">%</span></p>-->
+                            <!--<p class="tip">近一年涨幅</p>-->
+                        <!--</div>-->
+                        <!--<div class="right">-->
+                            <!--<h1>中邮战略新兴产业</h1>-->
+                            <!--<p><span class="ui-px-r s-pr8">费率1折</span><span class="s-pl8">领跑3年</span></p>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="item ui-px-b">-->
+                        <!--<div class="left">-->
+                            <!--<p class="number s-fz24">21.90<span class="s-fz12">%</span></p>-->
+                            <!--<p class="tip">近一年涨幅</p>-->
+                        <!--</div>-->
+                        <!--<div class="right">-->
+                            <!--<h1>中邮战略新兴产业</h1>-->
+                            <!--<p><span class="ui-px-r s-pr8">费率1折</span><span class="s-pl8">领跑3年</span></p>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+
+            </div>
+        </div>
+
+        <!--列表-->
+        <div class="con-gp px" ng-if="currentMenuIndex==2">
+
+            <div class="mod-table-3 ui-px-a">
+                <div class="header ui-px-a">
+                    <div class="num">年涨幅</div>
+                    <div class="text">基金名称</div>
+                    <div>单位净值(元)</div>
+                </div>
+                <div class="content">
+                    <div ng-class="{'item ui-px-b' : $index ,'item' : !$index }" ng-repeat="item in allData track by $index" ng-click="onClickProduct(item,'income')">
+                        <div class="{{item.pencentClass}}" ng-bind-html="item.earningsRateStr | toTrusted"></div>
+                        <div class="text s-fz13">{{item.productName}}</div>
+                        <div class="s-fz13 s-lgray value">{{item.realValue}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+
+</ion-view>

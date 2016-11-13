@@ -1,0 +1,51 @@
+<ion-view>
+    <div class="trar p-c-blue">
+        <ion-header-bar>
+            <div class="menu-ba">
+                <header class="menu">
+                    <button class="menu-return" ng-click="back()"></button>
+                    交易详情
+                </header>
+            </div>
+        </ion-header-bar>
+        <ion-content class="has-header" has-bouncing="true">
+            <section class="records-card px mgt20">
+                <ul>
+                    <li>
+                        <h1 class="p-c-lorange p-fz-14">{{transDesc}}</h1>
+                        <p><span class="num">{{transAmount}}</span>{{transAmountLast}}</p>
+                    </li>
+                    <li class="flex px-b px-lt" ng-if="!transSucess">
+                        <div class="item">失败原因</div>
+                        <div class="item">{{errLog}}</div>
+                    </li>
+                    <li class="flex px-b px-lt">
+                        <div class="item">交易类型</div>
+                        <div class="item">{{transTypeDesc}}</div>
+                    </li>
+
+                    <li class="flex px-b px-lt">
+                        <div class="item">收款账户</div>
+                        <div class="item"><span class="num">{{transTo}}</span></div>
+                    </li>
+
+                    <!--付款账户-->
+                    <li class="flex px-b px-lt">
+                        <div class="item">付款账户</div>
+                        <div class="item">{{transFrom}}</div>
+                    </li>
+
+                    <li class="flex px-b px-lt">
+                        <div class="item">交易时间</div>
+                        <div class="item">{{dateStr}}</div>
+                    </li>
+                    <li class="flex px-b px-lt">
+                        <div class="item">订单编号</div>
+                        <div class="item p-fz-12">{{transSerno}}</div>
+                    </li>
+                </ul>
+            </section>
+        </ion-content>
+    </div>
+
+</ion-view>

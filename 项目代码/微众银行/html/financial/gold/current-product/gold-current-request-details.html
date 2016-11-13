@@ -1,0 +1,64 @@
+<ion-view>
+    <ion-header-bar>
+        <div class="mod-menu">
+            <header class="mod-menu">
+                <button class="mod-menu-return" ng-click="back()"></button>
+                挂单详情
+                <span class="mod-menu-finish" ng-if="data.obj.status=='0'" ng-click="onClickCancel()">撤销</span>
+            </header>
+        </div>
+    </ion-header-bar>
+
+    <ion-content class="has-header" has-bouncing="false">
+        <div class="mod-form" ng-click="">
+            <p class="s-orange s-fz12 s-pt15" ng-if="data.obj.status=='0' && data.obj.order_type=='1'">买入活期金，等待成交</p>
+            <p class="s-orange s-fz12 s-pt15" ng-if="data.obj.status=='0' && data.obj.order_type=='2'">卖出活期金，等待成交</p>
+            <p class="s-pt2 s-mb15 s-fz24" ng-if="data.obj.application_weight">{{data.obj.application_weight | formatGoldString}}<span class="s-fz12">克</span></p>
+            <p class="s-pt2 s-mb15 s-fz24" ng-if="!data.obj.application_weight && data.obj.application_amount">{{data.obj.application_amount | formatMoneyStringV2}}<span class="s-fz12">元</span></p>
+            <div class="item ui-px-b">
+                <p class="s-w105 s-lgray" ng-if="data.obj.order_type=='1'">买入价格</p>
+                <p class="s-w105 s-lgray" ng-if="data.obj.order_type=='2'">卖出价格</p>
+                <p class="content">{{data.obj.application_price | formatMoneyStringV2}}元/克</p>
+            </div>
+            <div class="item ui-px-b" ng-if="data.obj.application_weight && data.obj.order_type=='1'">
+                <p class="s-w105 s-lgray">买入克数</p>
+                <p class="content">{{data.obj.application_weight | formatGoldString}}克</p>
+            </div>
+            <div class="item ui-px-b" ng-if="data.obj.application_weight && data.obj.order_type=='2'">
+                <p class="s-w105 s-lgray">卖出克数</p>
+                <p class="content">{{data.obj.application_weight | formatGoldString}}克</p>
+            </div>
+            <div class="item ui-px-b" ng-if="!data.obj.application_weight && data.obj.application_amount && data.obj.order_type=='1'">
+                <p class="s-w105 s-lgray">买入金额</p>
+                <p class="content">{{data.obj.application_amount | formatMoneyStringV2}}元</p>
+            </div>
+            <div class="item ui-px-b">
+                <p class="s-w105 s-lgray">挂单时间</p>
+                <p class="content">{{data.obj.create_date | formatYYYYMMDDString}} {{data.obj.create_time | formatTimeStringToHHMMV2}}</p>
+            </div>
+            <div class="item ui-px-b">
+                <p class="s-w105 s-lgray">有效期至</p>
+                <p class="content">{{data.obj.order_end_date | formatYYYYMMDDString}} 23:59</p>
+            </div>
+            <div class="item ui-px-b">
+                <p class="s-w105 s-lgray">流水号</p>
+                <p class="content">{{data.obj.trans_serno}}</p>
+            </div>
+        </div>
+    </ion-content>
+
+    <div slider-up-confirm slider-up-confirm-option="data.sliderUpConfirmOption"></div>
+
+    <div pwd-input
+         ng-model="vm.formData.confirmPassword"
+         is-pwd-show="data.isPwdShow"
+         sig-on-pwd-commit="data.sigOnPwdCommit"
+         pwd-sub-title="data.pwdSubTitle"
+         pwd-trans-desc="data.pwdTransDesc"
+         pay-way-desc="data.payWayDesc"
+         on-click-change-pay-way="onSelectPayWay"
+         commit-callback="onPasswordCommit"
+            >
+    </div>
+
+</ion-view>

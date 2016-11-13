@@ -1,0 +1,80 @@
+<ion-view>
+
+    <ion-header-bar>
+        <div class="mod-menu">
+            <header class="mod-menu">
+                <button class="mod-menu-return" ng-click="back()"></button>
+                理财
+            </header>
+        </div>
+    </ion-header-bar>
+    <ion-content class="has-header" has-bouncing="false">
+        <menu class="mod-flex mod-menu-filter ui-px-a">
+            <div class="{{menuClass[0]}}" ng-click="onClickMainMenu(0)"><span>产品期限</span></div>
+            <div class="{{menuClass[1]}}" ng-click="onClickMainMenu(1)"><span>收益排行</span></div><!-- desc降序或asc升序-->
+            <div class="{{filterClass}}" ng-click="onClickMainMenu(2)"><span class="ui-px-l">筛选</span></div>
+        </menu>
+
+        <ul class="mod-flex mod-options" ng-if="showFilter">
+            <li class="{{subMenuClass[0]}}" ng-click="onClickSubMenu(0)">即将开售</li>
+            <li class="{{subMenuClass[1]}}" ng-click="onClickSubMenu(1)">在售</li>
+            <li class="{{subMenuClass[2]}}" ng-click="onClickSubMenu(2)">已售罄</li>
+            <!--<li class="{{subMenuClass[3]}}" ng-click="onClickSubMenu(3)">全部</li>-->
+        </ul>
+    </ion-content>
+
+    <ion-content style="top: 88px;" has-bouncing="true" ng-style="contentStyle()" delegate-handle="myContent">
+
+        <!--收益排行-->
+        <div ng-if="currentMenuIndex == 1">
+            <div class="financial mod-product-list ui-px-a" ng-if="!showEmpty">
+                <div ng-class="{'item':!$index,'item ui-px-b':$index}" ng-repeat="info in displayDataArr track by $index" ng-bind-html="info.htmlStr | toTrusted" ng-click="onClickProduct(info)"></div>
+            </div>
+            <div class="ui-empty-financial" ng-if="showEmpty">还木有理财产品</div>
+        </div>
+
+        <!--产品期限-->
+        <div ng-if="currentMenuIndex == 0">
+
+            <div ng-repeat="item in displayCategory track by $index">
+                <div ng-class="{'mod-block-item header s-mt0':!$index,'mod-block-item header':$index}" class="mod-block-item" ng-if="item.list.length">
+                    <i class="{{item.className}}"></i>
+                </div>
+                <div class="financial mod-product-list ui-px-a" ng-if="item.list.length">
+                    <div ng-class="{'item':!$index,'item ui-px-b':$index}" ng-repeat="info in item.list track by $index" ng-bind-html="info.htmlStr | toTrusted" ng-click="onClickProduct(info)"></div>
+                </div>
+            </div>
+
+
+
+            <!--<div class="mod-block-item s-mt0" ng-if="displayCategory[0].length">-->
+                <!--<i class="cplus">活期+</i>-->
+            <!--</div>-->
+            <!--<div class="mod-product-list ui-px-a" ng-if="displayCategory[0].length">-->
+                <!--<div ng-class="{'item':!$index,'item ui-px-b':$index}" ng-repeat="info in displayCategory[0] track by $index" ng-bind-html="info.htmlStr | toTrusted" ng-click="onClickProduct(info)"></div>-->
+            <!--</div>-->
+
+            <!--<div class="mod-block-item" ng-if="displayCategory[3].length">-->
+                <!--<i class="splus">短期+</i>-->
+            <!--</div>-->
+            <!--<div class="mod-product-list ui-px-a" ng-if="displayCategory[3].length">-->
+                <!--<div ng-class="{'item':!$index,'item ui-px-b':$index}" ng-repeat="info in displayCategory[3] track by $index" ng-bind-html="info.htmlStr | toTrusted" ng-click="onClickProduct(info)"></div>-->
+            <!--</div>-->
+
+            <!--<div class="mod-block-item" ng-if="displayCategory[1].length">-->
+                <!--<i class="dplus">定期+</i>-->
+            <!--</div>-->
+            <!--<div class="mod-product-list ui-px-a" ng-if="displayCategory[1].length">-->
+                <!--<div ng-class="{'item':!$index,'item ui-px-b':$index}" ng-repeat="info in displayCategory[1] track by $index" ng-bind-html="info.htmlStr | toTrusted" ng-click="onClickProduct(info)"></div>-->
+            <!--</div>-->
+            <div class="ui-empty-financial" ng-if="showEmpty">还木有理财产品</div>
+        </div>
+
+
+        <!--<div class="ui-empty-financial">还木有理财产品</div>-->
+
+        <!--<div class="ui-box-dummy"></div>-->
+    </ion-content>
+
+
+</ion-view>

@@ -1,0 +1,52 @@
+<ion-view>
+    <div class="lc lcl">
+        <ion-header-bar>
+            <div class="menu-ba">
+                <header class="menu"><button class="menu-return" ng-click="func.back()"></button>结构化产品<span class="menu-wd" ng-click="func.onCheckTransLog()">交易查询</span></header>
+            </div>
+        </ion-header-bar>
+        <ion-content has-bouncing="false" class="has-header"  delegate-handle="myContent">
+
+            <div class="lc-hd-wrap flex">
+                <div class="total-num item">
+                    <span class="t">理财总额（元）</span>
+                    <!--<span class="num">986,456.<i class="s">83</i></span>-->
+                    <span class="num">{{data.totalStructuredAmount}}</span>
+                </div>
+                <div class="sp-num item">
+                    <span class="t">理财产品（个）</span>
+                    <span class="num">{{data.structuredCount}}</span>
+                    <!--<span class="k">理财产品 (个）&#12288;<i class="v">{{data.structuredCount}}</i></span>-->
+                </div>
+            </div>
+
+            <!-- 稳赢理财 -->
+            <div ng-if="data.structuredCount">
+                <ul class="lc-card-list dq">
+                    <li ng-repeat="item in data.structuredListArr" ng-click="func.onClickStructured(item)">
+                        <div class="hd">
+                            <span class="name">{{item.prodName}}  --  {{item.changeTypeStr}}</span>
+                            <span class="msg">{{item.descTop}}</span>
+                            <!--<div class="cd-wrap" style="width:50%;"></div>-->
+                            <div class="cd-wrap" style="width:0%;"></div>
+                        </div>
+                        <div class="bd">
+                            <div class="con">
+                                <div class="l">
+                                    <!--<div class="sy">昨日<span class="up"><span class="fz">68.<i>00</i></span></span></div>-->
+                                    <!--<div class="wt hide">等待收益</div>-->
+                                    <div class="sy" ng-if="item.isMakingValue">{{item.stateDesc}}<span class="up"><span class="fz">{{item.lastIncome}}</span></span></div>
+                                    <div class="wt" ng-if="!item.isMakingValue">{{item.stateDesc}}</div>
+                                </div>
+                                <span class="r"><span>{{item.amount}}元</span></span>
+                            </div>
+                            <p class="wd" ng-if="item.descBottom.length > 0">{{item.descBottom}}</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <img src="../img/fc-more@2x.png" alt="" style="display: block;width: 176px;height: 96px;margin: 40px auto 0;" ng-if="!data.structuredCount">
+        </ion-content>
+    </div>
+</ion-view>

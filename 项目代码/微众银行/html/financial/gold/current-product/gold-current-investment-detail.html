@@ -1,0 +1,57 @@
+<ion-view>
+    <ion-header-bar>
+        <div class="mod-menu">
+            <header class="mod-menu">
+                <button class="mod-menu-return" ng-click="back()"></button>
+                定投计划
+                <span class="mod-menu-finish" ng-click="onClickCancel()">删除</span>
+            </header>
+        </div>
+    </ion-header-bar>
+
+    <ion-content class="has-header" has-bouncing="false">
+        <div class="mod-form" ng-click="">
+            <p class="s-orange s-fz12 s-pt15" ng-if="data.obj.freqType == 1">每周{{data.obj.freqNum}}买入活期金</p>
+            <p class="s-orange s-fz12 s-pt15" ng-if="data.obj.freqType == 2">每月{{data.obj.freqNum}}日买入活期金</p>
+
+            <p class="s-pt2 s-mb15 s-fz24" ng-if="data.obj.applicationWeight > 0">{{data.obj.applicationWeight | formatMoneyStringV2}}<span class="s-fz12">克</span></p>
+            <p class="s-pt2 s-mb15 s-fz24" ng-if="data.obj.applicationAmount > 0">{{data.obj.applicationAmount | formatMoneyStringV2}}<span class="s-fz12">元</span></p>
+
+            <div class="item ui-px-b" ng-if="data.obj.applicationWeight">
+                <p class="s-w105 s-lgray">买入克数</p>
+                <p class="content">{{data.obj.applicationWeight | formatGoldString}}</p>
+            </div>
+            <div class="item ui-px-b" ng-if="data.obj.applicationAmount">
+                <p class="s-w105 s-lgray">买入金额</p>
+                <p class="content">{{data.obj.applicationAmount | formatMoneyStringV2}}</p>
+            </div>
+            <div class="item ui-px-b">
+                <p class="s-w105 s-lgray">付款账户</p>
+                <p class="content" ng-if="data.obj.payFlag == '2'">活期+</p>
+                <p class="content" ng-if="data.obj.payFlag == '3'">微众卡</p>
+            </div>
+            <div class="item ui-px-b">
+                <p class="s-w105 s-lgray">有效期至</p>
+                <p class="content">{{data.obj.endDate | formatYYYYMMDDToCNString}}</p>
+            </div>
+            <div class="item ui-px-b" ng-if="data.obj.nextDate">
+                <p class="s-w105 s-lgray">下次计划执行</p>
+                <p class="content">{{data.obj.nextDate | formatYYYYMMDDToCNString}}</p>
+            </div>
+        </div>
+    </ion-content>
+
+    <div slider-up-confirm slider-up-confirm-option="data.sliderUpConfirmOption"></div>
+
+    <div pwd-input
+         ng-model="vm.formData.confirmPassword"
+         is-pwd-show="data.isPwdShow"
+         sig-on-pwd-commit="data.sigOnPwdCommit"
+         pwd-sub-title="data.pwdSubTitle"
+         pwd-trans-desc="data.pwdTransDesc"
+         pay-way-desc="data.payWayDesc"
+         on-click-change-pay-way="onSelectPayWay"
+            >
+    </div>
+
+</ion-view>
