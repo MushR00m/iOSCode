@@ -1,0 +1,44 @@
+<html>
+    
+<head></head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <script type="text/javascript">
+        function test2(a){
+            alert(a);
+        }
+        //遍历数组
+        function ArrayFun(array)
+        {
+            for(var i = 0; i < array.length; i++)
+            {
+                alert(array[i]);
+            }
+        }
+        // 遍历字典
+        function DictionaryFun(dict)
+        {
+            for (var key in dict)
+            {
+                alert(key + " : " + dict[key]);
+            }
+        }
+    </script>
+    
+    <body>
+        <h1>测试</1>
+        <div>
+        <button onclick="test2('123')">Click</button>
+        <button onclick="test('123','456')">block方式调用</button>
+        </div>
+        <br>
+        <h5 style="color:blue" onclick="method.show();">调用OC无参无返回值方法</h5>
+        <h5 style="color:blue" onclick="alert(method.returnString());">从OC返回字符串</h5>
+        <h5 style="color:blue" onclick="method.showNumber(1,2);">传递2个整数到OC</h5>
+        <h5 style="color:blue" onclick="alert(method.returnSum(10,20));">传递2个整数到OC，得到他们的和</h5>
+        <h5 style="color:blue" onclick="method.arrayTest([1,2,'hello oc', {'name':'jack'}]);">传递数组到OC</h5>
+        <h5 style="color:blue" onclick="method.dictTest({'name':'jack', 'data':[1, 'hello', {'age' : 10}]});">传递字典到OC</h5>
+        <h5 style="color:blue" onclick="DictionaryFun(method.returnDict());">从OC返回字典</h5>
+        <h5 style="color:blue" onclick="ArrayFun(method.returnArray());">从OC返回数组</h5>
+    </body>
+    
+</html>
