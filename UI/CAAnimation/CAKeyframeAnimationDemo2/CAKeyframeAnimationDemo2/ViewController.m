@@ -44,7 +44,7 @@
     //keyTimes属性指定的是当前状态节点到初始状态节点的时间占动画总时长的比例。若果不设置keyTimes则匀速播放
     //animation.keyTimes = @[@0,@0.8,@1];
 
-    //指定了path属性，所以这时values属性将被忽略，按照指定的path运动。
+    //指定了path属性，所以这时values属性将被忽略，按照指定的path运动。  设置了path，那么values将被忽略
     animation.path = [UIBezierPath bezierPathWithOvalInRect:CGRectMake(100, 100, 100, 100)].CGPath;
     animation.repeatCount = MAXFLOAT;
 //    animation.keyTimes = @[@0,@0.25,@0.5,@0.75,@1];
