@@ -33,14 +33,15 @@
         
         if ([_locationM respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
             //NSLocationAlwaysUsageDescription
-            [_locationM requestAlwaysAuthorization];
+//            [_locationM requestAlwaysAuthorization];
             
             //NSLocationWhenInUseUsageDescription  必须添加key 
             [_locationM requestWhenInUseAuthorization];
         }
         
-        _locationM.distanceFilter = 1000;
-        _locationM.desiredAccuracy =  kCLLocationAccuracyBest;
+        //设置对于的值，节省定位电量
+//        _locationM.distanceFilter = 1000;
+//        _locationM.desiredAccuracy =  kCLLocationAccuracyBest;
         
     }
     
@@ -53,9 +54,9 @@
         NSLog(@"3.定位服务是开启状态，需要手动授权，即跳转设置界面");
         NSURL *settingURL = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
         if ([[UIApplication sharedApplication] canOpenURL:settingURL]) {
-            [[UIApplication sharedApplication] openURL:settingURL options:nil completionHandler:^(BOOL success) {
-                NSLog(@"用户跳转设置界面");
-            }];
+//            [[UIApplication sharedApplication] openURL:settingURL options:nil completionHandler:^(BOOL success) {
+//                NSLog(@"用户跳转设置界面");
+//            }];
         }
         
     } else {
@@ -92,7 +93,7 @@
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations
 {
     NSLog(@"位置信息:%@", locations);
-    [manager stopUpdatingLocation];
+//    [manager stopUpdatingLocation];
 
 }
 
