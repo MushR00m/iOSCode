@@ -147,7 +147,7 @@
 				TargetAttributes = {
 					2B057F801DC98874006F8321 = {
 						CreatedOnToolsVersion = 8.1;
-						DevelopmentTeam = 9W7423KJSN;
+						DevelopmentTeam = J677528P65;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -313,12 +313,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEVELOPMENT_TEAM = 9W7423KJSN;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = NWDAddressBook/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.chensongqi.test1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.inhouse.smartfinance;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "01a23625-7ee1-48c8-bc55-6540f084712a";
 			};
 			name = Debug;
 		};
@@ -326,12 +329,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Shanghai Jia Yin Financial Service Co., Ltd.";
 				DEVELOPMENT_TEAM = 9W7423KJSN;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = NWDAddressBook/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.chensongqi.test1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.inhouse.smartfinance;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "01a23625-7ee1-48c8-bc55-6540f084712a";
 			};
 			name = Release;
 		};
