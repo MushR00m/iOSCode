@@ -22,7 +22,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self createShapeLayer];
+    [self createGradientLayer];
 
 }
 
@@ -43,11 +43,12 @@
     self.gradientLayer = [[CAGradientLayer alloc] init];
     self.gradientLayer.frame = self.view.bounds;//CGRectMake(100, 300, 100, 100);
     self.gradientLayer.colors = @[(id)[UIColor redColor].CGColor,
-                                  (id)[UIColor blackColor].CGColor];
-    
-    self.gradientLayer.locations = @[@0.1,@0.5];
+                                  (id)[UIColor greenColor].CGColor];
+    // red red--> green green
+    self.gradientLayer.locations = @[@0.3,@0.5];
     self.gradientLayer.startPoint = CGPointMake(0, 0);
     self.gradientLayer.endPoint = CGPointMake(0, 1);
+
     [self.view.layer addSublayer:self.gradientLayer];
 }
 
@@ -69,6 +70,7 @@
     [path closePath];
     
     self.shapelayer.path = path.CGPath;
+    //如何动画？
     
     [self.view.layer addSublayer:self.shapelayer];
 }
