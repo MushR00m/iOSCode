@@ -26,9 +26,8 @@
 {
     CATransition *animation = [CATransition animation];
     animation.duration = 3.0f;
-    animation.fillMode = kCAFillModeForwards;
-    animation.type = @"rippleEffect";
-    animation.subtype = kCATransitionFromTop;
+    animation.type = @"push";
+    animation.subtype = kCATransitionFromRight;
     [self.testImageView.layer addAnimation:animation forKey:@"ripple"];
     
     //能用的情况有，imageView切换图片，控制器的push或modal，UIView对象调用exchangeSubviewAtIndex：WithIndex：方法

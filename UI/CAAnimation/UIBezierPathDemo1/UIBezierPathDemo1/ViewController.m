@@ -10,15 +10,18 @@
 
 @interface ViewController ()
 
+@property (nonatomic, strong) CALayer *testLayer;
+
 @end
 
 @implementation ViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor blackColor];
+    self.view.backgroundColor = [UIColor whiteColor];
     
-    [self testMethod6];
+    [self createTestLayer];
+//    [self testMethod7];
 }
 
 //不规则多边形
@@ -54,7 +57,6 @@
     shapeLayer.strokeColor = [UIColor greenColor].CGColor;
     shapeLayer.fillColor = [UIColor redColor].CGColor;
     [self.view.layer addSublayer:shapeLayer];
-
 }
 
 //画矩形
@@ -81,6 +83,17 @@
     
 }
 
+- (void)testBezierPath4
+{
+    CAKeyframeAnimation *animation = [CAKeyframeAnimation animationWithKeyPath:@"position"];
+    animation.duration = 5;
+    animation.calculationMode = kCAAnimationCubicPaced;
+    
+    UIBezierPath *aPath = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(20, 45, 100, 100) byRoundingCorners:UIRectCornerTopLeft cornerRadii:CGSizeMake(80, 80)];
+    animation.path = aPath.CGPath;
+    [self.testLayer addAnimation:animation forKey:@"xxxx"];
+}
+
 //画弧线
 - (void)testMethod5
 {
@@ -91,6 +104,18 @@
     shapeLayer.strokeColor = [UIColor greenColor].CGColor;
     shapeLayer.fillColor = [UIColor redColor].CGColor;
     [self.view.layer addSublayer:shapeLayer];
+}
+
+- (void)testBezierPath5
+{
+    CAKeyframeAnimation *animation = [CAKeyframeAnimation animationWithKeyPath:@"position"];
+    animation.duration = 5;
+    animation.calculationMode = kCAAnimationCubicPaced;
+    
+    UIBezierPath *aPath = [UIBezierPath bezierPathWithArcCenter:CGPointMake(150, 150) radius:75 startAngle:0 endAngle:(M_PI) clockwise:NO];
+    animation.path = aPath.CGPath;
+    [self.testLayer addAnimation:animation forKey:@"positionAnimation"];
+
 }
 
 //画曲线
@@ -106,5 +131,31 @@
     [self.view.layer addSublayer:shapeLayer];
 }
 
+- (void)testMethod7
+{
+    CABasicAnimation* rotationAnimation;
+    rotationAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
+    rotationAnimation.toValue = [NSNumber numberWithFloat: (-20.8)*M_PI/180 ];
+    rotationAnimation.duration = 2.5f;
+    rotationAnimation.cumulative = YES;
+    rotationAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    rotationAnimation.fillMode=kCAFillModeForwards;
+    rotationAnimation.removedOnCompletion = NO;
+    [self.testLayer addAnimation:rotationAnimation forKey:@"rotationAnimation"];
+
+}
+
+- (void)createTestLayer
+{
+    self.testLayer = [CALayer layer];
+    self.testLayer.frame = CGRectMake(200, 200, 5, 5);
+    self.testLayer.backgroundColor = [[UIColor redColor] CGColor];
+    [self.view.layer addSublayer:self.testLayer];
+}
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    [self testBezierPath5];
+}
 
 @end
