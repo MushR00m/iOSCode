@@ -32,6 +32,7 @@
 {
     CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"position"];
     animation.removedOnCompletion = NO;
+    //要想fillMode有效，最好设置removedOnCompletion = NO
     animation.fillMode = kCAFillModeForwards;
     animation.duration = 5;
 //    animation.speed = 5;
