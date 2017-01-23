@@ -30,7 +30,7 @@
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
-    [self transformAnimationTest];
+    [self rotationAnimationTest];
 }
 
 - (void)test1 {
@@ -69,11 +69,14 @@
 
 //旋转动画
 - (void)rotationAnimationTest {
+    self.testView.layer.anchorPoint = CGPointMake(0, 0);
     // 对Y轴进行旋转（指定Z轴的话，就和UIView的动画一样绕中心旋转）
-    CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.y"];
+    CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
     
     // 设定动画选项
     animation.duration = 1; // 持续时间
+    animation.removedOnCompletion = NO;
+    animation.fillMode = kCAFillModeForwards;
 
     // 设定旋转角度
     animation.fromValue = [NSNumber numberWithFloat:0.0]; // 起始角度
