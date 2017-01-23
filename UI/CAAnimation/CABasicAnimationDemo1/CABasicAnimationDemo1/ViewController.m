@@ -30,14 +30,18 @@
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
+    [self transformAnimationTest];
+}
+
+- (void)test1 {
     CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"position"];
     animation.removedOnCompletion = NO;
     //要想fillMode有效，最好设置removedOnCompletion = NO
     animation.fillMode = kCAFillModeForwards;
     animation.duration = 5;
-//    animation.speed = 5;
+    //    animation.speed = 5;
     animation.beginTime = CACurrentMediaTime() + 1;
-//    animation.repeatCount = MAXFLOAT;
+    //    animation.repeatCount = MAXFLOAT;
     
     animation.toValue = [NSValue valueWithCGPoint:CGPointMake(300, 300)];
     [self.testView.layer addAnimation:animation forKey:nil];
@@ -47,7 +51,6 @@
         NSLog(@"self.testView.layer 2  = %@",NSStringFromCGRect(self.testView.layer.frame));
         [self test2];
     });
-    
 
 }
 
@@ -64,10 +67,61 @@
 
 }
 
+//旋转动画
+- (void)rotationAnimationTest {
+    // 对Y轴进行旋转（指定Z轴的话，就和UIView的动画一样绕中心旋转）
+    CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.y"];
+    
+    // 设定动画选项
+    animation.duration = 1; // 持续时间
+
+    // 设定旋转角度
+    animation.fromValue = [NSNumber numberWithFloat:0.0]; // 起始角度
+    animation.toValue = [NSNumber numberWithFloat:M_PI]; // 终止角度
+    
+    // 添加动画
+    [self.testView.layer addAnimation:animation forKey:@"rotate-layer"];
+
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
+- (void)scaleAnimationTest {
+    /* 放大缩小 */
+    
+    // 设定为缩放
+    CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
+    
+    // 动画选项设定
+    animation.duration = 2.5; // 动画持续时间
+    animation.repeatCount = 1; // 重复次数
+    animation.autoreverses = YES; // 动画结束时执行逆动画
+    
+    // 缩放倍数
+    animation.fromValue = [NSNumber numberWithFloat:1.0]; // 开始时的倍率
+    animation.toValue = [NSNumber numberWithFloat:2.0]; // 结束时的倍率
+    
+    // 添加动画
+    [self.testView.layer addAnimation:animation forKey:@"scale-layer"];
+}
+
+- (void)transformAnimationTest {
+    /* 移动 */
+    CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"position"];
+    
+    // 动画选项的设定
+    animation.duration = 2.5; // 持续时间
+    animation.repeatCount = 1; // 重复次数
+    
+    // 起始帧和终了帧的设定
+    animation.fromValue = [NSValue valueWithCGPoint:self.testView.layer.position]; // 起始帧
+    animation.toValue = [NSValue valueWithCGPoint:CGPointMake(375, 667)]; // 终了帧
+    
+    // 添加动画
+    [self.testView.layer addAnimation:animation forKey:@"move-layer"];
+}
 
 @end
