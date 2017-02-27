@@ -66,8 +66,16 @@ void dynamicMethodIMP(id self, SEL _cmd)
     NSMethodSignature *signature = [super methodSignatureForSelector:selector];
     
     if (!signature) {
-        OtherTestObject *none = [[OtherTestObject alloc] init];
-        signature = [none methodSignatureForSelector:selector];
+//        OtherTestObject *none = [[OtherTestObject alloc] init];
+//        signature = [none methodSignatureForSelector:selector];
+        signature = [NSMethodSignature signatureWithObjCTypes:"v@:"];
+        /**
+         <NSInvocation: 0x100202090>
+         return value: {v} void
+         target: {@} 0x100201880
+         selector: {:} testMethod
+
+         */
     }
     return signature;
 }
