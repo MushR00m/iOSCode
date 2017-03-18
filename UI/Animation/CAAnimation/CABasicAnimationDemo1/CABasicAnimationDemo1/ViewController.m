@@ -23,6 +23,7 @@
     
     self.testView.backgroundColor = [UIColor redColor];
     [self.view addSubview:self.testView];
+    //self.testView.layer 1  = {{50, 50}, {100, 100}}
     NSLog(@"self.testView.layer 1  = %@",NSStringFromCGRect(self.testView.layer.frame));
 
 }
@@ -30,7 +31,8 @@
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
-    [self rotationAnimationTest];
+//    [self rotationAnimationTest];
+    [self test1];
 }
 
 - (void)test1 {
@@ -48,8 +50,12 @@
     //因为当你调用addAnimation：forKey：这句时，其实系统是对你传入的animation进行了一次copy，然后把copy的这份添加在图层上。这时你再改animation当然是不能更改动画效果的了。
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(8 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        //self.testView.layer 2  = {{50, 50}, {100, 100}}
         NSLog(@"self.testView.layer 2  = %@",NSStringFromCGRect(self.testView.layer.frame));
-        [self test2];
+        //self.testView.layer presentation  = {{249.99996423721313, 249.99996423721313}, {100, 100}}
+        NSLog(@"self.testView.layer presentation  = %@",NSStringFromCGRect(self.testView.layer.presentationLayer.frame));
+
+       // [self test2];
     });
 
 }
