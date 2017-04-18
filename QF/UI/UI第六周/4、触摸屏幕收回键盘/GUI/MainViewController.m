@@ -37,7 +37,19 @@
     
     [textField release];
     
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    btn.frame = CGRectMake(50, 120, 100, 40);
+    [btn setTitle:@"测试" forState:UIControlStateNormal];
+    [btn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+    [btn addTarget:self action:@selector(testMethod) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:btn];
+    
 }
 
+- (void)testMethod
+{
+    NSLog(@"testMethod");
+    [self showViewController:[UIViewController new] sender:nil];
+}
 
 @end

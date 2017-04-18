@@ -45,6 +45,7 @@
 -(void)showMenuVC:(UILongPressGestureRecognizer *)longPress{
     
     UIMenuController *menuController = [UIMenuController sharedMenuController];
+//    menuController.canBecomeFirstResponder
     UIMenuItem * menuItem = [[UIMenuItem alloc] initWithTitle:@"复制" action:@selector(copyTitle)];
     UIMenuItem * pasteItem = [[UIMenuItem alloc] initWithTitle:@"黏贴" action:@selector(paste:)];
     [menuController setMenuItems:@[menuItem,pasteItem]];
@@ -80,11 +81,11 @@
 }
 
 //
-- (BOOL)canBecomeFirstResponder{
-    
-    return YES;
-    
-}
+//- (BOOL)canBecomeFirstResponder{
+//    
+//    return YES;
+//    
+//}
 
 
 

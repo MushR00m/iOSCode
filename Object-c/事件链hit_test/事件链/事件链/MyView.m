@@ -18,6 +18,9 @@
         retView = [super hitTest:point withEvent:event];
         NSLog(@"hitTest %@ Exit! view = %@", self.name, retView);
    
+//    if ([self.name isEqualToString:@"viewE"]) {
+//         return [self superview];
+//    }
         return retView;
 }
 
@@ -47,5 +50,9 @@
     return self;
 }
 
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    
+}
 
 @end

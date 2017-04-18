@@ -9,6 +9,7 @@
 #import "ViewController.h"
 
 #import "MyView.h"
+#import "MyButton.h"
 
 @interface ViewController ()
 {
@@ -21,8 +22,6 @@
 
     MyView *_viewE;
 
-
-    
 }
 @end
 
@@ -51,32 +50,55 @@
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(TapE)];
         [_viewE addGestureRecognizer:tap];
 
+    MyButton *btn = [MyButton buttonWithType:UIButtonTypeCustom];
+    [btn setTitle:@"测试按钮" forState:UIControlStateNormal];
+    [btn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+    btn.frame = CGRectMake(100, 550, 100, 50);
+    [self.view addSubview:btn];
     
+    
+    UITapGestureRecognizer *tap2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapSelf)];
+    [self.view addGestureRecognizer:tap2];
+
 }
 
 - (void)TapE
 {
-    NSLog(@"点击A");
+    NSLog(@"点击E");
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
+    NSLog(@"controller touchesBegan");
     UITouch *touch = [touches anyObject];
-    MyView *view = (MyView *)touch.view;
-    
-    NSLog(@"touchesBegan:%@",view.name);
+    if ([touch.view isKindOfClass:MyView.class]) {
+        MyView *view = (MyView *)touch.view;
+        
+        NSLog(@"touchesBegan:%@",view.name);
+
+    } else {
+        NSLog(@"touchesBegan");
+    }
     
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
     UITouch *touch = [touches anyObject];
-    MyView *view = (MyView *)touch.view;
-    
-    NSLog(@"touchesEnded:%@",view.name);
+    if ([touch.view isKindOfClass:MyView.class]) {
+        MyView *view = (MyView *)touch.view;
+        
+        NSLog(@"touchesEnded:%@",view.name);
+    } else {
+        NSLog(@"touchesEnded");
+    }
     
 }
 
+- (void)tapSelf
+{
+    NSLog(@"tapSelf");
+}
 
 /*
 - (void)viewDidLoad
