@@ -38,7 +38,7 @@
 
 - (void)keyboardDidHide:(NSNotification *)notification
 {
-    _didShowKeyBoard = YES;
+    _didShowKeyBoard = NO;
     NSLog(@"键盘");
 }
 
@@ -57,14 +57,10 @@
     {
         [_currentFirstResponder resignFirstResponder];
     }
-    else
-    {
-        //保存当前第一响应者
-       
-        _currentFirstResponder = touch.view;
-
-        [super sendEvent:event];//把事件正常分发下去
-    }
+   
+    //保存当前第一响应者
+    _currentFirstResponder = touch.view;
+    [super sendEvent:event];//把事件正常分发下去
 }
 
 

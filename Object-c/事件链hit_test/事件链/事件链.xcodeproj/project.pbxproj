@@ -15,6 +15,7 @@
 		2B4758721AB317E9006009AA /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B4758701AB317E9006009AA /* LaunchScreen.xib */; };
 		2B47587E1AB317E9006009AA /* ___Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B47587D1AB317E9006009AA /* ___Tests.m */; };
 		2B4758891AB31822006009AA /* MyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B4758881AB31822006009AA /* MyView.m */; };
+		2B7526841E88ED1100CFA298 /* MyButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7526831E88ED1100CFA298 /* MyButton.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +44,8 @@
 		2B47587D1AB317E9006009AA /* ___Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "___Tests.m"; sourceTree = "<group>"; };
 		2B4758871AB31822006009AA /* MyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyView.h; sourceTree = "<group>"; };
 		2B4758881AB31822006009AA /* MyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyView.m; sourceTree = "<group>"; };
+		2B7526821E88ED1100CFA298 /* MyButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyButton.h; sourceTree = "<group>"; };
+		2B7526831E88ED1100CFA298 /* MyButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyButton.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +91,8 @@
 				2B4758661AB317E9006009AA /* AppDelegate.m */,
 				2B4758681AB317E9006009AA /* ViewController.h */,
 				2B4758691AB317E9006009AA /* ViewController.m */,
+				2B7526821E88ED1100CFA298 /* MyButton.h */,
+				2B7526831E88ED1100CFA298 /* MyButton.m */,
 				2B47586B1AB317E9006009AA /* Main.storyboard */,
 				2B47586E1AB317E9006009AA /* Images.xcassets */,
 				2B4758701AB317E9006009AA /* LaunchScreen.xib */,
@@ -228,6 +233,7 @@
 				2B47586A1AB317E9006009AA /* ViewController.m in Sources */,
 				2B4758671AB317E9006009AA /* AppDelegate.m in Sources */,
 				2B4758641AB317E9006009AA /* main.m in Sources */,
+				2B7526841E88ED1100CFA298 /* MyButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -418,6 +424,7 @@
 				2B4758831AB317E9006009AA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		2B4758841AB317E9006009AA /* Build configuration list for PBXNativeTarget "事件链Tests" */ = {
 			isa = XCConfigurationList;
@@ -426,6 +433,7 @@
 				2B4758861AB317E9006009AA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

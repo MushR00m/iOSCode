@@ -9,6 +9,8 @@
 #import "MainView.h"
 #import "SubView.h"
 
+#import "SubView2.h"
+
 @implementation MainView
 
 //事件相应函数 凡是相应者收到事件、touchesBegan等系列函数都会被自动回调
@@ -29,6 +31,8 @@
         [self addSubview:subView];
         
         [subView release];
+        
+
     }
     return self;
 }
