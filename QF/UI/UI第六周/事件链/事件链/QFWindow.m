@@ -15,6 +15,9 @@
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     NSLog(@"QFWindow :: touchesBegan self.nextResponder = %@", self.nextResponder);
+    UITouch *th = [[event.allTouches allObjects] firstObject];
+    
+    NSLog(@"---touch view %@",th.view);
     [super touchesBegan:touches withEvent:event];
 }
 

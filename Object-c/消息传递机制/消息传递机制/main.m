@@ -135,9 +135,9 @@ void dynamicMethodIMP(id self, SEL _cmd)
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
-//        id obj = [[SomeTestObject alloc] init];
-//        [obj testMethod];
-//        
+        id obj = [[SomeTestObject alloc] init];
+        [obj testMethod];
+//
 //        Class statedClass = [obj class];
 //        Class baseClass = object_getClass(obj);
 //        
@@ -163,22 +163,22 @@ int main(int argc, const char * argv[]) {
 //
 
         
-        Object1 *obj1 = [[Object1 alloc] init];
-        Object2 *obj2 = [[Object2 alloc] init];
-        
-        Class obj1c = object_getClass(obj1); // 3
-        Class obj2c = object_getClass(obj2); // 4
-        NSLog(@"%@ -- %@", NSStringFromClass(obj1c), NSStringFromClass(obj2c)); // 5
-        
-        Class setclass = object_setClass(obj1, obj2c);
-        NSLog(@"setclass: %@", NSStringFromClass(setclass));
-        
-        Class mutArrayClassNow = object_getClass(obj2); // 8
-        Class arrayClassNow = object_getClass(obj1); // 9
-        NSLog(@"%@ -- %@", NSStringFromClass(mutArrayClassNow), NSStringFromClass(arrayClassNow)); // 10
-        
-        NSLog(@"xxx");
-        [obj1 testMethod];
+//        Object1 *obj1 = [[Object1 alloc] init];
+//        Object2 *obj2 = [[Object2 alloc] init];
+//        
+//        Class obj1c = object_getClass(obj1); // 3
+//        Class obj2c = object_getClass(obj2); // 4
+//        NSLog(@"%@ -- %@", NSStringFromClass(obj1c), NSStringFromClass(obj2c)); // 5
+//        
+//        Class setclass = object_setClass(obj1, obj2c);
+//        NSLog(@"setclass: %@", NSStringFromClass(setclass));
+//        
+//        Class mutArrayClassNow = object_getClass(obj2); // 8
+//        Class arrayClassNow = object_getClass(obj1); // 9
+//        NSLog(@"%@ -- %@", NSStringFromClass(mutArrayClassNow), NSStringFromClass(arrayClassNow)); // 10
+//        
+//        NSLog(@"xxx");
+//        [obj1 testMethod];
         
 
         
