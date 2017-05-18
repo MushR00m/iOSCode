@@ -74,30 +74,54 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    UIWebView *wkWebView = [[UIWebView alloc] initWithFrame:self.view.bounds];
+    [self method2];
+}
+
+
+- (void)method1
+{
+    WKWebView *wkWebView = [[WKWebView alloc] initWithFrame:self.view.bounds];
     [self.view addSubview: wkWebView];
     [NSMutableURLRequest setupUserAgentOverwrite];
-
-//    NSString *customUserAgent = @"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36";
-//    [[NSUserDefaults standardUserDefaults] registerDefaults:@{@"UserAgent":customUserAgent}];
+    
+    //    NSString *customUserAgent = @"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36";
+    //    [[NSUserDefaults standardUserDefaults] registerDefaults:@{@"UserAgent":customUserAgent}];
     NSURL *url = [NSURL URLWithString:@"http://www.baidu.com"];
-
+    
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     request.URL = url;
-//    [request setValue:@"The new User-Agent string" forHTTPHeaderField:@"User-Agent"];
-
+    //    [request setValue:@"The new User-Agent string" forHTTPHeaderField:@"User-Agent"];
+    
     
     NSString *sysUA = request.allHTTPHeaderFields[@"User-Agent"];
     NSLog(@"sysUA = %@",sysUA);
-
+    
     [wkWebView loadRequest:request];
 }
 
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)method2
+{
+    WKWebView *webView = [[WKWebView alloc] initWithFrame:self.view.bounds];
+    webView.customUserAgent = @"The new User-Agent string";
+    NSURL *url = [NSURL URLWithString:@"http://www.baidu.com"];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    request.URL = url;
+    [webView loadRequest:request];
+    
+    [webView evaluateJavaScript:@"navigator.appName" completionHandler:^(id __nullable appName, NSError * __nullable error) {
+        NSLog(@"%@", appName);
+        // Netscape
+    }];
+    [webView evaluateJavaScript:@"navigator.userAgent" completionHandler:^(id __nullable userAgent, NSError * __nullable error) {
+        NSLog(@"evaluateJavaScript = %@", userAgent);
+        // iOS 8.3
+        // Mozilla/5.0 (iPhone; CPU iPhone OS 8_3 like Mac OS X) AppleWebKit/600.1.4 (KHTML, like Gecko) Mobile/12F70
+        // iOS 9.0
+        // Mozilla/5.0 (iPhone; CPU iPhone OS 9_0 like Mac OS X) AppleWebKit/601.1.32 (KHTML, like Gecko) Mobile/13A4254v
+    }];
+    // needs retain because `evaluateJavaScript:` is asynchronous
+    [self.view addSubview:webView];
+    
 }
-
 
 @end
