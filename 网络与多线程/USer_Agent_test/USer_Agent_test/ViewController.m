@@ -101,7 +101,7 @@
 
 - (void)method2
 {
-    WKWebView *webView = [[WKWebView alloc] initWithFrame:self.view.bounds];
+    WKWebView *webView = [[WKWebView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 200)];
     webView.customUserAgent = @"The new User-Agent string";
     NSURL *url = [NSURL URLWithString:@"http://www.baidu.com"];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
@@ -121,6 +121,30 @@
     }];
     // needs retain because `evaluateJavaScript:` is asynchronous
     [self.view addSubview:webView];
+    
+    
+    
+    WKWebView *webView2 = [[WKWebView alloc] initWithFrame:CGRectMake(0, 250, self.view.frame.size.width, 200)];
+    //    webView2.customUserAgent = @"2 The new User-Agent 2";
+    NSURL *url2 = [NSURL URLWithString:@"http://www.baidu.com"];
+    NSMutableURLRequest *request2 = [[NSMutableURLRequest alloc] init];
+    request2.URL = url2;
+    [webView2 loadRequest:request2];
+    
+    [webView2 evaluateJavaScript:@"navigator.appName" completionHandler:^(id __nullable appName, NSError * __nullable error) {
+        NSLog(@"%@", appName);
+        // Netscape
+    }];
+    [webView2 evaluateJavaScript:@"navigator.userAgent" completionHandler:^(id __nullable userAgent, NSError * __nullable error) {
+        NSLog(@"evaluateJavaScript = %@", userAgent);
+        // iOS 8.3
+        // Mozilla/5.0 (iPhone; CPU iPhone OS 8_3 like Mac OS X) AppleWebKit/600.1.4 (KHTML, like Gecko) Mobile/12F70
+        // iOS 9.0
+        // Mozilla/5.0 (iPhone; CPU iPhone OS 9_0 like Mac OS X) AppleWebKit/601.1.32 (KHTML, like Gecko) Mobile/13A4254v
+    }];
+    // needs retain because `evaluateJavaScript:` is asynchronous
+    [self.view addSubview:webView2];
+    
     
 }
 
