@@ -1,0 +1,12 @@
+source 'https://gitcafe.com/akuandev/Specs.git'
+
+platform :ios, '8.0'
+
+target 'XuLib' do
+
+pod 'Masonry', '~> 1.0.1'
+pod 'AFNetworking', '~> 3.1.0'
+pod 'Mantle', '~> 1.5'
+pod 'pop', '~> 1.0.7'
+
+end

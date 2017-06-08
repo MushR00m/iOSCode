@@ -1,0 +1,614 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		127886706789787E40BA4331 /* libPods-XuLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FC3707C2EEA61794E84FFD50 /* libPods-XuLib.a */; };
+		276B7EA51ED7194B00AB85D3 /* XuUIViewAnimationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 276B7EA31ED7194B00AB85D3 /* XuUIViewAnimationViewController.m */; };
+		276B7EA61ED7194B00AB85D3 /* XuUIViewAnimationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 276B7EA41ED7194B00AB85D3 /* XuUIViewAnimationViewController.xib */; };
+		276B7EB71ED8178D00AB85D3 /* XuCoreAnimationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 276B7EB51ED8178D00AB85D3 /* XuCoreAnimationViewController.m */; };
+		276B7EB81ED8178D00AB85D3 /* XuCoreAnimationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 276B7EB61ED8178D00AB85D3 /* XuCoreAnimationViewController.xib */; };
+		278491D01EE69E3300423D97 /* XuBigViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 278491CF1EE69E3300423D97 /* XuBigViewController.m */; };
+		278491D31EE6A68900423D97 /* XuBigView.m in Sources */ = {isa = PBXBuildFile; fileRef = 278491D21EE6A68900423D97 /* XuBigView.m */; };
+		278566221ED2CC2800E49613 /* XuPaintingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 278566211ED2CC2800E49613 /* XuPaintingViewController.m */; };
+		278566251ED2CC3800E49613 /* XuCustomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 278566241ED2CC3800E49613 /* XuCustomView.m */; };
+		278916D51E8BA91200D27397 /* XuThreeBallViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 278916D41E8BA91200D27397 /* XuThreeBallViewController.m */; };
+		278916D81E8BA9E800D27397 /* XuThreeBallView.m in Sources */ = {isa = PBXBuildFile; fileRef = 278916D71E8BA9E800D27397 /* XuThreeBallView.m */; };
+		27EB0DFF1ED8632600B8A53B /* XuBase2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27EB0DFD1ED8632600B8A53B /* XuBase2ViewController.m */; };
+		27EB0E001ED8632600B8A53B /* XuBase2ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 27EB0DFE1ED8632600B8A53B /* XuBase2ViewController.xib */; };
+		27EB0E071ED925F300B8A53B /* XuMaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27EB0E051ED925F300B8A53B /* XuMaskViewController.m */; };
+		27EB0E081ED925F300B8A53B /* XuMaskViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 27EB0E061ED925F300B8A53B /* XuMaskViewController.xib */; };
+		95A471091B91E36B00AC9AED /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 95A471081B91E36B00AC9AED /* Images.xcassets */; };
+		95A4710C1B91E36B00AC9AED /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95A4710A1B91E36B00AC9AED /* LaunchScreen.xib */; };
+		95A471261B91E55400AC9AED /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 95A471231B91E55400AC9AED /* AppDelegate.m */; };
+		95A471271B91E55400AC9AED /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 95A471241B91E55400AC9AED /* Info.plist */; };
+		95A471281B91E55400AC9AED /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 95A471251B91E55400AC9AED /* main.m */; };
+		95A4712E1B91EC6900AC9AED /* XuMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95A4712D1B91EC6900AC9AED /* XuMenuViewController.m */; };
+		95A471321B91EFA800AC9AED /* XuAnimationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95A471311B91EFA800AC9AED /* XuAnimationViewController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		276B7EA21ED7194B00AB85D3 /* XuUIViewAnimationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XuUIViewAnimationViewController.h; sourceTree = "<group>"; };
+		276B7EA31ED7194B00AB85D3 /* XuUIViewAnimationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XuUIViewAnimationViewController.m; sourceTree = "<group>"; };
+		276B7EA41ED7194B00AB85D3 /* XuUIViewAnimationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XuUIViewAnimationViewController.xib; sourceTree = "<group>"; };
+		276B7EB41ED8178D00AB85D3 /* XuCoreAnimationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XuCoreAnimationViewController.h; sourceTree = "<group>"; };
+		276B7EB51ED8178D00AB85D3 /* XuCoreAnimationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XuCoreAnimationViewController.m; sourceTree = "<group>"; };
+		276B7EB61ED8178D00AB85D3 /* XuCoreAnimationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XuCoreAnimationViewController.xib; sourceTree = "<group>"; };
+		278491CE1EE69E3300423D97 /* XuBigViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XuBigViewController.h; sourceTree = "<group>"; };
+		278491CF1EE69E3300423D97 /* XuBigViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XuBigViewController.m; sourceTree = "<group>"; };
+		278491D11EE6A68900423D97 /* XuBigView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XuBigView.h; sourceTree = "<group>"; };
+		278491D21EE6A68900423D97 /* XuBigView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XuBigView.m; sourceTree = "<group>"; };
+		278566201ED2CC2800E49613 /* XuPaintingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XuPaintingViewController.h; sourceTree = "<group>"; };
+		278566211ED2CC2800E49613 /* XuPaintingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XuPaintingViewController.m; sourceTree = "<group>"; };
+		278566231ED2CC3800E49613 /* XuCustomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XuCustomView.h; sourceTree = "<group>"; };
+		278566241ED2CC3800E49613 /* XuCustomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XuCustomView.m; sourceTree = "<group>"; };
+		278916D31E8BA91200D27397 /* XuThreeBallViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XuThreeBallViewController.h; sourceTree = "<group>"; };
+		278916D41E8BA91200D27397 /* XuThreeBallViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XuThreeBallViewController.m; sourceTree = "<group>"; };
+		278916D61E8BA9E800D27397 /* XuThreeBallView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XuThreeBallView.h; sourceTree = "<group>"; };
+		278916D71E8BA9E800D27397 /* XuThreeBallView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XuThreeBallView.m; sourceTree = "<group>"; };
+		27EB0DFC1ED8632600B8A53B /* XuBase2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XuBase2ViewController.h; sourceTree = "<group>"; };
+		27EB0DFD1ED8632600B8A53B /* XuBase2ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XuBase2ViewController.m; sourceTree = "<group>"; };
+		27EB0DFE1ED8632600B8A53B /* XuBase2ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XuBase2ViewController.xib; sourceTree = "<group>"; };
+		27EB0E041ED925F300B8A53B /* XuMaskViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XuMaskViewController.h; sourceTree = "<group>"; };
+		27EB0E051ED925F300B8A53B /* XuMaskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XuMaskViewController.m; sourceTree = "<group>"; };
+		27EB0E061ED925F300B8A53B /* XuMaskViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XuMaskViewController.xib; sourceTree = "<group>"; };
+		67A211766329D4D7DC67FE06 /* Pods-XuLib.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XuLib.debug.xcconfig"; path = "Pods/Target Support Files/Pods-XuLib/Pods-XuLib.debug.xcconfig"; sourceTree = "<group>"; };
+		95A470F81B91E36B00AC9AED /* XuLib.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XuLib.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		95A471081B91E36B00AC9AED /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		95A4710B1B91E36B00AC9AED /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		95A471221B91E55400AC9AED /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		95A471231B91E55400AC9AED /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		95A471241B91E55400AC9AED /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		95A471251B91E55400AC9AED /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		95A4712A1B91E85600AC9AED /* XuLib-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "XuLib-Prefix.pch"; sourceTree = "<group>"; };
+		95A4712C1B91EC6900AC9AED /* XuMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XuMenuViewController.h; sourceTree = "<group>"; };
+		95A4712D1B91EC6900AC9AED /* XuMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XuMenuViewController.m; sourceTree = "<group>"; };
+		95A471301B91EFA800AC9AED /* XuAnimationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XuAnimationViewController.h; sourceTree = "<group>"; };
+		95A471311B91EFA800AC9AED /* XuAnimationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XuAnimationViewController.m; sourceTree = "<group>"; };
+		EFBD4ECBE25884A5848D32FF /* Pods-XuLib.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XuLib.release.xcconfig"; path = "Pods/Target Support Files/Pods-XuLib/Pods-XuLib.release.xcconfig"; sourceTree = "<group>"; };
+		FC3707C2EEA61794E84FFD50 /* libPods-XuLib.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-XuLib.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		95A470F51B91E36B00AC9AED /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				127886706789787E40BA4331 /* libPods-XuLib.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		276B7E9C1ED7146D00AB85D3 /* UIViewAnimation */ = {
+			isa = PBXGroup;
+			children = (
+				276B7E9D1ED7146D00AB85D3 /* Controller */,
+				276B7E9E1ED7146D00AB85D3 /* View */,
+			);
+			path = UIViewAnimation;
+			sourceTree = "<group>";
+		};
+		276B7E9D1ED7146D00AB85D3 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				276B7EA21ED7194B00AB85D3 /* XuUIViewAnimationViewController.h */,
+				276B7EA31ED7194B00AB85D3 /* XuUIViewAnimationViewController.m */,
+				276B7EA41ED7194B00AB85D3 /* XuUIViewAnimationViewController.xib */,
+				27EB0DFC1ED8632600B8A53B /* XuBase2ViewController.h */,
+				27EB0DFD1ED8632600B8A53B /* XuBase2ViewController.m */,
+				27EB0DFE1ED8632600B8A53B /* XuBase2ViewController.xib */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		276B7E9E1ED7146D00AB85D3 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		276B7EB11ED8177E00AB85D3 /* CoreAnimation */ = {
+			isa = PBXGroup;
+			children = (
+				276B7EB21ED8177E00AB85D3 /* Controller */,
+				276B7EB31ED8177E00AB85D3 /* View */,
+			);
+			path = CoreAnimation;
+			sourceTree = "<group>";
+		};
+		276B7EB21ED8177E00AB85D3 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				276B7EB41ED8178D00AB85D3 /* XuCoreAnimationViewController.h */,
+				276B7EB51ED8178D00AB85D3 /* XuCoreAnimationViewController.m */,
+				276B7EB61ED8178D00AB85D3 /* XuCoreAnimationViewController.xib */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		276B7EB31ED8177E00AB85D3 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		278491CB1EE69DD900423D97 /* Big */ = {
+			isa = PBXGroup;
+			children = (
+				278491CC1EE69DD900423D97 /* Controller */,
+				278491CD1EE69DD900423D97 /* View */,
+			);
+			path = Big;
+			sourceTree = "<group>";
+		};
+		278491CC1EE69DD900423D97 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				278491CE1EE69E3300423D97 /* XuBigViewController.h */,
+				278491CF1EE69E3300423D97 /* XuBigViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		278491CD1EE69DD900423D97 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				278491D11EE6A68900423D97 /* XuBigView.h */,
+				278491D21EE6A68900423D97 /* XuBigView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		2785661C1ED2CC0D00E49613 /* Painting */ = {
+			isa = PBXGroup;
+			children = (
+				2785661D1ED2CC0D00E49613 /* Controller */,
+				2785661E1ED2CC0D00E49613 /* Model */,
+				2785661F1ED2CC0D00E49613 /* View */,
+			);
+			path = Painting;
+			sourceTree = "<group>";
+		};
+		2785661D1ED2CC0D00E49613 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				278566201ED2CC2800E49613 /* XuPaintingViewController.h */,
+				278566211ED2CC2800E49613 /* XuPaintingViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		2785661E1ED2CC0D00E49613 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		2785661F1ED2CC0D00E49613 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				278566231ED2CC3800E49613 /* XuCustomView.h */,
+				278566241ED2CC3800E49613 /* XuCustomView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		27EB0E011ED925A600B8A53B /* Mask */ = {
+			isa = PBXGroup;
+			children = (
+				27EB0E021ED925A600B8A53B /* Controller */,
+				27EB0E031ED925A600B8A53B /* View */,
+			);
+			path = Mask;
+			sourceTree = "<group>";
+		};
+		27EB0E021ED925A600B8A53B /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				27EB0E041ED925F300B8A53B /* XuMaskViewController.h */,
+				27EB0E051ED925F300B8A53B /* XuMaskViewController.m */,
+				27EB0E061ED925F300B8A53B /* XuMaskViewController.xib */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		27EB0E031ED925A600B8A53B /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		95A470EF1B91E36B00AC9AED = {
+			isa = PBXGroup;
+			children = (
+				95A470FA1B91E36B00AC9AED /* XuLib */,
+				95A470F91B91E36B00AC9AED /* Products */,
+				D52B9D489575C02DE946EFAE /* Pods */,
+				9D2E5C37E795FB0AB2E1912E /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		95A470F91B91E36B00AC9AED /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				95A470F81B91E36B00AC9AED /* XuLib.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		95A470FA1B91E36B00AC9AED /* XuLib */ = {
+			isa = PBXGroup;
+			children = (
+				276B7E9C1ED7146D00AB85D3 /* UIViewAnimation */,
+				276B7EB11ED8177E00AB85D3 /* CoreAnimation */,
+				27EB0E011ED925A600B8A53B /* Mask */,
+				2785661C1ED2CC0D00E49613 /* Painting */,
+				95A471211B91E55400AC9AED /* Application */,
+				95A4712B1B91EC2B00AC9AED /* Base */,
+				95A471331B91F29200AC9AED /* Autolayout */,
+				95A4712F1B91EF7500AC9AED /* Animation */,
+				278491CB1EE69DD900423D97 /* Big */,
+				95A471081B91E36B00AC9AED /* Images.xcassets */,
+				95A4710A1B91E36B00AC9AED /* LaunchScreen.xib */,
+			);
+			path = XuLib;
+			sourceTree = "<group>";
+		};
+		95A471211B91E55400AC9AED /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				95A471221B91E55400AC9AED /* AppDelegate.h */,
+				95A471231B91E55400AC9AED /* AppDelegate.m */,
+				95A471241B91E55400AC9AED /* Info.plist */,
+				95A471251B91E55400AC9AED /* main.m */,
+				95A4712A1B91E85600AC9AED /* XuLib-Prefix.pch */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		95A4712B1B91EC2B00AC9AED /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				95A4712C1B91EC6900AC9AED /* XuMenuViewController.h */,
+				95A4712D1B91EC6900AC9AED /* XuMenuViewController.m */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		95A4712F1B91EF7500AC9AED /* Animation */ = {
+			isa = PBXGroup;
+			children = (
+				95A471301B91EFA800AC9AED /* XuAnimationViewController.h */,
+				95A471311B91EFA800AC9AED /* XuAnimationViewController.m */,
+				278916D31E8BA91200D27397 /* XuThreeBallViewController.h */,
+				278916D41E8BA91200D27397 /* XuThreeBallViewController.m */,
+				278916D61E8BA9E800D27397 /* XuThreeBallView.h */,
+				278916D71E8BA9E800D27397 /* XuThreeBallView.m */,
+			);
+			path = Animation;
+			sourceTree = "<group>";
+		};
+		95A471331B91F29200AC9AED /* Autolayout */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Autolayout;
+			sourceTree = "<group>";
+		};
+		9D2E5C37E795FB0AB2E1912E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FC3707C2EEA61794E84FFD50 /* libPods-XuLib.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D52B9D489575C02DE946EFAE /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				67A211766329D4D7DC67FE06 /* Pods-XuLib.debug.xcconfig */,
+				EFBD4ECBE25884A5848D32FF /* Pods-XuLib.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		95A470F71B91E36B00AC9AED /* XuLib */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 95A4711B1B91E36B00AC9AED /* Build configuration list for PBXNativeTarget "XuLib" */;
+			buildPhases = (
+				7D41275591CC92538141B3E0 /* [CP] Check Pods Manifest.lock */,
+				95A470F41B91E36B00AC9AED /* Sources */,
+				95A470F51B91E36B00AC9AED /* Frameworks */,
+				95A470F61B91E36B00AC9AED /* Resources */,
+				113CC8E3A04874FCF7C45AD3 /* [CP] Embed Pods Frameworks */,
+				CA51005D613F34366E37132A /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = XuLib;
+			productName = XuLib;
+			productReference = 95A470F81B91E36B00AC9AED /* XuLib.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		95A470F01B91E36B00AC9AED /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = Xu;
+				LastUpgradeCheck = 0640;
+				ORGANIZATIONNAME = xu;
+				TargetAttributes = {
+					95A470F71B91E36B00AC9AED = {
+						CreatedOnToolsVersion = 6.4;
+					};
+				};
+			};
+			buildConfigurationList = 95A470F31B91E36B00AC9AED /* Build configuration list for PBXProject "XuLib" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 95A470EF1B91E36B00AC9AED;
+			productRefGroup = 95A470F91B91E36B00AC9AED /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				95A470F71B91E36B00AC9AED /* XuLib */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		95A470F61B91E36B00AC9AED /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				276B7EB81ED8178D00AB85D3 /* XuCoreAnimationViewController.xib in Resources */,
+				95A471271B91E55400AC9AED /* Info.plist in Resources */,
+				276B7EA61ED7194B00AB85D3 /* XuUIViewAnimationViewController.xib in Resources */,
+				95A4710C1B91E36B00AC9AED /* LaunchScreen.xib in Resources */,
+				27EB0E001ED8632600B8A53B /* XuBase2ViewController.xib in Resources */,
+				27EB0E081ED925F300B8A53B /* XuMaskViewController.xib in Resources */,
+				95A471091B91E36B00AC9AED /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		113CC8E3A04874FCF7C45AD3 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-XuLib/Pods-XuLib-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7D41275591CC92538141B3E0 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		CA51005D613F34366E37132A /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-XuLib/Pods-XuLib-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		95A470F41B91E36B00AC9AED /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				95A471261B91E55400AC9AED /* AppDelegate.m in Sources */,
+				27EB0E071ED925F300B8A53B /* XuMaskViewController.m in Sources */,
+				278491D31EE6A68900423D97 /* XuBigView.m in Sources */,
+				95A471281B91E55400AC9AED /* main.m in Sources */,
+				278566221ED2CC2800E49613 /* XuPaintingViewController.m in Sources */,
+				278916D51E8BA91200D27397 /* XuThreeBallViewController.m in Sources */,
+				278566251ED2CC3800E49613 /* XuCustomView.m in Sources */,
+				278916D81E8BA9E800D27397 /* XuThreeBallView.m in Sources */,
+				95A471321B91EFA800AC9AED /* XuAnimationViewController.m in Sources */,
+				27EB0DFF1ED8632600B8A53B /* XuBase2ViewController.m in Sources */,
+				276B7EA51ED7194B00AB85D3 /* XuUIViewAnimationViewController.m in Sources */,
+				95A4712E1B91EC6900AC9AED /* XuMenuViewController.m in Sources */,
+				276B7EB71ED8178D00AB85D3 /* XuCoreAnimationViewController.m in Sources */,
+				278491D01EE69E3300423D97 /* XuBigViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		95A4710A1B91E36B00AC9AED /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				95A4710B1B91E36B00AC9AED /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		95A471191B91E36B00AC9AED /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		95A4711A1B91E36B00AC9AED /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		95A4711C1B91E36B00AC9AED /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 67A211766329D4D7DC67FE06 /* Pods-XuLib.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/XuLib/Application/XuLib-Prefix.pch";
+				INFOPLIST_FILE = "$(SRCROOT)/XuLib/Application/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		95A4711D1B91E36B00AC9AED /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = EFBD4ECBE25884A5848D32FF /* Pods-XuLib.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/XuLib/Application/XuLib-Prefix.pch";
+				INFOPLIST_FILE = "$(SRCROOT)/XuLib/Application/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		95A470F31B91E36B00AC9AED /* Build configuration list for PBXProject "XuLib" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				95A471191B91E36B00AC9AED /* Debug */,
+				95A4711A1B91E36B00AC9AED /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		95A4711B1B91E36B00AC9AED /* Build configuration list for PBXNativeTarget "XuLib" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				95A4711C1B91E36B00AC9AED /* Debug */,
+				95A4711D1B91E36B00AC9AED /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 95A470F01B91E36B00AC9AED /* Project object */;
+}
